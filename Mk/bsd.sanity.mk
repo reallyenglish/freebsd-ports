@@ -70,6 +70,10 @@ DEV_WARNING+=	"NO_STAGE is deprecated, convert port to stage directory:"
 DEV_WARNING+=	"https://wiki.freebsd.org/ports/StageDir"
 .endif
 
+.if defined(USE_SCONS)
+DEV_WARNING+=	"USE_SCONS=yes is deprecated, please use USES=scons"
+.endif
+
 .if !defined(NO_STAGE)
 .for a in 1 2 3 4 5 6 7 8 9 L N
 .if defined(MAN${a})
