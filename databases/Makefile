@@ -569,6 +569,7 @@
     SUBDIR += pgpool-II-22
     SUBDIR += pgpool-II-23
     SUBDIR += pgpool-II-30
+    SUBDIR += pgpool-II-33
     SUBDIR += pgpoolAdmin
     SUBDIR += pgsphere
     SUBDIR += pgtcl
