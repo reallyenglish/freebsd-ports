@@ -3,21 +3,23 @@
 
 PORTNAME=	sensu-community-plugins
 PORTVERSION=	0.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	GH
 
 MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	Community plugins, extenions, and handlers for sensu
 
-RUN_DEPENDS=	rubygem-sensu-plugin>=0:${PORTSDIR}/net-mgmt/rubygem-sensu-plugin
+RUN_DEPENDS=	rubygem-sensu-plugin>=0:${PORTSDIR}/net-mgmt/rubygem-sensu-plugin \
+	gem:${PORTSDIR}/devel/ruby-gems
+
 NO_BUILD=	yes
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	sensu
+GH_ACCOUNT=	reallyenglish
 GH_PROJECT=	${PORTNAME}
-GH_TAGNAME=	${GH_COMMIT}
-GH_COMMIT=	a8de22f
+GH_TAGNAME=	freebsd-support
+GH_COMMIT=	b484c0b
 
 OPTIONS_DEFINE=	DOCS
 
