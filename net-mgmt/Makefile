@@ -298,6 +298,7 @@
     SUBDIR += sdig
     SUBDIR += send
     SUBDIR += sendip
+    SUBDIR += sensu-community-plugins
     SUBDIR += sing
     SUBDIR += sipcalc
     SUBDIR += sjitter
