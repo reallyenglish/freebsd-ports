@@ -1,279 +1,282 @@
 @comment $FreeBSD$
-%%SENSU_SCRIPT_DIR%%/plugins/youtube/youtube-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/windows/check-disk-windows.rb
-%%SENSU_SCRIPT_DIR%%/plugins/varnish/varnish-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/twilio/check-num-recordings.rb
-%%SENSU_SCRIPT_DIR%%/plugins/trafficserver/trafficserver-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/telapi/telapi_balance_check.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/vmstat-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/temperature-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/memory-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/load-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/iostat-extended-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/interface-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/entropy-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/disk-usage-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/disk-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/disk-capacity-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/cpu-usage-metrics.sh
-%%SENSU_SCRIPT_DIR%%/plugins/system/cpu-pcnt-usage-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/cpu-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-swap.sh
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-ram.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-memory-pcnt.sh
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-mem.sh
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-load.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-fstab-mounts.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-fs-writable.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-entropy.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-disk.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-disk-health.sh
-%%SENSU_SCRIPT_DIR%%/plugins/system/check-cpu.rb
-%%SENSU_SCRIPT_DIR%%/plugins/system/cgroup-metrics.sh
-%%SENSU_SCRIPT_DIR%%/plugins/supervisor/check-supervisor.rb
-%%SENSU_SCRIPT_DIR%%/plugins/solr/solr4-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/solr/solr-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/snmp/snmp-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/snmp/check-snmp.rb
-%%SENSU_SCRIPT_DIR%%/plugins/sip/check_sip.rb
-%%SENSU_SCRIPT_DIR%%/plugins/sensu/delete-expired-stashes.rb
-%%SENSU_SCRIPT_DIR%%/plugins/sensu/check-aggregate.rb
-%%SENSU_SCRIPT_DIR%%/plugins/sensu/aggregate-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/security/check-ports.rb
-%%SENSU_SCRIPT_DIR%%/plugins/riak/riak-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/resque/resque-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/redis/redis-llen-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/redis/redis-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/redis/check-redis-slave-status.rb
-%%SENSU_SCRIPT_DIR%%/plugins/redis/check-redis-memory.rb
-%%SENSU_SCRIPT_DIR%%/plugins/redis/check-redis-list-length.rb
-%%SENSU_SCRIPT_DIR%%/plugins/rabbitmq/rabbitmq-queue-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/rabbitmq/rabbitmq-overview-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/rabbitmq/rabbitmq-amqp-alive.rb
-%%SENSU_SCRIPT_DIR%%/plugins/rabbitmq/rabbitmq-alive.rb
-%%SENSU_SCRIPT_DIR%%/plugins/rabbitmq/check-rabbitmq-messages.rb
-%%SENSU_SCRIPT_DIR%%/plugins/qmail/check-qmailq.rb
-%%SENSU_SCRIPT_DIR%%/plugins/processes/check-procs.rb
-%%SENSU_SCRIPT_DIR%%/plugins/processes/check-cmd.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-statstable-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-statsio-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-statsdb-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-statsbgwriter-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-replication.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-locks-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-dbsize-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-connections-metric.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postgres/postgres-alive.rb
-%%SENSU_SCRIPT_DIR%%/plugins/postfix/check-mailq.rb
-%%SENSU_SCRIPT_DIR%%/plugins/pingdom/check-pingdom-credits.rb
-%%SENSU_SCRIPT_DIR%%/plugins/pingdom/check-pingdom-aggregates.rb
-%%SENSU_SCRIPT_DIR%%/plugins/ping/check-ping.rb
-%%SENSU_SCRIPT_DIR%%/plugins/percona-cluster/percona-cluster-size.rb
-%%SENSU_SCRIPT_DIR%%/plugins/percona-cluster/percona-cluster-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/opsgenie/opsgenie-heartbeat.rb
-%%SENSU_SCRIPT_DIR%%/plugins/openstack/neutron/neutron-agent-status.py
-%%SENSU_SCRIPT_DIR%%/plugins/openstack/keystone/keystone-token-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/openstack/keystone/check_keystone-api.sh
-%%SENSU_SCRIPT_DIR%%/plugins/openstack/ceilometer/check_ceilometer-collector.sh
-%%SENSU_SCRIPT_DIR%%/plugins/openstack/ceilometer/check_ceilometer-api.sh
-%%SENSU_SCRIPT_DIR%%/plugins/openstack/ceilometer/check_ceilometer-agent-compute.sh
-%%SENSU_SCRIPT_DIR%%/plugins/openstack/ceilometer/check_ceilometer-agent-central.sh
-%%SENSU_SCRIPT_DIR%%/plugins/nginx/nginx-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/newrelic/newrelic-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/network/netif-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/network/metrics-netstat-tcp.rb
-%%SENSU_SCRIPT_DIR%%/plugins/network/metrics-net.rb
-%%SENSU_SCRIPT_DIR%%/plugins/network/check-rbl.rb
-%%SENSU_SCRIPT_DIR%%/plugins/network/check-banner.rb
-%%SENSU_SCRIPT_DIR%%/plugins/mysql/mysql-replication-status.rb
-%%SENSU_SCRIPT_DIR%%/plugins/mysql/mysql-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/mysql/mysql-disk.rb
-%%SENSU_SCRIPT_DIR%%/plugins/mysql/mysql-connections.rb
-%%SENSU_SCRIPT_DIR%%/plugins/mysql/mysql-alive.rb
-%%SENSU_SCRIPT_DIR%%/plugins/mysql/cloudwatch-mysql-sensu.rb
-%%SENSU_SCRIPT_DIR%%/plugins/monit/monit-email.rb
-%%SENSU_SCRIPT_DIR%%/plugins/monit/Readme.md
-%%SENSU_SCRIPT_DIR%%/plugins/monit/Gemfile
-%%SENSU_SCRIPT_DIR%%/plugins/mongodb/mongodb-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/mongodb/check_mongodb.py
-%%SENSU_SCRIPT_DIR%%/plugins/memcached/memcached_socket_graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/memcached/memcached-key-stats-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/memcached/memcached-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/memcached/check-memcached-stats.rb
-%%SENSU_SCRIPT_DIR%%/plugins/lxc/check-lxc-status.rb
-%%SENSU_SCRIPT_DIR%%/plugins/lxc/check-lxc-memstat.rb
-%%SENSU_SCRIPT_DIR%%/plugins/logging/check-log.rb
-%%SENSU_SCRIPT_DIR%%/plugins/java/java-permgen.rb
-%%SENSU_SCRIPT_DIR%%/plugins/java/java-heap-pcnt.sh
-%%SENSU_SCRIPT_DIR%%/plugins/java/java-heap-graphite.sh
-%%SENSU_SCRIPT_DIR%%/plugins/imap/check-imap.rb
-%%SENSU_SCRIPT_DIR%%/plugins/http/metrics-curl.rb
-%%SENSU_SCRIPT_DIR%%/plugins/http/check-http.rb
-%%SENSU_SCRIPT_DIR%%/plugins/http/check-http-json.rb
-%%SENSU_SCRIPT_DIR%%/plugins/hbase/check-hbase-status.rb
-%%SENSU_SCRIPT_DIR%%/plugins/hbase/check-hbase-regions.rb
-%%SENSU_SCRIPT_DIR%%/plugins/haproxy/haproxy-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/haproxy/check-haproxy.rb
-%%SENSU_SCRIPT_DIR%%/plugins/graphite/graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/graphite/check-data.rb
-%%SENSU_SCRIPT_DIR%%/plugins/github/github-repo-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/files/check_dir_count.rb
-%%SENSU_SCRIPT_DIR%%/plugins/files/check-tail.rb
-%%SENSU_SCRIPT_DIR%%/plugins/files/check-mtime.rb
-%%SENSU_SCRIPT_DIR%%/plugins/elasticsearch/es-node-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/elasticsearch/es-node-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/elasticsearch/es-cluster-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/elasticsearch/check-es-heap.rb
-%%SENSU_SCRIPT_DIR%%/plugins/elasticsearch/check-es-cluster-status.rb
-%%SENSU_SCRIPT_DIR%%/plugins/dns/check-dns.rb
-%%SENSU_SCRIPT_DIR%%/plugins/couchbase/check-couchbase-bucket-quota.rb
-%%SENSU_SCRIPT_DIR%%/plugins/ceph/check-ceph.rb
-%%SENSU_SCRIPT_DIR%%/plugins/ceph/ceph-osd-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/cassandra/cassandra-graphite.rb
-%%SENSU_SCRIPT_DIR%%/plugins/aws/elb-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/aws/elb-latency-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/aws/check_vpc_vpn.py
-%%SENSU_SCRIPT_DIR%%/plugins/aws/check-sqs-messages.rb
-%%SENSU_SCRIPT_DIR%%/plugins/aws/check-elb-nodes.rb
-%%SENSU_SCRIPT_DIR%%/plugins/aws/check-elb-health.rb
-%%SENSU_SCRIPT_DIR%%/plugins/aws/autoscaling-instance-count-metrics.rb
-%%SENSU_SCRIPT_DIR%%/plugins/apache/apache-graphite.rb
-%%SENSU_SCRIPT_DIR%%/mutators/officehours.rb
-%%SENSU_SCRIPT_DIR%%/mutators/graphite.rb
-%%SENSU_SCRIPT_DIR%%/handlers/remediation/sensu.rb
-%%SENSU_SCRIPT_DIR%%/handlers/other/ec2_node.rb
-%%SENSU_SCRIPT_DIR%%/handlers/other/chef_node.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/xmpp.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/xmpp.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/twitter.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/twitter.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/twiliosms.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/twiliosms.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/talker.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/talker.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/statuspage.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/statuspage.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/splunkstorm.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/splunkstorm.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/sns.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/sns.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/rt.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/pushover.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/pushover.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/ponymailer.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/ponymailer.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/pagerduty.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/pagerduty.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/opsgenie.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/opsgenie.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/messagemedia.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/messagemedia.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/mailer.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/mailer.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/mailer-ses.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/mailer-ses.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/logstash.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/logstash.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/irc.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/irc.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/hipchat.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/hipchat.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/gtalk.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/gtalk.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/graphite_notify.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/gelf.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/gelf.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/flowdock.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/flowdock.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/execute.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/datadog.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/datadog.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/dashing.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/dashing.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/campfire.rb
-%%SENSU_SCRIPT_DIR%%/handlers/notification/campfire.json
-%%SENSU_SCRIPT_DIR%%/handlers/notification/README.md
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/tempodb.rb
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/tempodb.json
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/opentsdb.rb
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/opentsdb.json
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/librato-occurrences.rb
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/librato-occurrences.json
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/librato-metrics.rb
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/librato-metrics.json
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/graphite-tcp.rb
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/graphite-occurrences.rb
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/graphite-occurrences.json
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/geckoboard-push.rb
-%%SENSU_SCRIPT_DIR%%/handlers/metrics/geckoboard-push.json
-%%SENSU_SCRIPT_DIR%%/handlers/debug/show.rb
-%%SENSU_SCRIPT_DIR%%/handlers/debug/logevent.rb
-%%SENSU_SCRIPT_DIR%%/handlers/debug/logevent.json
-%%SENSU_SCRIPT_DIR%%/extensions/mutators/redact.rb
-%%SENSU_SCRIPT_DIR%%/extensions/handlers/redis_output.rb
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/youtube
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/windows
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/varnish
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/twilio
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/trafficserver
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/telapi
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/system
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/supervisor
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/solr
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/snmp
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/sip
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/sensu
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/security
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/riak
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/resque
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/redis
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/rabbitmq
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/qmail
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/processes
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/postgres
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/postfix
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/pingdom
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/ping
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/percona-cluster
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/opsgenie
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/openstack/neutron
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/openstack/keystone
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/openstack/ceilometer
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/openstack
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/nginx
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/newrelic
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/network
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/mysql
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/monit
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/mongodb
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/memcached
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/lxc
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/logging
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/java
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/imap
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/http
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/hbase
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/haproxy
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/graphite
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/github
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/files
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/elasticsearch
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/dns
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/couchbase
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/ceph
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/cassandra
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/aws
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins/apache
-@dirrmtry %%SENSU_SCRIPT_DIR%%/plugins
-@dirrmtry %%SENSU_SCRIPT_DIR%%/mutators
-@dirrmtry %%SENSU_SCRIPT_DIR%%/handlers/remediation
-@dirrmtry %%SENSU_SCRIPT_DIR%%/handlers/other
-@dirrmtry %%SENSU_SCRIPT_DIR%%/handlers/notification
-@dirrmtry %%SENSU_SCRIPT_DIR%%/handlers/metrics
-@dirrmtry %%SENSU_SCRIPT_DIR%%/handlers/debug
-@dirrmtry %%SENSU_SCRIPT_DIR%%/handlers
-@dirrmtry %%SENSU_SCRIPT_DIR%%/extensions/mutators
-@dirrmtry %%SENSU_SCRIPT_DIR%%/extensions/handlers
-@dirrmtry %%SENSU_SCRIPT_DIR%%/extensions
-@dirrmtry %%SENSU_SCRIPT_DIR%%
+%%SENSU_PLUGINS_DIR%%/youtube/youtube-metrics.rb
+%%SENSU_PLUGINS_DIR%%/windows/check-disk-windows.rb
+%%SENSU_PLUGINS_DIR%%/varnish/varnish-metrics.rb
+%%SENSU_PLUGINS_DIR%%/twilio/check-num-recordings.rb
+%%SENSU_PLUGINS_DIR%%/trafficserver/trafficserver-metrics.rb
+%%SENSU_PLUGINS_DIR%%/telapi/telapi_balance_check.rb
+%%SENSU_PLUGINS_DIR%%/system/vmstat-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/temperature-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/memory-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/load-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/iostat-extended-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/interface-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/entropy-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/disk-usage-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/disk-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/disk-capacity-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/cpu-usage-metrics.sh
+%%SENSU_PLUGINS_DIR%%/system/cpu-pcnt-usage-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/cpu-metrics.rb
+%%SENSU_PLUGINS_DIR%%/system/check-swap.sh
+%%SENSU_PLUGINS_DIR%%/system/check-ram.rb
+%%SENSU_PLUGINS_DIR%%/system/check-memory-pcnt.sh
+%%SENSU_PLUGINS_DIR%%/system/check-mem.sh
+%%SENSU_PLUGINS_DIR%%/system/check-load.rb
+%%SENSU_PLUGINS_DIR%%/system/check-fstab-mounts.rb
+%%SENSU_PLUGINS_DIR%%/system/check-fs-writable.rb
+%%SENSU_PLUGINS_DIR%%/system/check-entropy.rb
+%%SENSU_PLUGINS_DIR%%/system/check-disk.rb
+%%SENSU_PLUGINS_DIR%%/system/check-disk-health.sh
+%%SENSU_PLUGINS_DIR%%/system/check-cpu.rb
+%%SENSU_PLUGINS_DIR%%/system/cgroup-metrics.sh
+%%SENSU_PLUGINS_DIR%%/supervisor/check-supervisor.rb
+%%SENSU_PLUGINS_DIR%%/solr/solr4-graphite.rb
+%%SENSU_PLUGINS_DIR%%/solr/solr-graphite.rb
+%%SENSU_PLUGINS_DIR%%/snmp/snmp-metrics.rb
+%%SENSU_PLUGINS_DIR%%/snmp/check-snmp.rb
+%%SENSU_PLUGINS_DIR%%/sip/check_sip.rb
+%%SENSU_PLUGINS_DIR%%/sensu/delete-expired-stashes.rb
+%%SENSU_PLUGINS_DIR%%/sensu/check-aggregate.rb
+%%SENSU_PLUGINS_DIR%%/sensu/aggregate-metrics.rb
+%%SENSU_PLUGINS_DIR%%/security/check-ports.rb
+%%SENSU_PLUGINS_DIR%%/riak/riak-metrics.rb
+%%SENSU_PLUGINS_DIR%%/resque/resque-metrics.rb
+%%SENSU_PLUGINS_DIR%%/redis/redis-llen-metric.rb
+%%SENSU_PLUGINS_DIR%%/redis/redis-graphite.rb
+%%SENSU_PLUGINS_DIR%%/redis/check-redis-slave-status.rb
+%%SENSU_PLUGINS_DIR%%/redis/check-redis-memory.rb
+%%SENSU_PLUGINS_DIR%%/redis/check-redis-list-length.rb
+%%SENSU_PLUGINS_DIR%%/rabbitmq/rabbitmq-queue-metrics.rb
+%%SENSU_PLUGINS_DIR%%/rabbitmq/rabbitmq-overview-metrics.rb
+%%SENSU_PLUGINS_DIR%%/rabbitmq/rabbitmq-amqp-alive.rb
+%%SENSU_PLUGINS_DIR%%/rabbitmq/rabbitmq-alive.rb
+%%SENSU_PLUGINS_DIR%%/rabbitmq/check-rabbitmq-messages.rb
+%%SENSU_PLUGINS_DIR%%/qmail/check-qmailq.rb
+%%SENSU_PLUGINS_DIR%%/processes/check-procs.rb
+%%SENSU_PLUGINS_DIR%%/processes/check-cmd.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-statstable-metric.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-statsio-metric.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-statsdb-metric.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-statsbgwriter-metric.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-replication.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-locks-metric.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-graphite.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-dbsize-metric.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-connections-metric.rb
+%%SENSU_PLUGINS_DIR%%/postgres/postgres-alive.rb
+%%SENSU_PLUGINS_DIR%%/postfix/check-mailq.rb
+%%SENSU_PLUGINS_DIR%%/pingdom/check-pingdom-credits.rb
+%%SENSU_PLUGINS_DIR%%/pingdom/check-pingdom-aggregates.rb
+%%SENSU_PLUGINS_DIR%%/ping/check-ping.rb
+%%SENSU_PLUGINS_DIR%%/percona-cluster/percona-cluster-size.rb
+%%SENSU_PLUGINS_DIR%%/percona-cluster/percona-cluster-metrics.rb
+%%SENSU_PLUGINS_DIR%%/opsgenie/opsgenie-heartbeat.rb
+%%SENSU_PLUGINS_DIR%%/openstack/neutron/neutron-agent-status.py
+%%SENSU_PLUGINS_DIR%%/openstack/keystone/keystone-token-metrics.rb
+%%SENSU_PLUGINS_DIR%%/openstack/keystone/check_keystone-api.sh
+%%SENSU_PLUGINS_DIR%%/openstack/ceilometer/check_ceilometer-collector.sh
+%%SENSU_PLUGINS_DIR%%/openstack/ceilometer/check_ceilometer-api.sh
+%%SENSU_PLUGINS_DIR%%/openstack/ceilometer/check_ceilometer-agent-compute.sh
+%%SENSU_PLUGINS_DIR%%/openstack/ceilometer/check_ceilometer-agent-central.sh
+%%SENSU_PLUGINS_DIR%%/nginx/nginx-metrics.rb
+%%SENSU_PLUGINS_DIR%%/newrelic/newrelic-metrics.rb
+%%SENSU_PLUGINS_DIR%%/network/netif-metrics.rb
+%%SENSU_PLUGINS_DIR%%/network/metrics-netstat-tcp.rb
+%%SENSU_PLUGINS_DIR%%/network/metrics-net.rb
+%%SENSU_PLUGINS_DIR%%/network/check-rbl.rb
+%%SENSU_PLUGINS_DIR%%/network/check-banner.rb
+%%SENSU_PLUGINS_DIR%%/mysql/mysql-replication-status.rb
+%%SENSU_PLUGINS_DIR%%/mysql/mysql-graphite.rb
+%%SENSU_PLUGINS_DIR%%/mysql/mysql-disk.rb
+%%SENSU_PLUGINS_DIR%%/mysql/mysql-connections.rb
+%%SENSU_PLUGINS_DIR%%/mysql/mysql-alive.rb
+%%SENSU_PLUGINS_DIR%%/mysql/cloudwatch-mysql-sensu.rb
+%%SENSU_PLUGINS_DIR%%/monit/monit-email.rb
+%%SENSU_PLUGINS_DIR%%/monit/Readme.md
+%%SENSU_PLUGINS_DIR%%/monit/Gemfile
+%%SENSU_PLUGINS_DIR%%/mongodb/mongodb-metrics.rb
+%%SENSU_PLUGINS_DIR%%/mongodb/check_mongodb.py
+%%SENSU_PLUGINS_DIR%%/memcached/memcached_socket_graphite.rb
+%%SENSU_PLUGINS_DIR%%/memcached/memcached-key-stats-graphite.rb
+%%SENSU_PLUGINS_DIR%%/memcached/memcached-graphite.rb
+%%SENSU_PLUGINS_DIR%%/memcached/check-memcached-stats.rb
+%%SENSU_PLUGINS_DIR%%/lxc/check-lxc-status.rb
+%%SENSU_PLUGINS_DIR%%/lxc/check-lxc-memstat.rb
+%%SENSU_PLUGINS_DIR%%/logging/check-log.rb
+%%SENSU_PLUGINS_DIR%%/java/java-permgen.rb
+%%SENSU_PLUGINS_DIR%%/java/java-heap-pcnt.sh
+%%SENSU_PLUGINS_DIR%%/java/java-heap-graphite.sh
+%%SENSU_PLUGINS_DIR%%/imap/check-imap.rb
+%%SENSU_PLUGINS_DIR%%/http/metrics-curl.rb
+%%SENSU_PLUGINS_DIR%%/http/check-http.rb
+%%SENSU_PLUGINS_DIR%%/http/check-http-json.rb
+%%SENSU_PLUGINS_DIR%%/hbase/check-hbase-status.rb
+%%SENSU_PLUGINS_DIR%%/hbase/check-hbase-regions.rb
+%%SENSU_PLUGINS_DIR%%/haproxy/haproxy-metrics.rb
+%%SENSU_PLUGINS_DIR%%/haproxy/check-haproxy.rb
+%%SENSU_PLUGINS_DIR%%/graphite/graphite.rb
+%%SENSU_PLUGINS_DIR%%/graphite/check-data.rb
+%%SENSU_PLUGINS_DIR%%/github/github-repo-metrics.rb
+%%SENSU_PLUGINS_DIR%%/files/check_dir_count.rb
+%%SENSU_PLUGINS_DIR%%/files/check-tail.rb
+%%SENSU_PLUGINS_DIR%%/files/check-mtime.rb
+%%SENSU_PLUGINS_DIR%%/elasticsearch/es-node-metrics.rb
+%%SENSU_PLUGINS_DIR%%/elasticsearch/es-node-graphite.rb
+%%SENSU_PLUGINS_DIR%%/elasticsearch/es-cluster-metrics.rb
+%%SENSU_PLUGINS_DIR%%/elasticsearch/check-es-heap.rb
+%%SENSU_PLUGINS_DIR%%/elasticsearch/check-es-cluster-status.rb
+%%SENSU_PLUGINS_DIR%%/dns/check-dns.rb
+%%SENSU_PLUGINS_DIR%%/couchbase/check-couchbase-bucket-quota.rb
+%%SENSU_PLUGINS_DIR%%/ceph/check-ceph.rb
+%%SENSU_PLUGINS_DIR%%/ceph/ceph-osd-metrics.rb
+%%SENSU_PLUGINS_DIR%%/cassandra/cassandra-graphite.rb
+%%SENSU_PLUGINS_DIR%%/aws/elb-metrics.rb
+%%SENSU_PLUGINS_DIR%%/aws/elb-latency-metrics.rb
+%%SENSU_PLUGINS_DIR%%/aws/check_vpc_vpn.py
+%%SENSU_PLUGINS_DIR%%/aws/check-sqs-messages.rb
+%%SENSU_PLUGINS_DIR%%/aws/check-elb-nodes.rb
+%%SENSU_PLUGINS_DIR%%/aws/check-elb-health.rb
+%%SENSU_PLUGINS_DIR%%/aws/autoscaling-instance-count-metrics.rb
+%%SENSU_PLUGINS_DIR%%/apache/apache-graphite.rb
+%%SENSU_MUTATORS_DIR%%/officehours.rb
+%%SENSU_MUTATORS_DIR%%/graphite.rb
+%%SENSU_HANDLERS_DIR%%/remediation/sensu.rb
+%%SENSU_HANDLERS_DIR%%/other/ec2_node.rb
+%%SENSU_HANDLERS_DIR%%/other/chef_node.rb
+%%SENSU_HANDLERS_DIR%%/notification/xmpp.rb
+%%SENSU_HANDLERS_DIR%%/notification/xmpp.json.example
+%%SENSU_HANDLERS_DIR%%/notification/twitter.rb
+%%SENSU_HANDLERS_DIR%%/notification/twitter.json.example
+%%SENSU_HANDLERS_DIR%%/notification/twiliosms.rb
+%%SENSU_HANDLERS_DIR%%/notification/twiliosms.json.example
+%%SENSU_HANDLERS_DIR%%/notification/talker.rb
+%%SENSU_HANDLERS_DIR%%/notification/talker.json.example
+%%SENSU_HANDLERS_DIR%%/notification/statuspage.rb
+%%SENSU_HANDLERS_DIR%%/notification/statuspage.json.example
+%%SENSU_HANDLERS_DIR%%/notification/splunkstorm.rb
+%%SENSU_HANDLERS_DIR%%/notification/splunkstorm.json.example
+%%SENSU_HANDLERS_DIR%%/notification/sns.rb
+%%SENSU_HANDLERS_DIR%%/notification/sns.json.example
+%%SENSU_HANDLERS_DIR%%/notification/rt.rb
+%%SENSU_HANDLERS_DIR%%/notification/pushover.rb
+%%SENSU_HANDLERS_DIR%%/notification/pushover.json.example
+%%SENSU_HANDLERS_DIR%%/notification/ponymailer.rb
+%%SENSU_HANDLERS_DIR%%/notification/ponymailer.json.example
+%%SENSU_HANDLERS_DIR%%/notification/pagerduty.rb
+%%SENSU_HANDLERS_DIR%%/notification/pagerduty.json.example
+%%SENSU_HANDLERS_DIR%%/notification/opsgenie.rb
+%%SENSU_HANDLERS_DIR%%/notification/opsgenie.json.example
+%%SENSU_HANDLERS_DIR%%/notification/messagemedia.rb
+%%SENSU_HANDLERS_DIR%%/notification/messagemedia.json.example
+%%SENSU_HANDLERS_DIR%%/notification/mailer.rb
+%%SENSU_HANDLERS_DIR%%/notification/mailer.json.example
+%%SENSU_HANDLERS_DIR%%/notification/mailer-ses.rb
+%%SENSU_HANDLERS_DIR%%/notification/mailer-ses.json.example
+%%SENSU_HANDLERS_DIR%%/notification/logstash.rb
+%%SENSU_HANDLERS_DIR%%/notification/logstash.json.example
+%%SENSU_HANDLERS_DIR%%/notification/irc.rb
+%%SENSU_HANDLERS_DIR%%/notification/irc.json.example
+%%SENSU_HANDLERS_DIR%%/notification/hipchat.rb
+%%SENSU_HANDLERS_DIR%%/notification/hipchat.json.example
+%%SENSU_HANDLERS_DIR%%/notification/gtalk.rb
+%%SENSU_HANDLERS_DIR%%/notification/gtalk.json.example
+%%SENSU_HANDLERS_DIR%%/notification/graphite_notify.rb
+%%SENSU_HANDLERS_DIR%%/notification/gelf.rb
+%%SENSU_HANDLERS_DIR%%/notification/gelf.json.example
+%%SENSU_HANDLERS_DIR%%/notification/flowdock.rb
+%%SENSU_HANDLERS_DIR%%/notification/flowdock.json.example
+%%SENSU_HANDLERS_DIR%%/notification/execute.rb
+%%SENSU_HANDLERS_DIR%%/notification/datadog.rb
+%%SENSU_HANDLERS_DIR%%/notification/datadog.json.example
+%%SENSU_HANDLERS_DIR%%/notification/dashing.rb
+%%SENSU_HANDLERS_DIR%%/notification/dashing.json.example
+%%SENSU_HANDLERS_DIR%%/notification/campfire.rb
+%%SENSU_HANDLERS_DIR%%/notification/campfire.json.example
+%%SENSU_HANDLERS_DIR%%/notification/README.md
+%%SENSU_HANDLERS_DIR%%/metrics/tempodb.rb
+%%SENSU_HANDLERS_DIR%%/metrics/tempodb.json.example
+%%SENSU_HANDLERS_DIR%%/metrics/opentsdb.rb
+%%SENSU_HANDLERS_DIR%%/metrics/opentsdb.json.example
+%%SENSU_HANDLERS_DIR%%/metrics/librato-occurrences.rb
+%%SENSU_HANDLERS_DIR%%/metrics/librato-occurrences.json.example
+%%SENSU_HANDLERS_DIR%%/metrics/librato-metrics.rb
+%%SENSU_HANDLERS_DIR%%/metrics/librato-metrics.json.example
+%%SENSU_HANDLERS_DIR%%/metrics/graphite-tcp.rb
+%%SENSU_HANDLERS_DIR%%/metrics/graphite-occurrences.rb
+%%SENSU_HANDLERS_DIR%%/metrics/graphite-occurrences.json.example
+%%SENSU_HANDLERS_DIR%%/metrics/geckoboard-push.rb
+%%SENSU_HANDLERS_DIR%%/metrics/geckoboard-push.json.example
+%%SENSU_HANDLERS_DIR%%/debug/show.rb
+%%SENSU_HANDLERS_DIR%%/debug/logevent.rb
+%%SENSU_HANDLERS_DIR%%/debug/logevent.json.example
+%%SENSU_EXTENSIONS_DIR%%/mutators/redact.rb
+%%SENSU_EXTENSIONS_DIR%%/handlers/redis_output.rb
+@dirrmtry %%SENSU_PLUGINS_DIR%%/youtube
+@dirrmtry %%SENSU_PLUGINS_DIR%%/windows
+@dirrmtry %%SENSU_PLUGINS_DIR%%/varnish
+@dirrmtry %%SENSU_PLUGINS_DIR%%/twilio
+@dirrmtry %%SENSU_PLUGINS_DIR%%/trafficserver
+@dirrmtry %%SENSU_PLUGINS_DIR%%/telapi
+@dirrmtry %%SENSU_PLUGINS_DIR%%/system
+@dirrmtry %%SENSU_PLUGINS_DIR%%/supervisor
+@dirrmtry %%SENSU_PLUGINS_DIR%%/solr
+@dirrmtry %%SENSU_PLUGINS_DIR%%/snmp
+@dirrmtry %%SENSU_PLUGINS_DIR%%/sip
+@dirrmtry %%SENSU_PLUGINS_DIR%%/sensu
+@dirrmtry %%SENSU_PLUGINS_DIR%%/security
+@dirrmtry %%SENSU_PLUGINS_DIR%%/riak
+@dirrmtry %%SENSU_PLUGINS_DIR%%/resque
+@dirrmtry %%SENSU_PLUGINS_DIR%%/redis
+@dirrmtry %%SENSU_PLUGINS_DIR%%/rabbitmq
+@dirrmtry %%SENSU_PLUGINS_DIR%%/qmail
+@dirrmtry %%SENSU_PLUGINS_DIR%%/processes
+@dirrmtry %%SENSU_PLUGINS_DIR%%/postgres
+@dirrmtry %%SENSU_PLUGINS_DIR%%/postfix
+@dirrmtry %%SENSU_PLUGINS_DIR%%/pingdom
+@dirrmtry %%SENSU_PLUGINS_DIR%%/ping
+@dirrmtry %%SENSU_PLUGINS_DIR%%/percona-cluster
+@dirrmtry %%SENSU_PLUGINS_DIR%%/opsgenie
+@dirrmtry %%SENSU_PLUGINS_DIR%%/openstack/neutron
+@dirrmtry %%SENSU_PLUGINS_DIR%%/openstack/keystone
+@dirrmtry %%SENSU_PLUGINS_DIR%%/openstack/ceilometer
+@dirrmtry %%SENSU_PLUGINS_DIR%%/openstack
+@dirrmtry %%SENSU_PLUGINS_DIR%%/nginx
+@dirrmtry %%SENSU_PLUGINS_DIR%%/newrelic
+@dirrmtry %%SENSU_PLUGINS_DIR%%/network
+@dirrmtry %%SENSU_PLUGINS_DIR%%/mysql
+@dirrmtry %%SENSU_PLUGINS_DIR%%/monit
+@dirrmtry %%SENSU_PLUGINS_DIR%%/mongodb
+@dirrmtry %%SENSU_PLUGINS_DIR%%/memcached
+@dirrmtry %%SENSU_PLUGINS_DIR%%/lxc
+@dirrmtry %%SENSU_PLUGINS_DIR%%/logging
+@dirrmtry %%SENSU_PLUGINS_DIR%%/java
+@dirrmtry %%SENSU_PLUGINS_DIR%%/imap
+@dirrmtry %%SENSU_PLUGINS_DIR%%/http
+@dirrmtry %%SENSU_PLUGINS_DIR%%/hbase
+@dirrmtry %%SENSU_PLUGINS_DIR%%/haproxy
+@dirrmtry %%SENSU_PLUGINS_DIR%%/graphite
+@dirrmtry %%SENSU_PLUGINS_DIR%%/github
+@dirrmtry %%SENSU_PLUGINS_DIR%%/files
+@dirrmtry %%SENSU_PLUGINS_DIR%%/elasticsearch
+@dirrmtry %%SENSU_PLUGINS_DIR%%/dns
+@dirrmtry %%SENSU_PLUGINS_DIR%%/couchbase
+@dirrmtry %%SENSU_PLUGINS_DIR%%/ceph
+@dirrmtry %%SENSU_PLUGINS_DIR%%/cassandra
+@dirrmtry %%SENSU_PLUGINS_DIR%%/aws
+@dirrmtry %%SENSU_PLUGINS_DIR%%/apache
+@dirrmtry %%SENSU_PLUGINS_DIR%%
+@dirrmtry %%SENSU_MUTATORS_DIR%%
+@dirrmtry %%SENSU_HANDLERS_DIR%%/remediation
+@dirrmtry %%SENSU_HANDLERS_DIR%%/other
+@dirrmtry %%SENSU_HANDLERS_DIR%%/notification
+@dirrmtry %%SENSU_HANDLERS_DIR%%/metrics
+@dirrmtry %%SENSU_HANDLERS_DIR%%/debug
+@dirrmtry %%SENSU_HANDLERS_DIR%%
+@dirrmtry %%SENSU_EXTENSIONS_DIR%%/mutators
+@dirrmtry %%SENSU_EXTENSIONS_DIR%%/handlers
+@dirrmtry %%SENSU_EXTENSIONS_DIR%%
+@dirrmtry %%SENSU_ETC_DIR%%
+@dirrmtry %%SENSU_PLUGINS_DIR%%
+@dirrmtry %%SENSU_LIBEXEC_DIR%%
+@dirrmtry %%SENSU_ETC_DIR%%
