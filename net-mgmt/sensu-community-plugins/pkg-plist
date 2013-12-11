@@ -276,7 +276,5 @@
 @dirrmtry %%SENSU_EXTENSIONS_DIR%%/mutators
 @dirrmtry %%SENSU_EXTENSIONS_DIR%%/handlers
 @dirrmtry %%SENSU_EXTENSIONS_DIR%%
-@dirrmtry %%SENSU_ETC_DIR%%
 @dirrmtry %%SENSU_PLUGINS_DIR%%
-@dirrmtry %%SENSU_LIBEXEC_DIR%%
-@dirrmtry %%SENSU_ETC_DIR%%
+@dirrmtry %%DATADIR%%
