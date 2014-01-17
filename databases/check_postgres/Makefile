@@ -6,8 +6,8 @@
 #
 
 PORTNAME=	check_postgres
-PORTVERSION=	2.18.0
-PORTREVISION=	1
+PORTVERSION=	2.21.0
+
 CATEGORIES=	databases
 MASTER_SITES=	http://bucardo.org/downloads/
 
