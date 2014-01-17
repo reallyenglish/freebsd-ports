@@ -7,16 +7,14 @@
 
 PORTNAME=	check_postgres
 PORTVERSION=	2.18.0
-#PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://bucardo.org/downloads/
 
 MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	Script for checking postgresql
 
-RUN_DEPENDS=	p5-TimeDate>=0:${PORTSDIR}/devel/p5-TimeDate \
-	p5-DBI>=0:${PORTSDIR}/databases/p5-DBI \
-	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
+RUN_DEPENDS=	p5-TimeDate>=0:${PORTSDIR}/devel/p5-TimeDate
 
 USE_PERL5=	Yes
 PERL_CONFIGURE=	Yes
