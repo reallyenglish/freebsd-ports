@@ -1,6 +1,6 @@
---- /dev/null	2011-11-21 16:48:43.000000000 +0900
-+++ lib/chef/provider/package/pkgupgrade.rb	2011-11-21 16:04:09.951953315 +0900
-@@ -0,0 +1,399 @@
+--- /dev/null	2014-01-31 18:37:15.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2014-01-31 18:07:54.000000000 +0900
+@@ -0,0 +1,452 @@
 +#
 +# Author:: Mitsuru Y (<mitsuruy@reallyenglish.com>)
 +# Copyright:: Copyright (c) 2011 Real English Broadband
@@ -24,6 +24,9 @@
 +require 'chef/resource/package'
 +require 'singleton'
 +require 'chef/mixin/get_source_from_package'
++require 'strscan'
++require 'open-uri'
++require 'net/http'
 +
 +class Hash
 +  def safe_invert
@@ -47,6 +50,18 @@
 +          include Singleton
 +
 +          def initialize
++            @indexfile = ""
++            @uri_ftpindex = ""
++            status = popen4("uma env") do |pid, stdin, stdout, stderr|
++              stdout.each do |env_var|
++                env_var.chomp!
++                if env_var =~ /^PKG_INDEX='(.*)'/
++                  @indexfile = $1
++                elsif env_var =~ /^PACKAGESITE='(.*)'/
++                  @uri_ftpindex = $1.sub(/Latest$/,"INDEX")
++                end
++              end
++            end
 +            @pkg_index = Hash.new
 +            @pkg_index[:name] = Hash.new
 +            @pkg_index[:version] = Hash.new
@@ -55,6 +70,8 @@
 +            @pkg_pkgdb[:name] = Hash.new
 +            @pkg_pkgdb[:version] = Hash.new
 +
++            @pkgdb_dir = ENV["PKG_DBDIR"] || "/var/db/pkg"
++            @pkgdb_last_installed = Time.local(0)
 +# Next time @pkgdb is accessed:
 +#  :all       - Trigger updates pkg's cache - this data is slow to gather.
 +#  :installed - Trigger updates only the local pkg db.
@@ -62,6 +79,7 @@
 +#  :none      - Do nothing, a call to one of the reload methods is required.
 +            @next_refresh = :all
 +
++            Chef::Log.debug("pkgdb initialized")
 +
 +            # these are for subsequent runs if we are on an interval
 +            Chef::Client.when_run_starts do
@@ -77,14 +95,19 @@
 +            when :none
 +              return nil
 +            when :installed
-+              reset_installed
-+              # fast
-+              refresh_pkgdb
++              if pkgdb_modified?
++                reset_installed
++                refresh_pkgdb
++              end
 +            when :all
-+              reset
-+              # medium
-+              refresh_pkgdb
-+              refresh_index 
++              if pkgdb_modified?
++                reset_installed
++                refresh_pkgdb
++              end
++              if index_modified? || @pkg_index[:name].size == 0
++                reset_index
++                refresh_index 
++              end
 +            else
 +              raise ArgumentError, "Unexpected value in next_refresh: #{@next_refresh}"
 +            end
@@ -93,21 +116,35 @@
 +            @next_refresh = :none
 +          end
 +
++          def pkgdb_modified?
++            pkgdb_modtime = ::File.stat(@pkgdb_dir).mtime
++            pkgdb_last_installed = @pkgdb_last_installed
++            @pkgdb_last_installed = pkgdb_modtime
++            return pkgdb_modtime != pkgdb_last_installed
++          end
++
++          def index_modified?
++            url = URI.parse @uri_ftpindex
++            res = Net::HTTP.start(url.host, url.port) {|http|
++              http.head(@uri_ftpindex)
++            } 
++            content_length = res['content-length']
++            last_modified = Time.parse(res['last-modified'])
++            begin
++              mtime = ::File.stat(@indexfile).mtime
++            rescue Errno::ENOENT
++              mtime = Time.local(0)
++            end
++            return last_modified != mtime
++          end
++
 +          def refresh_index
-+            Chef::Log.debug("#{@new_resource} refresh index")
++            Chef::Log.info("#{@new_resource} refresh index")
++
 +            run_command_with_systems_locale(
 +              :command => "uma fetch ftpindex"
 +            )
-+            indexfile = ""
-+            status = popen4("uma env") do |pid, stdin, stdout, stderr|
-+              stdout.each do |env_var|
-+                env_var.chomp!
-+                if env_var =~ /^PKG_INDEX='(.*)'/
-+                  indexfile = $1
-+                end
-+              end
-+            end
-+            IO.foreach(indexfile) do |line|
++            IO.foreach(@indexfile) do |line|
 +              indexline = line.split("|")
 +              dir = indexline[0]
 +              origin = indexline[1].sub(/^\/usr\/ports\//,'')
@@ -122,19 +159,28 @@
 +          end
 +        
 +          def refresh_pkgdb
-+            Chef::Log.debug("#{@new_resource} refresh pkgdb")
-+            status = popen4("pkg_info -Ea") do |pid, stdin, stdout, stderr|
-+              stdout.each do |pkgname|
-+                pkgname.chomp!
++            Chef::Log.info("#{@new_resource} refresh pkgdb")
++            pkginfo = ""
++
++            status = popen4("pkg_info -oa") do |pid, stdin, stdout, stderr|
++              stdout.each do |line|
++                pkginfo << line
++              end
++            end   
++        
++            p = StringScanner.new(pkginfo)
++
++            until p.eos?
++              case
++              when p.scan(/Information for ([^:]+):\n\nOrigin:\n(.*\/.*)\n\n/)
++                pkgname = p[1]
 +                pkg_name = pkgversion(pkgname)
-+                version = pkg_name[1]
-+                status = popen4("pkg_info -qo #{pkgname}") do |pid, stdin, stdout, stderr|
-+                  stdout.each do |line|
-+                    origin = line.chomp
-+                    @pkg_pkgdb[:name][origin] = pkg_name[0]
-+                    @pkg_pkgdb[:version][origin] = pkg_name[1]
-+                  end
-+                end
++                origin = p[2]
++                @pkg_pkgdb[:name][origin] = pkg_name[0]
++                @pkg_pkgdb[:version][origin] = pkg_name[1]
++              else
++                p.scan(/(.*)/)
++                Chef::Log.error("parse error in pkg_info: #{p[1]}")
 +              end
 +            end
 +          end
@@ -142,12 +188,12 @@
 +          def pkgversion(pkgname)
 +            if /\s/ =~ pkgname
 +              return nil
-+        #    raise ArgumentError, "Must not contain whitespace."
++              Chef::Log.error("#{pkgname} Must not contain whitespace.")
 +            end
 +        
 +            if /^(.+)-([^-]+)$/ !~ pkgname
 +              return nil
-+        #    raise ArgumentError, "Not in due form: <name>-<version>"
++              Chef::Log.error("#{pkgname} Not in due form: <name>-<version>")
 +            end
 +            name = $1
 +            version = splitversion($2)
@@ -157,12 +203,12 @@
 +          def splitversion(pkgversion)
 +            if /[\s-]/ =~ pkgversion    
 +              return nil
-+        #    raise ArgumentError, "#{pkgversion}: Must not contain a '-' or whitespace."
++              Chef::Log.error("#{pkgversion}: Must not contain a '-' or whitespace.")
 +            end
 +        
 +            if /^([^_,]+)(?:_(\d+))?(?:,(\d+))?$/ !~ pkgversion
 +              return nil
-+        #   raise ArgumentError, "#{pkgversion}: Not in due form: '<version>[_<revision>][,<epoch>]'."
++              Chef::Log.error("#{pkgversion}: Not in due form: '<version>[_<revision>][,<epoch>]'.")
 +             end
 +        
 +             version = $1
@@ -182,11 +228,18 @@
 +          end
 +
 +          def reset
++            Chef::Log.debug("reset pkg_index size is: #{@pkg_index[:name].size}")
 +            @pkg_index[:name].clear
 +            @pkg_index[:version].clear
 +            @pkg_index[:origin].clear
 +            @pkg_pkgdb[:name].clear
 +            @pkg_pkgdb[:version].clear
++          end
++
++          def reset_index
++            @pkg_index[:name].clear
++            @pkg_index[:version].clear
++            @pkg_index[:origin].clear
 +          end
 +
 +          def reset_installed
