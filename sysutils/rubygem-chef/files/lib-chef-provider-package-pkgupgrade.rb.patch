@@ -1,6 +1,6 @@
---- /dev/null	2014-01-31 18:37:15.000000000 +0900
-+++ lib/chef/provider/package/pkgupgrade.rb	2014-01-31 18:07:54.000000000 +0900
-@@ -0,0 +1,452 @@
+--- /dev/null	2014-02-13 15:02:43.000000000 +0900
++++ lib/chef/provider/package/pkgupgrade.rb	2014-02-13 15:03:10.000000000 +0900
+@@ -0,0 +1,453 @@
 +#
 +# Author:: Mitsuru Y (<mitsuruy@reallyenglish.com>)
 +# Copyright:: Copyright (c) 2011 Real English Broadband
@@ -178,9 +178,10 @@
 +                origin = p[2]
 +                @pkg_pkgdb[:name][origin] = pkg_name[0]
 +                @pkg_pkgdb[:version][origin] = pkg_name[1]
++              when p.scan(/Information for ([^:]+):\n\nOrigin:\n\n\n/)
++                Chef::Log.error("parse error in pkg_info: #{p[1]} skipped")
 +              else
-+                p.scan(/(.*)/)
-+                Chef::Log.error("parse error in pkg_info: #{p[1]}")
++                raise Chef::Exceptions::Package, "unknown parse error in pkg_info"
 +              end
 +            end
 +          end
