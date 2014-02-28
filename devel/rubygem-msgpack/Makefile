@@ -6,7 +6,7 @@
 #
 
 PORTNAME=	msgpack
-PORTVERSION=	0.4.7
+PORTVERSION=	0.5.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
