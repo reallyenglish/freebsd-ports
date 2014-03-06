@@ -1,0 +1,8 @@
+--- ./conf/graphite.wsgi.example.orig	2014-03-01 14:14:49.000000000 +0900
++++ ./conf/graphite.wsgi.example	2014-03-06 11:58:13.000000000 +0900
+@@ -1,4 +1,4 @@
+ import sys
+-sys.path.append('/opt/graphite/webapp')
++sys.path.append('/usr/local/www/graphite-web/webapp')
+ 
+ from graphite.wsgi import application
