@@ -1,0 +1,295 @@
+%%WWWDIR%%/tasks/server_task.js
+%%WWWDIR%%/tasks/options/uglify.js
+%%WWWDIR%%/tasks/options/requirejs.js
+%%WWWDIR%%/tasks/options/ngmin.js
+%%WWWDIR%%/tasks/options/meta.js
+%%WWWDIR%%/tasks/options/less.js
+%%WWWDIR%%/tasks/options/karma.js
+%%WWWDIR%%/tasks/options/jshint.js
+%%WWWDIR%%/tasks/options/htmlmin.js
+%%WWWDIR%%/tasks/options/git-describe.js
+%%WWWDIR%%/tasks/options/cssmin.js
+%%WWWDIR%%/tasks/options/copy.js
+%%WWWDIR%%/tasks/options/connect.js
+%%WWWDIR%%/tasks/options/compress.js
+%%WWWDIR%%/tasks/options/clean.js
+%%WWWDIR%%/tasks/distribute_task.js
+%%WWWDIR%%/tasks/default_task.js
+%%WWWDIR%%/tasks/build_task.js
+%%WWWDIR%%/src/vendor/underscore.js
+%%WWWDIR%%/src/vendor/timezone.js
+%%WWWDIR%%/src/vendor/tagsinput/bootstrap-tagsinput.js
+%%WWWDIR%%/src/vendor/spectrum.js
+%%WWWDIR%%/src/vendor/require/tmpl.js
+%%WWWDIR%%/src/vendor/require/text.js
+%%WWWDIR%%/src/vendor/require/require.js
+%%WWWDIR%%/src/vendor/require/css.js
+%%WWWDIR%%/src/vendor/require/css-build.js
+%%WWWDIR%%/src/vendor/moment.js
+%%WWWDIR%%/src/vendor/modernizr-2.6.1.js
+%%WWWDIR%%/src/vendor/license.json
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.time.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.stackpercent.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.stack.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.selection.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.pie.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.fillbetween.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.events.js
+%%WWWDIR%%/src/vendor/jquery/jquery.flot.byte.js
+%%WWWDIR%%/src/vendor/jquery/jquery-ui-1.10.3.js
+%%WWWDIR%%/src/vendor/jquery/jquery-1.8.0.js
+%%WWWDIR%%/src/vendor/filesaver.js
+%%WWWDIR%%/src/vendor/elasticjs/elastic.js
+%%WWWDIR%%/src/vendor/elasticjs/elastic-angular-client.js
+%%WWWDIR%%/src/vendor/crypto.min.js
+%%WWWDIR%%/src/vendor/chromath.js
+%%WWWDIR%%/src/vendor/bootstrap/less/wells.less
+%%WWWDIR%%/src/vendor/bootstrap/less/variables.less
+%%WWWDIR%%/src/vendor/bootstrap/less/utilities.less
+%%WWWDIR%%/src/vendor/bootstrap/less/type.less
+%%WWWDIR%%/src/vendor/bootstrap/less/tooltip.less
+%%WWWDIR%%/src/vendor/bootstrap/less/thumbnails.less
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/navbar.html
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/navbar-static-top.html
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/navbar-fixed-top.html
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/forms.html
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/forms-responsive.html
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/css-tests.html
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/css-tests.css
+%%WWWDIR%%/src/vendor/bootstrap/less/tests/buttons.html
+%%WWWDIR%%/src/vendor/bootstrap/less/tables.less
+%%WWWDIR%%/src/vendor/bootstrap/less/sprites.less
+%%WWWDIR%%/src/vendor/bootstrap/less/scaffolding.less
+%%WWWDIR%%/src/vendor/bootstrap/less/responsive.less
+%%WWWDIR%%/src/vendor/bootstrap/less/responsive-utilities.less
+%%WWWDIR%%/src/vendor/bootstrap/less/responsive-navbar.less
+%%WWWDIR%%/src/vendor/bootstrap/less/responsive-768px-979px.less
+%%WWWDIR%%/src/vendor/bootstrap/less/responsive-767px-max.less
+%%WWWDIR%%/src/vendor/bootstrap/less/responsive-1200px-min.less
+%%WWWDIR%%/src/vendor/bootstrap/less/reset.less
+%%WWWDIR%%/src/vendor/bootstrap/less/progress-bars.less
+%%WWWDIR%%/src/vendor/bootstrap/less/popovers.less
+%%WWWDIR%%/src/vendor/bootstrap/less/pagination.less
+%%WWWDIR%%/src/vendor/bootstrap/less/pager.less
+%%WWWDIR%%/src/vendor/bootstrap/less/navs.less
+%%WWWDIR%%/src/vendor/bootstrap/less/navbar.less
+%%WWWDIR%%/src/vendor/bootstrap/less/modals.less
+%%WWWDIR%%/src/vendor/bootstrap/less/mixins.less
+%%WWWDIR%%/src/vendor/bootstrap/less/media.less
+%%WWWDIR%%/src/vendor/bootstrap/less/layouts.less
+%%WWWDIR%%/src/vendor/bootstrap/less/labels-badges.less
+%%WWWDIR%%/src/vendor/bootstrap/less/hero-unit.less
+%%WWWDIR%%/src/vendor/bootstrap/less/grid.less
+%%WWWDIR%%/src/vendor/bootstrap/less/forms.less
+%%WWWDIR%%/src/vendor/bootstrap/less/dropdowns.less
+%%WWWDIR%%/src/vendor/bootstrap/less/component-animations.less
+%%WWWDIR%%/src/vendor/bootstrap/less/code.less
+%%WWWDIR%%/src/vendor/bootstrap/less/close.less
+%%WWWDIR%%/src/vendor/bootstrap/less/carousel.less
+%%WWWDIR%%/src/vendor/bootstrap/less/buttons.less
+%%WWWDIR%%/src/vendor/bootstrap/less/button-groups.less
+%%WWWDIR%%/src/vendor/bootstrap/less/breadcrumbs.less
+%%WWWDIR%%/src/vendor/bootstrap/less/bootstrap.less
+%%WWWDIR%%/src/vendor/bootstrap/less/bak/variables.dark.less
+%%WWWDIR%%/src/vendor/bootstrap/less/bak/bootswatch.dark.less
+%%WWWDIR%%/src/vendor/bootstrap/less/alerts.less
+%%WWWDIR%%/src/vendor/bootstrap/less/accordion.less
+%%WWWDIR%%/src/vendor/bootstrap/bootstrap.js
+%%WWWDIR%%/src/vendor/angular/timepicker.js
+%%WWWDIR%%/src/vendor/angular/datepicker.js
+%%WWWDIR%%/src/vendor/angular/bindonce.js
+%%WWWDIR%%/src/vendor/angular/angular.js
+%%WWWDIR%%/src/vendor/angular/angular-strap.js
+%%WWWDIR%%/src/vendor/angular/angular-sanitize.js
+%%WWWDIR%%/src/vendor/angular/angular-mocks.js
+%%WWWDIR%%/src/vendor/angular/angular-dragdrop.js
+%%WWWDIR%%/src/test/tests.html
+%%WWWDIR%%/src/test/test-main.js
+%%WWWDIR%%/src/test/specs/parser-specs.js
+%%WWWDIR%%/src/test/specs/lexer-specs.js
+%%WWWDIR%%/src/test/specs/gfunc-specs.js
+%%WWWDIR%%/src/test/specs/ctrl-specs.js
+%%WWWDIR%%/src/test/karma.conf.js
+%%WWWDIR%%/src/index.html
+%%WWWDIR%%/src/img/small.png
+%%WWWDIR%%/src/img/load_big.gif
+%%WWWDIR%%/src/img/load.gif
+%%WWWDIR%%/src/img/light.png
+%%WWWDIR%%/src/img/kibana.png
+%%WWWDIR%%/src/img/glyphicons-halflings.png
+%%WWWDIR%%/src/img/glyphicons-halflings-white.png
+%%WWWDIR%%/src/img/cubes.png
+%%WWWDIR%%/src/font/fontawesome-webfont.woff
+%%WWWDIR%%/src/font/fontawesome-webfont.ttf
+%%WWWDIR%%/src/font/fontawesome-webfont.svg
+%%WWWDIR%%/src/font/fontawesome-webfont.eot
+%%WWWDIR%%/src/font/FontAwesome.otf
+%%WWWDIR%%/src/css/timepicker.css
+%%WWWDIR%%/src/css/spectrum.css
+%%WWWDIR%%/src/css/normalize.min.css
+%%WWWDIR%%/src/css/less/variables.light.less
+%%WWWDIR%%/src/css/less/variables.dark.less
+%%WWWDIR%%/src/css/less/submenu.less
+%%WWWDIR%%/src/css/less/overrides.less
+%%WWWDIR%%/src/css/less/grafana.less
+%%WWWDIR%%/src/css/less/grafana-responsive.less
+%%WWWDIR%%/src/css/less/bootswatch.light.less
+%%WWWDIR%%/src/css/less/bootswatch.dark.less
+%%WWWDIR%%/src/css/less/bootstrap.light.less
+%%WWWDIR%%/src/css/less/bootstrap.dark.less
+%%WWWDIR%%/src/css/less/bootstrap-tagsinput.less
+%%WWWDIR%%/src/css/font-awesome.min.css
+%%WWWDIR%%/src/css/bootstrap.light.min.css
+%%WWWDIR%%/src/css/bootstrap.dark.min.css
+%%WWWDIR%%/src/css/bootstrap-responsive.min.css
+%%WWWDIR%%/src/css/animate.min.css
+%%WWWDIR%%/src/config.sample.js
+%%WWWDIR%%/src/app/services/timer.js
+%%WWWDIR%%/src/app/services/playlistSrv.js
+%%WWWDIR%%/src/app/services/panelMove.js
+%%WWWDIR%%/src/app/services/keyboardManager.js
+%%WWWDIR%%/src/app/services/influxdb/influxdbDatasource.js
+%%WWWDIR%%/src/app/services/graphite/parser.js
+%%WWWDIR%%/src/app/services/graphite/lexer.js
+%%WWWDIR%%/src/app/services/graphite/graphiteDatasource.js
+%%WWWDIR%%/src/app/services/graphite/gfunc.js
+%%WWWDIR%%/src/app/services/filterSrv.js
+%%WWWDIR%%/src/app/services/datasourceSrv.js
+%%WWWDIR%%/src/app/services/dashboard.js
+%%WWWDIR%%/src/app/services/annotationsSrv.js
+%%WWWDIR%%/src/app/services/all.js
+%%WWWDIR%%/src/app/services/alertSrv.js
+%%WWWDIR%%/src/app/partials/search.html
+%%WWWDIR%%/src/app/partials/roweditor.html
+%%WWWDIR%%/src/app/partials/playlist.html
+%%WWWDIR%%/src/app/partials/panelgeneral.html
+%%WWWDIR%%/src/app/partials/paneleditor.html
+%%WWWDIR%%/src/app/partials/paneladd.html
+%%WWWDIR%%/src/app/partials/modal.html
+%%WWWDIR%%/src/app/partials/metrics.html
+%%WWWDIR%%/src/app/partials/loadmetrics.html
+%%WWWDIR%%/src/app/partials/load.html
+%%WWWDIR%%/src/app/partials/inspector.html
+%%WWWDIR%%/src/app/partials/influxdb/editor.html
+%%WWWDIR%%/src/app/partials/import.html
+%%WWWDIR%%/src/app/partials/graphite/editor.html
+%%WWWDIR%%/src/app/partials/dasheditor.html
+%%WWWDIR%%/src/app/partials/dashboard.html
+%%WWWDIR%%/src/app/partials/dashLoaderShare.html
+%%WWWDIR%%/src/app/partials/dashLoader.html
+%%WWWDIR%%/src/app/panels/timepicker/refreshctrl.html
+%%WWWDIR%%/src/app/panels/timepicker/module.js
+%%WWWDIR%%/src/app/panels/timepicker/module.html
+%%WWWDIR%%/src/app/panels/timepicker/editor.html
+%%WWWDIR%%/src/app/panels/timepicker/custom.html
+%%WWWDIR%%/src/app/panels/text/module.js
+%%WWWDIR%%/src/app/panels/text/module.html
+%%WWWDIR%%/src/app/panels/text/lib/showdown.js
+%%WWWDIR%%/src/app/panels/text/editor.html
+%%WWWDIR%%/src/app/panels/graphite/timeSeries.js
+%%WWWDIR%%/src/app/panels/graphite/styleEditor.html
+%%WWWDIR%%/src/app/panels/graphite/module.js
+%%WWWDIR%%/src/app/panels/graphite/module.html
+%%WWWDIR%%/src/app/panels/graphite/legend.html
+%%WWWDIR%%/src/app/panels/graphite/interval.js
+%%WWWDIR%%/src/app/panels/graphite/axisEditor.html
+%%WWWDIR%%/src/app/panels/filtering/module.js
+%%WWWDIR%%/src/app/panels/filtering/module.html
+%%WWWDIR%%/src/app/panels/annotations/module.js
+%%WWWDIR%%/src/app/panels/annotations/module.html
+%%WWWDIR%%/src/app/panels/annotations/editor.html
+%%WWWDIR%%/src/app/filters/all.js
+%%WWWDIR%%/src/app/directives/tip.js
+%%WWWDIR%%/src/app/directives/spectrumPicker.js
+%%WWWDIR%%/src/app/directives/ngModelOnBlur.js
+%%WWWDIR%%/src/app/directives/ngBlur.js
+%%WWWDIR%%/src/app/directives/kibanaSimplePanel.js
+%%WWWDIR%%/src/app/directives/kibanaPanel.js
+%%WWWDIR%%/src/app/directives/graphiteFuncEditor.js
+%%WWWDIR%%/src/app/directives/grafanaGraph.js
+%%WWWDIR%%/src/app/directives/dashUpload.js
+%%WWWDIR%%/src/app/directives/confirmClick.js
+%%WWWDIR%%/src/app/directives/configModal.js
+%%WWWDIR%%/src/app/directives/bootstrap-tagsinput.js
+%%WWWDIR%%/src/app/directives/bodyClass.js
+%%WWWDIR%%/src/app/directives/arrayJoin.js
+%%WWWDIR%%/src/app/directives/all.js
+%%WWWDIR%%/src/app/directives/addPanel.js
+%%WWWDIR%%/src/app/directives/addGraphiteFunc.js
+%%WWWDIR%%/src/app/dashboards/scripted.js
+%%WWWDIR%%/src/app/dashboards/empty.json
+%%WWWDIR%%/src/app/dashboards/default.json
+%%WWWDIR%%/src/app/controllers/submenuCtrl.js
+%%WWWDIR%%/src/app/controllers/search.js
+%%WWWDIR%%/src/app/controllers/row.js
+%%WWWDIR%%/src/app/controllers/pulldown.js
+%%WWWDIR%%/src/app/controllers/playlistCtrl.js
+%%WWWDIR%%/src/app/controllers/metricKeys.js
+%%WWWDIR%%/src/app/controllers/influxTargetCtrl.js
+%%WWWDIR%%/src/app/controllers/graphiteTarget.js
+%%WWWDIR%%/src/app/controllers/graphiteImport.js
+%%WWWDIR%%/src/app/controllers/dashLoader.js
+%%WWWDIR%%/src/app/controllers/dash.js
+%%WWWDIR%%/src/app/controllers/all.js
+%%WWWDIR%%/src/app/components/underscore.extended.js
+%%WWWDIR%%/src/app/components/settings.js
+%%WWWDIR%%/src/app/components/require.config.js
+%%WWWDIR%%/src/app/components/kbn.js
+%%WWWDIR%%/src/app/components/extend-jquery.js
+%%WWWDIR%%/src/app/app.js
+%%WWWDIR%%/sample/server.js
+%%WWWDIR%%/sample/nginx.conf
+%%WWWDIR%%/sample/lighttpd_basic.conf
+%%WWWDIR%%/sample/apache_ldap.conf
+%%WWWDIR%%/package.json
+%%WWWDIR%%/grafana.sublime-project
+%%WWWDIR%%/README.md
+%%WWWDIR%%/NOTICE.md
+%%WWWDIR%%/LICENSE.md
+%%WWWDIR%%/Gruntfile.js
+%%WWWDIR%%/CONTRIBUTING.md
+%%WWWDIR%%/CHANGELOG.md
+%%WWWDIR%%/.gitignore
+%%WWWDIR%%/.jshintrc
+%%WWWDIR%%/.travis.yml
+@dirrmtry %%WWWDIR%%/tasks/options
+@dirrmtry %%WWWDIR%%/tasks
+@dirrmtry %%WWWDIR%%/src/vendor/tagsinput
+@dirrmtry %%WWWDIR%%/src/vendor/require
+@dirrmtry %%WWWDIR%%/src/vendor/jquery
+@dirrmtry %%WWWDIR%%/src/vendor/elasticjs
+@dirrmtry %%WWWDIR%%/src/vendor/bootstrap/less/tests
+@dirrmtry %%WWWDIR%%/src/vendor/bootstrap/less/bak
+@dirrmtry %%WWWDIR%%/src/vendor/bootstrap/less
+@dirrmtry %%WWWDIR%%/src/vendor/bootstrap
+@dirrmtry %%WWWDIR%%/src/vendor/angular
+@dirrmtry %%WWWDIR%%/src/vendor
+@dirrmtry %%WWWDIR%%/src/test/specs
+@dirrmtry %%WWWDIR%%/src/test
+@dirrmtry %%WWWDIR%%/src/img
+@dirrmtry %%WWWDIR%%/src/font
+@dirrmtry %%WWWDIR%%/src/css/less
+@dirrmtry %%WWWDIR%%/src/css
+@dirrmtry %%WWWDIR%%/src/app/services/influxdb
+@dirrmtry %%WWWDIR%%/src/app/services/graphite
+@dirrmtry %%WWWDIR%%/src/app/services
+@dirrmtry %%WWWDIR%%/src/app/partials/influxdb
+@dirrmtry %%WWWDIR%%/src/app/partials/graphite
+@dirrmtry %%WWWDIR%%/src/app/partials
+@dirrmtry %%WWWDIR%%/src/app/panels/timepicker
+@dirrmtry %%WWWDIR%%/src/app/panels/text/lib
+@dirrmtry %%WWWDIR%%/src/app/panels/text
+@dirrmtry %%WWWDIR%%/src/app/panels/graphite
+@dirrmtry %%WWWDIR%%/src/app/panels/filtering
+@dirrmtry %%WWWDIR%%/src/app/panels/annotations
+@dirrmtry %%WWWDIR%%/src/app/panels
+@dirrmtry %%WWWDIR%%/src/app/filters
+@dirrmtry %%WWWDIR%%/src/app/directives
+@dirrmtry %%WWWDIR%%/src/app/dashboards
+@dirrmtry %%WWWDIR%%/src/app/controllers
+@dirrmtry %%WWWDIR%%/src/app/components
+@dirrmtry %%WWWDIR%%/src/app
+@dirrmtry %%WWWDIR%%/src
+@dirrmtry %%WWWDIR%%/sample
+@dirrmtry %%WWWDIR%%

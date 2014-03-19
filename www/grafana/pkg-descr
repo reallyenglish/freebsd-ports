@@ -1,0 +1,8 @@
+Grafana is meant to be a general purpose dashboard replacement for Graphite.
+Graphite is an incredible time series database and metric visualization tool.
+However the default dashboard and graph editor leaves much to be desired. The
+goal for Grafana is to be a dashboard and graph editor that is flexible,
+feature rich, easy to use and beautiful with low noice and clutter in its
+visual presentation. 
+
+WWW: http://grafana.org/
