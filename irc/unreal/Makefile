@@ -1,12 +1,8 @@
-# Ports collection makefile for:	Unreal-IRCd
-# Date created:				15 April 2004
-# Whom:					Gerrit Beine (<tux@pinguru.net>)
-#
+# Created by: Gerrit Beine (<tux@pinguru.net>)
 # $FreeBSD$
-#
 
 PORTNAME=	Unreal
-PORTVERSION=	3.2.9
+PORTVERSION=	3.2.10.2
 CATEGORIES=	irc ipv6
 MASTER_SITES=	http://www.unrealircd.com/downloads/
 DISTNAME=	${PORTNAME}${PORTVERSION}
@@ -17,9 +13,9 @@ COMMENT=	Unreal - the next generation ircd
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	cares.2:${PORTSDIR}/dns/c-ares
+LIB_DEPENDS=	cares:${PORTSDIR}/dns/c-ares
 
-WRKSRC=		${WRKDIR}/${DISTNAME:R}
+WRKSRC=		${WRKDIR}/${PORTNAME}${PORTVERSION}
 
 MODULESDIR=	${PREFIX}/lib/${PORTNAME}
 CONFIGDIR=	${PREFIX}/etc/${PORTNAME}
@@ -32,7 +28,11 @@ USE_RC_SUBR=	unrealircd
 USERS=		ircd
 GROUPS=		ircd
 
+USES=		pkgconfig
+
 SUB_LIST+=	RUNDIR=${RUNDIR}
+SUB_LIST+=	USERS=${USERS}
+SUB_LIST+=	GROUPS=${GROUPS}
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -45,19 +45,21 @@ CONFIGURE_ARGS=	--with-listen=5 \
 		--with-bufferpool=18 \
 		--with-permissions=0600 \
 		--with-fd-setsize=1024 \
+		--with-system-cares \
 		--enable-dynamic-linking
 
-OPTIONS=	HUB "Configure as a hub (otherwise configure as a leaf)" on \
-		NOSPOOF "Enable anti-spoof protection" off \
-		ZIPLINKS "Enable ziplinks support" off \
-		SSL "Support SSL connecions" off \
-		IPV6 "Enable ipv6 support" off \
-		PREFIXAQ "Enable prefixes for chanadmin and chanowner" off \
-		REMOTE "Enable remote includes" off
+OPTIONS_DEFINE=	HUB NOSPOOF ZIPLINKS SSL IPV6 PREFIXAQ REMOTE DOCS
+OPTIONS_DEFAULT=	HUB
+HUB_DESC=	Configure as a hub (otherwise configure as a leaf)
+NOSPOOF_DESC=	Enable anti-spoof protection
+ZIPLINKS_DESC=	Enable ziplinks support
+PREFIXAQ_DESC=	Enable prefixes for chanadmin and chanowner
+REMOTE_DESC=	Enable remote includes
 
-.include <bsd.port.pre.mk>
+NO_STAGE=	yes
+.include <bsd.port.options.mk>
 
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 DOCS=		Donation doc/Authors doc/coding-guidelines \
 		doc/example.conf doc/tao.of.irc \
 		doc/translations.txt doc/unreal32docs.html \
@@ -66,34 +68,34 @@ DOCS=		Donation doc/Authors doc/coding-guidelines \
 		doc/technical/vl.txt
 .endif
 
-.if defined(WITH_HUB)
+.if ${PORT_OPTIONS:MHUB}
 CONFIGURE_ARGS+=	--enable-hub
 .endif
 
-.if defined(WITH_NOSPOOF)
+.if ${PORT_OPTIONS:MNOSPOOF}
 CONFIGURE_ARGS+=	--enable-nospoof
 .endif
 
-.if defined(WITH_ZIPLINKS)
+.if ${PORT_OPTIONS:MZIPLINKS}
 CONFIGURE_ARGS+=	--enable-ziplinks
 .endif
 
-.if defined(WITH_IPV6)
+.if ${PORT_OPTIONS:MIPV6}
 CONFIGURE_ARGS+=	--enable-inet6
 .endif
 
-.if defined(WITH_SSL)
+.if ${PORT_OPTIONS:MSSL}
 CONFIGURE_ARGS+=	--enable-ssl
 # we can't use USE_OPENSSL=yes after including bsd.port.pre.mk
 .include "${PORTSDIR}/Mk/bsd.openssl.mk"
 .endif
 
-.if defined(WITH_REMOTE)
-LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
+.if ${PORT_OPTIONS:MREMOTE}
+LIB_DEPENDS+=	libcurl.so:${PORTSDIR}/ftp/curl
 CONFIGURE_ARGS+=	--enable-libcurl=${LOCALBASE}
 .endif
 
-.if defined(WITH_PREFIXAQ)
+.if ${PORT_OPTIONS:MPREFIXAQ}
 CONFIGURE_ARGS+=	--enable-prefixaq
 .endif
 
@@ -103,9 +105,9 @@ SQLMOD=		${PORTNAME}/SQLMod.tar.gz
 USE_MYSQL=	yes
 WITH_SQLMOD=	yes
 MAKE_ARGS=	all custommodule MODULEFILE=m_sqlmod
-PLIST_FILES+=	etc/Unreal/m_sqlmod.conf lib/Unreal/m_sqlmod.so \
-		Unreal/doc/Changes.sqlmod Unreal/doc/README.sqlmod \
-		Unreal/doc/LICENSE.sqlmod
+PLIST_SUB+=	SQLMOD=""
+.else
+PLIST_SUB+=	SQLMOD="@comment "
 .endif
 
 post-extract:
@@ -123,7 +125,6 @@ post-patch:
 		-e "s,%%LOGDIR%%,${LOGDIR}," ${WRKSRC}/include/config.h
 	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," \
 		-e "s,%%LOGDIR%%,${LOGDIR}," ${WRKSRC}/doc/example.conf
-	@${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/networks/makenet
 	@${REINPLACE_CMD} -e "s,%%RUNDIR%%,${RUNDIR}," ${WRKSRC}/src/ircd.c
 	@${REINPLACE_CMD} -e "s,%%RUNDIR%%,${RUNDIR}," ${WRKSRC}/src/modules.c
 	@${REINPLACE_CMD} -e "s,%%RUNDIR%%,${RUNDIR}," ${WRKSRC}/src/s_conf.c
@@ -138,22 +139,17 @@ do-install:
 	${MKDIR} ${CONFIGDIR} || true
 	${MKDIR} ${CONFIGDIR}/aliases || true
 	${MKDIR} ${EXAMPLESDIR}/aliases
-	${MKDIR} ${DATADIR}/networks
 	${MKDIR} ${RUNDIR}/tmp
 	${MKDIR} ${LOGDIR}
 	${TOUCH} ${CONFIGDIR}/ircd.motd
 	${TOUCH} ${CONFIGDIR}/ircd.rules
-	${INSTALL_DATA} ${WRKSRC}/LICENSE ${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/badwords.*.conf ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/help.conf ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/spamfilter.conf ${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/example.conf ${EXAMPLESDIR}/unrealircd.conf
 	${INSTALL_DATA} ${WRKSRC}/aliases/*.conf ${EXAMPLESDIR}/aliases
-	${INSTALL_DATA} ${WRKSRC}/networks/*.network ${DATADIR}/networks
-	${INSTALL_DATA} ${WRKSRC}/networks/networks.ndx ${DATADIR}/networks
-	${INSTALL_SCRIPT} ${WRKSRC}/networks/makenet ${DATADIR}/networks
 	${INSTALL} ${WRKSRC}/src/modules/*.so ${MODULESDIR}
-.if !defined(NOPORTDOCS)
+.if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${DOCSDIR}
 .for file in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${file} ${DOCSDIR}
@@ -186,4 +182,4 @@ post-install:
 	@${CP} ${WRKSRC}/SQLMod/LICENSE ${DOCSDIR}/LICENSE.sqlmod
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
