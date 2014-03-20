@@ -256,6 +256,7 @@
     SUBDIR += google-sitemapgen
     SUBDIR += googlebook_dl
     SUBDIR += goose
+    SUBDIR += grafana
     SUBDIR += grails
     SUBDIR += graphite-web
     SUBDIR += gregarius
