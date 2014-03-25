@@ -48,8 +48,13 @@ pre-build:
 	${RM} ${WRKSRC}/bin/build-index.sh.bak
 
 post-install:
+.if defined(STAGEDIR)
+	${CHOWN} ${WWWOWN} ${STAGEDIR}/${GRAPHITE_STORAGE}
+	${CHOWN} ${WWWOWN} ${STAGEDIR}${GRAPHITE_STORAGE}/log/webapp
+.else
 	${CHOWN} ${WWWOWN} ${GRAPHITE_STORAGE}
 	${CHOWN} ${WWWOWN} ${GRAPHITE_STORAGE}/log/webapp
+.endif
 	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>
