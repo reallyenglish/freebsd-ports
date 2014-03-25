@@ -4,7 +4,7 @@
 PORTNAME=	graphite-web
 PORTVERSION=	0.10.0
 PORTEPOCH=	20140305
-#PORTREVISION=	1
+PORTREVISION=	1
 CATEGORIES=	www python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -42,8 +42,10 @@ post-patch:
 		${WRKSRC}/conf/graphite.wsgi.example \
 		${WRKSRC}/setup.cfg \
 		${WRKSRC}/setup.py
-	@${RM} ${WRKSRC}/bin/build-index.sh.orig
-	@${RM} ${WRKSRC}/bin/build-index.sh.bak
+
+pre-build:
+	${RM} ${WRKSRC}/bin/build-index.sh.orig
+	${RM} ${WRKSRC}/bin/build-index.sh.bak
 
 post-install:
 	${CHOWN} ${WWWOWN} ${GRAPHITE_STORAGE}
