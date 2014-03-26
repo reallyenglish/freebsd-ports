@@ -108,8 +108,10 @@
 %%WWWDIR%%/src/test/test-main.js
 %%WWWDIR%%/src/test/specs/parser-specs.js
 %%WWWDIR%%/src/test/specs/lexer-specs.js
+%%WWWDIR%%/src/test/specs/graphiteTargetCtrl-specs.js
 %%WWWDIR%%/src/test/specs/gfunc-specs.js
-%%WWWDIR%%/src/test/specs/ctrl-specs.js
+%%WWWDIR%%/src/test/specs/filterSrv-specs.js
+%%WWWDIR%%/src/test/mocks/dashboard-mock.js
 %%WWWDIR%%/src/test/karma.conf.js
 %%WWWDIR%%/src/index.html
 %%WWWDIR%%/src/img/small.png
@@ -266,6 +268,7 @@
 @dirrmtry %%WWWDIR%%/src/vendor/angular
 @dirrmtry %%WWWDIR%%/src/vendor
 @dirrmtry %%WWWDIR%%/src/test/specs
+@dirrmtry %%WWWDIR%%/src/test/mocks
 @dirrmtry %%WWWDIR%%/src/test
 @dirrmtry %%WWWDIR%%/src/img
 @dirrmtry %%WWWDIR%%/src/font
