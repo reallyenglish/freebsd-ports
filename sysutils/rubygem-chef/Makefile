@@ -3,7 +3,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	11.10.4
-#PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -29,7 +29,7 @@ RUN_DEPENDS=	rubygem-bunny>=0.6.0:${PORTSDIR}/net/rubygem-bunny \
 		rubygem-yajl-ruby>=1.1.0:${PORTSDIR}/devel/rubygem-yajl-ruby \
 		rubygem-erubis>=2.7.0:${PORTSDIR}/www/rubygem-erubis \
 		rubygem-diff-lcs>=1.2.4:${PORTSDIR}/textproc/rubygem-diff-lcs \
-		rubygem-chef-zero=1.7.2:${PORTSDIR}/sysutils/rubygem-chef-zero \
+		rubygem-chef-zero>=1.7.2:${PORTSDIR}/sysutils/rubygem-chef-zero \
 		rubygem-pry>=0.9.0:${PORTSDIR}/devel/rubygem-pry \
 		rubygem-puma>=1.6.2:${PORTSDIR}/www/rubygem-puma
 
