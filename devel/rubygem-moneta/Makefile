@@ -3,9 +3,10 @@
 
 PORTNAME=	moneta
 # XXX chef 11.10.4 does not require moneta anymore, but sysutils/chef-zero
-# 1.7.0 still needs 0.7.0. when chef's gemspec depends on chef-zeor 2.0.2,
+# 1.7.0 still needs 0.6.0. when chef's gemspec depends on chef-zeor 2.0.2,
 # which does not require moneta, this commit may be reverted.
-PORTVERSION=	0.7.0
+# https://tickets.opscode.com/browse/CHEF-3721
+PORTVERSION=	0.6.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
