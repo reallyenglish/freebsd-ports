@@ -1,5 +1,5 @@
---- lib/chef/provider/service/freebsd.rb.orig	2012-09-10 11:43:08.000000000 +0900
-+++ lib/chef/provider/service/freebsd.rb	2012-09-10 11:52:26.000000000 +0900
+--- ./lib/chef/provider/service/freebsd.rb.orig	2014-03-31 12:52:58.000000000 +0900
++++ ./lib/chef/provider/service/freebsd.rb	2014-03-31 12:52:59.000000000 +0900
 @@ -42,6 +42,9 @@
              return
            end
@@ -9,7 +9,7 @@
 +          end
            determine_current_status!
            # Default to disabled if the service doesn't currently exist
-           # at all 
+           # at all
 @@ -49,7 +52,7 @@
            if ::File.exists?("/etc/rc.conf") && var_name
              read_rc_conf.each do |line|
@@ -19,7 +19,7 @@
                  @enabled_state_found = true
                  if $1 =~ /[Yy][Ee][Ss]/
                    @current_resource.enabled true
-@@ -156,7 +159,7 @@
+@@ -155,7 +158,7 @@
          def set_service_enable(value)
            lines = read_rc_conf
            # Remove line that set the old value

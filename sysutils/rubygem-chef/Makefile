@@ -3,7 +3,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	11.10.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -81,8 +81,17 @@ PLIST_FILES=	bin/chef-client \
 SUB_LIST=	RUBY=${RUBY}
 USE_RC_SUBR=	chef_client
 
+post-patch:
+	@( cd ${WRKSRC} && ${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' \
+		lib/chef/application/client.rb \
+		lib/chef/application/solo.rb \
+		lib/chef/config.rb \
+		lib/chef/encrypted_data_bag_item.rb \
+		lib/chef/knife/configure.rb \
+		lib/chef/knife/core/bootstrap_context.rb \
+		lib/chef/shell.rb )
+
 post-install:
-	@${PATCH} -p0 -d ${STAGEDIR}${PREFIX}/${GEM_LIB_DIR} < ${PATCHDIR}/lib-chef-provider-service-freebsd.rb.patch
 .if !defined(NO_INSTALL_MANPAGES)
 .for n in 1 8
 .for f in ${MAN${n}}
