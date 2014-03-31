@@ -1,0 +1,265 @@
+diff --git a/lib/chef/platform/provider_mapping.rb b/lib/chef/platform/provider_mapping.rb
+index 92a7278..d077666 100644
+--- a/lib/chef/platform/provider_mapping.rb
++++ b/lib/chef/platform/provider_mapping.rb
+@@ -64,6 +64,9 @@ class Chef
+               :service => Chef::Provider::Service::Freebsd,
+               :user    => Chef::Provider::User::Pw,
+               :cron    => Chef::Provider::Cron
++            },
++            ">= 10.0" => {
++              :package => Chef::Provider::Package::Pkg,
+             }
+           },
+           :ubuntu   => {
+diff --git a/lib/chef/provider/package/pkg.rb b/lib/chef/provider/package/pkg.rb
+new file mode 100644
+index 0000000..9ec48fb
+--- /dev/null
++++ b/lib/chef/provider/package/pkg.rb
+@@ -0,0 +1,76 @@
++#
++# Authors:: Tomoyuki Sakurai (tomoyukis@reallyenglish.com)
++# Copyright:: Copyright (c) 2009 Bryan McLellan, Matthew Landauer
++# License:: Apache License, Version 2.0
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++require 'chef/provider/package'
++require 'chef/mixin/shell_out'
++require 'chef/resource/package'
++require 'chef/mixin/get_source_from_package'
++
++class Chef
++  class Provider
++    class Package
++      class Pkg < Chef::Provider::Package
++        include Chef::Mixin::ShellOut
++
++        include Chef::Mixin::GetSourceFromPackage
++
++        def initialize(*args)
++          super
++          @current_resource = Chef::Resource::Package.new(@new_resource.name)
++        end
++
++        def current_installed_version
++          pkg_query = shell_out!("pkg query %v #{package_name}", :env => nil, :returns => [0,69])
++          pkg_query.stdout.chomp.empty? ? nil : pkg_query.stdout.chomp
++        end
++
++        def pkg_candidate_version
++          pkg_rquery = shell_out!("pkg rquery %v #{@new_resource.package_name}", :env => nil, :returns => [0,69])
++          pkg_rquery.stdout.chomp.empty? ? nil : pkg_rquery.stdout.chomp
++        end
++
++        def load_current_resource
++          @current_resource.package_name(@new_resource.package_name)
++
++          @current_resource.version(current_installed_version)
++          Chef::Log.debug("#{@new_resource} current version is #{@current_resource.version}") if @current_resource.version
++
++          @candidate_version = pkg_candidate_version
++          Chef::Log.debug("#{@new_resource} ports candidate version is #{@candidate_version}") if @candidate_version
++
++          @current_resource
++        end
++
++        def package_name
++          @new_resource.package_name
++        end
++
++        def install_package(name, version)
++          unless @current_resource.version
++            shell_out!("pkg install -y #{@current_resource.name}", :env => nil).status
++          end
++        end
++
++        def remove_package(name, version)
++          shell_out!("pkg delete -y #{name}", :env => nil).status
++        end
++
++      end
++    end
++  end
++end
+diff --git a/lib/chef/resource/freebsd_pkg.rb b/lib/chef/resource/freebsd_pkg.rb
+new file mode 100644
+index 0000000..a36e577
+--- /dev/null
++++ b/lib/chef/resource/freebsd_pkg.rb
+@@ -0,0 +1,34 @@
++#
++# Author:: Tomoyuki Sakurai (tomoyukis@reallyenglish.com)
++# Copyright:: Copyright (c) Tomoyuki Sakurai
++# License:: Apache License, Version 2.0
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++require 'chef/resource/package'
++require 'chef/provider/package/pkg'
++
++class Chef
++  class Resource
++    class FreebsdPkg < Chef::Resource::Package
++
++      def initialize(name, run_context=nil)
++        super
++        @resource_name = :freebsd_pkg
++        @provider = Chef::Provider::Package::Pkg
++      end
++
++    end
++  end
++end
+diff --git a/lib/chef/resources.rb b/lib/chef/resources.rb
+index 76adb6f..94c0e29 100644
+--- a/lib/chef/resources.rb
++++ b/lib/chef/resources.rb
+@@ -34,6 +34,7 @@ require 'chef/resource/erl_call'
+ require 'chef/resource/execute'
+ require 'chef/resource/file'
+ require 'chef/resource/freebsd_package'
++require 'chef/resource/freebsd_pkg'
+ require 'chef/resource/ips_package'
+ require 'chef/resource/gem_package'
+ require 'chef/resource/git'
+diff --git a/spec/unit/provider/package/pkg_spec.rb b/spec/unit/provider/package/pkg_spec.rb
+new file mode 100644
+index 0000000..08260a6
+--- /dev/null
++++ b/spec/unit/provider/package/pkg_spec.rb
+@@ -0,0 +1,111 @@
++#
++# Authors::  Tomoyuki Sakurai (tomoyukis@reallyenglish.com)
++# Copyright:: Copyright (c) 2014 Tomoyuki Sakurai
++# License:: Apache License, Version 2.0
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#     http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++#
++
++require 'spec_helper'
++require 'ostruct'
++
++describe Chef::Provider::Package::Pkg, "load_current_resource" do
++  before(:each) do
++    @node = Chef::Node.new
++    @events = Chef::EventDispatch::Dispatcher.new
++    @run_context = Chef::RunContext.new(@node, {}, @events)
++    @new_resource     = Chef::Resource::Package.new("zsh")
++    @current_resource = Chef::Resource::Package.new("zsh")
++
++    @provider = Chef::Provider::Package::Pkg.new(@new_resource, @run_context)
++    @provider.current_resource = @current_resource
++  end
++
++  describe "when determining the current package state" do
++    before do
++      @provider.stub(:ports_candidate_version).and_return("4.3.6")
++    end
++
++    it "should create a current resource with the name of the new_resource" do
++      current_resource = Chef::Provider::Package::Pkg.new(@new_resource, @run_context).current_resource
++      current_resource.name.should == "zsh"
++    end
++
++    it "should return a version if the package is installed" do
++      @provider.should_receive(:current_installed_version).and_return("4.3.6_7")
++      @provider.load_current_resource
++      @current_resource.version.should == "4.3.6_7"
++    end
++
++    it "should return nil if the package is not installed" do
++      @provider.should_receive(:current_installed_version).and_return(nil)
++      @provider.load_current_resource
++      @current_resource.version.should be_nil
++    end
++
++    it "should return a candidate version if it exists" do
++      pkg_rquery = OpenStruct.new(:stdout => "5.0.5\n")
++      @provider.should_receive(:shell_out!).with('pkg rquery %v zsh', :env => nil, :returns => [0,69]).and_return(pkg_rquery)
++      @provider.should_receive(:current_installed_version).and_return(nil)
++      @provider.load_current_resource
++      @provider.candidate_version.should eql("5.0.5")
++    end
++  end
++
++  describe "when querying for package state and attributes" do
++
++    it "should return the version number when it is installed" do
++      pkg_query = OpenStruct.new(:stdout => "5.0.5\n")
++      @provider.should_receive(:shell_out!).with('pkg query %v zsh', :env => nil, :returns => [0,69]).and_return(pkg_query)
++      @provider.stub(:package_name).and_return("zsh")
++      @provider.current_installed_version.should == "5.0.5"
++    end
++
++    it "does not set the current version number when the package is not installed" do
++      pkg_query = OpenStruct.new(:stdout => "")
++      @provider.should_receive(:shell_out!).with('pkg query %v zsh', :env => nil, :returns => [0,69]).and_return(pkg_query)
++      @provider.stub(:package_name).and_return("zsh")
++      @provider.current_installed_version.should be_nil
++    end
++
++  end
++
++  describe Chef::Provider::Package::Pkg, "install_package" do
++    before(:each) do
++      @cmd_result = OpenStruct.new(:status => true)
++
++      @provider.current_resource = @current_resource
++      @provider.stub(:package_name).and_return("zsh")
++    end
++
++    it "should run pkg install with the package name" do
++      @provider.should_receive(:shell_out!).with("pkg install -y zsh", :env => nil).and_return(@cmd_result)
++      @provider.install_package("zsh", "4.3.6_7")
++    end
++  end
++
++  describe Chef::Provider::Package::Pkg, "remove_package" do
++    before(:each) do
++      @pkg_delete = OpenStruct.new(:status => true)
++      @new_resource.version "4.3.6_7"
++      @current_resource.version "4.3.6_7"
++      @provider.current_resource = @current_resource
++      @provider.stub(:package_name).and_return("zsh")
++    end
++
++    it "should run pkg delete with the package name" do
++      @provider.should_receive(:shell_out!).with("pkg delete -y zsh", :env => nil).and_return(@pkg_delete)
++      @provider.remove_package("zsh", "4.3.6_7")
++    end
++  end
++end
