@@ -3,7 +3,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	11.10.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -90,6 +90,8 @@ post-patch:
 		lib/chef/knife/configure.rb \
 		lib/chef/knife/core/bootstrap_context.rb \
 		lib/chef/shell.rb )
+	${ECHO} "==> Applying extra patches"
+	${PATCH} -p 1 -d ${WRKSRC} < ${FILESDIR}/extra-patch-pkg
 
 post-install:
 .if !defined(NO_INSTALL_MANPAGES)
