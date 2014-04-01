@@ -1,5 +1,5 @@
 diff --git a/lib/chef/platform/provider_mapping.rb b/lib/chef/platform/provider_mapping.rb
-index 92a7278..d077666 100644
+index 92a7278..6138af5 100644
 --- a/lib/chef/platform/provider_mapping.rb
 +++ b/lib/chef/platform/provider_mapping.rb
 @@ -64,6 +64,9 @@ class Chef
@@ -12,6 +12,15 @@ index 92a7278..d077666 100644
              }
            },
            :ubuntu   => {
+@@ -430,6 +433,8 @@ class Chef
+           version = node[:os_release]
+         end
+ 
++        # remove invalid characters in version
++        version.gsub!(/[^\d\.]/, '')
+         raise ArgumentError, "Cannot find a version for #{node}" unless version
+ 
+         return platform, version
 diff --git a/lib/chef/provider/package/pkg.rb b/lib/chef/provider/package/pkg.rb
 new file mode 100644
 index 0000000..9ec48fb
