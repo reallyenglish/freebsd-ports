@@ -3,7 +3,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	11.10.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -91,7 +91,12 @@ post-patch:
 		lib/chef/knife/core/bootstrap_context.rb \
 		lib/chef/shell.rb )
 	${ECHO} "==> Applying extra patches"
+
+	# provides Chef::Provider::Package::Pkg
 	${PATCH} -p 1 -d ${WRKSRC} < ${FILESDIR}/extra-patch-pkg
+
+	# installs addtional files not in the gemspec
+	${PATCH} -p 0 -d ${WRKSRC} < ${FILESDIR}/extra-patch-gemspec
 
 post-install:
 .if !defined(NO_INSTALL_MANPAGES)
