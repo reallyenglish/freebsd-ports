@@ -1,0 +1,15 @@
+fix "invalid operands to binary expression"
+
+on FreeBSD and Solaris, closefrom(2) returns void and any errors are ignored.
+--- src/server/nsca-ng.c.orig	2014-04-02 16:00:43.000000000 +0900
++++ src/server/nsca-ng.c	2014-04-02 16:05:53.000000000 +0900
+@@ -300,8 +300,7 @@
+ 	int min_fd = STDERR_FILENO + 1;
+ 
+ #if HAVE_CLOSEFROM /* BSD and Solaris. */
+-	if (closefrom(min_fd) == -1)
+-		die("Cannot close file descriptors >= %d: %m", min_fd);
++	closefrom(min_fd);
+ #elif defined(F_CLOSEM) /* AIX and IRIX. */
+ 	if (fcntl(min_fd, F_CLOSEM, 0) == -1)
+ 		die("Cannot close file descriptors >= %d: %m", min_fd);
