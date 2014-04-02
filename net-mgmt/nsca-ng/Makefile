@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	nsca-ng
-PORTVERSION=	1.0
-PORTREVISION=	1
+PORTVERSION=	1.2
+#PORTREVISION=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://www.nsca-ng.org/download/
 
