@@ -1,5 +1,5 @@
 --- ./lib/portbuild.orig	2013-11-26 08:39:10.000000000 +0900
-+++ ./lib/portbuild	2014-03-11 15:36:46.000000000 +0900
++++ ./lib/portbuild	2014-04-02 13:09:30.000000000 +0900
 @@ -1,11 +1,11 @@
  #!/bin/sh
  #
@@ -14,7 +14,28 @@
      exit 1
  }
  
-@@ -89,6 +89,7 @@
+@@ -18,6 +18,11 @@
+     [ "${PORTBUILD_USE_IPV6}" != "NO" ] && echo $1
+ }
+ 
++jail_name ()
++{
++    echo $1 | sed -E -e 's|\.||g' -e 's|@||'
++}
++
+ cleanup()
+ {
+     chroot=$1
+@@ -28,7 +33,7 @@
+     build=$6
+     nullfs=$7
+ 
+-    jname=j$(echo ${build} | sed -E -e 's|\.||g')
++    jname=j$(jail_name ${build})
+ 
+     jexec -U root ${jname} /usr/sbin/service ldconfig start
+ 
+@@ -89,6 +94,7 @@
  logdir=""
  docopy=0
  compress_logs=0
@@ -22,7 +43,7 @@
  
  # check parameter count
  if [ $# -lt 10 ]; then
-@@ -136,6 +137,9 @@
+@@ -136,6 +142,9 @@
      x-compress-logs)
      			compress_logs=1
  			shift;;
@@ -32,7 +53,16 @@
  
      x-*)		echo "portbuild: unknown argument: $1"
  			exit 1;;
-@@ -279,6 +283,10 @@
+@@ -162,7 +171,7 @@
+ tc=$(tinderLoc scripts tc)
+ chroot=$(tinderLoc buildroot ${build})
+ echo "chroot is: ${chroot}"
+-jname=j$(echo ${build} | sed -E -e 's|\.||g')
++jname=j$(jail_name ${build})
+ echo "jailname is: ${jname}"
+ portdir=$(echo ${dirname} | sed -e 's|^/usr/ports/||')
+ 
+@@ -279,6 +288,10 @@
      export PORT_DBDIR=/var/db/ports
  fi
  
@@ -43,7 +73,7 @@
  # jexec -U root will have the right arch in uname -m and uname -p
  LOGIN_ENV=",UNAME_p=${ARCH},UNAME_m=${ARCH}"
  sed -i "" -e "s/:\(setenv.*\):/:\1${LOGIN_ENV}:/" ${chroot}/etc/login.conf
-@@ -444,7 +452,7 @@
+@@ -444,7 +457,7 @@
      fi
      error=$(cat ${chroot}/tmp/status)
  
@@ -52,7 +82,7 @@
  #    rm -rf ${chroot}/${WRKDIRPREFIX}
  
      if [ -e ${chroot}/tmp/work.tbz ]; then
-@@ -498,6 +506,9 @@
+@@ -498,6 +511,9 @@
  	    total_size=$(cat ${chroot}/tmp/size)
  	fi
  	old_size=$(${tc} getPortTotalSize -d ${portdir} -b ${build})
