@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	conf_d
-PORTVERSION=	0.0.3
+PORTVERSION=	0.0.4
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,5 +12,6 @@ COMMENT=	Python library to read configuration files, conf.d style
 
 USE_PYTHON=	2.6+
 USE_PYDISTUTILS=	yes
+PYDISTUTILS_AUTOPLIST=	yes
 
 .include <bsd.port.mk>
