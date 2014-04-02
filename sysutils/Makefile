@@ -730,6 +730,7 @@
     SUBDIR += pwd_unmkdb
     SUBDIR += pwgen
     SUBDIR += pwsafe
+    SUBDIR += py-Beaver
     SUBDIR += py-XenAPI
     SUBDIR += py-analyzemft
     SUBDIR += py-bcfg2

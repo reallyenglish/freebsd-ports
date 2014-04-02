@@ -1130,6 +1130,7 @@
     SUBDIR += py-asv
     SUBDIR += py-charade
     SUBDIR += py-chardet
+    SUBDIR += py-conf_d
     SUBDIR += py-creole
     SUBDIR += py-docutils
     SUBDIR += py-dsv
@@ -1142,6 +1143,7 @@
     SUBDIR += py-genshi
     SUBDIR += py-genshi-devel
     SUBDIR += py-gettext
+    SUBDIR += py-glob2
     SUBDIR += py-html2text
     SUBDIR += py-hyperestraier-python
     SUBDIR += py-jaxml
