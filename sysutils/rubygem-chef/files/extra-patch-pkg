@@ -23,10 +23,10 @@ index 92a7278..6138af5 100644
          return platform, version
 diff --git a/lib/chef/provider/package/pkg.rb b/lib/chef/provider/package/pkg.rb
 new file mode 100644
-index 0000000..9ec48fb
+index 0000000..86aaf76
 --- /dev/null
 +++ b/lib/chef/provider/package/pkg.rb
-@@ -0,0 +1,76 @@
+@@ -0,0 +1,80 @@
 +#
 +# Authors:: Tomoyuki Sakurai (tomoyukis@reallyenglish.com)
 +# Copyright:: Copyright (c) 2009 Bryan McLellan, Matthew Landauer
@@ -97,6 +97,10 @@ index 0000000..9ec48fb
 +
 +        def remove_package(name, version)
 +          shell_out!("pkg delete -y #{name}", :env => nil).status
++        end
++
++        def upgrade_package(name, version)
++          shell_out!("pkg install -y #{name}", :env => nil).status
 +        end
 +
 +      end
