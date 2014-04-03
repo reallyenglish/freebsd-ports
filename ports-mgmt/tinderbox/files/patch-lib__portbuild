@@ -20,7 +20,7 @@
  
 +jail_name ()
 +{
-+    echo $1 | sed -E -e 's|\.||g' -e 's|@||'
++    echo -n $1 | tr -C '[A-Za-z0-9\-]' '-'
 +}
 +
  cleanup()
