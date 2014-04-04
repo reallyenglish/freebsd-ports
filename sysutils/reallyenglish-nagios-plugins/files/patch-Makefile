@@ -1,0 +1,18 @@
+--- ./Makefile.orig	2014-04-04 13:04:44.000000000 +0900
++++ ./Makefile	2014-04-04 13:05:11.000000000 +0900
+@@ -1,5 +1,5 @@
+ VERSION=	1.1
+-DESTDIR?=	/usr/local
++PREFIX?=	/usr/local
+ SRC=		src
+ INSTALL?=	install -C -o root -g wheel -m 0755
+ RELEASE_NAME=	reallyenglish-nagios-plugins-${VERSION}
+@@ -19,7 +19,7 @@
+ 
+ install:
+ .for p in ${PLUGINS}
+-	${INSTALL} ${SRC}/${p}/${p} ${DESTDIR}/libexec/nagios
++	${INSTALL} ${SRC}/${p}/${p} ${DESTDIR}/${PREFIX}/libexec/nagios
+ .endfor
+ 
+ clean-release:
