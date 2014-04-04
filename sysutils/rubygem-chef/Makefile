@@ -3,7 +3,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	11.10.4
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -97,6 +97,9 @@ post-patch:
 
 	# installs addtional files not in the gemspec
 	${PATCH} -p 0 -d ${WRKSRC} < ${FILESDIR}/extra-patch-gemspec
+
+	# includes minor fixes for the provider
+	${PATCH} -p 1 -d ${WRKSRC} < ${FILESDIR}/extra-patch-freebsd-service
 
 post-install:
 .if !defined(NO_INSTALL_MANPAGES)
