@@ -23,7 +23,7 @@ index 92a7278..6138af5 100644
          return platform, version
 diff --git a/lib/chef/provider/package/pkg.rb b/lib/chef/provider/package/pkg.rb
 new file mode 100644
-index 0000000..86aaf76
+index 0000000..a52eb9f
 --- /dev/null
 +++ b/lib/chef/provider/package/pkg.rb
 @@ -0,0 +1,80 @@
@@ -91,7 +91,7 @@ index 0000000..86aaf76
 +
 +        def install_package(name, version)
 +          unless @current_resource.version
-+            shell_out!("pkg install -y #{@current_resource.name}", :env => nil).status
++            shell_out!("pkg install -y #{@current_resource.package_name}", :env => nil).status
 +          end
 +        end
 +
