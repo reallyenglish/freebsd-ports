@@ -772,6 +772,7 @@
     SUBDIR += rdiff-backup-devel
     SUBDIR += rdup
     SUBDIR += readlink
+    SUBDIR += reallyenglish-nagios-plugins
     SUBDIR += realsync
     SUBDIR += recoverdm
     SUBDIR += reed
