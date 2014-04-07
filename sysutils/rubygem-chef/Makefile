@@ -73,6 +73,14 @@ PLIST_FILES=	bin/chef-client \
 		bin/chef-service-manager \
 		bin/chef-shell
 
+.if !defined(NO_INSTALL_MANPAGES)
+.for n in 1 8
+.for f in ${MAN${n}}
+PLIST_FILES+=	man/man${n}/${f}.gz
+.endfor
+.endfor
+.endif
+
 SUB_LIST=	RUBY=${RUBY}
 USE_RC_SUBR=	chef_client
 
