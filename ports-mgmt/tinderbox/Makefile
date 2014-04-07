@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	tinderbox
-# XXX this is actually 4.2.0, which is to be released
-PORTVERSION=	4.1.0
-PORTREVISION=	3
+PORTVERSION=	4.2.0
+#PORTREVISION=	1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	http://tinderbox.marcuscom.com/ \
 		http://T32.TecNik93.com/FreeBSD/ports/${PORTNAME}/sources/
