@@ -7,7 +7,6 @@
     SUBDIR += a2ps
     SUBDIR += abc2mtex
     SUBDIR += abcm2ps
-    SUBDIR += abntex
     SUBDIR += acroread8
     SUBDIR += acroread9
     SUBDIR += acroreadwrapper
@@ -34,12 +33,12 @@
     SUBDIR += cups-bjnp
     SUBDIR += cups-client
     SUBDIR += cups-cloud-print
+    SUBDIR += cups-filters
     SUBDIR += cups-image
     SUBDIR += cups-pdf
     SUBDIR += cups-pk-helper
     SUBDIR += cups-pstoraster
     SUBDIR += cups-samba
-    SUBDIR += cups-smb-backend
     SUBDIR += deforaos-pdfviewer
     SUBDIR += detex
     SUBDIR += dk-acroread8
@@ -217,7 +216,6 @@
     SUBDIR += pdfjam
     SUBDIR += pdflib
     SUBDIR += pdflib-perl
-    SUBDIR += pdfmod
     SUBDIR += pdftk
     SUBDIR += pdq
     SUBDIR += pear-File_PDF
@@ -268,6 +266,7 @@
     SUBDIR += rubygem-afm
     SUBDIR += rubygem-color
     SUBDIR += rubygem-colortools
+    SUBDIR += rubygem-pdf-core
     SUBDIR += rubygem-pdf-reader
     SUBDIR += rubygem-pdfwriter
     SUBDIR += rubygem-prawn

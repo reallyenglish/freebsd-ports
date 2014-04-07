@@ -3,11 +3,12 @@
 
 PORTNAME=	gnutls
 PORTVERSION=	3.1.22
+PORTREVISION=	1
 CATEGORIES=	security net
 MASTER_SITES=	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.1/
 PKGNAMESUFFIX=	${GNUTLS_SUFFIX}
 
-MAINTAINER=	wg@FreeBSD.org
+MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	GNU Transport Layer Security library
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/makeinfo:${PORTSDIR}/print/texinfo
@@ -15,7 +16,6 @@ LIB_DEPENDS=	libgpg-error.so:${PORTSDIR}/security/libgpg-error \
 		libnettle.so:${PORTSDIR}/security/nettle \
 		libp11-kit.so:${PORTSDIR}/security/p11-kit \
 		libidn.so:${PORTSDIR}/dns/libidn \
-		libunbound.so:${PORTSDIR}/dns/unbound \
 		libtspi.so:${PORTSDIR}/security/trousers
 
 GNUTLS_SUFFIX=	3
@@ -42,11 +42,14 @@ DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${GNUTLS_SUFFIX}
 EXAMPLESDIR=	${PREFIX}/share/examples/${PORTNAME}${GNUTLS_SUFFIX}
 INFO_SUBDIR=	gnutls${GNUTLS_SUFFIX}
 
-OPTIONS_DEFINE=		CXX DOCS EXAMPLES LIBTASN1
+OPTIONS_DEFINE=		CXX DOCS EXAMPLES LIBTASN1 LIBDANE
 OPTIONS_DEFAULT=	CXX
 OPTIONS_SUB=		yes
 
 LIBTASN1_DESC=	Use libtasn1 from ports
+LIBDANE_DESC=	DNSSEC support for DANE (danetool3 --check)
+LIBDANE_LIB_DEPENDS=	libunbound.so:${PORTSDIR}/dns/unbound
+LIBDANE_CONFIGURE_OFF=	--disable-libdane
 
 CXX_CONFIGURE_ENABLE=	cxx
 

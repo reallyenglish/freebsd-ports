@@ -34,15 +34,17 @@ MAKE_ARGS+=	CC=${CC} CONF_ARGS="--prefix=${PREFIX} ${CSCOPE_ARG}" STRIP=${STRIP_
 MAKE_JOBS_UNSAFE=	yes
 PATCH_DIST_ARGS=--batch --directory ${WRKSRC} --forward --quiet --remove-empty-files ${PATCH_DIST_STRIP}
 REINPLACE_ARGS=	-i ''
-USE_BZIP2=	yes
-USES=		iconv pkgconfig shebangfix
+USES=		iconv pkgconfig shebangfix tar:bzip2
 WANT_GNOME=	yes
 
-PATCHLEVEL=	192
+PATCHLEVEL=	229
 PATCHFILES!=	/usr/bin/jot -s " " -w "%03d" ${PATCHLEVEL} 1 ${PATCHLEVEL}
-BADPATCHES=	064 087 147 # empty
-.for p in ${BADPATCHES}
+POSTPONED_PATCHES=	064 087 147	# patch files postponed to be applied in post-patch:
+SKIPPED_PATCHES=	208		# patch files skipped
+.for p in ${POSTPONED_PATCHES}
 DISTFILES+=	${PORTVERSION:R}.${p}:patch
+.endfor
+.for p in ${POSTPONED_PATCHES} ${SKIPPED_PATCHES}
 PATCHFILES:=	${PATCHFILES:N${p}}
 .endfor
 PATCHFILES:=	${PATCHFILES:C/^/${PORTVERSION:R}./g}
@@ -140,14 +142,14 @@ MAKE_ARGS+=	CONF_OPT_PYTHON="--enable-python3interp --disable-pythoninterp"
 post-patch:
 	@${REINPLACE_CMD} -e '/^install_normal: / s|install-icons|# &|; /cd $$(DEST_BIN); ln -s/d' ${WRKSRC}/src/Makefile
 	@${FIND} ${WRKSRC}/runtime/ -name menu\*.vim -print0 | ${XARGS} -0 ${REINPLACE_CMD} -e 's,ctags -R \\.,${CTAGS_CMD},g'
-.for badpatch in ${BADPATCHES}
-	@${ECHO_MSG} "===>   Applying distribution patch ${badpatch}"
-	@${PATCH} ${PATCH_DIST_ARGS} -i ${_DISTDIR}/${PORTVERSION:R}.${badpatch}
+.for p in ${POSTPONED_PATCHES}
+	@${ECHO_MSG} "===>   Applying distribution patch ${p}"
+	@${PATCH} ${PATCH_DIST_ARGS} -i ${_DISTDIR}/${PORTVERSION:R}.${p}
 .endfor
 
 pre-configure:
 	@${CP} ${WRKSRC}/src/config.mk.dist ${WRKSRC}/src/auto/config.mk
-	@(cd ${WRKSRC}/src/ && ${MAKE} distclean)
+	@(cd ${WRKSRC}/src/ && ${MAKE_CMD} distclean)
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		-e 's|\$$gtk_config_prefix/bin/gtk-config|\$${GTK_CONFIG}|g' \
 		-e 's|\$$gtk_config_exec_prefix/bin/gtk-config|\$${GTK_CONFIG}|g' \
@@ -157,7 +159,7 @@ pre-configure:
 .endif
 
 post-configure:
-	@(cd ${WRKSRC}/src/ && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} scratch config)
+	@(cd ${WRKSRC}/src/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} scratch config)
 	@${REINPLACE_CMD} -e 's|#define HAVE_SYSINFO 1|/* #undef HAVE_SYSINFO */|' ${WRKSRC}/src/auto/config.h
 
 post-install:

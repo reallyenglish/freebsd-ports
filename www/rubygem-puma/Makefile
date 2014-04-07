@@ -1,21 +1,21 @@
-# Created by: Tomoyuki Sakurai <tomoyukis@reallyenglish.com>
+# Created by: Steve Wills <swills@freebsd.org>
 # $FreeBSD$
 
 PORTNAME=	puma
-PORTVERSION=	1.6.2
+PORTVERSION=	2.8.1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	tomoyukis@reallyenglish.com
-COMMENT=	Highly concurrent HTTP 1.1 server for Ruby/Rack applications
+MAINTAINER=	ruby@freebsd.org
+COMMENT=	Fast, multithreaded and highly concurrent ruby web server
 
-RUN_DEPENDS=	rubygem-rack>=1.4.5:${PORTSDIR}/www/rubygem-rack
+LICENSE=	BSD3CLAUSE
+
+RUN_DEPENDS=	rubygem-rack>=1.1.0:${PORTSDIR}/www/rubygem-rack
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
-
-PLIST_FILES=	bin/pumactl \
-				bin/puma
+PLIST_FILES=	bin/puma bin/pumactl
 
 .include <bsd.port.mk>

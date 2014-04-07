@@ -46,7 +46,6 @@
     SUBDIR += cparser
     SUBDIR += csharp-mode.el
     SUBDIR += cython
-    SUBDIR += dice
     SUBDIR += diveintopython
     SUBDIR += dlv
     SUBDIR += dmd
@@ -68,7 +67,6 @@
     SUBDIR += f2c
     SUBDIR += f77
     SUBDIR += fasm
-    SUBDIR += fbbi
     SUBDIR += ferite
     SUBDIR += ficl
     SUBDIR += fpc
@@ -88,13 +86,13 @@
     SUBDIR += gcc-ecj45
     SUBDIR += gcc46
     SUBDIR += gcc47
+    SUBDIR += gcc47-aux
     SUBDIR += gcc48
     SUBDIR += gcc49
     SUBDIR += gcl
     SUBDIR += gforth
     SUBDIR += ghc
     SUBDIR += gjs
-    SUBDIR += gnat
     SUBDIR += gnat-aux
     SUBDIR += gnat_util
     SUBDIR += gnatdroid-armv5
@@ -131,6 +129,7 @@
     SUBDIR += jakarta-commons-jelly
     SUBDIR += jimtcl
     SUBDIR += jruby
+    SUBDIR += js_of_ocaml
     SUBDIR += jython
     SUBDIR += kawa
     SUBDIR += klone
@@ -141,7 +140,6 @@
     SUBDIR += libjit
     SUBDIR += libobjc2
     SUBDIR += librep
-    SUBDIR += libstdc++_stldoc_3.4.0
     SUBDIR += libstdc++_stldoc_4.2.2
     SUBDIR += linux-f10-libg2c
     SUBDIR += linux-f10-tcl85
@@ -286,7 +284,6 @@
     SUBDIR += rexx-regutil
     SUBDIR += rexx-wrapper
     SUBDIR += rhino
-    SUBDIR += rscheme
     SUBDIR += rubinius
     SUBDIR += ruby-doc-stdlib
     SUBDIR += ruby19
@@ -301,7 +298,6 @@
     SUBDIR += scala
     SUBDIR += scala-docs
     SUBDIR += scheme48
-    SUBDIR += schemetoc
     SUBDIR += scm
     SUBDIR += scsh
     SUBDIR += sdcc

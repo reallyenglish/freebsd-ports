@@ -16,11 +16,6 @@
     SUBDIR += amavis-stats
     SUBDIR += amavisd-milter
     SUBDIR += amavisd-new
-    SUBDIR += aolserver-nsencrypt
-    SUBDIR += aolserver-nsmcrypt
-    SUBDIR += aolserver-nsmhash
-    SUBDIR += aolserver-nsopenssl
-    SUBDIR += aolserver-nssha1
     SUBDIR += apache-xml-security-c
     SUBDIR += apg
     SUBDIR += arirang
@@ -101,11 +96,11 @@
     SUBDIR += cyrus-sasl2-gssapi
     SUBDIR += cyrus-sasl2-ldapdb
     SUBDIR += cyrus-sasl2-saslauthd
+    SUBDIR += d0_blind_id
     SUBDIR += dcetest
     SUBDIR += ddos_scan
     SUBDIR += denyhosts
     SUBDIR += destroy
-    SUBDIR += didentd
     SUBDIR += digest
     SUBDIR += dirbuster
     SUBDIR += dirmngr
@@ -161,7 +156,6 @@
     SUBDIR += gnupg
     SUBDIR += gnupg1
     SUBDIR += gnutls
-    SUBDIR += gnutls-devel
     SUBDIR += gnutls3
     SUBDIR += go.crypto
     SUBDIR += gorilla
@@ -215,6 +209,7 @@
     SUBDIR += httprint
     SUBDIR += hunch
     SUBDIR += hydra
+    SUBDIR += i2p
     SUBDIR += iaikpkcs11wrapper
     SUBDIR += idea
     SUBDIR += identify
@@ -238,6 +233,7 @@
     SUBDIR += kedpm
     SUBDIR += keepassx
     SUBDIR += keepassx2
+    SUBDIR += keybase
     SUBDIR += keychain
     SUBDIR += keynote
     SUBDIR += keyprint
@@ -275,8 +271,10 @@
     SUBDIR += libp11
     SUBDIR += libprelude
     SUBDIR += libpreludedb
+    SUBDIR += libpwquality
     SUBDIR += libpwstor
     SUBDIR += libscrypt
+    SUBDIR += libsecret
     SUBDIR += libsectok
     SUBDIR += libsodium
     SUBDIR += libsparkcrypto
@@ -573,6 +571,7 @@
     SUBDIR += p5-Net-Radius-Server
     SUBDIR += p5-Net-SAML
     SUBDIR += p5-Net-SSL-ExpireDate
+    SUBDIR += p5-Net-SSLGlue
     SUBDIR += p5-Net-SSLeay
     SUBDIR += p5-Net-Server-Mail-ESMTP-AUTH
     SUBDIR += p5-Net-SinFP
@@ -725,6 +724,7 @@
     SUBDIR += prelude-lml
     SUBDIR += prelude-manager
     SUBDIR += prelude-pflogger
+    SUBDIR += proftpd-mod_clamav
     SUBDIR += proxycheck
     SUBDIR += proxytunnel
     SUBDIR += pscan
@@ -743,6 +743,7 @@
     SUBDIR += py-Products.PluggableAuthService
     SUBDIR += py-RestrictedPython
     SUBDIR += py-SecretStorage
+    SUBDIR += py-backports.ssl_match_hostname
     SUBDIR += py-bcrypt
     SUBDIR += py-borg.localrole
     SUBDIR += py-cerealizer
@@ -1015,7 +1016,6 @@
     SUBDIR += xmlsec1
     SUBDIR += xorsearch
     SUBDIR += xspy
-    SUBDIR += xyssl
     SUBDIR += yafic
     SUBDIR += yapet
     SUBDIR += yara

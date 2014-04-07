@@ -50,7 +50,6 @@
     SUBDIR += gnome-icons-refined
     SUBDIR += gnome-icons-slick
     SUBDIR += gnome-icons-snow-apple
-    SUBDIR += gnome-icons-snowish
     SUBDIR += gnome-icons-stylish
     SUBDIR += gnome-icons-ximian-south
     SUBDIR += gnome-themes
@@ -166,8 +165,5 @@
     SUBDIR += thewidgetfactory
     SUBDIR += ubuntulooks
     SUBDIR += xcursor-themes
-    SUBDIR += xmms-bluecurve-theme
-    SUBDIR += xmms-eq-skins
-    SUBDIR += xmms-vumeter-skins
 
 .include <bsd.port.subdir.mk>

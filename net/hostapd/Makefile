@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	hostapd
-PORTVERSION=	2.0
+PORTVERSION=	2.1
 CATEGORIES=	net
 MASTER_SITES=	http://hostap.epitest.fi/releases/
 
@@ -24,7 +24,7 @@ PLIST_FILES=	sbin/hostapd sbin/hostapd_cli man/man1/hostapd_cli.1.gz \
 BROKEN=		Does not compile on ia64, powerpc, or sparc64
 .endif
 
-post-patch-script:
+post-patch:
 	@${REINPLACE_CMD} -e 's|@$$(E) "  CC " $$<|@$$(E) "  $$(CC) " $$<|' \
 		${BUILD_WRKSRC}/Makefile
 
