@@ -1,0 +1,20 @@
+--- ./lib/portbuild.orig	2014-04-07 10:50:08.000000000 +0900
++++ ./lib/portbuild	2014-04-07 10:50:52.000000000 +0900
+@@ -28,7 +28,7 @@
+     build=$6
+     nullfs=$7
+ 
+-    jname=j$(echo ${build} | sed -E -e 's|\.||g')
++    jname=j$(echo ${build} | tr -C '[A-Za-z0-9\-]' '-')
+ 
+     jexec -U root ${jname} /usr/sbin/service ldconfig start
+ 
+@@ -166,7 +166,7 @@
+ tc=$(tinderLoc scripts tc)
+ chroot=$(tinderLoc buildroot ${build})
+ echo "chroot is: ${chroot}"
+-jname=j$(echo ${build} | sed -E -e 's|\.||g')
++jname=j$(echo ${build} | tr -C '[A-Za-z0-9\-]' '-')
+ echo "jailname is: ${jname}"
+ portdir=$(echo ${dirname} | sed -e 's|^/usr/ports/||')
+ 
