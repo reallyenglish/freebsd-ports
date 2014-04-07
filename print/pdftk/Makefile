@@ -3,7 +3,7 @@
 
 PORTNAME=	pdftk
 PORTVERSION=	2.02
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	http://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -13,13 +13,11 @@ COMMENT=	Simple tool for doing everyday things with PDF documents
 
 LICENSE=	GPLv2
 
-USE_ZIP=	yes
-
 # Get GCC version suffix without the dot in USE_GCC
 CSUFF=		${_USE_GCC:S/.//}
 
 USE_GCC=	yes
-USES=		iconv gmake
+USES=		iconv gmake zip
 
 # gcj/libgcj don't exist on some platforms
 ONLY_FOR_ARCHS=		i386 amd64

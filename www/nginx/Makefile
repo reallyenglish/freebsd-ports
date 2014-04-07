@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	nginx
-PORTVERSION=	1.4.6
-PORTEPOCH=	1
+PORTVERSION=	1.4.7
+PORTEPOCH=	2
 CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/
 MASTER_SITES+=	${MASTER_SITE_LOCAL}
@@ -850,8 +850,6 @@ USE_OPENSSL=	yes
 .if ${PORT_OPTIONS:MSPDY}
 .if ${OSVERSION} < 1000028
 WITH_OPENSSL_PORT=	yes
-.else
-WITH_OPENSSL_BASE=	yes
 .endif
 .endif
 .endif

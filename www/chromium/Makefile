@@ -4,15 +4,10 @@
 #TODO eadler: s/python/python2/g on a number of files, chromium does not build with python3
 
 PORTNAME=	chromium
-DISTVERSIONPREFIX=	courgette-redacted-
-DISTVERSION=	33.0.1750.146
+PORTVERSION=	33.0.1750.152
 CATEGORIES=	www
-MASTER_SITES=	http://commondatastorage.googleapis.com/chromium-browser-official/:testdata \
-		http://download.goodking.org/downloads/:browser \
-		ftp://rene-ladan.nl/pub/distfiles/:browser \
-		LOCAL/rene:browser \
-		http://files.etoilebsd.net/goodking/:browser
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:browser
+MASTER_SITES=	http://commondatastorage.googleapis.com/chromium-browser-official/
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	chromium@FreeBSD.org
 COMMENT=	Mostly BSD-licensed web browser based on WebKit and Gtk+
@@ -20,7 +15,6 @@ COMMENT=	Mostly BSD-licensed web browser based on WebKit and Gtk+
 LICENSE=	BSD3CLAUSE LGPL21 MPL
 LICENSE_COMB=	multi
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 CFLAGS+=	-fno-stack-protector
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/gperf:${PORTSDIR}/devel/gperf \
@@ -45,9 +39,8 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/a
 		${LOCALBASE}/lib/X11/fonts/Droid/fonts.dir:${PORTSDIR}/x11-fonts/droid-fonts-ttf
 
 ONLY_FOR_ARCHS=	i386 amd64
-USE_XZ=		yes
 USES=		bison compiler:c++11-lib desktop-file-utils pkgconfig \
-		perl5 shebangfix ninja
+		perl5 shebangfix ninja tar:xz
 USE_PERL5=	build
 USE_PYTHON_BUILD=	2
 USE_XORG=	scrnsaverproto x11 xproto xscrnsaver xtst
@@ -99,6 +92,8 @@ OPTIONS_DEFAULT=	CODECS GCONF
 GCONF_USE=	GNOME=gconf2
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 
+TEST_DISTFILES=	${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX}
+
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MCODECS}
@@ -133,7 +128,6 @@ LIB_DEPENDS+=	libexecinfo.so:${PORTSDIR}/devel/libexecinfo
 .if ${PORT_OPTIONS:MTEST}
 .include "Makefile.tests"
 ALL_TARGET+=	${TEST_TARGETS}
-DISTFILES+=	${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX}:testdata
 .endif
 
 DEBUG_MAKE_ENV=	V=1
@@ -197,8 +191,6 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|/usr/bin/gcc|${CC}|" \
 		${WRKSRC}/third_party/WebKit/Source/build/scripts/preprocessor.pm \
 		${WRKSRC}/third_party/WebKit/Source/build/scripts/scripts.gypi
-	@${REINPLACE_CMD} -e "s|'../courgette/courgette.gyp:courgette_lib',||" \
-		${WRKSRC}/chrome/chrome_tests_unit.gypi
 	@${REINPLACE_CMD} -e "s|is_linux|(is_linux or is_bsd)|" \
 		${WRKSRC}/chrome/browser/browser_resources.grd \
 		${WRKSRC}/chrome/app/theme/theme_resources.grd \

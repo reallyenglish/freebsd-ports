@@ -93,9 +93,8 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  Default: ${DISTNAME}${EXTRACT_SUFX}
 # EXTRACT_SUFX	- Suffix for archive names
 #				  You never have to set both DISTFILES and EXTRACT_SUFX.
-#				  Default: .tar.bz2 if USE_BZIP2 is set, .lzh if USE_LHA is set,
-#				  .zip if USE_ZIP is set, .tar.xz if USE_XZ is set, .run if
-#				  USE_MAKESELF is set, .tar.gz otherwise).
+#				  Default: .tar.bz2 if USE_BZIP2 is set, .tar.xz if USE_XZ is set,
+#				  .tar.gz otherwise).
 # MASTER_SITES	- Primary location(s) for distribution files if not found
 #				  locally.  See bsd.sites.mk for common choices for
 #				  MASTER_SITES.
@@ -329,13 +328,8 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #
 # USE_BZIP2		- If set, this port tarballs use bzip2, not gzip, for
 #				  compression.
-# USE_LHA		- If set, this port distfile uses lha for compression
 # USE_XZ		- If set, this port tarballs use xz (or lzma)
 #				  for compression
-# USE_ZIP		- If set, this port distfile uses zip, not tar w/[bg]zip
-#				  for compression.
-# USE_MAKESELF		- If set, this port distfile uses makeself, not tar w/[bg]zip
-#				  for compression.
 # USE_GCC		- If set, this port requires this version of gcc, either in
 #				  the system or installed from a port.
 # USE_CSTD		- Override the default C language standard (gnu89, gnu99)
@@ -593,6 +587,16 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # INSTALL_DATA	- A command to install sharable data.
 # INSTALL_MAN	- A command to install manpages.  May or not compress,
 #				  depending on the value of MANCOMPRESSED (see below).
+# COPYTREE_BIN
+# COPYTREE_SHARE
+#				- Similiar to INSTALL commands but working on whole
+#				  trees of directories, takes 3 arguments, last one is
+#				  find(1) arguments and optional.
+#				  Example use: 
+#				  cd ${WRKSRC}/doc && ${COPYTREE} . ${DOCSDIR} "! -name *.bak"
+#
+#				  Installs all directories and files from ${WRKSRC}/doc
+#				  to ${DOCSDIR} except sed backup files.
 #
 # Boolean to control whether manpages are installed.
 #
@@ -814,8 +818,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # For extract:
 #
 # EXTRACT_CMD	- Command for extracting archive: "bzip2" if USE_BZIP2
-#				  is set, "unzip" if USE_ZIP is set, "unmakeself" if
-#				  USE_MAKESELF if set, "gzip" otherwise.
+#				  is set, "gzip" otherwise.
 # EXTRACT_BEFORE_ARGS
 #				- Arguments to ${EXTRACT_CMD} before filename.
 #				  Default: "-dc"
@@ -1139,6 +1142,30 @@ NOTPHONY?=
 
 .include "${PORTSDIR}/Mk/bsd.commands.mk"
 
+.if defined(X_BUILD_FOR)
+.if defined(NO_STAGE)
+IGNORE=	Cross building is only compatible with stagified ports
+.endif
+.if !defined(.PARSEDIR)
+IGNORE=	Cross building can only be done when using bmake(1) as make(1)
+.endif
+BUILD_DEPENDS=	${X_BUILD_FOR}-cc:${PORTSDIR}/devel/${X_BUILD_FOR}-xdev
+# Do not define CPP on purpose
+.if !defined(HCC)
+HCC:=	${CC}
+HCXX:=	${CXX}
+.endif
+CC=		${LOCALBASE}/${X_BUILD_FOR}/usr/bin/cc
+CXX=		${LOCALBASE}/${X_BUILD_FOR}/usr/bin/c++
+NM=		${X_BUILD_FOR}-nm
+STRIP_CMD=	${X_BUILD_FOR}-strip
+MAKE_ENV+=	NM=${NM} STRIPBIN=${X_BUILD_FOR}-strip
+PKG_ENV+=	ABI_FILE=${LOCALBASE}/${X_BUILD_FOR}/usr/lib/crt1.o
+# only bmake support the below
+STRIPBIN=	${STRIP_CMD}
+.export.env STRIPBIN
+.endif
+
 #
 # DESTDIR section to start a chrooted process if invoked with DESTDIR set
 #
@@ -1316,12 +1343,6 @@ CONFIGURE_ENV+=	TMPDIR="${TMPDIR}"
 .if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
 WITH_DEBUG=	yes
 .endif
-.endif
-
-# Reset value from bsd.own.mk.
-.if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)
-STRIP=	#none
-MAKE_ENV+=	DONTSTRIP=yes
 .endif
 
 .include "${PORTSDIR}/Mk/bsd.options.mk"
@@ -1527,14 +1548,8 @@ ${_f}_ARGS:=	${f:C/^[^\:]*\://g}
 
 .if defined(USE_BZIP2)
 EXTRACT_SUFX?=			.tar.bz2
-.elif defined(USE_LHA)
-EXTRACT_SUFX?=			.lzh
-.elif defined(USE_ZIP)
-EXTRACT_SUFX?=			.zip
 .elif defined(USE_XZ)
 EXTRACT_SUFX?=			.tar.xz
-.elif defined(USE_MAKESELF)
-EXTRACT_SUFX?=			.run
 .else
 EXTRACT_SUFX?=			.tar.gz
 .endif
@@ -1609,10 +1624,16 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .endif
 .endif
 
+# Reset value from bsd.own.mk.
 .if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)
+STRIP=	#none
+MAKE_ENV+=	DONTSTRIP=yes
 STRIP_CMD=	${TRUE}
 DEBUG_FLAGS?=	-g
 CFLAGS:=		${CFLAGS:N-O*:N-fno-strict*} ${DEBUG_FLAGS}
+.if defined(INSTALL_TARGET)
+INSTALL_TARGET:=	${INSTALL_TARGET:S/^install-strip$/install/g}
+.endif
 .endif
 
 .if defined(WITH_SSP) || defined(WITH_SSP_PORTS)
@@ -1701,16 +1722,6 @@ PKGNG_ORIGIN=		ports-mgmt/pkg-devel
 PKG_DEPENDS+=		${LOCALBASE}/sbin/pkg:${PORTSDIR}/${PKGNG_ORIGIN}
 .endif
 .endif
-.endif
-
-.if defined(USE_LHA)
-EXTRACT_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
-.endif
-.if defined(USE_ZIP)
-EXTRACT_DEPENDS+=	${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
-.endif
-.if defined(USE_MAKESELF)
-EXTRACT_DEPENDS+=	unmakeself:${PORTSDIR}/archivers/unmakeself
 .endif
 
 .if defined(USE_GCC)
@@ -1866,6 +1877,10 @@ IGNORE=	Do not define STAGEDIR in command line
 
 .if defined(USE_JAVA)
 .include "${PORTSDIR}/Mk/bsd.java.mk"
+.endif
+
+.if defined(USE_OCAML)
+.include "${PORTSDIR}/Mk/bsd.ocaml.mk"
 .endif
 
 .if defined(USE_LINUX_RPM)
@@ -2176,26 +2191,12 @@ PATCH_DIST_ARGS+=	--suffix .orig
 TAR?=	/usr/bin/tar
 
 # EXTRACT_SUFX is defined in .pre.mk section
-.if defined(USE_LHA)
-EXTRACT_CMD?=		${LHA_CMD}
-EXTRACT_BEFORE_ARGS?=	xfqw=${WRKDIR}
-EXTRACT_AFTER_ARGS?=
-.elif defined(USE_ZIP)
-EXTRACT_CMD?=		${UNZIP_CMD}
-EXTRACT_BEFORE_ARGS?=	-qo
-EXTRACT_AFTER_ARGS?=	-d ${WRKDIR}
-.elif defined(USE_MAKESELF)
-EXTRACT_CMD?=		${UNMAKESELF_CMD}
-EXTRACT_BEFORE_ARGS?=
-EXTRACT_AFTER_ARGS?=
-.else
 EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
 .if defined(EXTRACT_PRESERVE_OWNERSHIP)
 EXTRACT_AFTER_ARGS?=
 .else
 EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
-.endif
 .endif
 
 # Figure out where the local mtree file is
@@ -2790,6 +2791,9 @@ GNU_CONFIGURE_PREFIX?=	${PREFIX}
 GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
 CONFIG_SITE?=		${PORTSDIR}/Templates/config.site
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
+.if defined(X_BUILD_FOR)
+CONFIGURE_ARGS+=	--host=${X_BUILD_FOR}
+.endif
 CONFIGURE_ENV+=		CONFIG_SITE=${CONFIG_SITE} lt_cv_sys_max_cmd_len=${CONFIGURE_MAX_CMD_LEN}
 HAS_CONFIGURE=		yes
 
@@ -3078,10 +3082,9 @@ IGNORECMD=	${DO_NADA}
 IGNORECMD=	${ECHO_MSG} "===>  ${PKGNAME} "${IGNORE:Q}.;exit 1
 .endif
 
-.if !defined(NO_STAGE)
-_TARGETS=	check-sanity fetch checksum extract patch configure all build stage restage install reinstall package
-.else
 _TARGETS=	check-sanity fetch checksum extract patch configure all build install reinstall package
+.if !defined(NO_STAGE)
+_TARGETS+=	stage restage
 .endif
 .for target in ${_TARGETS}
 .if !target(${target})
@@ -3205,6 +3208,13 @@ checksum: fetch
 .if defined(NO_BUILD) && !target(build)
 build: configure
 	@${TOUCH} ${TOUCH_FLAGS} ${BUILD_COOKIE}
+.endif
+
+# Disable staging. Be non-fatal here as some scripts may just call it as a
+# matter of correctness in their ordering.
+.if defined(NO_STAGE) && !target(stage)
+stage:
+	@${ECHO_MSG} "===>   This port does not yet support staging"
 .endif
 
 # Disable install
@@ -3800,10 +3810,11 @@ do-package: ${TMPPLIST}
 	if [ -f ${PKGMESSAGE} ]; then \
 		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -D ${PKGMESSAGE}"; \
 	fi; \
-	if ${PKG_CMD} -S ${STAGEDIR} ${PKG_ARGS} ${WRKDIR}/${PKGNAME}${PKG_SUFX}; then \
-		if [ -d ${PACKAGES} -a -w ${PACKAGES} ]; then \
-			${LN} -f ${WRKDIR}/${PKGNAME}${PKG_SUFX} ${PKGFILE} 2>/dev/null || \
-			    ${CP} -af ${WRKDIR}/${PKGNAME}${PKG_SUFX} ${PKGFILE}; \
+	${MKDIR} ${WRKDIR}/pkg; \
+	if ${PKG_CMD} -S ${STAGEDIR} ${PKG_ARGS} ${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX}; then \
+		if [ -d ${PKGREPOSITORY} -a -w ${PKGREPOSITORY} ]; then \
+			${LN} -f ${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX} ${PKGFILE} 2>/dev/null || \
+			    ${CP} -af ${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX} ${PKGFILE}; \
 			cd ${.CURDIR} && eval ${MAKE} package-links; \
 		fi; \
 	else \
@@ -3853,7 +3864,7 @@ delete-package: delete-package-links
 	@${RM} -f ${PKGFILE}
 .	else
 # When staging, the package may only be in the workdir if not root
-	@${RM} -f ${PKGFILE} ${WRKDIR}/${PKGNAME}${PKG_SUFX} 2>/dev/null || :
+	@${RM} -f ${PKGFILE} ${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX} 2>/dev/null || :
 .	endif
 .endif
 
@@ -3872,14 +3883,22 @@ delete-package-list: delete-package-links-list
 	@${ECHO_CMD} "[ -f ${PKGFILE} ] && (${ECHO_CMD} deleting ${PKGFILE}; ${RM} -f ${PKGFILE})"
 .endif
 
-# Only used if !defined(NO_STAGE)
+# Used if !defined(NO_STAGE) during install, or manually to install package
+# from local repository.
 .if !target(install-package)
-install-package:
 .if defined(FORCE_PKG_REGISTER)
-	@${PKG_ADD} -f ${WRKDIR}/${PKGNAME}${PKG_SUFX}
-.else
-	@${PKG_ADD} ${WRKDIR}/${PKGNAME}${PKG_SUFX}
+_INSTALL_PKG_ARGS=	-f
 .endif
+.if defined(INSTALLS_DEPENDS) && defined(WITH_PKGNG)
+_INSTALL_PKG_ARGS+=	-A
+.endif
+install-package:
+	@if [ -f "${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX}" ]; then \
+	    _pkgfile="${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX}"; \
+	else \
+	    _pkgfile="${PKGFILE}"; \
+	fi; \
+	${PKG_ADD} ${_INSTALL_PKG_ARGS} $${_pkgfile}
 .endif
 
 
@@ -4839,7 +4858,10 @@ _INSTALL_DEPENDS=	\
 					${WRKDIR}/pkg-static add $${subpkgfile}; \
 					${RM} -f ${WRKDIR}/pkg-static; \
 				else \
-					${PKG_ADD} $${subpkgfile}; \
+					if [ -n "${WITH_PKGNG}" ]; then \
+						_pkg_add_a="-A"; \
+					fi; \
+					${PKG_ADD} $${_pkg_add_a} $${subpkgfile}; \
 				fi; \
 			elif [ -n "${USE_PACKAGE_DEPENDS_ONLY}" -a "$${target}" = "${DEPENDS_TARGET}" ]; then \
 				${ECHO_MSG} "===>   ${PKGNAME} depends on package: $${subpkgfile} - not found"; \
@@ -5717,7 +5739,8 @@ add-plist-info:
 # If we're installing into a non-standard PREFIX, we need to remove that directory at
 # deinstall-time
 .if !target(add-plist-post)
-.if (${PREFIX} != ${LOCALBASE} && ${PREFIX} != ${LINUXBASE} && ${PREFIX} != "/usr")
+.if (${PREFIX} != ${LOCALBASE} && ${PREFIX} != ${LINUXBASE} && \
+    ${PREFIX} != "/usr" && !defined(NO_PREFIX_RMDIR))
 add-plist-post:
 	@${ECHO_CMD} "@unexec rmdir %D 2> /dev/null || true" >> ${TMPPLIST}
 .endif
@@ -6435,6 +6458,9 @@ _TARGETS_STAGES=	SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD INSTALL PACKAGE
 _TARGETS_STAGES+=	STAGE
 .endif
 
+# Define the SEQ of actions to take when each target is ran, and which targets
+# it depends on before running its SEQ.
+
 _SANITY_SEQ=	post-chroot pre-everything check-makefile \
 				show-warnings show-dev-warnings show-dev-errors \
 				check-categories check-makevars check-desktop-entries \
@@ -6547,8 +6573,17 @@ _${_t}_REAL_SUSEQ+=	${s}
 .ORDER: ${_${_t}_DEP} ${_${_t}_REAL_SEQ}
 .endfor
 
+# Define all of the main targets which depend on a sequence of other targets.
+# See above *_SEQ and *_DEP. The _DEP will run before this defined target is
+# ran. The _SEQ will run as this target once _DEP is satisfied.
+
 .for target in extract patch configure build stage install package
 
+# Check if config dialog needs to show and execute it if needed. If is it not
+# needed (_OPTIONS_OK), then just depend on the cookie which is defined later
+# to depend on the *_DEP and execute the *_SEQ.
+# If options are required, execute config-conditional and then re-execute the
+# target noting that config is no longer needed.
 .if !target(${target}) && defined(_OPTIONS_OK)
 _PHONY_TARGETS+= ${target}
 ${target}: ${${target:U}_COOKIE}
@@ -6560,38 +6595,42 @@ ${target}: config-conditional
 
 .if !exists(${${target:U}_COOKIE})
 
+# Define the real target behavior. Depend on the target's *_DEP. Execute
+# the target's *_SEQ. Also handle su and USE_SUBMAKE needs.
 .if ${UID} != 0 && defined(_${target:U}_REAL_SUSEQ) && !defined(INSTALL_AS_USER)
-.if defined(USE_SUBMAKE)
+.  if defined(USE_SUBMAKE)
 ${${target:U}_COOKIE}: ${_${target:U}_DEP}
 	@cd ${.CURDIR} && ${MAKE} ${_${target:U}_REAL_SEQ}
-.else
+.  else  # !USE_SUBMAKE
 ${${target:U}_COOKIE}: ${_${target:U}_DEP} ${_${target:U}_REAL_SEQ}
-.endif
+.  endif # USE_SUBMAKE
 	@${ECHO_MSG} "===>  Switching to root credentials for '${target}' target"
 	@cd ${.CURDIR} && \
 		${SU_CMD} "${MAKE} ${_${target:U}_REAL_SUSEQ}"
 	@${ECHO_MSG} "===>  Returning to user credentials"
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.elif defined(USE_SUBMAKE)
+.else # No SU needed
+.  if defined(USE_SUBMAKE)
 ${${target:U}_COOKIE}: ${_${target:U}_DEP}
 	@cd ${.CURDIR} && \
 		${MAKE} ${_${target:U}_REAL_SEQ} ${_${target:U}_REAL_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.else
+.  else # !USE_SUBMAKE
 ${${target:U}_COOKIE}: ${_${target:U}_DEP} ${_${target:U}_REAL_SEQ} ${_${target:U}_REAL_SUSEQ}
 	@${TOUCH} ${TOUCH_FLAGS} ${.TARGET}
-.endif
+.  endif # USE_SUBMAKE
+.endif # SU needed
 
-.else
+.else # exists(cookie)
 ${${target:U}_COOKIE}::
 	@if [ -e ${.TARGET} ]; then \
 		${DO_NADA}; \
 	else \
 		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
 	fi
-.endif
+.endif # !exists(cookie)
 
-.endfor
+.endfor # foreach(targets)
 
 .PHONY: ${_PHONY_TARGETS} check-sanity fetch pkg
 

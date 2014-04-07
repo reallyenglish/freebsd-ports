@@ -3,7 +3,7 @@
 
 PORTNAME=	cmake
 PORTVERSION=	2.8.12.1
-PORTREVISION?=	2
+PORTREVISION?=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://downloads.cmake.org/files/v2.8/
 
@@ -13,6 +13,7 @@ COMMENT?=	Cross-platform Makefile generator
 LICENSE=	BSD3CLAUSE
 
 USE_KDE4=	# env
+USE_OPENSSL=	yes
 CONFIGURE_ENV=	MAKE=make
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--datadir="/${DATADIR_REL}" \

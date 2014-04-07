@@ -10,28 +10,23 @@ MASTER_SITES=	RG
 MAINTAINER=	renchap@cocoa-x.com
 COMMENT=	Systems integration framework. Client part
 
-# XXX rubygem-json146 cannot be built with ruby 2.1
-RUN_DEPENDS=	rubygem-bunny>=0.6.0:${PORTSDIR}/net/rubygem-bunny \
+RUN_DEPENDS=	rubygem-chef-zero>=0.0.0:${PORTSDIR}/sysutils/rubygem-chef-zero \
+		rubygem-diff-lcs>=0.0.0:${PORTSDIR}/textproc/rubygem-diff-lcs \
 		rubygem-erubis>=0:${PORTSDIR}/www/rubygem-erubis \
 		rubygem-highline>=1.6.9:${PORTSDIR}/devel/rubygem-highline \
-		rubygem-json>=1.7.0:${PORTSDIR}/devel/rubygem-json \
-		rubygem-mixlib-authentication>=1.1.0:${PORTSDIR}/devel/rubygem-mixlib-authentication \
+		rubygem-json>=1.8.1:${PORTSDIR}/devel/rubygem-json \
+		rubygem-mixlib-authentication>=1.3.0:${PORTSDIR}/devel/rubygem-mixlib-authentication \
 		rubygem-mixlib-cli>=1.4.0:${PORTSDIR}/devel/rubygem-mixlib-cli \
-		rubygem-mixlib-config>=2.0.0:${PORTSDIR}/devel/rubygem-mixlib-config \
+		rubygem-mixlib-config>=2.1.0:${PORTSDIR}/devel/rubygem-mixlib-config \
 		rubygem-mixlib-log>=1.3.0:${PORTSDIR}/devel/rubygem-mixlib-log \
 		rubygem-mixlib-shellout>=1.3.0:${PORTSDIR}/devel/rubygem-mixlib-shellout \
-		rubygem-net-ssh>=2.6.0:${PORTSDIR}/security/rubygem-net-ssh \
+		rubygem-net-ssh>=2.6:${PORTSDIR}/security/rubygem-net-ssh \
 		rubygem-net-ssh-multi>=1.1.0:${PORTSDIR}/security/rubygem-net-ssh-multi \
-		rubygem-ohai>=6.0:${PORTSDIR}/sysutils/rubygem-ohai \
-		rubygem-rest-client>=1.0.4:${PORTSDIR}/www/rubygem-rest-client \
-		rubygem-treetop>=1.4.9:${PORTSDIR}/devel/rubygem-treetop \
-		rubygem-uuidtools>=0:${PORTSDIR}/devel/rubygem-uuidtools \
-		rubygem-yajl-ruby>=1.1.0:${PORTSDIR}/devel/rubygem-yajl-ruby \
-		rubygem-erubis>=2.7.0:${PORTSDIR}/www/rubygem-erubis \
-		rubygem-diff-lcs>=1.2.4:${PORTSDIR}/textproc/rubygem-diff-lcs \
-		rubygem-chef-zero>=1.7.2:${PORTSDIR}/sysutils/rubygem-chef-zero \
+		rubygem-ohai>=6.0.0:${PORTSDIR}/sysutils/rubygem-ohai \
 		rubygem-pry>=0.9.0:${PORTSDIR}/devel/rubygem-pry \
-		rubygem-puma>=1.6.2:${PORTSDIR}/www/rubygem-puma
+		rubygem-puma16>=1.6.0:${PORTSDIR}/www/rubygem-puma16 \
+		rubygem-rest-client>=1.0.4:${PORTSDIR}/www/rubygem-rest-client \
+		rubygem-yajl-ruby>=1.1.0:${PORTSDIR}/devel/rubygem-yajl-ruby
 
 USE_RUBY=		yes
 USE_RUBYGEMS=		yes

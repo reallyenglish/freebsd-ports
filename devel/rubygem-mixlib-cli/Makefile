@@ -7,7 +7,9 @@ CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	renchap@cocoa-x.com
-COMMENT=	A simple mixin for CLI interfaces, including option parsing
+COMMENT=	Simple mixin for CLI interfaces, including option parsing
+
+LICENSE=	APACHE20
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes

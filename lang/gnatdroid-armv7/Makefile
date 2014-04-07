@@ -3,7 +3,7 @@
 
 PORTNAME=	armv7
 PORTVERSION=	${SNAPSHOT}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang
 MASTER_SITES=	${MASTER_SITE_GCC}
 MASTER_SITE_SUBDIR=	releases/gcc-${GCC_VERSION}
@@ -17,23 +17,23 @@ COMMENT=	C/Ada cross-compiler, target: Android ARMv7
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
-BUILD_DEPENDS=	gnatdroid-sysroot>=9:${PORTSDIR}/lang/gnatdroid-sysroot \
+BUILD_DEPENDS=	gnatdroid-sysroot=19:${PORTSDIR}/lang/gnatdroid-sysroot \
 		gnatdroid-binutils>=2.21:${PORTSDIR}/lang/gnatdroid-binutils
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 NO_LICENSES_INSTALL= yes
 
-.include "${.CURDIR}/../gcc-aux/Makefile.common"
+.include "${.CURDIR}/../gcc47-aux/Makefile.common"
 
 # DELETE NEXT LINE AFTER NEXT UPDATE TO GCC-AUX 4.7 TO AVOID PORTEPOCH
 # Without it, this port version regresses by a day
 SNAPSHOT:=	20130413 	# last portversion + 1
 
-USES+=		ada gmake
+USES+=		ada:47 gmake
 LANGS=		c ada
 APPLY_DIFFS=	core ada ada-testsuite gcc-testsuite
 NO_MTREE=	YES
-DISTINFO_FILE=	${.CURDIR}/../gcc-aux/distinfo
+DISTINFO_FILE=	${.CURDIR}/../gcc47-aux/distinfo
 
 # Disable C++ until arm.cc/no-rtti issue resolved for libsupc++
 
@@ -50,10 +50,10 @@ ARMVERSION=		ARMv7
 FPU=			neon
 WRKSRC=			${WRKDIR}/gcc-${GCC_VERSION}
 BUILD_WRKSRC=		${WRKDIR}/build
-PATCHDIR=		${.CURDIR}/../gcc-aux/files
+PATCHDIR=		${.CURDIR}/../gcc47-aux/files
 CFG_SCRIPT=		${WRKSRC}/configure
 REVFILE=		${WRKSRC}/gcc/REVISION
-SRPREFIX=		${LOCALBASE}/android9
+SRPREFIX=		${LOCALBASE}/android19
 PREFIX=			${SRPREFIX}/${ARMVERSION}
 INSTALLDIRS=		lib libexec share
 INSTALLDIRS+=		${DROID_TARGET}/lib
@@ -154,20 +154,10 @@ pre-install:
 #	Manually rename products so it doesn't rebuild them with new name
 .for X in ${CROSS}
 	${CP} -a ${BUILD_WRKSRC}/gcc/${X}-cross ${BUILD_WRKSRC}/gcc/${X}
-.endfor	
+.endfor
 
 do-install:
 	cd ${BUILD_WRKSRC} && ${GMAKE} install-strip DESTDIR=${STAGEDIR}
-	${MV} ${STAGEDIR}${PREFIX}/bin/${DROID_TARGET}-gcc \
-	   ${STAGEDIR}${PREFIX}/bin/${DROID_TARGET}-gnatgcc
-	${MV} ${STAGEDIR}${PREFIX}/${DROID_TARGET}/bin/gcc \
-	   ${STAGEDIR}${PREFIX}/${DROID_TARGET}/bin/gnatgcc
-.if ${PORT_OPTIONS:MFORT}
-	${MV} ${STAGEDIR}${PREFIX}/bin/${DROID_TARGET}-gfortran \
-	   ${STAGEDIR}${PREFIX}/bin/${DROID_TARGET}-gnatgfortran
-	${MV} ${STAGEDIR}${PREFIX}/${DROID_TARGET}/bin/gfortran \
-	   ${STAGEDIR}${PREFIX}/${DROID_TARGET}/bin/gnatgfortran
-.endif
 
 post-install:
 .for d in ${INSTALLDIRS}

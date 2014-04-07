@@ -11,7 +11,7 @@ DISTNAME=	PDFlib-Lite-${PORTVERSION}p3
 MAINTAINER=	ale@FreeBSD.org
 COMMENT=	A C library for dynamically generating PDF
 
-RESTRICTED=	many odd restrictions on usage and distribution
+RESTRICTED=	Many odd restrictions on usage and distribution
 
 OPTIONS_DEFINE=	PERL JAVA
 PERL_DESC=	Build perl bindings
@@ -24,6 +24,8 @@ CONFIGURE_ARGS=	--with-py=no --with-ruby=no --with-tcl=no
 
 PORTDOCS=	*
 
+PERL_USES=	perl5
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64" || ${ARCH} == "ia64" || ${ARCH} == "sparc64"
@@ -31,7 +33,6 @@ CONFIGURE_ARGS+=--enable-64bit
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
-USES+=		perl5
 PLIST_SUB=	PERL=""
 CONFIGURE_ARGS+=--with-perl=${PERL}
 .else
