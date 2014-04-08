@@ -1,5 +1,5 @@
---- ./lib/portbuild.orig	2014-04-07 10:50:08.000000000 +0900
-+++ ./lib/portbuild	2014-04-07 10:50:52.000000000 +0900
+--- ./lib/portbuild.orig	2014-04-06 08:11:54.000000000 +0900
++++ ./lib/portbuild	2014-04-08 14:27:45.000000000 +0900
 @@ -28,7 +28,7 @@
      build=$6
      nullfs=$7
@@ -18,3 +18,12 @@
  echo "jailname is: ${jname}"
  portdir=$(echo ${dirname} | sed -e 's|^/usr/ports/||')
  
+@@ -285,6 +285,8 @@
+ 
+ if [ ${notest} -eq 1 ]; then
+     export TB_SKIP_TESTS=1
++else
++    export TB_SKIP_TESTS=0
+ fi
+ 
+ # jexec -U root will have the right arch in uname -m and uname -p
