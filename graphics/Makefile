@@ -265,6 +265,7 @@
     SUBDIR += gimp-beautify-plugin
     SUBDIR += gimp-data-extras
     SUBDIR += gimp-elsamuko-script
+    SUBDIR += gimp-ez-perspective-plugin
     SUBDIR += gimp-focusblur-plugin
     SUBDIR += gimp-gap
     SUBDIR += gimp-gmic-plugin
@@ -272,9 +273,12 @@
     SUBDIR += gimp-lensfun-plugin
     SUBDIR += gimp-lqr-plugin
     SUBDIR += gimp-manual-html
+    SUBDIR += gimp-refocus-plugin
     SUBDIR += gimp-resynthesizer
     SUBDIR += gimp-save-for-web
     SUBDIR += gimp-wavelet-decompose-plugin
+    SUBDIR += gimp-wavelet-denoise-plugin
+    SUBDIR += gimp-wavelet-sharpen-plugin
     SUBDIR += gimpfx-foundry
     SUBDIR += giram
     SUBDIR += gkrellkam2
