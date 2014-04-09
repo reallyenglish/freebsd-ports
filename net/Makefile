@@ -67,6 +67,7 @@
     SUBDIR += cagibi
     SUBDIR += callweaver
     SUBDIR += ccxstream
+    SUBDIR += chrony
     SUBDIR += citrix_ica
     SUBDIR += clamz
     SUBDIR += click
@@ -940,6 +941,7 @@
     SUBDIR += py-soappy
     SUBDIR += py-soappy-devel
     SUBDIR += py-soapy
+    SUBDIR += py-speedtest-cli
     SUBDIR += py-spreadmodule
     SUBDIR += py-suds
     SUBDIR += py-tofu
