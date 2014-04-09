@@ -28,7 +28,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 DSOFLAGS=	-Wl,-rpath,${PREFIX}/lib -L${PREFIX}/lib ${LDFLAGS}
 CONFIGURE_ENV=	DSOFLAGS="${DSOFLAGS}"
 CONFIGURE_ARGS+=	--localstatedir=/var			\
-			--disable-slp				\
 			--disable-gssapi			\
 			--with-cups-user=${USERS}		\
 			--with-cups-group=${GROUPS}		\
@@ -303,7 +302,7 @@ post-install:
 # should be reworked to build with blocks and libdispatch support (via options).
 #
 .include <bsd.port.pre.mk>
-.if defined(CUPS_CLIENT) && ${OPSYS} == "FreeBSD" && ${OSVERSION} > 1000000
+.if (defined(CUPS_CLIENT) || defined(CUPS_IMAGE)) && ${OPSYS} == "FreeBSD" && ${OSVERSION} > 1000000
 CFLAGS+=	-fno-blocks
 .endif
 
