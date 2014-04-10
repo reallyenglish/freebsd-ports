@@ -31,6 +31,7 @@ OPTIONS_DEFINE_mips=	EC
 OPTIONS_DEFAULT_mips=	EC
 .endif
 NO_OPTIONS_SORT=yes
+OPTIONS_SUB=	yes
 I386_DESC?=	Optimize for i386 (instead of i486+)
 SSE2_DESC?=	runtime SSE2 detection
 ASM_DESC?=	optimized Assembler code
@@ -51,7 +52,6 @@ NOPRECIOUSMAKEVARS=	Too many _MLINKS for fetch
 NOPRECIOUSSOFTMAKEVARS=	Too many _MLINKS for fetch
 
 USE_PERL5_BUILD=		yes
-USE_PERL5=	build
 MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
 MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
 SUB_FILES=	pkg-message
