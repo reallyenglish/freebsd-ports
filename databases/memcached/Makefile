@@ -3,7 +3,7 @@
 
 PORTNAME=	memcached
 PORTVERSION=	1.4.17
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
@@ -19,6 +19,7 @@ TEST_DEPENDS=	prove:${PORTSDIR}/lang/${PERL_PORT} \
 
 CONFLICTS=	memcached-1.2*
 
+USES=	perl5
 # Dtrace option disabled until it is fixed upstream
 OPTIONS_DEFINE=	SASL DOCS
 DTRACE_DESC=	Enable dtrace probes
