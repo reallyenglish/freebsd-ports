@@ -3,8 +3,8 @@
 
 PORTNAME=	openssl
 PORTVERSION=	1.0.1
-DISTVERSIONSUFFIX=	e
-PORTREVISION=	8
+DISTVERSIONSUFFIX=	g
+PORTREVISION=	10
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/%SUBDIR%/ \
 		ftp://ftp.openssl.org/%SUBDIR%/ \
@@ -14,8 +14,6 @@ DIST_SUBDIR=	${DISTNAME}
 
 MAINTAINER=	dinoex@FreeBSD.org
 COMMENT=	SSL and crypto library
-
-BUILD_DEPENDS=	makedepend:${PORTSDIR}/devel/makedepend
 
 .ifdef USE_OPENSSL
 .error You have `USE_OPENSSL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
@@ -33,6 +31,7 @@ OPTIONS_DEFINE_mips=	EC
 OPTIONS_DEFAULT_mips=	EC
 .endif
 NO_OPTIONS_SORT=yes
+OPTIONS_SUB=	yes
 I386_DESC?=	Optimize for i386 (instead of i486+)
 SSE2_DESC?=	runtime SSE2 detection
 ASM_DESC?=	optimized Assembler code
@@ -41,21 +40,43 @@ SHARED_DESC?=	build of shared libs
 ZLIB_DESC?=	zlib compression support
 SCTP_DESC?=	SCTP protocol support
 MD2_DESC?=	MD2 hash (obsolete)
-RC5_DESC?=	RC5 chipher (patented)
+RC5_DESC?=	RC5 cipher (patented)
 RFC3779_DESC?=	RFC3779 support
 GMP_DESC?=	gmp support (LGPLv3)
 EC_DESC?=	Optimize NIST elliptic curves
+
+GMP_LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
 MAKE_JOBS_UNSAFE=	yes
 NOPRECIOUSMAKEVARS=	Too many _MLINKS for fetch
 NOPRECIOUSSOFTMAKEVARS=	Too many _MLINKS for fetch
 
-USE_PERL5_BUILD=	yes
-MAKE_ARGS+=		WHOLE_ARCHIVE_FLAG=--whole-archive
-MAKE_ENV+=		LIBRPATH="${PREFIX}/lib"
-SUB_FILES=		pkg-message
-OPENSSLDIR=		${PREFIX}/openssl
-MANPREFIX=		${PREFIX}
+USE_PERL5_BUILD=		yes
+MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
+MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
+SUB_FILES=	pkg-message
+OPENSSLDIR=	${PREFIX}/openssl
+MANPREFIX=	${PREFIX}
+
+FIX_POD=apps/cms.pod \
+	apps/smime.pod \
+	ssl/SSL_COMP_add_compression_method.pod \
+	ssl/SSL_CTX_add_session.pod \
+	ssl/SSL_CTX_load_verify_locations.pod \
+	ssl/SSL_CTX_set_client_CA_list.pod \
+	ssl/SSL_CTX_set_session_id_context.pod \
+	ssl/SSL_CTX_set_ssl_version.pod \
+	ssl/SSL_CTX_use_psk_identity_hint.pod \
+	ssl/SSL_accept.pod \
+	ssl/SSL_clear.pod \
+	ssl/SSL_connect.pod \
+	ssl/SSL_do_handshake.pod \
+	ssl/SSL_read.pod \
+	ssl/SSL_session_reused.pod \
+	ssl/SSL_set_fd.pod \
+	ssl/SSL_set_session.pod \
+	ssl/SSL_shutdown.pod \
+	ssl/SSL_write.pod
 
 MAN1=	CA.pl.1 asn1parse.1 ca.1 ciphers.1 cms.1 crl.1 crl2pkcs7.1 dgst.1 \
 	dhparam.1 dsa.1 dsaparam.1 ec.1 ecparam.1 enc.1 errstr.1 gendsa.1 \
@@ -530,7 +551,7 @@ MLINKS=	ASN1_OBJECT_new.3 ASN1_OBJECT_free.3 \
 	EVP_PKEY_set1_RSA.3 EVP_PKEY_type.3 \
 	EVP_PKEY_sign.3 EVP_PKEY_sign_init.3 \
 	EVP_PKEY_verify.3 EVP_PKEY_verify_init.3 \
-	EVP_PKEY_verifyrecover.3 EVP_PKEY_verifyrecover_init.3 \
+	EVP_PKEY_verify_recover.3 EVP_PKEY_verifyrecover_init.3 \
 	EVP_SealInit.3 EVP_SealFinal.3 \
 	EVP_SealInit.3 EVP_SealUpdate.3 \
 	EVP_SignInit.3 EVP_SignFinal.3 \
@@ -1050,7 +1071,12 @@ MLINKS=	ASN1_OBJECT_new.3 ASN1_OBJECT_free.3 \
 	ui_compat.3 des_read_pw.3 \
 	ui_compat.3 des_read_pw_string.3
 
+NO_STAGE=	yes
 .include <bsd.port.pre.mk>
+
+.if ${PREFIX} == /usr
+IGNORE=	OpenSSL can not be installed over the base version
+.endif
 
 OPENSSL_BASE_SONAME!=	readlink ${DESTDIR}/usr/lib/libcrypto.so || true
 OPENSSL_SHLIBVER_BASE=	${OPENSSL_BASE_SONAME:E}
@@ -1119,6 +1145,7 @@ PLIST_SUB+=	WITH_RC5="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPADLOCK}
+#BROKEN=		does not build with openssl-1.0.1f
 PATCH_DIST_STRIP=	-p1
 PATCH_SITES+=	http://git.alpinelinux.org/cgit/aports/plain/main/openssl/:padlock
 PATCHFILES+=	0001-crypto-hmac-support-EVP_MD_CTX_FLAG_ONESHOT-and-set-.patch:padlock \
@@ -1128,7 +1155,7 @@ PATCHFILES+=	0001-crypto-hmac-support-EVP_MD_CTX_FLAG_ONESHOT-and-set-.patch:pad
 .endif
 
 .if ${PORT_OPTIONS:MGMP}
-EXTRACONFIGURE+=	enable-gmp
+EXTRACONFIGURE+=	enable-gmp -I${LOCALBASE}/include
 IGNORE=	GMP is LGPLv3 and can not be linked
 .else
 EXTRACONFIGURE+=	no-gmp
@@ -1158,13 +1185,15 @@ pre-everything::
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|m4 -B 8192|m4|g' \
+	${REINPLACE_CMD} -E -e 's|^=item ([0-9])[[:blank:]]*$$|=item Z<>\1|' \
+		${FIX_POD:S,^,${WRKSRC}/doc/,}
+	${REINPLACE_CMD} -e 's|m4 -B 8192|m4|g' \
 		${WRKSRC}/crypto/des/Makefile
 	${REINPLACE_CMD} -e 's|SHLIB_VERSION_NUMBER "1.0.0"|SHLIB_VERSION_NUMBER "${OPENSSL_SHLIBVER}"|' \
 		${WRKSRC}/crypto/opensslv.h
 
 do-configure:
-	@${REINPLACE_CMD} -e "s|options 386|options|" \
+	${REINPLACE_CMD} -e "s|options 386|options|" \
 		${WRKSRC}/config
 .if ${PORT_OPTIONS:MTHREADS}
 	cd ${WRKSRC} \
@@ -1178,8 +1207,8 @@ do-configure:
 	./config --prefix=${PREFIX} --openssldir=${OPENSSLDIR} \
 		-L${PREFIX}/lib ${EXTRACONFIGURE}
 .endif
-	@${REINPLACE_CMD} \
-		-e 's|^MANDIR=.*$$|MANDIR=$$(MANPREFIX)/man|' \
+	${REINPLACE_CMD} \
+		-e 's|^MANDIR=.*$$|MANDIR=$$(PREFIX)/man|' \
 		-e 's|$$(LIBDIR)/pkgconfig|libdata/pkgconfig|g' \
 		-e 's|LIBVERSION=[^ ]* |LIBVERSION=$(OPENSSL_SHLIBVER) |' \
 		${WRKSRC}/Makefile
@@ -1187,15 +1216,15 @@ do-configure:
 post-install:
 .if ${PORT_OPTIONS:MSHARED}
 .for i in libcrypto libssl
-	@${INSTALL_DATA} ${WRKSRC}/$i.so.${OPENSSL_SHLIBVER} ${PREFIX}/lib
-	@${LN} -sf $i.so.${OPENSSL_SHLIBVER} ${PREFIX}/lib/$i.so
+	${INSTALL_DATA} ${WRKSRC}/$i.so.${OPENSSL_SHLIBVER} ${PREFIX}/lib
+	${LN} -sf $i.so.${OPENSSL_SHLIBVER} ${PREFIX}/lib/$i.so
 .endfor
 .endif
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/doc/openssl.txt ${DOCSDIR}/
+	${MKDIR} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/openssl.txt ${DOCSDIR}/
 .endif
-	@${SED} -e 's#/usr/local#${PREFIX}#g' ${PKGMESSAGE}
+	@${SED} -e 's|/usr/local|${PREFIX}|g' ${PKGMESSAGE}
 
 test: build
 	cd ${WRKSRC} && ${MAKE} test
