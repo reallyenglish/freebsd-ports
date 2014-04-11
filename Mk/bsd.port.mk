@@ -1155,12 +1155,18 @@ BUILD_DEPENDS=	${X_BUILD_FOR}-cc:${PORTSDIR}/devel/${X_BUILD_FOR}-xdev
 HCC:=	${CC}
 HCXX:=	${CXX}
 .endif
+.if !exists(/usr/${X_BUILD_FOR}/usr/bin/cc)
 CC=		${LOCALBASE}/${X_BUILD_FOR}/usr/bin/cc
 CXX=		${LOCALBASE}/${X_BUILD_FOR}/usr/bin/c++
+PKG_ENV+=	ABI_FILE=${LOCALBASE}/${X_BUILD_FOR}/usr/lib/crt1.o
+.else
+CC=		/usr/${X_BUILD_FOR}/usr/bin/cc
+CXX=	/usr/${X_BUILD_FOR}/usr/bin/c++
+PKG_ENV+=	ABI_FILE=/usr/${X_BUILD_FOR}/usr/lib/crt1.o
+.endif
 NM=		${X_BUILD_FOR}-nm
 STRIP_CMD=	${X_BUILD_FOR}-strip
 MAKE_ENV+=	NM=${NM} STRIPBIN=${X_BUILD_FOR}-strip
-PKG_ENV+=	ABI_FILE=${LOCALBASE}/${X_BUILD_FOR}/usr/lib/crt1.o
 # only bmake support the below
 STRIPBIN=	${STRIP_CMD}
 .export.env STRIPBIN
@@ -1478,7 +1484,7 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.drupal.mk"
 .endif
 
-.if defined(WANT_GECKO) || defined(USE_GECKO) || defined(USE_FIREFOX) || defined(USE_FIREFOX_BUILD) || defined(USE_SEAMONKEY) || defined(USE_SEAMONKEY_BUILD) || defined(USE_THUNDERBIRD) || defined(USE_THUNDERBIRD_BUILD)
+.if defined(WANT_GECKO) || defined(USE_GECKO)
 .include "${PORTSDIR}/Mk/bsd.gecko.mk"
 .endif
 
@@ -5956,7 +5962,7 @@ _CHECK_CONFIG_ERROR=	true
 .if !target(check-config)
 check-config: _check-config
 .if !empty(_CHECK_CONFIG_ERROR)
-	@exit 1
+	@${FALSE}
 .endif
 .endif # check-config
 
