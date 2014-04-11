@@ -3,6 +3,7 @@
 
 PORTNAME=	gcc-aux
 PORTVERSION=	${SNAPSHOT}
+PORTREVISION=	${MAIN_PR}
 CATEGORIES=	lang
 MASTER_SITES=	http://downloads.dragonlace.net/src/:boot \
 		LOCAL/marino:boot ${MASTER_SITE_GCC}
@@ -46,6 +47,10 @@ BOOTSTRAP_DESC=		Create bootstrap compiler (overrides other options)
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} == FreeBSD
+USE_BINUTILS=	yes
+RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+EXTRA_CONFIG+=	--with-ld=${LOCALBASE}/bin/ld
+EXTRA_CONFIG+=	--with-as=${LOCALBASE}/bin/as
 .  if ${OSVERSION} < 900000
 BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.84.tar.bz2
 .  else
@@ -53,6 +58,8 @@ BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.100B.tar.bz2
 .  endif
 .endif
 .if ${OPSYS} == DragonFly
+EXTRA_CONFIG+=	--with-ld=/usr/bin/ld
+EXTRA_CONFIG+=	--with-as=/usr/bin/as
 BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.dragonfly.36A.tar.bz2
 .endif
 
@@ -173,6 +180,16 @@ post-extract:
 	@${ECHO} "Applying composite patch diff-${suffix}"
 	@${PATCH} -d ${WRKSRC} -s -E < ${FILESDIR}/diff-${suffix}
 .endfor
+	@(cd ${WRKSRC}/libstdc++-v3/testsuite && ${REINPLACE_CMD} \
+	  -e 's|\*-\*-freebsd\*|*-*-dragonfly *-*-freebsd*|' ${CXXTS4DF})
+	@(cd ${WRKSRC}/libstdc++-v3/testsuite/22_locale && ${REINPLACE_CMD} \
+	  -e 's|ISO-8859|ISO8859|g' \
+	  -e 's|ja_JP.eucjp|ja_JP.eucJP|g' \
+	  -e 's|en_HK|zh_HK|g' \
+	  -e 's|en_PH|en_NZ|g' \
+	  -e 's|se_NO|no_NO|g' \
+	  -e 's|es_MX|es_ES|g' \
+	  -e 's|ru_RU.UTF8|ru_RU.UTF-8|g' ${LOCALE22FIX})
 .if ${PORT_OPTIONS:MSTATIC} || ${PORT_OPTIONS:MBOOTSTRAP}
 	# Ensure GNAT tools are built statically
 	${REINPLACE_CMD} -e 's/^GCC_LINK_FLAGS=.*/GCC_LINK_FLAGS=-static/' \

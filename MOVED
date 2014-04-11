@@ -5370,7 +5370,6 @@ sysutils/lavaps||2014-01-14|Abandonware, segfaults
 www/mod_authnz_external|www/mod_authnz_external22|2014-01-14|Port was renamed to reflect the supported Apache version
 games/deng|games/doomsday|2014-01-16|Renamed to follow upstream naming
 misc/sword17|misc/sword|2014-01-16|Has expired: use misc/sword
-www/suphp||2014-01-17|Has expired: Upstream dead, EOL: https://lists.marsching.com/pipermail/suphp/2013-May/002554.html
 databases/postgis||2014-01-17|Has expired: EOLed upstream
 textproc/redland-bindings-python||2014-01-19|Use textproc/redland-bindings directly instead
 emulators/seabios-devel||2014-01-19|Has expired: Outdated, no longer needed, broken on 10+
@@ -5726,7 +5725,6 @@ audio/xmms-crystality|multimedia/audacious|2014-03-23|Has expired: Abandonware, 
 audio/xmms-defx|multimedia/audacious|2014-03-23|Has expired: Abandonware, please consider using multimedia/audacious instead
 audio/xmms-efxmms|multimedia/audacious|2014-03-23|Has expired: Abandonware, please consider using multimedia/audacious instead
 audio/xmms-eq|multimedia/audacious|2014-03-23|Has expired: Abandonware, please consider using multimedia/audacious instead
-audio/xmms-faad|multimedia/audacious|2014-03-23|Has expired: Abandonware, please consider using multimedia/audacious instead
 audio/xmms-fc|multimedia/audacious|2014-03-23|Has expired: Abandonware, please consider using multimedia/audacious instead
 audio/xmms-fxt|multimedia/audacious|2014-03-23|Has expired: Abandonware, please consider using multimedia/audacious instead
 audio/xmms-infopipe|multimedia/audacious|2014-03-23|Has expired: Abandonware, please consider using multimedia/audacious instead
@@ -5884,3 +5882,4 @@ japanese/p5-manual||2014-04-08|Outdated manuals
 graphics/openclipart||2014-04-08|Outdated, has no real meaning as a port
 audio/py-xmms||2014-04-08|Has expired: Abandonware, please consider using multimedia/audacious instead
 archivers/ruby-libarchive|archivers/rubygem-libarchive|2014-04-08|Use the rubygem version instead
+java/j2sdkee13||2014-04-10|EOLed long ago
