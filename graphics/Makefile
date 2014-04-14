@@ -74,7 +74,6 @@
     SUBDIR += cairomm
     SUBDIR += cal3d
     SUBDIR += cal3d-devel
-    SUBDIR += camediaplay
     SUBDIR += camera
     SUBDIR += camerakit
     SUBDIR += cbrpager
@@ -86,14 +85,12 @@
     SUBDIR += chbg
     SUBDIR += cimg
     SUBDIR += cinepaint
-    SUBDIR += claraocr
     SUBDIR += clutter
     SUBDIR += clutter-box2d
     SUBDIR += clutter-gtk
     SUBDIR += colord
     SUBDIR += colord-gtk
     SUBDIR += comical
-    SUBDIR += comix
     SUBDIR += commons-utilities
     SUBDIR += compupic
     SUBDIR += converseen
@@ -108,7 +105,6 @@
     SUBDIR += darknock
     SUBDIR += darktable
     SUBDIR += dataplot
-    SUBDIR += dc20ctrl
     SUBDIR += dc20pack
     SUBDIR += dcraw
     SUBDIR += dcraw-m
@@ -190,7 +186,6 @@
     SUBDIR += exiftran
     SUBDIR += exiv2
     SUBDIR += exrtools
-    SUBDIR += fbm
     SUBDIR += feh
     SUBDIR += ffff
     SUBDIR += fig2sxd
@@ -420,7 +415,6 @@
     SUBDIR += kamera-kde4
     SUBDIR += kcolorchooser
     SUBDIR += kcoloredit
-    SUBDIR += kdc2tiff
     SUBDIR += kdegraphics4
     SUBDIR += kdegraphics4-mobipocket
     SUBDIR += kdegraphics4-strigi-analyzer
@@ -582,7 +576,6 @@
     SUBDIR += mapyrus
     SUBDIR += mate-document-viewer
     SUBDIR += mate-image-viewer
-    SUBDIR += maverik
     SUBDIR += megapov
     SUBDIR += mesa-demos
     SUBDIR += meshviewer
@@ -622,7 +615,6 @@
     SUBDIR += opencv
     SUBDIR += opencv-core
     SUBDIR += opencv-java
-    SUBDIR += opendis
     SUBDIR += opendx
     SUBDIR += opengl-man
     SUBDIR += opengtl
@@ -785,7 +777,6 @@
     SUBDIR += pixie
     SUBDIR += pixmap
     SUBDIR += plasma-kmod
-    SUBDIR += plotmtv
     SUBDIR += plotutils
     SUBDIR += png
     SUBDIR += png2html
@@ -900,7 +891,6 @@
     SUBDIR += quat-gui
     SUBDIR += quesa
     SUBDIR += quesoglc
-    SUBDIR += qvplay
     SUBDIR += qxv
     SUBDIR += radius-engine
     SUBDIR += raster3d
@@ -981,7 +971,6 @@
     SUBDIR += skencil
     SUBDIR += sketch
     SUBDIR += sng
-    SUBDIR += sodipodi
     SUBDIR += springgraph
     SUBDIR += squish
     SUBDIR += sswf
@@ -989,7 +978,6 @@
     SUBDIR += structuresynth
     SUBDIR += svg2pdf
     SUBDIR += svg2png
-    SUBDIR += svg2swf
     SUBDIR += svgalib
     SUBDIR += svgfig
     SUBDIR += swfdec
@@ -1004,7 +992,6 @@
     SUBDIR += tgif
     SUBDIR += tif22pnm
     SUBDIR += tiff
-    SUBDIR += tiff2png
     SUBDIR += tifmerge
     SUBDIR += tilecache
     SUBDIR += tiled
@@ -1049,9 +1036,7 @@
     SUBDIR += xli
     SUBDIR += xmandel
     SUBDIR += xmedcon
-    SUBDIR += xmfract
     SUBDIR += xmlgraphics-commons
-    SUBDIR += xmorph
     SUBDIR += xmountains
     SUBDIR += xnview
     SUBDIR += xoris

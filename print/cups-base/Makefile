@@ -51,6 +51,8 @@ CUPSSYSGRP=	wheel
 GROUPS=	cups
 USERS=		cups
 
+USES+=		compiler
+
 # UNIQUENAME must be set before bsd.port.pre.mk so OPTIONSFILE can be included
 .if defined(CUPS_CLIENT)
 PORTREVISION=	0
@@ -298,11 +300,12 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/ulpt-cupsd.sh ${STAGEDIR}${PREFIX}/sbin/
 .endif
 
-# This is just a band-aid to unbreak print/cups-client at systems with default gcc compiler,
-# should be reworked to build with blocks and libdispatch support (via options).
+# This is to workaround a CUPS bug. Should be fixed by 1.7.3.
+# pfg@ filed a bug report upstream: https://www.cups.org/str.php?L4397
 #
 .include <bsd.port.pre.mk>
-.if (defined(CUPS_CLIENT) || defined(CUPS_IMAGE)) && ${OPSYS} == "FreeBSD" && ${OSVERSION} > 1000000
+.if (defined(CUPS_CLIENT) || defined(CUPS_IMAGE)) && ${OPSYS} == "FreeBSD" && \
+	${OSVERSION} > 1000000 && ${COMPILER_TYPE} == clang
 CFLAGS+=	-fno-blocks
 .endif
 

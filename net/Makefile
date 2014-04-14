@@ -136,7 +136,6 @@
     SUBDIR += flowgrep
     SUBDIR += fonulator
     SUBDIR += foreman-proxy
-    SUBDIR += forg
     SUBDIR += fpc-ldap
     SUBDIR += fpc-pcap
     SUBDIR += fping
@@ -151,7 +150,6 @@
     SUBDIR += freeswitch-core-devel
     SUBDIR += freeswitch-devel
     SUBDIR += freevrrpd
-    SUBDIR += freewais-sf
     SUBDIR += frickin
     SUBDIR += fspclient
     SUBDIR += fspd
@@ -165,7 +163,6 @@
     SUBDIR += glib-networking
     SUBDIR += gnet2
     SUBDIR += gnetcat
-    SUBDIR += gnome-mud
     SUBDIR += gnome-netstatus
     SUBDIR += gnome-nettool
     SUBDIR += gnu-dico
@@ -353,7 +350,6 @@
     SUBDIR += liferea
     SUBDIR += linc
     SUBDIR += linc-reference
-    SUBDIR += link-monitor-applet
     SUBDIR += linknx
     SUBDIR += linphone
     SUBDIR += linphone-base
@@ -407,7 +403,6 @@
     SUBDIR += nemesis
     SUBDIR += nepenthes
     SUBDIR += nepim
-    SUBDIR += net-http
     SUBDIR += net6
     SUBDIR += netatalk
     SUBDIR += netatalk3
@@ -419,7 +414,6 @@
     SUBDIR += netscript
     SUBDIR += netsed
     SUBDIR += netselect
-    SUBDIR += netspeed_applet
     SUBDIR += netstrain
     SUBDIR += nettest
     SUBDIR += netwib
@@ -791,7 +785,6 @@
     SUBDIR += pathneck
     SUBDIR += pbnc
     SUBDIR += pchar
-    SUBDIR += pcnfsd
     SUBDIR += pdb
     SUBDIR += pear-Auth_RADIUS
     SUBDIR += pear-File_Bittorrent2
@@ -887,7 +880,6 @@
     SUBDIR += ptunnel
     SUBDIR += pure-sockets
     SUBDIR += pvm
-    SUBDIR += pvm++
     SUBDIR += pwhois
     SUBDIR += pxe
     SUBDIR += pxe-pdhcp
@@ -988,7 +980,6 @@
     SUBDIR += redir
     SUBDIR += relayd
     SUBDIR += remmina
-    SUBDIR += remmina-applet
     SUBDIR += remmina-plugin-gnome
     SUBDIR += remmina-plugin-i18n
     SUBDIR += remmina-plugin-nx
@@ -1006,7 +997,6 @@
     SUBDIR += rinetd
     SUBDIR += ripe-whois
     SUBDIR += ris
-    SUBDIR += rmsg
     SUBDIR += rp-pppoe
     SUBDIR += rshell
     SUBDIR += rsmb
@@ -1106,7 +1096,6 @@
     SUBDIR += sflowtool
     SUBDIR += shadowsocks-libev
     SUBDIR += shaperprobe
-    SUBDIR += sharity-light
     SUBDIR += shelldap
     SUBDIR += shmux
     SUBDIR += silc-client

@@ -84,7 +84,6 @@
     SUBDIR += bsdmoted
     SUBDIR += bsdstats
     SUBDIR += bubblemon-dockapp
-    SUBDIR += bubblemon2
     SUBDIR += bulk_extractor
     SUBDIR += busybox
     SUBDIR += busybox-unstable
@@ -189,7 +188,6 @@
     SUBDIR += downtime
     SUBDIR += downtimed
     SUBDIR += dt
-    SUBDIR += dtc
     SUBDIR += dtpstree
     SUBDIR += du2ps
     SUBDIR += duff
@@ -207,7 +205,6 @@
     SUBDIR += e2fsprogs
     SUBDIR += ec2-scripts
     SUBDIR += edid-decode
-    SUBDIR += eiciel
     SUBDIR += eject
     SUBDIR += endian
     SUBDIR += enteruser
@@ -520,6 +517,7 @@
     SUBDIR += mkfwimage
     SUBDIR += mkntpwd
     SUBDIR += mksunbootcd
+    SUBDIR += mnrpes
     SUBDIR += modules
     SUBDIR += monit
     SUBDIR += monitord
@@ -547,7 +545,6 @@
     SUBDIR += mybashburn
     SUBDIR += nagios-statd
     SUBDIR += namefix
-    SUBDIR += nautilus-cd-burner
     SUBDIR += nbosd
     SUBDIR += ncdu
     SUBDIR += nepomuk-core
@@ -854,7 +851,6 @@
     SUBDIR += searchmonkey
     SUBDIR += seatools
     SUBDIR += sec
-    SUBDIR += sensors-applet
     SUBDIR += serpentine
     SUBDIR += setcdboot
     SUBDIR += setquota

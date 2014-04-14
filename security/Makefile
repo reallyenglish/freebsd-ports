@@ -54,7 +54,6 @@
     SUBDIR += ccrypt
     SUBDIR += ccsrch
     SUBDIR += cfs
-    SUBDIR += cfv
     SUBDIR += chaosreader
     SUBDIR += checkpassword
     SUBDIR += checkpassword-pam
@@ -170,7 +169,6 @@
     SUBDIR += gss
     SUBDIR += gtk-knocker
     SUBDIR += gtkpasman
-    SUBDIR += gtkportscan
     SUBDIR += gwee
     SUBDIR += hackbot
     SUBDIR += hamachi
@@ -991,7 +989,6 @@
     SUBDIR += truecrypt
     SUBDIR += tsshbatch
     SUBDIR += tthsum
-    SUBDIR += tuntun
     SUBDIR += umit
     SUBDIR += unhide
     SUBDIR += unicornscan

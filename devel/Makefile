@@ -75,7 +75,6 @@
     SUBDIR += art
     SUBDIR += as31
     SUBDIR += asdlgen
-    SUBDIR += asl
     SUBDIR += asmutils
     SUBDIR += asmx
     SUBDIR += astah-community
@@ -436,7 +435,6 @@
     SUBDIR += flex_compiler_shell
     SUBDIR += flexdock
     SUBDIR += flexjson
-    SUBDIR += flick
     SUBDIR += flickrnet
     SUBDIR += florist-gpl
     SUBDIR += flowdesigner
@@ -484,7 +482,6 @@
     SUBDIR += fuel
     SUBDIR += fujaba
     SUBDIR += funnelweb
-    SUBDIR += g-wrap
     SUBDIR += gaa
     SUBDIR += gamin
     SUBDIR += gaphor
@@ -635,7 +632,6 @@
     SUBDIR += hachoir-parser
     SUBDIR += hachoir-regex
     SUBDIR += hadoop
-    SUBDIR += happydoc
     SUBDIR += hapy
     SUBDIR += hcs12mem
     SUBDIR += hexcompare
@@ -862,7 +858,6 @@
     SUBDIR += ipython
     SUBDIR += ireport
     SUBDIR += itext
-    SUBDIR += ixlib
     SUBDIR += jakarta-commons-configuration
     SUBDIR += jakarta-commons-daemon
     SUBDIR += jakarta-commons-io
@@ -1197,7 +1192,6 @@
     SUBDIR += lua-lunit
     SUBDIR += lua-posix
     SUBDIR += lua-pty
-    SUBDIR += lua-rds-parser
     SUBDIR += lua-redis-parser
     SUBDIR += lua-sysctl
     SUBDIR += luabind
@@ -1347,7 +1341,6 @@
     SUBDIR += openvex
     SUBDIR += openwince-include
     SUBDIR += openzz
-    SUBDIR += orbitcpp
     SUBDIR += orc
     SUBDIR += osc
     SUBDIR += oserl
@@ -2560,7 +2553,6 @@
     SUBDIR += p5-Path-Tiny
     SUBDIR += p5-PathTools
     SUBDIR += p5-Penguin
-    SUBDIR += p5-Penguin-Easy
     SUBDIR += p5-Perl-Critic-Deprecated
     SUBDIR += p5-Perl-Metrics-Lite
     SUBDIR += p5-Perl-Metrics-Simple
@@ -3572,6 +3564,7 @@
     SUBDIR += py-colorama
     SUBDIR += py-conditional
     SUBDIR += py-configobj
+    SUBDIR += py-configparser
     SUBDIR += py-construct
     SUBDIR += py-country
     SUBDIR += py-coverage

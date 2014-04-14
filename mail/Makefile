@@ -10,7 +10,6 @@
     SUBDIR += akpop3d
     SUBDIR += alpine
     SUBDIR += altermime
-    SUBDIR += althea
     SUBDIR += amavis-logwatch
     SUBDIR += annoyance-filter
     SUBDIR += anomy-sanitizer
@@ -70,7 +69,6 @@
     SUBDIR += claws-mail-vcalendar
     SUBDIR += clawsker
     SUBDIR += cone
-    SUBDIR += contact-lookup-applet
     SUBDIR += coolmail
     SUBDIR += courier
     SUBDIR += courier-authlib-vchkpw
@@ -235,7 +233,6 @@
     SUBDIR += lookout
     SUBDIR += lurker
     SUBDIR += mail-notification
-    SUBDIR += mail2procmailrc
     SUBDIR += mail2sms
     SUBDIR += mailagent
     SUBDIR += mailcrypt
@@ -634,7 +631,6 @@
     SUBDIR += simscan
     SUBDIR += slapd-cyrus
     SUBDIR += sma
-    SUBDIR += smail
     SUBDIR += smfsav
     SUBDIR += smtp-cli
     SUBDIR += smtp-gated
