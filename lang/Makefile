@@ -4,7 +4,6 @@
     COMMENT = Programming languages
 
     SUBDIR += Gofer
-    SUBDIR += STk
     SUBDIR += Sather
     SUBDIR += abcl
     SUBDIR += adacontrol
@@ -66,7 +65,6 @@
     SUBDIR += expect
     SUBDIR += ezm3
     SUBDIR += f2c
-    SUBDIR += f77
     SUBDIR += fasm
     SUBDIR += ferite
     SUBDIR += ficl
@@ -133,7 +131,6 @@
     SUBDIR += js_of_ocaml
     SUBDIR += jython
     SUBDIR += kawa
-    SUBDIR += klone
     SUBDIR += kroc
     SUBDIR += kturtle
     SUBDIR += lafontaine
@@ -340,7 +337,6 @@
     SUBDIR += tcl85
     SUBDIR += tcl86
     SUBDIR += tclX
-    SUBDIR += tcltutor
     SUBDIR += tinypy
     SUBDIR += tolua
     SUBDIR += tolua++

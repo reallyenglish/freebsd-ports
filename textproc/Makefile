@@ -189,7 +189,6 @@
     SUBDIR += gl-aspell
     SUBDIR += gladtex
     SUBDIR += glark
-    SUBDIR += glimpse
     SUBDIR += glpi-plugins-AdditionalReports
     SUBDIR += glpi-plugins-DataInjection
     SUBDIR += gmetadom
@@ -300,7 +299,6 @@
     SUBDIR += info2man
     SUBDIR += info_to_html
     SUBDIR += intltool
-    SUBDIR += ipdf
     SUBDIR += irstlm
     SUBDIR += is-aspell
     SUBDIR += is-hyphen
@@ -342,6 +340,7 @@
     SUBDIR += l2a
     SUBDIR += la-aspell
     SUBDIR += lacheck
+    SUBDIR += lasem
     SUBDIR += latex-service
     SUBDIR += latex2html
     SUBDIR += lemmatizer2
@@ -366,6 +365,7 @@
     SUBDIR += libodfgen
     SUBDIR += libparsifal
     SUBDIR += libroxml
+    SUBDIR += libsass
     SUBDIR += libsoldout
     SUBDIR += libsphinxclient
     SUBDIR += libstree
@@ -1043,7 +1043,6 @@
     SUBDIR += p5-xmltv
     SUBDIR += pa-aspell
     SUBDIR += par
-    SUBDIR += pardiff
     SUBDIR += pcrs
     SUBDIR += pdfgrep
     SUBDIR += pdfoutline
@@ -1352,6 +1351,7 @@
     SUBDIR += sagasu
     SUBDIR += sarep
     SUBDIR += sary
+    SUBDIR += sassc
     SUBDIR += saxon
     SUBDIR += saxon-devel
     SUBDIR += saxon-he
@@ -1467,7 +1467,6 @@
     SUBDIR += uim-el-emacs21
     SUBDIR += uim-el-emacs22
     SUBDIR += uim-el-xemacs21-mule
-    SUBDIR += uim-gnome
     SUBDIR += uim-gtk
     SUBDIR += uim-gtk3
     SUBDIR += uim-kde4
