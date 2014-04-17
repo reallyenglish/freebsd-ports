@@ -1,6 +1,6 @@
---- ./lib/chef/application/client.rb.orig	2014-03-31 13:01:34.000000000 +0900
-+++ ./lib/chef/application/client.rb	2014-03-31 13:00:10.000000000 +0900
-@@ -262,7 +262,7 @@
+--- ./lib/chef/application/client.rb.orig	2014-04-17 16:53:49.000000000 +0900
++++ ./lib/chef/application/client.rb	2014-04-17 16:53:53.000000000 +0900
+@@ -269,7 +269,7 @@
          require 'chef/knife'
          config[:config_file] = Chef::Knife.locate_config_file
        else
