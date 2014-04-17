@@ -1253,7 +1253,7 @@ WARNING+=	"If you do not want to see this message again set NO_WARNING_PKG_INSTA
 
 # Enable new xorg for FreeBSD versions after Radeon KMS was imported unless
 # WITHOUT_NEW_XORG is set.
-.if ${OSVERSION} >= 1100000
+.if (${OSVERSION} >= 902510 && ${OSVERSION} < 1000000) || ${OSVERSION} >= 1000704
 . if !defined(WITHOUT_NEW_XORG)
 WITH_NEW_XORG?=	yes
 . else
@@ -3165,7 +3165,11 @@ all:
 .endif
 
 .if !target(all)
+.  if defined(NO_STAGE)
 all: build
+.  else
+all: stage
+.  endif
 .endif
 
 .if !defined(DEPENDS_TARGET)
@@ -3819,13 +3823,23 @@ do-package: ${TMPPLIST}
 		_LATE_PKG_ARGS="$${_LATE_PKG_ARGS} -D ${PKGMESSAGE}"; \
 	fi; \
 	${MKDIR} ${WRKDIR}/pkg; \
+	if ! [ -d "${PREFIX}" ]; then \
+	    if ! ${MKDIR} ${PREFIX}; then \
+		    ${ECHO_MSG} "=> Unable to create PREFIX. PREFIX must exist to create a package with pkg_install." >&2; \
+		    ${ECHO_MSG} "=> Manually create ${PREFIX} first." >&2; \
+		    exit 1; \
+		fi; \
+	    made_prefix=1; \
+	fi; \
 	if ${PKG_CMD} -S ${STAGEDIR} ${PKG_ARGS} ${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX}; then \
+		[ -n "$${made_prefix}" ] && ${RMDIR} ${PREFIX}; \
 		if [ -d ${PKGREPOSITORY} -a -w ${PKGREPOSITORY} ]; then \
 			${LN} -f ${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX} ${PKGFILE} 2>/dev/null || \
 			    ${CP} -af ${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX} ${PKGFILE}; \
 			cd ${.CURDIR} && eval ${MAKE} package-links; \
 		fi; \
 	else \
+		[ -n "$${made_prefix}" ] && ${RMDIR} ${PREFIX}; \
 		cd ${.CURDIR} && eval ${MAKE} delete-package; \
 		exit 1; \
 	fi

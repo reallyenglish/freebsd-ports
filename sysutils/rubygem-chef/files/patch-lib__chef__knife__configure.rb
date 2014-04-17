@@ -1,5 +1,5 @@
---- ./lib/chef/knife/configure.rb.orig	2014-03-31 13:03:04.000000000 +0900
-+++ ./lib/chef/knife/configure.rb	2014-03-31 13:03:29.000000000 +0900
+--- ./lib/chef/knife/configure.rb.orig	2014-04-17 16:53:49.000000000 +0900
++++ ./lib/chef/knife/configure.rb	2014-04-17 16:53:53.000000000 +0900
 @@ -137,13 +137,13 @@
          if config[:initial]
            @new_client_name        = config[:node_name] || ask_question("Please enter a name for the new user: ", :default => Etc.getlogin)

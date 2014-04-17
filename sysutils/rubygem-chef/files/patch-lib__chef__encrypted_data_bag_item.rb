@@ -1,5 +1,5 @@
---- ./lib/chef/encrypted_data_bag_item.rb.orig	2014-03-31 13:02:00.000000000 +0900
-+++ ./lib/chef/encrypted_data_bag_item.rb	2014-03-31 13:02:32.000000000 +0900
+--- ./lib/chef/encrypted_data_bag_item.rb.orig	2014-04-17 16:53:49.000000000 +0900
++++ ./lib/chef/encrypted_data_bag_item.rb	2014-04-17 16:53:53.000000000 +0900
 @@ -36,7 +36,7 @@
  # If the shared secret is not specified at initialization or load,
  # then the contents of the file referred to in
@@ -9,7 +9,7 @@
  #
  # EncryptedDataBagItem is intended to provide a means to avoid storing
  # data bag items in the clear on the Chef server.  This provides some
-@@ -91,7 +91,7 @@
+@@ -127,7 +127,7 @@
    def self.load_secret(path=nil)
      path ||= Chef::Config[:encrypted_data_bag_secret]
      if !path
