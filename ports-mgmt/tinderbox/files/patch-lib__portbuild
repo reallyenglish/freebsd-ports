@@ -5,7 +5,7 @@
      nullfs=$7
  
 -    jname=j$(echo ${build} | sed -E -e 's|\.||g')
-+    jname=j$(echo ${build} | tr -C '[A-Za-z0-9\-]' '-')
++    jname=j$(echo -n ${build} | tr -C '[A-Za-z0-9\-]' '-')
  
      jexec -U root ${jname} /usr/sbin/service ldconfig start
  
@@ -14,7 +14,7 @@
  chroot=$(tinderLoc buildroot ${build})
  echo "chroot is: ${chroot}"
 -jname=j$(echo ${build} | sed -E -e 's|\.||g')
-+jname=j$(echo ${build} | tr -C '[A-Za-z0-9\-]' '-')
++jname=j$(echo -n ${build} | tr -C '[A-Za-z0-9\-]' '-')
  echo "jailname is: ${jname}"
  portdir=$(echo ${dirname} | sed -e 's|^/usr/ports/||')
  
