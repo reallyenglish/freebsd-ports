@@ -1210,7 +1210,6 @@
     SUBDIR += py-zope.tal
     SUBDIR += py-zpt
     SUBDIR += py2html
-    SUBDIR += pybook
     SUBDIR += pychm
     SUBDIR += pystemmer
     SUBDIR += qprint
@@ -1246,7 +1245,6 @@
     SUBDIR += ro-hunspell
     SUBDIR += ro-hyphen
     SUBDIR += ro-mythes
-    SUBDIR += roap
     SUBDIR += rot
     SUBDIR += rss2html
     SUBDIR += rtf2html
