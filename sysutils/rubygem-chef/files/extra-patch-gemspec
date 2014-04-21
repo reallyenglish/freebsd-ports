@@ -1,6 +1,6 @@
---- chef-11.12.2.gemspec.orig	2014-04-01 11:21:50.000000000 +0900
-+++ chef-11.12.2.gemspec	2014-04-01 11:22:07.000000000 +0900
-@@ -1004,6 +1004,7 @@
+--- chef-11.12.2.gemspec.orig	2014-04-21 13:40:18.000000000 +0900
++++ chef-11.12.2.gemspec	2014-04-21 13:42:59.000000000 +0900
+@@ -958,6 +958,7 @@
  - lib/chef/provider/package/ips.rb
  - lib/chef/provider/package/macports.rb
  - lib/chef/provider/package/pacman.rb
@@ -8,3 +8,11 @@
  - lib/chef/provider/package/portage.rb
  - lib/chef/provider/package/rpm.rb
  - lib/chef/provider/package/rubygems.rb
+@@ -1034,6 +1035,7 @@
+ - lib/chef/resource/erl_call.rb
+ - lib/chef/resource/execute.rb
+ - lib/chef/resource/file.rb
++- lib/chef/resource/freebsd_pkg.rb
+ - lib/chef/resource/freebsd_package.rb
+ - lib/chef/resource/gem_package.rb
+ - lib/chef/resource/git.rb
