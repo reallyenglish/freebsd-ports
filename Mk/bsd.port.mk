@@ -1194,6 +1194,7 @@ makepatch:
 		for i in `find . -type f -name '*.orig'`; do \
 			ORG=$$i; \
 			NEW=$${i%.orig}; \
+			cmp -s $${ORG} $${NEW} && continue; \
 			OUT=${FILESDIR}`${ECHO} $${NEW} | \
 				${SED} -e 's|/|__|g' \
 					-e 's|^\.__|/patch-|'`; \
@@ -1614,6 +1615,15 @@ PLIST_SUB+=	OSREL=${OSREL} PREFIX=%D LOCALBASE=${LOCALBASE}
 SUB_LIST+=	PREFIX=${PREFIX} LOCALBASE=${LOCALBASE} \
 		DATADIR=${DATADIR} DOCSDIR=${DOCSDIR} EXAMPLESDIR=${EXAMPLESDIR} \
 		WWWDIR=${WWWDIR} ETCDIR=${ETCDIR}
+# This is used for check-stagedir.sh and check_leftover.sh to replace
+# directories/files with PLIST_SUB %%KEYS%%.
+#  Remove VARS that are too generic
+#  Remove empty values
+#  Remove @comment values
+#  Remove quotes
+#  Replace . with \. for later sed(1) usage
+PLIST_SUB_SED_MIN?=	2
+PLIST_SUB_SED?= ${PLIST_SUB:C/.*=.{1,${PLIST_SUB_SED_MIN}}$//g:NEXTRACT_SUFX=*:NOSREL=*:NLIB32DIR=*:NPREFIX=*:NLOCALBASE=*:N*="":N*="@comment*:C/([^=]*)="?([^"]*)"?/s!\2!%%\1%%!g;/g:C/\./\\./g}
 
 PLIST_REINPLACE+=	dirrmtry stopdaemon rmtry
 PLIST_REINPLACE_DIRRMTRY=s!^@dirrmtry \(.*\)!@unexec rmdir "%D/\1" 2>/dev/null || true!
@@ -3655,9 +3665,10 @@ do-configure:
 
 # Build
 # XXX: ${MAKE_ARGS:N${DESTDIRNAME}=*} would be easier but it is not valid with the old fmake
+DO_MAKE_BUILD?=	${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g}
 .if !target(do-build)
 do-build:
-	@(cd ${BUILD_WRKSRC}; if ! ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:C,^${DESTDIRNAME}=.*,,g} ${ALL_TARGET}; then \
+	@(cd ${BUILD_WRKSRC}; if ! ${DO_MAKE_BUILD} ${ALL_TARGET}; then \
 		if [ -n "${BUILD_FAIL_MESSAGE}" ] ; then \
 			${ECHO_MSG} "===> Compilation failed unexpectedly."; \
 			(${ECHO_CMD} "${BUILD_FAIL_MESSAGE}") | ${FMT} 75 79 ; \
@@ -4145,7 +4156,7 @@ create-users-groups:
 		if ! ${PW} usershow $$login >/dev/null 2>&1; then \
 			${ECHO_MSG}  "Creating user \`$$login' with uid \`$$uid'."; \
 			eval ${PW} useradd $$login -u $$uid -g $$gid $$class -c \"$$gecos\" -d $$homedir -s $$shell; \
-			case $$homedir in /nonexistent|/var/empty) ;; *) ${INSTALL} -d -g $$gid -o $$uid $$homedir;; esac; \
+			case $$homedir in /|/nonexistent|/var/empty) ;; *) ${INSTALL} -d -g $$gid -o $$uid $$homedir;; esac; \
 		else \
 			${ECHO_MSG} "Using existing user \`$$login'."; \
 		fi; \
@@ -4161,7 +4172,7 @@ create-users-groups:
 				${PW} useradd $$login -u $$uid -g $$gid $$class -c \"$$gecos\" -d $$homedir -s $$shell \n \
 				else \necho \"Using existing user '$$login'.\" \nfi" >> ${_UG_OUTPUT}; \
 		fi ; \
-		case $$homedir in /nonexistent|/var/empty) ;; *) ${ECHO_CMD} "@exec ${INSTALL} -d -g $$gid -o $$uid $$homedir" >> ${TMPPLIST};; esac; \
+		case $$homedir in /|/nonexistent|/var/empty) ;; *) ${ECHO_CMD} "@exec ${INSTALL} -d -g $$gid -o $$uid $$homedir" >> ${TMPPLIST};; esac; \
 	done
 .endfor
 .if defined(GROUPS)
