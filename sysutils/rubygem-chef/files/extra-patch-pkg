@@ -21,11 +21,11 @@ index 92a7278..6138af5 100644
          raise ArgumentError, "Cannot find a version for #{node}" unless version
  
          return platform, version
-diff --git a/lib/chef/provider/package/pkg.rb b/lib/chef/provider/package/pkg.rb
+diff --git a/lib/chef/provider/package/freebsd_pkg.rb b/lib/chef/provider/package/freebsd_pkg.rb
 new file mode 100644
 index 0000000..656fd91
 --- /dev/null
-+++ b/lib/chef/provider/package/pkg.rb
++++ b/lib/chef/provider/package/freebsd_pkg.rb
 @@ -0,0 +1,80 @@
 +#
 +# Authors:: Tomoyuki Sakurai (tomoyukis@reallyenglish.com)
