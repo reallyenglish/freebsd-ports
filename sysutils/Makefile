@@ -761,6 +761,7 @@
     SUBDIR += qpxtool
     SUBDIR += quicksynergy
     SUBDIR += qzeitgeist
+    SUBDIR += racktables
     SUBDIR += radeontool
     SUBDIR += radmind
     SUBDIR += raincoat
