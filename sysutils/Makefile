@@ -789,6 +789,7 @@
     SUBDIR += rubygem-bundler
     SUBDIR += rubygem-capistrano
     SUBDIR += rubygem-capistrano-ext
+    SUBDIR += rubygem-check_resque_paranoid
     SUBDIR += rubygem-chef
     SUBDIR += rubygem-chef-expander
     SUBDIR += rubygem-chef-server
@@ -816,6 +817,7 @@
     SUBDIR += rubygem-mogilefs-client
     SUBDIR += rubygem-munin-ruby
     SUBDIR += rubygem-murder
+    SUBDIR += rubygem-nagiosplugin
     SUBDIR += rubygem-ohai
     SUBDIR += rubygem-parallel
     SUBDIR += rubygem-rubyipmi
