@@ -3,6 +3,10 @@
 
 MAINTAINER=	mitsuruy@reallyenglish.com
 COMMENT=	An object-oriented interpreted scripting language
+DISTFILES?=	ruby-${RUBY_VERSION}-p${RUBY_PATCHLEVEL}${EXTRACT_SUFX}:ruby \
+	yaml-0.1.4.tar.gz:pyyaml
+MASTER_SITES?=	ftp://ftp.ruby-lang.org/pub/ruby/1.9/:ruby \
+	http://pyyaml.org/download/libyaml/:pyyaml
 
 PLIST=		${.CURDIR}/pkg-plist
 
