@@ -285,8 +285,6 @@
     SUBDIR += rbenv-ruby-1.8.7p357
     SUBDIR += rbenv-ruby-1.9.3p194
     SUBDIR += rbenv-ruby-1.9.3p385
-    SUBDIR += rbenv-ruby-1.9.3p392
-    SUBDIR += rbenv-ruby-1.9.3p448
     SUBDIR += rbenv-ruby-1.9.3p484
     SUBDIR += rbenv-ruby-2.0.0p195
     SUBDIR += rbenv-ruby-2.0.0p247
