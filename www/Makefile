@@ -469,6 +469,7 @@
     SUBDIR += mod_cfg_ldap
     SUBDIR += mod_chroot
     SUBDIR += mod_clamav
+    SUBDIR += mod_cloudflare
     SUBDIR += mod_cplusplus
     SUBDIR += mod_cvs2
     SUBDIR += mod_dnssd
@@ -1879,7 +1880,6 @@
     SUBDIR += sahi
     SUBDIR += sakai
     SUBDIR += samidare
-    SUBDIR += sams
     SUBDIR += sarg
     SUBDIR += scloader
     SUBDIR += script4rss

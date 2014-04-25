@@ -331,6 +331,7 @@
     SUBDIR += dbus-glib
     SUBDIR += dbus-qt4
     SUBDIR += dbus-qt5
+    SUBDIR += dbus-tcl
     SUBDIR += dbus-sharp
     SUBDIR += dbus-sharp-glib
     SUBDIR += dcmtk
@@ -547,7 +548,9 @@
     SUBDIR += gindent
     SUBDIR += gio-sharp
     SUBDIR += git
+    SUBDIR += git-bzr-ng
     SUBDIR += git-merge-changelog
+    SUBDIR += git-modes
     SUBDIR += git-review
     SUBDIR += git-subversion
     SUBDIR += gitg
@@ -2781,6 +2784,7 @@
     SUBDIR += p5-Term-ReadLine-Zoid
     SUBDIR += p5-Term-ReadPassword
     SUBDIR += p5-Term-Screen
+    SUBDIR += p5-Term-ScreenColor
     SUBDIR += p5-Term-Shell
     SUBDIR += p5-Term-Size
     SUBDIR += p5-Term-Size-Any
