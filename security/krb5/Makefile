@@ -3,7 +3,7 @@
 
 PORTNAME=		krb5
 PORTVERSION=		1.12.1
-PORTREVISION=		2
+PORTREVISION=		3
 CATEGORIES=		security
 MASTER_SITES=		http://web.mit.edu/kerberos/dist/${PORTNAME}/${PORTVERSION:C/^[0-9]*\.[0-9]*/&X/:C/X\.[0-9]*$//:C/X//}/
 DISTNAME=		${PORTNAME}-${PORTVERSION}-signed
@@ -43,12 +43,15 @@ LDAP=			Enable LDAP support
 PREFIX=			${KRB5_HOME}
 CFLAGS+=		-Wl,-rpath=${KRB5_HOME}/lib
 LDFLAGS+=		-Wl,-rpath=${KRB5_HOME}/lib
+.if ${KRB5_HOME} != ${LOCALBASE}
 BROKEN=			LIB_DEPENDS when using KRB5_HOME is broken
+.endif
 .endif
 LDFLAGS+=		-L${LOCALBASE}/lib
 CFLAGS+=		-I${LOCALBASE}/include
 
 USE_OPENSSL=		yes
+USE_RC_SUBR=		kpropd
 
 .include <bsd.port.pre.mk>
 
@@ -65,15 +68,6 @@ PLIST_SUB+=		LDAP="@comment "
 .endif
 
 .include "${PORTSDIR}/Mk/bsd.openssl.mk"
-
-MAN1=			k5srvutil.1 kadmin.1 krb5-config.1 krb5-send-pr.1 \
-			kpasswd.1 klist.1 kinit.1 kdestroy.1 kswitch.1 ksu.1 \
-			ktutil.1 \
-			sclient.1 kvno.1 compile_et.1
-MAN5=			kadm5.acl.5 kdc.conf.5 krb5.conf.5 .k5identity.5 \
-			.k5login.5 k5identity.5 k5login.5
-MAN8=			krb5kdc.8 kadmin.local.8 kdb5_ldap_util.8 kdb5_util.8 \
-			kadmind.8 kprop.8 kpropd.8 kproplog.8 sserver.8
 
 .if defined(PROGRAM_TRANSFORM_NAME) && ${PROGRAM_TRANSFORM_NAME} != ""
 CONFIGURE_ARGS+=	--program-transform-name="${PROGRAM_TRANSFORM_NAME}"

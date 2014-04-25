@@ -30,6 +30,7 @@
     SUBDIR += cfortran
     SUBDIR += chicken
     SUBDIR += cint
+    SUBDIR += clang-cheri
     SUBDIR += clang-devel
     SUBDIR += clang32
     SUBDIR += clang33
@@ -282,7 +283,6 @@
     SUBDIR += rexx-wrapper
     SUBDIR += rhino
     SUBDIR += rubinius
-    SUBDIR += ruby-doc-stdlib
     SUBDIR += ruby19
     SUBDIR += ruby20
     SUBDIR += ruby21
