@@ -1,14 +1,14 @@
 # $FreeBSD$
 
 PORTNAME=	hxt-regex-xmlschema
-PORTVERSION=	9.0.4
-PORTREVISION=	4
+PORTVERSION=	9.1.0
+PORTREVISION=	1
 CATEGORIES=	textproc haskell
 
 MAINTAINER=	haskell@FreeBSD.org
-COMMENT=	A regular expression library for W3C XML Schema regular expressions
+COMMENT=	Regular expression library for W3C XML Schema regular expressions
 
-CABAL_SETUP=	Setup.hs
+LICENSE=	MIT
 
 USE_CABAL=	hxt-charproperties>=9 parsec>=2.1
 

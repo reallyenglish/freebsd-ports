@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	HStringTemplate
-PORTVERSION=	0.6.12
+PORTVERSION=	0.7.1
 PORTREVISION=	1
 CATEGORIES=	textproc haskell
 
@@ -10,7 +10,7 @@ COMMENT=	StringTemplate implementation in Haskell
 
 LICENSE=	BSD
 
-USE_CABAL=	blaze-builder mtl parsec syb syb-with-class text utf8-string
+USE_CABAL=	blaze-builder mtl parsec syb text utf8-string void
 
 .include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
 .include <bsd.port.mk>

@@ -1,16 +1,16 @@
 # $FreeBSD$
 
 PORTNAME=	shakespeare
-PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTVERSION=	1.0.5
 CATEGORIES=	www haskell
 
 MAINTAINER=	haskell@FreeBSD.org
-COMMENT=	A toolkit for making compile-time interpolated templates
+COMMENT=	Toolkit for making compile-time interpolated templates
 
 LICENSE=	MIT
 
-USE_CABAL=	parsec>=2 text>=0.7
+USE_CABAL=	parsec>=2 system-fileio>=0.3 system-filepath>=0.4 \
+		text>=0.7
 
 .include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
 .include <bsd.port.mk>

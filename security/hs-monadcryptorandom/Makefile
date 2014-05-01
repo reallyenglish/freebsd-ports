@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	monadcryptorandom
-PORTVERSION=	0.5
+PORTVERSION=	0.5.1
 PORTREVISION=	1
 CATEGORIES=	security haskell
 
 MAINTAINER=	haskell@FreeBSD.org
-COMMENT=	A monad for using CryptoRandomGen
+COMMENT=	Monad for using CryptoRandomGen
 
 LICENSE=	BSD
 
