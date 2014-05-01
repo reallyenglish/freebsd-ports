@@ -1,16 +1,14 @@
 # $FreeBSD$
 
 PORTNAME=	sendfile
-PORTVERSION=	0.7.8
+PORTVERSION=	0.7.9
 PORTREVISION=	1
 CATEGORIES=	net haskell
 
 MAINTAINER=	haskell@FreeBSD.org
-COMMENT=	A portable sendfile library
+COMMENT=	Portable sendfile library
 
 LICENSE=	BSD
-
-CABAL_SETUP=	Setup.hs
 
 USE_CABAL=	network>=2
 

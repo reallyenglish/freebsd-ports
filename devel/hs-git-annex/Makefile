@@ -2,42 +2,43 @@
 # $FreeBSD$
 
 PORTNAME=	git-annex
-PORTVERSION=	3.20130124
+PORTVERSION=	4.20130601
 CATEGORIES=	devel haskell
 
 MAINTAINER=	haskell@FreeBSD.org
 COMMENT=	Manage files with git, without checking their contents into git
 
 LICENSE=	GPLv3
-FILE_LICENSE=	COPYRIGHT
 
-CABAL_SETUP=	Setup.hs
-
-USE_CABAL=	async bloomfilter dataenc edit-distance hslogger HTTP IfElse \
-		json lifted-base MissingH monad-control mtl network pcre-light \
-		QuickCheck>=2.1 SafeSemaphore SHA text transformers-base \
-		utf8-string
+USE_CABAL=	bloomfilter dataenc dlist edit-distance extensible-exceptions \
+		hslogger HTTP IfElse json MissingH MonadCatchIO-transformers \
+		monad-control mtl>=2 network>=2.0 QuickCheck>=2.1 random \
+		SafeSemaphore SHA text unix-compat utf8-string uuid
 
 USE_GMAKE=		yes
 USE_PERL5_BUILD=	yes
 
 BUILD_DEPENDS+=	rsync:${PORTSDIR}/net/rsync \
-		git:${PORTSDIR}/devel/git
+		git:${PORTSDIR}/devel/git \
+		gsha256sum:${PORTSDIR}/sysutils/coreutils
 
 RUN_DEPENDS+=	rsync:${PORTSDIR}/net/rsync \
-		git:${PORTSDIR}/devel/git
+		git:${PORTSDIR}/devel/git \
+		gsha256sum:${PORTSDIR}/sysutils/coreutils
 
 EXECUTABLE=	git-annex git-annex-shell
 STANDALONE=	yes
 
-OPTIONS_DEFINE=		S3 ASSISTANT INOTIFY WEBAPP PAIRING
+OPTIONS_DEFINE=		S3 ASSISTANT INOTIFY WEBAPP PAIRING PRODUCTION TDFA
 OPTIONS_DEFAULT=	S3 ASSISTANT
 
 S3_DESC=		S3 support
 ASSISTANT_DESC=		'assistant' and 'watch' commands
 INOTIFY_DESC=		File system notifications support
-WEBAPP_DESC=		Web application (req. assistant)
-PAIRING_DESC=		Enable pairing (req. web application)
+WEBAPP_DESC=		Web application (requires assistant)
+PAIRING_DESC=		Enable pairing (requires web application)
+PRODUCTION_DESC=	Production build
+TDFA_DESC=		Use regex-tdfa for wildcards
 
 .include "${.CURDIR}/../../lang/ghc/bsd.cabal.options.mk"
 
@@ -50,7 +51,7 @@ CONFIGURE_ARGS+=	--flags="-S3"
 
 .if ${PORT_OPTIONS:MASSISTANT}
 CONFIGURE_ARGS+=	--flags="Assistant"
-USE_CABAL+=		stm>=2.3
+USE_CABAL+=		async stm>=2.3
 .else
 CONFIGURE_ARGS+=	--flags="-Assistant"
 .endif
@@ -80,7 +81,20 @@ CONFIGURE_ARGS+=	--flags="-Pairing"
 .endif
 
 # Disable all the other options
-CONFIGURE_ARGS+=	--flags="-DNS -XMPP -Dbus"
+CONFIGURE_ARGS+=	--flags="-DNS -XMPP -Dbus -WebDAV"
+
+.if ${PORT_OPTIONS:MPRODUCTION}
+CONFIGURE_ARGS+=	--flags="Production"
+.else
+CONFIGURE_ARGS+=	--flags="-Production"
+.endif
+
+.if ${PORT_OPTIONS:MTDFA}
+CONFIGURE_ARGS+=	--flags="TDFA"
+USE_CABAL+=		regex-tdfa
+.else
+CONFIGURE_ARGS+=	--flags="-TDFA"
+.endif
 
 .include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
 .include <bsd.port.mk>

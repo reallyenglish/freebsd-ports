@@ -712,6 +712,11 @@
     SUBDIR += hs-cpphs
     SUBDIR += hs-darcs
     SUBDIR += hs-data-default
+    SUBDIR += hs-data-default-class
+    SUBDIR += hs-data-default-instances-base
+    SUBDIR += hs-data-default-instances-containers
+    SUBDIR += hs-data-default-instances-dlist
+    SUBDIR += hs-data-default-instances-old-locale
     SUBDIR += hs-data-pprint
     SUBDIR += hs-date-cache
     SUBDIR += hs-datetime
@@ -722,6 +727,7 @@
     SUBDIR += hs-either
     SUBDIR += hs-enumerator
     SUBDIR += hs-errors
+    SUBDIR += hs-extensible-exceptions
     SUBDIR += hs-failure
     SUBDIR += hs-fast-logger
     SUBDIR += hs-fgl
