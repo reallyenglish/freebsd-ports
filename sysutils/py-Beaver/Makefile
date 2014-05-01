@@ -41,7 +41,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pika>=0:${PORTSDIR}/devel/py-pika
 .endif
 
 .if ${PORT_OPTIONS:MZEROMQ}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pyzmq>=0:${PORTSDIR}/net/py-pyzmq
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pyzmq>=0:${PORTSDIR}/devel/py-pyzmq
 .endif
 
 .if ${PORT_OPTIONS:MREDIS}
