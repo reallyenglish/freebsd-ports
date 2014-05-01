@@ -3,7 +3,7 @@
 
 PORTNAME=	Beaver
 PORTVERSION=	31
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -27,12 +27,13 @@ USE_RC_SUBR=	beaver
 
 USERS=	beaver
 GROUPS=	beaver
-OPTIONS_DEFINE=	PIKA ZEROMQ REDIS
-OPTIONS_DEFAULT=	ZEROMQ
+OPTIONS_DEFINE=	PIKA ZEROMQ REDIS SYSLOG_PATCH
+OPTIONS_DEFAULT=	ZEROMQ SYSLOG_PATCH
 
 PIKA_DESC=	AMQP output
 ZEROMQ_DESC=	ZEROMQ output
 REDIS_DESC=	Redis output
+SYSLOG_PATCH_DESC=	apply extra patch to support syslog logging
 
 .include <bsd.port.options.mk>
 
@@ -46,6 +47,23 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pyzmq>=0:${PORTSDIR}/devel/py-pyzmq
 
 .if ${PORT_OPTIONS:MREDIS}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}redis>=0:${PORTSDIR}/databases/py-redis
+.endif
+
+.if ${PORT_OPTIONS:MSYSLOG_PATCH}
+PLIST_FILES+=	etc/beaver/logging.ini.dist
+PLIST_DIRS+=	etc/beaver
+.endif
+
+post-patch:
+.if ${PORT_OPTIONS:MSYSLOG_PATCH}
+	# obtained from https://github.com/josegonzalez/beaver/pull/221.patch
+	${PATCH} -d ${WRKSRC} -p1 < ${FILESDIR}/extrapatch-syslog
+.endif
+
+post-install:
+.if ${PORT_OPTIONS:MSYSLOG_PATCH}
+	${MKDIR} ${STAGEDIR}/${PREFIX}/etc/beaver
+	${INSTALL_DATA} ${WRKSRC}/contrib/logging.ini ${STAGEDIR}/${PREFIX}/etc/beaver/logging.ini.dist
 .endif
 
 # TODO
