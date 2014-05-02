@@ -1,8 +1,6 @@
-diff --git a/beaver/utils.py b/beaver/utils.py
-index 604cc05..c553596 100644
---- a/beaver/utils.py
-+++ b/beaver/utils.py
-@@ -6,11 +6,12 @@ import logging
+--- ./beaver/utils.py.orig	2014-01-25 16:49:09.000000000 +0900
++++ ./beaver/utils.py	2014-05-02 10:12:43.000000000 +0900
+@@ -6,11 +6,12 @@
  import platform
  import re
  import os
@@ -16,7 +14,7 @@ index 604cc05..c553596 100644
  
  MAGIC_BRACKETS = re.compile('({([^}]+)})')
  IS_GZIPPED_FILE = re.compile('.gz$')
-@@ -41,7 +42,7 @@ def parse_args():
+@@ -41,7 +42,7 @@
      parser.add_argument('-F', '--format', help='format to use when sending to transport', default=None, dest='format', choices=['json', 'msgpack', 'raw', 'rawjson', 'string'])
      parser.add_argument('-H', '--hostname', help='manual hostname override for source_host', default=None, dest='hostname')
      parser.add_argument('-m', '--mode', help='bind or connect mode', dest='mode', default=None, choices=['bind', 'connect'])
@@ -24,8 +22,8 @@ index 604cc05..c553596 100644
 +    parser.add_argument('-l', '--logconf', help='path to logging.ini configuraion file', default='/etc/beaver/logging.ini', dest='logconf')
      parser.add_argument('-p', '--path', help='path to log files', default=None, dest='path')
      parser.add_argument('-P', '--pid', help='path to pid file', default=None, dest='pid')
-     parser.add_argument('-t', '--transport', help='log transport method', dest='transport', default=None, choices=['mqtt', 'rabbitmq', 'redis', 'sqs', 'stdout', 'tcp', 'udp', 'zmq'])
-@@ -54,47 +55,7 @@ def parse_args():
+     parser.add_argument('-t', '--transport', help='log transport method', dest='transport', default=None, choices=['mqtt', 'rabbitmq', 'redis', 'sqs', 'stdout', 'tcp', 'udp', 'zmq', 'http'])
+@@ -54,47 +55,7 @@
  
  def setup_custom_logger(name, args=None, output=None, formatter=None, debug=None):
      logger = logging.getLogger(name)
@@ -73,11 +71,9 @@ index 604cc05..c553596 100644
      return logger
  
  
-diff --git a/bin/beaver b/bin/beaver
-index afd2511..5f24f1c 100755
---- a/bin/beaver
-+++ b/bin/beaver
-@@ -1,13 +1,16 @@
+--- ./bin/beaver.orig	2014-01-25 16:49:09.000000000 +0900
++++ ./bin/beaver	2014-05-02 10:13:51.000000000 +0900
+@@ -1,23 +1,23 @@
  #!/usr/bin/env python
  # -*- coding: utf-8 -*-
 +import logging.config
@@ -94,11 +90,19 @@ index afd2511..5f24f1c 100755
  if args.daemonize:
      assert CAN_DAEMONIZE, "Daemonization is unimplemented on the Windows Platform"
      assert args.pid, "A pid path must be specified in the beaver config or via the -P flag"
-diff --git a/contrib/logging.ini b/contrib/logging.ini
-new file mode 100644
-index 0000000..d8d1667
---- /dev/null
-+++ b/contrib/logging.ini
+ 
+     import daemon
+ 
+-    if args.output:
+-        context = daemon.DaemonContext(pidfile=PidFile(args.pid), stdout=open(args.output, "wb"), stderr=open(args.output, "wb"))
+-    else:
+-        context = daemon.DaemonContext(pidfile=PidFile(args.pid))
++    context = daemon.DaemonContext(pidfile=PidFile(args.pid))
+ 
+     with context:
+         if args.experimental:
+--- ./contrib/logging.ini.orig	2014-05-02 10:12:43.000000000 +0900
++++ ./contrib/logging.ini	2014-05-02 10:12:43.000000000 +0900
 @@ -0,0 +1,38 @@
 +[formatters]
 +keys = default, syslog
