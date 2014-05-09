@@ -1,0 +1,39 @@
+# $FreeBSD$
+#
+# PROVIDE: gitit
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add the following line to /etc/rc.conf to enable gitit:
+#
+#  gitit_enable="YES"
+
+. /etc/rc.subr
+
+# set defaults
+: gitit_enable=${gitit_enable:="NO"}
+: gitit_user=${gitit_user:=www}
+: gitit_directory=${gitit_directory:="%%PREFIX%%/www/gitit"}
+: gitit_configfile=${gitit_configfile:="%%PREFIX%%/etc/gitit.conf"}
+
+name=gitit
+rcvar=gitit_enable
+
+command="%%PREFIX%%/bin/gitit"
+pidfile="/var/run/${name}.pid"
+
+start_cmd="${name}_start"
+
+gitit_start()
+{
+
+  cd ${gitit_directory} && \
+  /usr/sbin/daemon -u ${gitit_user} -p ${pidfile} ${command} ${command_args}
+
+}
+
+load_rc_config gitit
+
+command_args="-f ${gitit_configfile}"
+
+run_rc_command "$1"
