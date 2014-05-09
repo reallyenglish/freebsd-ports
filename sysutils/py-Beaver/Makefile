@@ -2,34 +2,38 @@
 # $FreeBSD$
 
 PORTNAME=	Beaver
-PORTVERSION=	30
-#PORTREVISION=	1
+PORTVERSION=	31
+PORTREVISION=	4
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	tomoyukis@reallyenglish.com
-COMMENT=	logshipper written in Python for logstash
+COMMENT=	Logshipper written in Python for logstash
 
-USE_PYTHON=	2.6+
-USE_PYDISTUTILS=	yes
-SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
-USE_RC_SUBR=	beaver
+LICENSE=	MIT
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}conf_d>=0:${PORTSDIR}/textproc/py-conf_d \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}conf_d>=0.0.4:${PORTSDIR}/textproc/py-conf_d \
 	${PYTHON_PKGNAMEPREFIX}glob2>=0:${PORTSDIR}/textproc/py-glob2 \
 	${PYTHON_PKGNAMEPREFIX}msgpack>=0:${PORTSDIR}/devel/py-msgpack \
 	${PYTHON_PKGNAMEPREFIX}daemon>=0:${PORTSDIR}/devel/py-daemon \
 	${PYTHON_PKGNAMEPREFIX}sqlite3>=0:${PORTSDIR}/databases/py-sqlite3
 
+USE_PYTHON=	2.6+
+USE_PYDISTUTILS=	yes
+#PYDISTUTILS_AUTOPLIST=	yes
+SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
+USE_RC_SUBR=	beaver
+
 USERS=	beaver
 GROUPS=	beaver
-OPTIONS_DEFINE=	PIKA ZEROMQ REDIS
-OPTIONS_DEFAULT=	ZEROMQ
+OPTIONS_DEFINE=	PIKA ZEROMQ REDIS SYSLOG_PATCH
+OPTIONS_DEFAULT=	ZEROMQ SYSLOG_PATCH
 
 PIKA_DESC=	AMQP output
 ZEROMQ_DESC=	ZEROMQ output
 REDIS_DESC=	Redis output
+SYSLOG_PATCH_DESC=	apply extra patch to support syslog logging
 
 .include <bsd.port.options.mk>
 
@@ -43,6 +47,23 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pyzmq>=0:${PORTSDIR}/devel/py-pyzmq
 
 .if ${PORT_OPTIONS:MREDIS}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}redis>=0:${PORTSDIR}/databases/py-redis
+.endif
+
+.if ${PORT_OPTIONS:MSYSLOG_PATCH}
+PLIST_FILES+=	etc/beaver/logging.ini.dist
+PLIST_DIRS+=	etc/beaver
+.endif
+
+post-patch:
+.if ${PORT_OPTIONS:MSYSLOG_PATCH}
+	# obtained from https://github.com/josegonzalez/beaver/pull/221.patch
+	${PATCH} -d ${WRKSRC} -p1 < ${FILESDIR}/extrapatch-syslog
+.endif
+
+post-install:
+.if ${PORT_OPTIONS:MSYSLOG_PATCH}
+	${MKDIR} ${STAGEDIR}/${PREFIX}/etc/beaver
+	${INSTALL_DATA} ${WRKSRC}/contrib/logging.ini ${STAGEDIR}/${PREFIX}/etc/beaver/logging.ini.dist
 .endif
 
 # TODO
