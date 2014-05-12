@@ -23,13 +23,22 @@ command="%%PREFIX%%/bin/gitit"
 pidfile="/var/run/${name}.pid"
 
 start_cmd="${name}_start"
+start_postcmd="${name}_poststart"
 
 gitit_start()
 {
-
   cd ${gitit_directory} && \
   /usr/sbin/daemon -u ${gitit_user} -p ${pidfile} ${command} ${command_args}
+}
 
+gitit_poststart()
+{
+  local timeout=15
+  while [ ! -s "${pidfile}" -a ${timeout} -gt 0 ]; do
+    timeout=$(( timeout - 1 ))
+    sleep 1
+  done
+  return 0
 }
 
 load_rc_config gitit
