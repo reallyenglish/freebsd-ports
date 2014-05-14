@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	grafana
-PORTVERSION=	1.5.2
+PORTVERSION=	1.5.4
 #PORTREVISION=	0
 #PORTEPOCH=	0
 CATEGORIES=	www sysutils
@@ -11,10 +11,10 @@ MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	Beautiful, easy to use and feature rich Graphite dashboard
 
 USE_GITHUB=	Yes
-GH_ACCOUNT=	torkelo
+GH_ACCOUNT=	grafana
 GH_PROJECT=	${PORTNAME}
 GH_TAGNAME=	v${PORTVERSION}
-GH_COMMIT=	94fea50
+GH_COMMIT=	d8e2192
 
 NO_BUILD=	Yes
 
