@@ -1724,6 +1724,7 @@
     SUBDIR += rubygem-feed-normalizer
     SUBDIR += rubygem-feedzirra
     SUBDIR += rubygem-foreman
+    SUBDIR += rubygem-gollum-lib
     SUBDIR += rubygem-haml
     SUBDIR += rubygem-hpricot
     SUBDIR += rubygem-httparty
