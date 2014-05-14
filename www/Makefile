@@ -1724,6 +1724,7 @@
     SUBDIR += rubygem-feed-normalizer
     SUBDIR += rubygem-feedzirra
     SUBDIR += rubygem-foreman
+    SUBDIR += rubygem-gollum
     SUBDIR += rubygem-gollum-lib
     SUBDIR += rubygem-haml
     SUBDIR += rubygem-hpricot
@@ -1747,6 +1748,7 @@
     SUBDIR += rubygem-mongrel
     SUBDIR += rubygem-mongrel_cluster
     SUBDIR += rubygem-multipart-post
+    SUBDIR += rubygem-mustache
     SUBDIR += rubygem-nanoc
     SUBDIR += rubygem-net-http-digest_auth
     SUBDIR += rubygem-net-http-persistent
@@ -1799,6 +1801,7 @@
     SUBDIR += rubygem-uri_template
     SUBDIR += rubygem-url-mount
     SUBDIR += rubygem-url_escape
+    SUBDIR += rubygem-useragent
     SUBDIR += rubygem-warden-github
     SUBDIR += rubygem-webmock
     SUBDIR += rubygem-webrobots
