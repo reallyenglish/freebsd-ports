@@ -108,11 +108,14 @@
 %%WWWDIR%%/src/test/test-main.js
 %%WWWDIR%%/src/test/specs/parser-specs.js
 %%WWWDIR%%/src/test/specs/lexer-specs.js
+%%WWWDIR%%/src/test/specs/kbn-format-specs.js
 %%WWWDIR%%/src/test/specs/graphiteTargetCtrl-specs.js
+%%WWWDIR%%/src/test/specs/graph-panel-controller-specs.js
 %%WWWDIR%%/src/test/specs/gfunc-specs.js
 %%WWWDIR%%/src/test/specs/filterSrv-specs.js
 %%WWWDIR%%/src/test/mocks/dashboard-mock.js
 %%WWWDIR%%/src/test/karma.conf.js
+%%WWWDIR%%/src/test/.jshintrc
 %%WWWDIR%%/src/index.html
 %%WWWDIR%%/src/img/small.png
 %%WWWDIR%%/src/img/load_big.gif
@@ -147,6 +150,7 @@
 %%WWWDIR%%/src/css/bootstrap-responsive.min.css
 %%WWWDIR%%/src/css/animate.min.css
 %%WWWDIR%%/src/config.sample.js
+%%WWWDIR%%/src/app/services/unsavedChangesSrv.js
 %%WWWDIR%%/src/app/services/timer.js
 %%WWWDIR%%/src/app/services/playlistSrv.js
 %%WWWDIR%%/src/app/services/panelMove.js
@@ -162,6 +166,7 @@
 %%WWWDIR%%/src/app/services/annotationsSrv.js
 %%WWWDIR%%/src/app/services/all.js
 %%WWWDIR%%/src/app/services/alertSrv.js
+%%WWWDIR%%/src/app/partials/unsaved-changes.html
 %%WWWDIR%%/src/app/partials/search.html
 %%WWWDIR%%/src/app/partials/roweditor.html
 %%WWWDIR%%/src/app/partials/playlist.html
@@ -209,6 +214,7 @@
 %%WWWDIR%%/src/app/directives/kibanaSimplePanel.js
 %%WWWDIR%%/src/app/directives/kibanaPanel.js
 %%WWWDIR%%/src/app/directives/graphiteFuncEditor.js
+%%WWWDIR%%/src/app/directives/grafanaVersionCheck.js
 %%WWWDIR%%/src/app/directives/grafanaGraph.js
 %%WWWDIR%%/src/app/directives/dashUpload.js
 %%WWWDIR%%/src/app/directives/confirmClick.js
@@ -219,6 +225,7 @@
 %%WWWDIR%%/src/app/directives/all.js
 %%WWWDIR%%/src/app/directives/addPanel.js
 %%WWWDIR%%/src/app/directives/addGraphiteFunc.js
+%%WWWDIR%%/src/app/dashboards/scripted_async.js
 %%WWWDIR%%/src/app/dashboards/scripted.js
 %%WWWDIR%%/src/app/dashboards/empty.json
 %%WWWDIR%%/src/app/dashboards/default.json
@@ -227,7 +234,9 @@
 %%WWWDIR%%/src/app/controllers/row.js
 %%WWWDIR%%/src/app/controllers/pulldown.js
 %%WWWDIR%%/src/app/controllers/playlistCtrl.js
+%%WWWDIR%%/src/app/controllers/panelBaseCtrl.js
 %%WWWDIR%%/src/app/controllers/metricKeys.js
+%%WWWDIR%%/src/app/controllers/inspectCtrl.js
 %%WWWDIR%%/src/app/controllers/influxTargetCtrl.js
 %%WWWDIR%%/src/app/controllers/graphiteTarget.js
 %%WWWDIR%%/src/app/controllers/graphiteImport.js
