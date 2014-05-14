@@ -1294,6 +1294,9 @@
     SUBDIR += rubygem-fast_xs
     SUBDIR += rubygem-ferret
     SUBDIR += rubygem-formosa
+    SUBDIR += rubygem-github-markdown
+    SUBDIR += rubygem-github-markup
+    SUBDIR += rubygem-gitlab-grit
     SUBDIR += rubygem-heredoc_unindent
     SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-htmltools

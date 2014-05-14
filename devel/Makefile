@@ -4106,6 +4106,7 @@
     SUBDIR += rubygem-require_all
     SUBDIR += rubygem-rgl
     SUBDIR += rubygem-ripper
+    SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rparsec
     SUBDIR += rubygem-rr
     SUBDIR += rubygem-rscm
