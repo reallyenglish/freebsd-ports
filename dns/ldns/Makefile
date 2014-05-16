@@ -3,6 +3,7 @@
 
 PORTNAME=	ldns
 PORTVERSION=	1.6.17
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	http://www.nlnetlabs.nl/downloads/ldns/ \
 		CRITICAL
@@ -132,7 +133,13 @@ post-install:
 .if ${PORT_OPTIONS:MDRILL}
 	@(cd ${WRKSRC}/drill; ${GMAKE} ${MAKE_ARGS} install)
 .endif
+	${INSTALL_DATA} ${WRKSRC}/packaging/libldns.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig
 
 .endif # BUILD_PYLDNS || BUILD_P5PERL
+
+.if defined(BUILD_P5PERL)
+post-stage::
+	${SED} -i '' 's|^${STAGEDIR}||' ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/DNS/LDNS/.packlist
+.endif
 
 .include <bsd.port.mk>

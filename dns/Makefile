@@ -13,6 +13,7 @@
     SUBDIR += bind98
     SUBDIR += bind99
     SUBDIR += bindgraph
+    SUBDIR += bundy
     SUBDIR += c-ares
     SUBDIR += checkdns
     SUBDIR += credns
@@ -92,6 +93,7 @@
     SUBDIR += p5-BIND-Config-Parser
     SUBDIR += p5-DNS-Config
     SUBDIR += p5-DNS-EasyDNS
+    SUBDIR += p5-DNS-Ldns
     SUBDIR += p5-DNS-Zone
     SUBDIR += p5-DNS-ZoneParse
     SUBDIR += p5-Data-Validate-Domain

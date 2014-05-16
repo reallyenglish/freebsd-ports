@@ -41,7 +41,6 @@
     SUBDIR += iconv-rfc1345
     SUBDIR += igbinary
     SUBDIR += ish
-    SUBDIR += konwert
     SUBDIR += libb64
     SUBDIR += libiconv
     SUBDIR += libticonv
@@ -83,6 +82,7 @@
     SUBDIR += p5-Encode-Locale
     SUBDIR += p5-Encode-Punycode
     SUBDIR += p5-Encode-compat
+    SUBDIR += p5-Encoding-BER
     SUBDIR += p5-Encoding-FixLatin
     SUBDIR += p5-Format-Human-Bytes
     SUBDIR += p5-JSON

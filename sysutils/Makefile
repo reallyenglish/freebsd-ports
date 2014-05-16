@@ -141,7 +141,6 @@
     SUBDIR += cpu
     SUBDIR += cpuburn
     SUBDIR += cpulimit
-    SUBDIR += cpupowerd
     SUBDIR += cramfs
     SUBDIR += crashme
     SUBDIR += createrepo
@@ -461,7 +460,6 @@
     SUBDIR += linux-f10-procps
     SUBDIR += linux-nero
     SUBDIR += linuxfdisk
-    SUBDIR += lire
     SUBDIR += livecd
     SUBDIR += lmmon
     SUBDIR += lmon
@@ -845,6 +843,7 @@
     SUBDIR += schedutils
     SUBDIR += scprotect
     SUBDIR += screen
+    SUBDIR += screen-legacy
     SUBDIR += screenfetch
     SUBDIR += screenie
     SUBDIR += scterc
@@ -1016,7 +1015,6 @@
     SUBDIR += wmfire
     SUBDIR += wmflame
     SUBDIR += wmmemfree
-    SUBDIR += wmmemload
     SUBDIR += wmtop
     SUBDIR += wmupmon
     SUBDIR += worldtools

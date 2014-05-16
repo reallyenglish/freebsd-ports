@@ -88,6 +88,7 @@
     SUBDIR += gcc47-aux
     SUBDIR += gcc48
     SUBDIR += gcc49
+    SUBDIR += gcc410
     SUBDIR += gcl
     SUBDIR += gforth
     SUBDIR += ghc
@@ -98,6 +99,7 @@
     SUBDIR += gnatdroid-armv7
     SUBDIR += gnatdroid-binutils
     SUBDIR += gnatdroid-sysroot
+    SUBDIR += gnu-cobol
     SUBDIR += gnustep-base
     SUBDIR += gnustep-guile
     SUBDIR += go
@@ -154,7 +156,6 @@
     SUBDIR += metaocaml
     SUBDIR += mit-scheme
     SUBDIR += mixal
-    SUBDIR += ml-pnet
     SUBDIR += mlton
     SUBDIR += mmix
     SUBDIR += modula3
@@ -192,7 +193,6 @@
     SUBDIR += onyx
     SUBDIR += oo2c
     SUBDIR += oorexx
-    SUBDIR += open-cobol
     SUBDIR += opendylan
     SUBDIR += otcl
     SUBDIR += p2c
@@ -246,12 +246,10 @@
     SUBDIR += picoc
     SUBDIR += pike76
     SUBDIR += pike78
-    SUBDIR += pnet
-    SUBDIR += pnet-base
-    SUBDIR += pnetlib
     SUBDIR += polyml
     SUBDIR += ptoc
     SUBDIR += pure
+    SUBDIR += py-clojure
     SUBDIR += py-mx-base
     SUBDIR += py-prolog
     SUBDIR += pypy
@@ -337,7 +335,6 @@
     SUBDIR += tinypy
     SUBDIR += tolua
     SUBDIR += tolua++
-    SUBDIR += treecc
     SUBDIR += tuareg-mode.el
     SUBDIR += twelf
     SUBDIR += ucc

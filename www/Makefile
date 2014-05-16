@@ -258,6 +258,7 @@
     SUBDIR += gstreamer-plugins-neon
     SUBDIR += gstreamer1-plugins-neon
     SUBDIR += gtkhtml3
+    SUBDIR += gtkhtml4
     SUBDIR += guile-www
     SUBDIR += gurlchecker
     SUBDIR += habari
@@ -580,7 +581,6 @@
     SUBDIR += ompload
     SUBDIR += oops
     SUBDIR += opencart
-    SUBDIR += openx
     SUBDIR += openxmldir
     SUBDIR += opera
     SUBDIR += opera-devel
@@ -588,6 +588,7 @@
     SUBDIR += orangehrm
     SUBDIR += oscommerce
     SUBDIR += otter-browser
+    SUBDIR += otrs
     SUBDIR += owncloud
     SUBDIR += p5-AMF-Perl
     SUBDIR += p5-Acme-Monta
@@ -1525,6 +1526,7 @@
     SUBDIR += py-django-signals-ahoy
     SUBDIR += py-django-simple-captcha
     SUBDIR += py-django-storages
+    SUBDIR += py-django-subdomains
     SUBDIR += py-django-tables2
     SUBDIR += py-django-tagging
     SUBDIR += py-django-tastypie
@@ -1731,6 +1733,7 @@
     SUBDIR += resin3
     SUBDIR += retawq
     SUBDIR += reviewboard
+    SUBDIR += revive-adserver
     SUBDIR += rnews
     SUBDIR += roundup
     SUBDIR += rsskit
@@ -1790,9 +1793,12 @@
     SUBDIR += rubygem-haml-coderay
     SUBDIR += rubygem-haml-contrib
     SUBDIR += rubygem-haml-rails
+    SUBDIR += rubygem-heroku
+    SUBDIR += rubygem-heroku-api
     SUBDIR += rubygem-hpricot
     SUBDIR += rubygem-html2haml
     SUBDIR += rubygem-http-cookie
+    SUBDIR += rubygem-httpi
     SUBDIR += rubygem-httparty
     SUBDIR += rubygem-httpclient
     SUBDIR += rubygem-innate
@@ -1850,6 +1856,7 @@
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rfacebook
     SUBDIR += rubygem-rfeedfinder
+    SUBDIR += rubygem-rqrcode
     SUBDIR += rubygem-robotex
     SUBDIR += rubygem-robots
     SUBDIR += rubygem-scrapi
@@ -2057,6 +2064,7 @@
     SUBDIR += twill
     SUBDIR += twms
     SUBDIR += typo3
+    SUBDIR += typo3-lts
     SUBDIR += typo345
     SUBDIR += typo347
     SUBDIR += typolight

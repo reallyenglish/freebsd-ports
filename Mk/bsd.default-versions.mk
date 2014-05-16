@@ -15,7 +15,7 @@ _INCLUDE_BSD_DEFAULT_VERSIONS_MK=	yes
 
 .for lang in ${DEFAULT_VERSIONS}
 _l=		${lang:C/=.*//g}
-${_l:U}_DEFAULT=	${lang:C/.*=//g}
+${_l:tu}_DEFAULT=	${lang:C/.*=//g}
 .endfor
 
 APACHE_DEFAULT?=	2.2
@@ -31,5 +31,6 @@ PYTHON2_DEFAULT?=	2.7
 PYTHON3_DEFAULT?=	3.3
 RUBY_DEFAULT?=		1.9
 TCLTK_DEFAULT?=		8.6
+FIREBIRD_DEFAULT?=	2.5
 
 .endif

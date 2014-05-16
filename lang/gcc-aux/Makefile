@@ -22,8 +22,8 @@ LANGS=			c c++ ada
 APPLY_DIFFS=		core cxx ada
 INTENDED_COMPILER=	NATIVE
 GARCH=			${ARCH:S/amd64/x86_64/}
-BOOTSTRAP_COMPILER=	gnat-bootstrap.${GARCH}.${OPSYS:L}.tar.bz2
-BLD_TARGET=		${GARCH}-aux-${OPSYS:L}${OSREL}
+BOOTSTRAP_COMPILER=	gnat-bootstrap.${GARCH}.${OPSYS:tl}.tar.bz2
+BLD_TARGET=		${GARCH}-aux-${OPSYS:tl}${OSREL}
 FULL_GNATGCC=		NOT_SET
 OS_LABEL4VERS=		[${OPSYS}${GARCH:M*64:S/amd_//:S/x86_//}]
 NO_MTREE=		yes
@@ -40,7 +40,7 @@ TESTSUITE_DESC=		Activate test support
 STATIC_DESC=		Link compilers and drivers statically
 BOOTSTRAP_DESC=		Create bootstrap compiler (overrides other options)
 
-# The BOOTSTRAP option overrides all the others.  "make stage" will build a 
+# The BOOTSTRAP option overrides all the others.  "make stage" will build a
 # static compiler that supports C, C++, and Ada languages and then create
 # a new distfile in $WRKDIR/newbsd with the name following the pattern:
 # ada-bootstrap.$ARCH.$OPSYS.XY.tar.bz2.  There is no need to "make install"
@@ -48,10 +48,7 @@ BOOTSTRAP_DESC=		Create bootstrap compiler (overrides other options)
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} == FreeBSD
-USE_BINUTILS=	yes
-RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
-EXTRA_CONFIG+=	--with-ld=${LOCALBASE}/bin/ld
-EXTRA_CONFIG+=	--with-as=${LOCALBASE}/bin/as
+MODERN_BINUTILS=	yes
 .  if ${OSVERSION} < 900000
 BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.84.tar.bz2
 .  else
@@ -59,9 +56,21 @@ BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.100B.tar.bz2
 .  endif
 .endif
 .if ${OPSYS} == DragonFly
+.  if ${OSREL:S/.//} < 37
+MODERN_BINUTILS=	yes
+.  endif
+BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.dragonfly.36A.tar.bz2
+.endif
+
+.if defined(MODERN_BINUTILS)
+# Apparently gcc 4.9 needs binutils 2.23 or greater to link Ada correctly
+USE_BINUTILS=	yes
+RUN_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+EXTRA_CONFIG+=	--with-ld=${LOCALBASE}/bin/ld
+EXTRA_CONFIG+=	--with-as=${LOCALBASE}/bin/as
+.else
 EXTRA_CONFIG+=	--with-ld=/usr/bin/ld
 EXTRA_CONFIG+=	--with-as=/usr/bin/as
-BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.dragonfly.36A.tar.bz2
 .endif
 
 WRKSRC=			${WRKDIR}/${IDENTIFICATION}
@@ -72,7 +81,7 @@ REVFILE=		${WRKSRC}/gcc/REVISION
 BOOTSTRAP_PREFIX=	${WRKDIR}/bootstrap
 PKG_PREFIX=		${PREFIX}/${PORTNAME}
 MANPREFIX=		${PREFIX}/${PORTNAME}/share
-BSFILENAME=		ada-bootstrap.${GARCH}.${OPSYS:L}.${OSREL:S/.//}.tar.bz2
+BSFILENAME=		ada-bootstrap.${GARCH}.${OPSYS:tl}.${OSREL:S/.//}.tar.bz2
 
 # If we find gnatmake and friends in a standard location, then we'll use this
 # compiler instead of downloading the bootstrap.
@@ -252,7 +261,7 @@ do-install:
 	cd ${BUILDDIR} && ${SETENV} ${ADA_MAKE_ENV} \
 		${MAKE_CMD} install-strip ${MAKE_ARGS}
 	${MV} ${STAGEDIR}${PKG_PREFIX}/share ${WRKDIR}/moved_share
-	${MKDIR} -p ${STAGEDIR}${PREFIX}/share/dejagnu/baseboards \
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/dejagnu/baseboards \
 		${STAGEDIR}${PREFIX}/share/dejagnu/config
 	${INSTALL_DATA} ${FILESDIR}/android.exp \
 		${STAGEDIR}${PREFIX}/share/dejagnu/config

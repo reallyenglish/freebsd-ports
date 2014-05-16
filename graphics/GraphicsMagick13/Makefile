@@ -3,11 +3,11 @@
 
 PORTNAME=	GraphicsMagick
 PORTVERSION=	1.3.19
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	SF \
 		ftp://ftp.graphicsmagick.org/pub/GraphicsMagick/1.3/
-MASTER_SITE_SUBDIR=	${PORTNAME:L}/${PORTNAME:L}/${PORTVERSION}
+MASTER_SITE_SUBDIR=	${PORTNAME:tl}/${PORTNAME:tl}/${PORTVERSION}
 PKGNAMESUFFIX=	13
 
 MAINTAINER=	ports@FreeBSD.org
@@ -25,8 +25,7 @@ CONFLICTS=	GraphicsMagick-1.[12].* GraphicsMagick12-*
 
 PORTSCOUT=	limit:^1\.3\.
 
-USE_BZIP2=	yes
-USES=		iconv
+USES=		iconv tar:bzip2
 USE_GNOME=	libxml2
 USE_GHOSTSCRIPT=yes
 GNU_CONFIGURE=	yes

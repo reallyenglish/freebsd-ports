@@ -92,6 +92,7 @@
     SUBDIR += cryptopp
     SUBDIR += cryptstring
     SUBDIR += cvm
+    SUBDIR += cyassl
     SUBDIR += cyrus-sasl2
     SUBDIR += cyrus-sasl2-gssapi
     SUBDIR += cyrus-sasl2-ldapdb
@@ -866,8 +867,10 @@
     SUBDIR += rubygem-jugyo-twitter_oauth
     SUBDIR += rubygem-metasploit_data_models
     SUBDIR += rubygem-net-scp
+    SUBDIR += rubygem-net-scp11
     SUBDIR += rubygem-net-sftp
     SUBDIR += rubygem-net-ssh
+    SUBDIR += rubygem-net-ssh27
     SUBDIR += rubygem-net-ssh-gateway
     SUBDIR += rubygem-net-ssh-multi
     SUBDIR += rubygem-nmap-parser
@@ -1017,7 +1020,6 @@
     SUBDIR += yafic
     SUBDIR += yapet
     SUBDIR += yara
-    SUBDIR += yassl
     SUBDIR += yersinia
     SUBDIR += ykclient
     SUBDIR += ykpers

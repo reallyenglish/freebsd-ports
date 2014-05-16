@@ -60,6 +60,7 @@
     SUBDIR += apiextractor
     SUBDIR += apr1
     SUBDIR += apr2
+    SUBDIR += arcanist
     SUBDIR += arduino
     SUBDIR += arduino-glcd
     SUBDIR += arduino-irremote
@@ -142,14 +143,12 @@
     SUBDIR += bpython
     SUBDIR += bsdbuild
     SUBDIR += bsdcflow
-    SUBDIR += bsdlibdwarf
     SUBDIR += bufferpool
     SUBDIR += bug-buddy
     SUBDIR += bugzilla40
     SUBDIR += bugzilla42
     SUBDIR += bugzilla44
     SUBDIR += build
-    SUBDIR += buildapp
     SUBDIR += buildbot
     SUBDIR += buildbot-slave
     SUBDIR += buildtool
@@ -920,6 +919,7 @@
     SUBDIR += lasi
     SUBDIR += lcov
     SUBDIR += leaktracer
+    SUBDIR += leiningen
     SUBDIR += lemon
     SUBDIR += lfcbase
     SUBDIR += lfcxml
@@ -1082,9 +1082,11 @@
     SUBDIR += libpff
     SUBDIR += libphish
     SUBDIR += libphk
+    SUBDIR += libphutil
     SUBDIR += libplist
     SUBDIR += libpo6
     SUBDIR += libpthread-stubs
+    SUBDIR += libqcow
     SUBDIR += libqxt
     SUBDIR += librcc
     SUBDIR += librcd
@@ -1107,11 +1109,13 @@
     SUBDIR += libsigsegv
     SUBDIR += libslang2
     SUBDIR += libslave
+    SUBDIR += libsmdev
     SUBDIR += libsoup
     SUBDIR += libsoup-gnome
     SUBDIR += libsoup-reference
     SUBDIR += libspark2012
     SUBDIR += libstatgrab
+    SUBDIR += libstatgrab0
     SUBDIR += libstrfunc
     SUBDIR += libstroke
     SUBDIR += libsysinfo
@@ -1352,7 +1356,6 @@
     SUBDIR += ossp-val
     SUBDIR += ossp-var
     SUBDIR += ossp-xds
-    SUBDIR += otrs
     SUBDIR += p4
     SUBDIR += p4.el
     SUBDIR += p4api
@@ -1633,6 +1636,7 @@
     SUBDIR += p5-Config-Grammar
     SUBDIR += p5-Config-INI
     SUBDIR += p5-Config-INI-Simple
+    SUBDIR += p5-Config-Identity
     SUBDIR += p5-Config-IniFiles
     SUBDIR += p5-Config-IniHash
     SUBDIR += p5-Config-IniRegEx
@@ -1666,6 +1670,7 @@
     SUBDIR += p5-Curses-UI
     SUBDIR += p5-Curses-Widgets
     SUBDIR += p5-Cvs
+    SUBDIR += p5-Cwd-Guard
     SUBDIR += p5-DB_File-Lock
     SUBDIR += p5-Daemon-Control
     SUBDIR += p5-Dancer-Debug
@@ -1957,6 +1962,7 @@
     SUBDIR += p5-ExtUtils-InstallPaths
     SUBDIR += p5-ExtUtils-LibBuilder
     SUBDIR += p5-ExtUtils-MakeMaker
+    SUBDIR += p5-ExtUtils-MakeMaker-CPANfile
     SUBDIR += p5-ExtUtils-MakeMaker-Coverage
     SUBDIR += p5-ExtUtils-Manifest
     SUBDIR += p5-ExtUtils-ParseXS
@@ -2278,6 +2284,7 @@
     SUBDIR += p5-Memoize-ExpireLRU
     SUBDIR += p5-Meta-Builder
     SUBDIR += p5-MetaCPAN-API
+    SUBDIR += p5-MetaCPAN-Client
     SUBDIR += p5-Metabase-Client-Simple
     SUBDIR += p5-Metabase-Fact
     SUBDIR += p5-Method-Alias
@@ -2873,6 +2880,7 @@
     SUBDIR += p5-Test-More-UTF8
     SUBDIR += p5-Test-Most
     SUBDIR += p5-Test-Name-FromLine
+    SUBDIR += p5-Test-Net-LDAP
     SUBDIR += p5-Test-Net-RabbitMQ
     SUBDIR += p5-Test-NoTabs
     SUBDIR += p5-Test-NoWarnings
@@ -3595,6 +3603,7 @@
     SUBDIR += py-durus
     SUBDIR += py-dynrules
     SUBDIR += py-eggtestinfo
+    SUBDIR += py-enum34
     SUBDIR += py-epsilon
     SUBDIR += py-event
     SUBDIR += py-experimental.cssselect
@@ -3657,6 +3666,7 @@
     SUBDIR += py-iterpipes
     SUBDIR += py-itools
     SUBDIR += py-jcc
+    SUBDIR += py-jdcal
     SUBDIR += py-jellyfish
     SUBDIR += py-jira
     SUBDIR += py-jmespath
@@ -3743,6 +3753,7 @@
     SUBDIR += py-pycparser
     SUBDIR += py-pydasm
     SUBDIR += py-pyechonest
+    SUBDIR += py-pyelftools
     SUBDIR += py-pyev
     SUBDIR += py-pyflakes
     SUBDIR += py-pygit2
@@ -4140,6 +4151,7 @@
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
     SUBDIR += rubygem-bioruby
+    SUBDIR += rubygem-blankslate
     SUBDIR += rubygem-blockenspiel
     SUBDIR += rubygem-bson
     SUBDIR += rubygem-bugspots
@@ -4211,6 +4223,9 @@
     SUBDIR += rubygem-file-tail
     SUBDIR += rubygem-filemagic
     SUBDIR += rubygem-fog
+    SUBDIR += rubygem-fog-brightbox
+    SUBDIR += rubygem-fog-core
+    SUBDIR += rubygem-fog-json
     SUBDIR += rubygem-font-awesome-rails
     SUBDIR += rubygem-foreman
     SUBDIR += rubygem-foreman_api
@@ -4236,6 +4251,7 @@
     SUBDIR += rubygem-grape-entity
     SUBDIR += rubygem-grape-swagger
     SUBDIR += rubygem-grit
+    SUBDIR += rubygem-gyoku
     SUBDIR += rubygem-hashery
     SUBDIR += rubygem-hashie
     SUBDIR += rubygem-highline
@@ -4252,6 +4268,7 @@
     SUBDIR += rubygem-io-like
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-jammit
+    SUBDIR += rubygem-jekyll-coffeescript
     SUBDIR += rubygem-jeweler
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
@@ -4273,9 +4290,11 @@
     SUBDIR += rubygem-main
     SUBDIR += rubygem-map
     SUBDIR += rubygem-mash
+    SUBDIR += rubygem-mercenary
     SUBDIR += rubygem-metaclass
     SUBDIR += rubygem-metaid
     SUBDIR += rubygem-method_source
+    SUBDIR += rubygem-mini_portile
     SUBDIR += rubygem-minitest
     SUBDIR += rubygem-minitest4
     SUBDIR += rubygem-mirror
@@ -4298,6 +4317,7 @@
     SUBDIR += rubygem-needle
     SUBDIR += rubygem-nice-ffi
     SUBDIR += rubygem-nio4r
+    SUBDIR += rubygem-nori
     SUBDIR += rubygem-notify
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
@@ -4402,6 +4422,8 @@
     SUBDIR += rubygem-timers
     SUBDIR += rubygem-timers1
     SUBDIR += rubygem-tins
+    SUBDIR += rubygem-tins0
+    SUBDIR += rubygem-toml
     SUBDIR += rubygem-transactionsimple
     SUBDIR += rubygem-treetop
     SUBDIR += rubygem-trollop
@@ -4450,6 +4472,7 @@
     SUBDIR += serdisplib
     SUBDIR += sfio
     SUBDIR += sfml
+    SUBDIR += sfml1
     SUBDIR += sfslite
     SUBDIR += sfslite-dbg
     SUBDIR += sfslite-noopt
@@ -4542,6 +4565,7 @@
     SUBDIR += tclxml
     SUBDIR += tdl
     SUBDIR += terminality
+    SUBDIR += tesla
     SUBDIR += tevent
     SUBDIR += tex-kpathsea
     SUBDIR += tex-web2c
@@ -4610,6 +4634,8 @@
     SUBDIR += xdg-user-dirs
     SUBDIR += xdg-utils
     SUBDIR += xfce4-dev-tools
+    SUBDIR += xfce4-vala
+    SUBDIR += xlocale
     SUBDIR += xmake
     SUBDIR += xmltooling
     SUBDIR += xorg-macros

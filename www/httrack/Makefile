@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	httrack
-PORTVERSION=	3.48.1
+PORTVERSION=	3.48.6
 CATEGORIES=	www
 MASTER_SITES=	http://download.httrack.com/ \
 		http://mirror.httrack.com/historical/ \
@@ -16,15 +16,18 @@ LICENSE_COMB=	dual
 
 OPTIONS_DEFINE=	DOCS
 
-CONFIGURE_ARGS=	--docdir="${DOCSDIR}"
+CONFIGURE_ARGS=	--docdir=${DOCSDIR} --with-zlib=/usr
 CPPFLAGS+=	-I${LOCALBASE}/include
+GNU_CONFIGURE=	yes
+INSTALLS_ICONS=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
-USE_AUTOTOOLS=	libtool
-USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
-USES=		gmake iconv
+USE_LDCONFIG=	${PREFIX}/lib/httrack
+USES=		gmake iconv libtool shebangfix
 
 PORTDATA=	*
 PORTDOCS=	*
+
+SHEBANG_FILES=	src/webhttrack
 
 post-patch:
 	@${REINPLACE_CMD} -e '/DEFAULT_CFLAGS=/ s|-O -g3 ||g' ${WRKSRC}/configure
@@ -33,5 +36,6 @@ post-patch:
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/html/httrack.css ${STAGEDIR}${DOCSDIR}/httrack.css
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*.so ${STAGEDIR}${PREFIX}/lib/httrack/lib*.so
 
 .include <bsd.port.mk>

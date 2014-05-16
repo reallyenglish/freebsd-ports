@@ -3,7 +3,7 @@
 
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${PORT_MINOR_VERSION}.${PORT_BUILD_NUMBER}
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}/promoted/b${JDK_BUILD_NUMBER}/ \
@@ -28,7 +28,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		dos2unix iconv gmake zip
 USE_XORG+=	x11 xext xi xrender xt xtst
-MAKE_ARGS=	CC=${CC} CXX=${CXX} HOST_CC=${CC}
+MAKE_ARGS=	CC=${CC:Q} CXX=${CXX:Q} HOST_CC=${CC:Q}
 MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFINE=		DEBUG POLICY TZUPDATE
@@ -103,9 +103,9 @@ BOOTSTRAP_JDKS=	${LOCALBASE}/openjdk7 \
 		${LOCALBASE}/openjdk6 \
 		${LOCALBASE}/bootstrap-openjdk
 
-DEBUG_MAKE_ENV=	ALT_OBJCOPY="/nonexistent"
+DEBUG_MAKE_ENV=	ALT_OBJCOPY=${NONEXISTENT}
 POLICY_MAKE_ENV=	UNLIMITED_CRYPTO=1
-TZUPDATE_RUN_DEPENDS=  ${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
+TZUPDATE_RUN_DEPENDS=	${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
 
 .include <bsd.port.options.mk>
 

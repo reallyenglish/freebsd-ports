@@ -3,7 +3,7 @@
 
 PORTNAME=	warmux
 DISTVERSION=	11.04.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	http://download.gna.org/${PORTNAME}/ \
 		http://download.gna.org/${PORTNAME}/archive/
@@ -16,9 +16,8 @@ LIB_DEPENDS=	libxml++-2.6.so:${PORTSDIR}/textproc/libxml++26 \
 
 CONFLICTS_INSTALL=	wormux-*
 
-USE_BZIP2=	yes
 GNU_CONFIGURE=	yes
-USES=		gmake pkgconfig
+USES=		gmake pkgconfig tar:bzip2
 USE_SDL=	sdl image mixer ttf gfx net
 USE_DOS2UNIX=	fixed_class.h
 
