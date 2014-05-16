@@ -1,22 +1,25 @@
 # $FreeBSD$
 
 PORTNAME=	nokogiri
-PORTVERSION=	1.6.1
-PORTREVISION=	2
+PORTVERSION=	1.6.2.1
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	ruby@FreeBSD.org
-COMMENT=	An HTML, XML, SAX, and Reader parser
+COMMENT=	HTML, XML, SAX, and Reader parser
 
-GEM_ENV=	LC_CTYPE=UTF-8 NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+BUILD_DEPENDS=	rubygem-mini_portile=0.6.0:${PORTSDIR}/devel/rubygem-mini_portile
+RUN_DEPENDS=	rubygem-mini_portile=0.6.0:${PORTSDIR}/devel/rubygem-mini_portile
 
-USE_GNOME=	libxml2 libxslt
+LICENSE=	MIT
+
+GEM_ENV=	LC_CTYPE=UTF-8
 
 USE_RUBY=	yes
 USE_RUBY_FEATURES=	iconv
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
+
 PLIST_FILES=	bin/nokogiri
 
 .include <bsd.port.mk>

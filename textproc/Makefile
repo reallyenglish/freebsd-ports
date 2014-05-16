@@ -731,6 +731,7 @@
     SUBDIR += p5-String-Urandom
     SUBDIR += p5-Syntax-Highlight-Engine-Kate
     SUBDIR += p5-Syntax-Highlight-Perl-Improved
+    SUBDIR += p5-TOML
     SUBDIR += p5-TeX-Encode
     SUBDIR += p5-TeX-Hyphen
     SUBDIR += p5-Template-Declare
@@ -858,6 +859,7 @@
     SUBDIR += p5-Text-Typography
     SUBDIR += p5-Text-Unaccent
     SUBDIR += p5-Text-VimColor
+    SUBDIR += p5-Text-VisualWidth
     SUBDIR += p5-Text-WikiCreole
     SUBDIR += p5-Text-WikiFormat
     SUBDIR += p5-Text-WordDiff
@@ -1210,6 +1212,7 @@
     SUBDIR += py-zope.tal
     SUBDIR += py-zpt
     SUBDIR += py2html
+    SUBDIR += py3-libxml2
     SUBDIR += pychm
     SUBDIR += pystemmer
     SUBDIR += qprint
@@ -1222,6 +1225,7 @@
     SUBDIR += qu-aspell
     SUBDIR += queequeg
     SUBDIR += rand
+    SUBDIR += rapidxml
     SUBDIR += raptor
     SUBDIR += raptor2
     SUBDIR += rarian
@@ -1300,6 +1304,7 @@
     SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-ini
     SUBDIR += rubygem-itextomml
+    SUBDIR += rubygem-jekyll-sass-converter
     SUBDIR += rubygem-jsmin
     SUBDIR += rubygem-kramdown
     SUBDIR += rubygem-kwalify
@@ -1313,6 +1318,7 @@
     SUBDIR += rubygem-multi_xml
     SUBDIR += rubygem-nokogiri
     SUBDIR += rubygem-opml
+    SUBDIR += rubygem-parslet
     SUBDIR += rubygem-phone
     SUBDIR += rubygem-rak
     SUBDIR += rubygem-rchardet

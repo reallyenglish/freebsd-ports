@@ -66,8 +66,6 @@
     SUBDIR += evolution-data-server
     SUBDIR += exist
     SUBDIR += fastdb
-    SUBDIR += firebird20-client
-    SUBDIR += firebird20-server
     SUBDIR += firebird21-client
     SUBDIR += firebird21-server
     SUBDIR += firebird25-client
@@ -231,6 +229,7 @@
     SUBDIR += mysqltuner
     SUBDIR += mytop
     SUBDIR += mywwwatcher
+    SUBDIR += nagios-check_mongodb
     SUBDIR += nagios-check_postgres_replication
     SUBDIR += nagios-check_redis
     SUBDIR += namazu2
@@ -714,6 +713,7 @@
     SUBDIR += py-flask-sqlalchemy
     SUBDIR += py-forgetsql
     SUBDIR += py-gdbm
+    SUBDIR += py-geoalchemy
     SUBDIR += py-hiredis
     SUBDIR += py-htsql
     SUBDIR += py-htsql-mysql
@@ -881,6 +881,7 @@
     SUBDIR += sqlite3
     SUBDIR += sqliteman
     SUBDIR += sqlitemanager
+    SUBDIR += sqliteodbc
     SUBDIR += sqlrelay
     SUBDIR += sqsh
     SUBDIR += squirrel-sql
@@ -896,6 +897,7 @@
     SUBDIR += tokyotyrant
     SUBDIR += tora
     SUBDIR += tuning-primer
+    SUBDIR += twemproxy
     SUBDIR += unixODBC
     SUBDIR += useracc
     SUBDIR += usogres

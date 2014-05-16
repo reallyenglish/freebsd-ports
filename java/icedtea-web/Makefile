@@ -78,7 +78,9 @@ WEBPLUGIN_FILES=IcedTeaPlugin.so
 
 .include <bsd.port.pre.mk>
 
-.if ${JAVA_PORT_VERSION} == "1.6.0"
+.if ${JAVA_PORT_VERSION} == "1.8.0"
+EXTRA_PATCHES=	${PATCHDIR}/extrapatch-jdk8
+.elif ${JAVA_PORT_VERSION} == "1.6.0"
 pre-extract:
 	@${ECHO_MSG}
 	@${ECHO_MSG} "IMPORTANT: To build IcedTea-Web ${PORTVERSION}, you have to turn on 'ICEDTEA' option"

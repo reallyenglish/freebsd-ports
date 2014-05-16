@@ -1,4 +1,4 @@
-# Created by: nemysis <nemysis@gmx.ch>
+# Created by: Rusmir Dusko <nemysis@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	fbg2
@@ -7,7 +7,7 @@ PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	SF/fbg/
 
-MAINTAINER=	nemysis@FreeBSD.org
+MAINTAINER=	games@FreeBSD.org
 COMMENT=	Classic block-stacking arcade game
 
 LICENSE=	GPLv2 CCbyNCSA3
@@ -36,7 +36,6 @@ PLIST_FILES=	bin/${PORTNAME} \
 PLIST_DIRS=	%%DATADIR%%
 
 PORTDOCS=	ChangeLog
-
 OPTIONS_DEFINE=	DOCS
 
 post-install:

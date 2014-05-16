@@ -3,14 +3,14 @@
 
 PORTNAME=	patapizza-tetris
 PORTVERSION=	1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	SF/nemysisfreebsdp/${CATEGORIES}/:icons
 DISTFILES=      ${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
 		${PORTNAME}.png:icons
 EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
-MAINTAINER=	nemysis@FreeBSD.org
+MAINTAINER=	games@FreeBSD.org
 COMMENT=	Unofficial clone of the original Tetris game
 
 LICENSE=	GPLv3

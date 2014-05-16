@@ -23,8 +23,11 @@
     SUBDIR += code2000
     SUBDIR += code2001
     SUBDIR += comfortaa-ttf
+    SUBDIR += comic-neue
     SUBDIR += consolamono-ttf
     SUBDIR += croscorefonts-fonts-ttf
+    SUBDIR += crosextrafonts-caladea-ttf
+    SUBDIR += crosextrafonts-carlito-ttf
     SUBDIR += cyberbit-ttfonts
     SUBDIR += cyr-rfx
     SUBDIR += dejavu
@@ -151,7 +154,6 @@
     SUBDIR += stix-fonts
     SUBDIR += suxus
     SUBDIR += terminus-font
-    SUBDIR += texcm-ttf
     SUBDIR += tkfont
     SUBDIR += tmu
     SUBDIR += ttmkfdir

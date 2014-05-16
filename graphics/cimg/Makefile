@@ -3,12 +3,13 @@
 
 PORTNAME=	cimg
 PORTVERSION=	1.5.8
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 MASTER_SITES=	SF/${PORTNAME}		\
 		SF/${PORTNAME}/old
 DISTNAME=	CImg-${DISTVERSION}
-DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
+DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}_${PORTREVISION}
 
 MAINTAINER=	thierry@FreeBSD.org
 COMMENT=	The C++ Template Image Processing Library
@@ -60,6 +61,11 @@ RUN_DEPENDS+=	medcon:${PORTSDIR}/graphics/xmedcon
 . endif
 . if !defined(WITHOUT_FFMPEG)
 LIB_DEPENDS+=	libavformat.so:${PORTSDIR}/multimedia/ffmpeg
+. endif
+
+. if !defined(WITHOUT_LAPACK)
+# Don't really need Fortran, but required to link with blas/lapack
+USES+=	fortran
 . endif
 
 DOCBASE=	README.txt
