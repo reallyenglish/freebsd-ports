@@ -41,8 +41,8 @@ SNMP_DESC=	Include support for SNMP plugins
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MSNMP}
-BUILD_DEPENDS+= p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP
-RUN_DEPENDS+= p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP
+BUILD_DEPENDS+=	p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP
+RUN_DEPENDS+=	p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP
 .endif
 
 MAN1=		munin-node-configure.1 \
