@@ -1443,6 +1443,7 @@
     SUBDIR += protovis
     SUBDIR += pserv
     SUBDIR += publicfile
+    SUBDIR += pukiwiki
     SUBDIR += punbb
     SUBDIR += pwebstats
     SUBDIR += py-GinGin
