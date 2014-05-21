@@ -1,0 +1,17 @@
+PukiWiki consists of a series of PHP Scripts designed to build 
+a collection of web pages which can be edited by anyone without any restriction.
+Pukiwiki is more flexible than moderate bulletinboards.
+Since it ,basically, enables everyone change the design and content of any 
+page, while you can only leave messages in bulletinboards.
+
+PukiWiki is a unique Wiki-Engine which is based on the YukiWiki specification 
+created by Mr. Hiroshi Yuki.
+Mr. yu-ji continued its development until the release of PukiWiki 1.3, and 
+PukiWiki Developers Team inherited the development from him after 1.3.1b.
+
+PukiWiki is written in PHP, so it's relatively easy to install
+on a web server which supports PHP.
+
+PukiWiki is distributed under GPL. Thus it is, so to speak, a  Free Software!
+
+WWW: http://pukiwiki.sourceforge.jp/
