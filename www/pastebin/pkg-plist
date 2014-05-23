@@ -332,8 +332,6 @@
 @dirrm %%WWWDIR%%/lib/pastebin
 @dirrm %%WWWDIR%%/lib
 @dirrm %%WWWDIR%%/public_html
-@dirrm %%WWWDIR%%/public_html
-@dirrm %%WWWDIR%%/lib
 @dirrmtry %%WWWDIR%%/posts
 @dirrmtry %%WWWDIR%%
 @exec mkdir -p %D/%%WWWDIR%%/posts
