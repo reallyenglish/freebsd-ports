@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ruby-build
-PORTVERSION=	20140408
+PORTVERSION=	20140509.1
 CATEGORIES=	devel ruby
 
 MAINTAINER=	fmb@onibox.net
@@ -19,11 +19,11 @@ RUN_DEPENDS=	autoconf:${PORTSDIR}/devel/autoconf \
 OPTIONS_DEFINE=	RBENV
 RBENV_DESC=	Install rbenv for installation support
 OPTIONS_DEFAULT=	RBENV
-RBENV_RUN_DEPENDS=	rbenv:${PORTSDIR}/devel/rbenv
+RBENV_RUN_DEPENDS=     rbenv:${PORTSDIR}/devel/rbenv
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sstephenson
-GH_COMMIT=	0a9b5e3
+GH_COMMIT=	9aece39
 GH_TAGNAME=	v${PORTVERSION}
 
 NO_BUILD=	yes
