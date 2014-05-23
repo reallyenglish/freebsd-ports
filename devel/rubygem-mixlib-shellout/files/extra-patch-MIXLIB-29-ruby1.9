@@ -1,0 +1,11 @@
+--- ./lib/mixlib/shellout/unix.rb.orig	2014-05-23 14:04:59.000000000 +0900
++++ ./lib/mixlib/shellout/unix.rb	2014-05-23 14:07:09.000000000 +0900
+@@ -222,7 +222,7 @@
+       # the ulimit based on platform.
+       def clean_parent_file_descriptors
+         # Don't clean $stdin, $stdout, $stderr, process_status_pipe.
+-        3.upto(256) do |n|
++        7.upto(256) do |n|
+           # We are checking the fd for error pipe before attempting to
+           # create a file because error pipe will auto close when we
+           # try to create a file since it's set to CLOEXEC.

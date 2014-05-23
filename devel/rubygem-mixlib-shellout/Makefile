@@ -3,7 +3,7 @@
 
 PORTNAME=	mixlib-shellout
 PORTVERSION=	1.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -13,5 +13,7 @@ COMMENT=	Shell interface that also collects stdout and stderr
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
+
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-MIXLIB-29-ruby${RUBY_VER}
 
 .include <bsd.port.mk>
