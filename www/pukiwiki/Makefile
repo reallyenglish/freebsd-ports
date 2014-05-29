@@ -4,23 +4,26 @@
 PORTNAME=	pukiwiki
 PORTVERSION=	1.4.7
 DISTVERSIONSUFFIX=	_notb_utf8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
-MASTER_SITES=	http://www.pmwiki.org/pub/pmwiki/
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_JP}
 MASTER_SITE_SUBDIR=	pukiwiki/12957
+
+PATCH_SITES=	http://program.sagasite.info/wiki/
+PATCH_SITE_SUBDIR=	wiki
+PATCHFILES=	index.php\?plugin=attach\&pcmd=open\&refer=PukiWiki\&file=${DISTNAME}-PHP5.4_debug.zip
 
 MAINTAINER=	mitsuruy@reallyenglish.com
 COMMENT=	A Wiki-Engine which is based on the YukiWiki specification
 
 LICENSE=	GPLv2
 
+USE_UNZIP=	yes
 USE_PHP=	mbstring
 WANT_PHP_WEB=	yes
 
 NO_BUILD=	yes
 
-FETCH_ARGS=	-pRr
 PLIST_SUB+=	PUKIWIKIDIR=${PUKIWIKIDIR}
 SUB_LIST+=	PUKIWIKIDIR=${PUKIWIKIDIR}
 
@@ -35,16 +38,19 @@ pre-fetch:
 PUKIWIKIDIR?=	www/pukiwiki
 PUKIWIKI_WRITEABLES=	attach backup cache counter diff trackback wiki
 
+do-patch:
+	@cd ${WRKSRC} && ${UNZIP_CMD} -o -j -d lib ${DISTDIR}/${PATCHFILES}
+
 do-install:
 	@${MKDIR} ${WWWDIR}
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${PREFIX}/${PUKIWIKIDIR}
 .for d in ${PUKIWIKI_WRITEABLES}
-	@${CHOWN} ${WWWOWN}:${WWWGRP} ${PREFIX}/${PUKIWIKIDIR}/${d}
+	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${PREFIX}/${PUKIWIKIDIR}/${d}
 .endfor
 
 post-install:
 .for d in ${PUKIWIKI_WRITEABLES}
-	@${ECHO_CMD} '@exec ${CHOWN} ${WWWOWN}:${WWWGRP} %D/${PUKIWIKIDIR}/${d}' \
+	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} %D/${PUKIWIKIDIR}/${d}' \
 		>> ${TMPPLIST}
 .endfor
 

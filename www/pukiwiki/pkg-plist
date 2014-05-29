@@ -154,6 +154,7 @@
 %%PUKIWIKIDIR%%/lib/plugin.php
 %%PUKIWIKIDIR%%/lib/proxy.php
 %%PUKIWIKIDIR%%/lib/pukiwiki.php
+%%PUKIWIKIDIR%%/lib/readme.txt
 %%PUKIWIKIDIR%%/lib/trackback.php
 %%PUKIWIKIDIR%%/plugin/.htaccess
 %%PUKIWIKIDIR%%/plugin/add.inc.php
