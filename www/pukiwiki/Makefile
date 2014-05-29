@@ -4,13 +4,12 @@
 PORTNAME=	pukiwiki
 PORTVERSION=	1.4.7
 DISTVERSIONSUFFIX=	_notb_utf8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_JP}
 MASTER_SITE_SUBDIR=	pukiwiki/12957
 
 PATCH_SITES=	http://program.sagasite.info/wiki/
-PATCH_SITE_SUBDIR=	wiki
 PATCHFILES=	index.php\?plugin=attach\&pcmd=open\&refer=PukiWiki\&file=${DISTNAME}-PHP5.4_debug.zip
 
 MAINTAINER=	mitsuruy@reallyenglish.com
@@ -38,8 +37,16 @@ pre-fetch:
 PUKIWIKIDIR?=	www/pukiwiki
 PUKIWIKI_WRITEABLES=	attach backup cache counter diff trackback wiki
 
+PUKIWIKI_PATCHES=	patch-plugin__ls2.inc.php
+
 do-patch:
 	@cd ${WRKSRC} && ${UNZIP_CMD} -o -j -d lib ${DISTDIR}/${PATCHFILES}
+.for p in ${PUKIWIKI_PATCHES}
+	${PATCH} ${PATCH_ARGS} < ${PATCHDIR}/${p}
+.endfor
+
+post-patch:
+	@${FIND} ${WRKSRC} -name \*.orig -exec ${RM} \{} \;
 
 do-install:
 	@${MKDIR} ${WWWDIR}
