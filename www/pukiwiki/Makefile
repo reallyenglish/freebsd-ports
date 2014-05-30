@@ -4,7 +4,7 @@
 PORTNAME=	pukiwiki
 PORTVERSION=	1.4.7
 DISTVERSIONSUFFIX=	_notb_utf8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_SOURCEFORGE_JP}
 MASTER_SITE_SUBDIR=	pukiwiki/12957
@@ -37,7 +37,9 @@ pre-fetch:
 PUKIWIKIDIR?=	www/pukiwiki
 PUKIWIKI_WRITEABLES=	attach backup cache counter diff trackback wiki
 
-PUKIWIKI_PATCHES=	patch-plugin__ls2.inc.php
+PUKIWIKI_PATCHES=	patch-plugin__ls2.inc.php \
+			patch-skin__pukiwiki.skin.php \
+			patch-skin__pukiwiki.css.php
 
 do-patch:
 	@cd ${WRKSRC} && ${UNZIP_CMD} -o -j -d lib ${DISTDIR}/${PATCHFILES}
