@@ -50,7 +50,6 @@
     SUBDIR += burpsuite
     SUBDIR += ca_root_nss
     SUBDIR += calife
-    SUBDIR += calife-devel
     SUBDIR += ccrypt
     SUBDIR += ccsrch
     SUBDIR += cfs
@@ -69,7 +68,6 @@
     SUBDIR += cl-md5-sbcl
     SUBDIR += clamassassin
     SUBDIR += clamav
-    SUBDIR += clamav-devel
     SUBDIR += clamav-milter
     SUBDIR += clamav-unofficial-sigs
     SUBDIR += clamcour
@@ -753,6 +751,7 @@
     SUBDIR += py-cryptkit
     SUBDIR += py-cryptography
     SUBDIR += py-cybox
+    SUBDIR += py-dfvfs
     SUBDIR += py-ecdsa
     SUBDIR += py-ed25519ll
     SUBDIR += py-fail2ban
@@ -863,6 +862,7 @@
     SUBDIR += rubygem-bcrypt-ruby
     SUBDIR += rubygem-ezcrypto
     SUBDIR += rubygem-gpgr
+    SUBDIR += rubygem-gssapi
     SUBDIR += rubygem-hmac
     SUBDIR += rubygem-jugyo-twitter_oauth
     SUBDIR += rubygem-metasploit_data_models

@@ -3,15 +3,20 @@
 
 PORTNAME=	sage
 PORTVERSION=	6.2
+PORTREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	http://boxen.math.washington.edu/home/sagemath/sage-mirror/src/ \
 		http://mirrors.xmission.com/sage/src/ \
 		http://www-ftp.lip6.fr/pub/math/sagemath/src/ \
 		http://www.sagemath.org/src-old/
 PKGNAMESUFFIX=	-math
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${PYTHON_SOURCE}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	stephen@FreeBSD.org
 COMMENT=	Open source Mathematics software
+
+LICENSE=	GPLv3
 
 BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		convert:${PORTSDIR}/graphics/ImageMagick \
@@ -22,6 +27,8 @@ LIB_DEPENDS=	libatlas.so:${PORTSDIR}/math/atlas \
 		liblapack.so:${PORTSDIR}/math/lapack \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
+
+PYTHON_SOURCE=	python/Python-2.7.6.tar.xz
 
 # 387 option: this only makes a difference for the amd64 architecture.  Causes
 # the internal floating point calculations to be performed with extended
@@ -68,22 +75,24 @@ LATEST_LINK=	sage-math	# Conflicts with graphics/sage.
 MAKE_ARGS+=	ARCH="${AR}"
 
 post-patch:
+	${CP} ${DISTDIR}/${PYTHON_SOURCE} ${WRKSRC}/upstream/.
+
 	${REINPLACE_CMD} 's/$$MAKE $$gettext/$$MAKE PTHREAD_LIBS=${PTHREAD_LIBS} $$gettext/' ${WRKSRC}/build/pkgs/git/spkg-install
 
 # Create the wrappers for the compiler invocations.
 	@${MKDIR} ${WRKSRC}/local/bin
 	@${LN} -s -f ${LOCALBASE}/bin/gmake ${WRKSRC}/local/bin/make
-	@${SED} -e 's#%%CC%%#${LOCALBASE}/bin/${CC}#' \
+	@${SED} -e "s#%%CC%%#`which ${CC}`#" \
 		-e 's#%%LDFLAGS%%#${LDFLAGS} ${FPM_FLAG}#' \
 		${FILESDIR}/gcc.in > ${WRKSRC}/local/bin/cc
 	@${CHMOD} +x ${WRKSRC}/local/bin/cc
 	@${LN} -s -f cc ${WRKSRC}/local/bin/gcc
-	@${SED} -e 's#%%CC%%#${LOCALBASE}/bin/${CXX}#' \
+	@${SED} -e "s#%%CC%%#`which ${CXX}`#" \
 		-e 's#%%LDFLAGS%%#${LDFLAGS} ${FPM_FLAG}#' \
 		${FILESDIR}/gcc.in > ${WRKSRC}/local/bin/c++
 	@${CHMOD} +x ${WRKSRC}/local/bin/c++
 	@${LN} -s -f c++ ${WRKSRC}/local/bin/g++
-	@${SED} -e 's#%%CC%%#${LOCALBASE}/bin/${FC}#' \
+	@${SED} -e "s#%%CC%%#`which ${FC}`#" \
 		-e 's#%%LDFLAGS%%#${LDFLAGS} ${FPM_FLAG}#' \
 		${FILESDIR}/gcc.in > ${WRKSRC}/local/bin/gfortran
 	@${CHMOD} +x ${WRKSRC}/local/bin/gfortran

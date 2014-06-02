@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	passenger
-PORTVERSION=	4.0.41
-PORTREVISION=	2
+PORTVERSION=	4.0.44
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMEPREFIX=	rubygem-
@@ -39,9 +38,9 @@ BUILD_DEPENDS+=	nginx:${PORTSDIR}/www/nginx-devel
 .endif
 .endif
 
-LIB_DEPENDS+=	eio:${PORTSDIR}/devel/libeio \
-		ev:${PORTSDIR}/devel/libev \
-		curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	libeio.so:${PORTSDIR}/devel/libeio \
+		libev.so:${PORTSDIR}/devel/libev \
+		libcurl.so:${PORTSDIR}/ftp/curl
 BUILD_DEPENDS+=	rubygem-fastthread>=1.0.1:${PORTSDIR}/devel/rubygem-fastthread \
 		rubygem-rack>=0:${PORTSDIR}/www/rubygem-rack \
 		rubygem-daemon_controller>=1.2.0:${PORTSDIR}/devel/rubygem-daemon_controller
@@ -115,5 +114,10 @@ post-build:
 
 	${FIND} ${WRKSRC} -name '*.o' -delete
 	${FIND} ${WRKSRC} -name '*.bak' -delete
+
+post-install:
+	( cd ${WRKSRC} && \
+	${COPYTREE_SHARE} buildout ${STAGEDIR}${PREFIX}/${GEMS_DIR}/${PORTNAME}-${PORTVERSION} )
+	${CHMOD} +x ${STAGEDIR}${PREFIX}/${GEMS_DIR}/${PORTNAME}-${PORTVERSION}/buildout/agents/*
 
 .include <bsd.port.mk>

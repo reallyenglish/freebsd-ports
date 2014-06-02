@@ -89,8 +89,8 @@ _USE_GNOME_ALL+= atk atspi cairo desktopfileutils eel2 evolutiondataserver gal2 
 		pygtksourceview vte
 
 # GNOME 3 components
-_USE_GNOME_ALL+= dconf gtk30 gtkhtml4 gtksourceview3 libgda5 libgda5-ui pygobject3 \
-		vte3
+_USE_GNOME_ALL+= dconf gtk30 gtkhtml4 gtksourceview3 libgda5 libgda5-ui \
+		py3gobject3 pygobject3 vte3
 
 # C++ bindings
 _USE_GNOME_ALL+=atkmm cairomm gconfmm gconfmm26 glibmm gtkmm20 gtkmm24 \
@@ -458,9 +458,14 @@ pygobject_BUILD_DEPENDS=	pygobject-codegen-2.0:${PORTSDIR}/devel/py-gobject
 pygobject_RUN_DEPENDS=		pygobject-codegen-2.0:${PORTSDIR}/devel/py-gobject
 pygobject_USE_GNOME_IMPL=	glib20
 
-pygobject3_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc
-pygobject3_BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc:${PORTSDIR}/devel/py-gobject3
-pygobject3_RUN_DEPENDS=		${LOCALBASE}/libdata/pkgconfig/pygobject-3.0.pc:${PORTSDIR}/devel/py-gobject3
+py3gobject3_DETECT=		${LOCALBASE}/share/py3gobject3/.keep
+py3gobject3_BUILD_DEPENDS=	py3?-gobject3>=0:${PORTSDIR}/devel/py3-gobject3
+py3gobject3_RUN_DEPENDS=	py3?-gobject3>=0:${PORTSDIR}/devel/py3-gobject3
+py3gobject3_USE_GNOME_IMPL=	glib20
+
+pygobject3_DETECT=		${LOCALBASE}/share/pygobject3/.keep
+pygobject3_BUILD_DEPENDS=	py2?-gobject3>=0:${PORTSDIR}/devel/py-gobject3
+pygobject3_RUN_DEPENDS=		py2?-gobject3>=0:${PORTSDIR}/devel/py-gobject3
 pygobject3_USE_GNOME_IMPL=	glib20
 
 pygtk2_DETECT=		${LOCALBASE}/libdata/pkgconfig/pygtk-2.0.pc
@@ -874,10 +879,10 @@ gnome-pre-su-install:
 gnome-post-install:
 .  if defined(GCONF_SCHEMAS)
 	@for i in ${GCONF_SCHEMAS}; do \
-		${ECHO_CMD} "@unexec env GCONF_CONFIG_SOURCE=xml:${GCONF_CONFIG_OPTIONS}:%D/${GCONF_CONFIG_DIRECTORY} gconftool-2 --makefile-uninstall-rule %D/etc/gconf/schemas/$${i} > /dev/null || /usr/bin/true" \
+		${ECHO_CMD} "@unexec env GCONF_CONFIG_SOURCE=xml:${GCONF_CONFIG_OPTIONS}:%D/${GCONF_CONFIG_DIRECTORY} HOME=${WRKDIR} gconftool-2 --makefile-uninstall-rule %D/etc/gconf/schemas/$${i} > /dev/null || /usr/bin/true" \
 			>> ${TMPPLIST}; \
 		${ECHO_CMD} "etc/gconf/schemas/$${i}" >> ${TMPPLIST}; \
-		${ECHO_CMD} "@exec env GCONF_CONFIG_SOURCE=xml:${GCONF_CONFIG_OPTIONS}:%D/${GCONF_CONFIG_DIRECTORY} gconftool-2 --makefile-install-rule %D/etc/gconf/schemas/$${i} > /dev/null || /usr/bin/true" \
+		${ECHO_CMD} "@exec env GCONF_CONFIG_SOURCE=xml:${GCONF_CONFIG_OPTIONS}:%D/${GCONF_CONFIG_DIRECTORY} HOME=${WRKDIR} gconftool-2 --makefile-install-rule %D/etc/gconf/schemas/$${i} > /dev/null || /usr/bin/true" \
 			>> ${TMPPLIST}; \
 	done
 .  endif

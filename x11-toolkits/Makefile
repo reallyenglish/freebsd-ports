@@ -47,6 +47,7 @@
     SUBDIR += gtk30
     SUBDIR += gtk30-reference
     SUBDIR += gtkada
+    SUBDIR += gtkada3
     SUBDIR += gtkdatabox
     SUBDIR += gtkextra2
     SUBDIR += gtkglarea2
@@ -98,7 +99,6 @@
     SUBDIR += libgnomeui
     SUBDIR += libgnomeui-reference
     SUBDIR += libgnomeuimm26
-    SUBDIR += libgtk-java
     SUBDIR += libgtksourceviewmm
     SUBDIR += libmatewnck
     SUBDIR += libpanelappletmm

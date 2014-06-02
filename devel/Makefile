@@ -76,6 +76,7 @@
     SUBDIR += art
     SUBDIR += as31
     SUBDIR += asdlgen
+    SUBDIR += asl
     SUBDIR += asmutils
     SUBDIR += asmx
     SUBDIR += astah-community
@@ -179,6 +180,7 @@
     SUBDIR += c4
     SUBDIR += calibrator
     SUBDIR += capstone
+    SUBDIR += catch
     SUBDIR += cbind
     SUBDIR += cbrowser
     SUBDIR += cc65
@@ -238,8 +240,8 @@
     SUBDIR += cld
     SUBDIR += clewn
     SUBDIR += clig
-    SUBDIR += clint
     SUBDIR += clisp-hyperspec
+    SUBDIR += clojure-cider
     SUBDIR += cmake
     SUBDIR += cmake-fedora
     SUBDIR += cmake-gui
@@ -324,6 +326,7 @@
     SUBDIR += cxxtools
     SUBDIR += d-feet
     SUBDIR += darts
+    SUBDIR += dash.el
     SUBDIR += dasm
     SUBDIR += datadraw
     SUBDIR += dbus
@@ -337,6 +340,7 @@
     SUBDIR += dconf
     SUBDIR += dconf-editor
     SUBDIR += ddd
+    SUBDIR += dee
     SUBDIR += deforaos-libsystem
     SUBDIR += deheader
     SUBDIR += delta
@@ -406,6 +410,7 @@
     SUBDIR += elib-emacs21
     SUBDIR += entity
     SUBDIR += epm
+    SUBDIR += epl.el
     SUBDIR += epydoc
     SUBDIR += eric4
     SUBDIR += eris
@@ -573,6 +578,7 @@
     SUBDIR += glrparser
     SUBDIR += glui
     SUBDIR += gmake
+    SUBDIR += gnatcoll
     SUBDIR += gnatpython
     SUBDIR += gnome-common
     SUBDIR += gnome-js-common
@@ -606,6 +612,7 @@
     SUBDIR += gps
     SUBDIR += gpsim
     SUBDIR += gputils
+    SUBDIR += gradle
     SUBDIR += grantlee
     SUBDIR += gsettings-desktop-schemas
     SUBDIR += gsoap
@@ -858,6 +865,7 @@
     SUBDIR += ioncube
     SUBDIR += ipython
     SUBDIR += ireport
+    SUBDIR += isl
     SUBDIR += itext
     SUBDIR += jakarta-commons-configuration
     SUBDIR += jakarta-commons-daemon
@@ -960,6 +968,7 @@
     SUBDIR += libdasm
     SUBDIR += libdatrie
     SUBDIR += libdbusmenu-qt
+    SUBDIR += libdevq
     SUBDIR += libdfui
     SUBDIR += libdict
     SUBDIR += libdisasm
@@ -999,7 +1008,6 @@
     SUBDIR += libg19draw
     SUBDIR += libgalago
     SUBDIR += libgamepad
-    SUBDIR += libgconf-java
     SUBDIR += libgdata
     SUBDIR += libgee
     SUBDIR += libgee06
@@ -1007,7 +1015,6 @@
     SUBDIR += libghthash
     SUBDIR += libgii
     SUBDIR += libgit2
-    SUBDIR += libglade-java
     SUBDIR += libglade2
     SUBDIR += libglade2-reference
     SUBDIR += libglademm24
@@ -1138,9 +1145,11 @@
     SUBDIR += libvanessa_logger
     SUBDIR += libvanessa_socket
     SUBDIR += libvc
+    SUBDIR += libvhdi
     SUBDIR += libvirt
     SUBDIR += libvirt-glib
     SUBDIR += libvirt-java
+    SUBDIR += libvmdk
     SUBDIR += libvolume_id
     SUBDIR += libvshadow
     SUBDIR += libwfut
@@ -1262,7 +1271,6 @@
     SUBDIR += msgpack
     SUBDIR += msp430-binutils
     SUBDIR += msp430-gcc
-    SUBDIR += msp430-gcc3
     SUBDIR += msp430-gdb
     SUBDIR += msp430-libc
     SUBDIR += msp430mcu
@@ -2632,6 +2640,7 @@
     SUBDIR += p5-Religion
     SUBDIR += p5-ResourcePool
     SUBDIR += p5-Resources
+    SUBDIR += p5-Return-MultiLevel
     SUBDIR += p5-Return-Type
     SUBDIR += p5-Return-Value
     SUBDIR += p5-Role-Basic
@@ -2886,6 +2895,7 @@
     SUBDIR += p5-Test-NoWarnings
     SUBDIR += p5-Test-Number-Delta
     SUBDIR += p5-Test-Object
+    SUBDIR += p5-Test-OpenLDAP
     SUBDIR += p5-Test-Output
     SUBDIR += p5-Test-POE-Client-TCP
     SUBDIR += p5-Test-POE-Server-TCP
@@ -3330,6 +3340,7 @@
     SUBDIR += pecl-judy
     SUBDIR += pecl-libevent
     SUBDIR += pecl-mcve
+    SUBDIR += pecl-memoize
     SUBDIR += pecl-msgpack
     SUBDIR += pecl-ncurses
     SUBDIR += pecl-newt
@@ -3412,6 +3423,7 @@
     SUBDIR += pire
     SUBDIR += pit
     SUBDIR += pkgconf
+    SUBDIR += pkg-info.el
     SUBDIR += plan9port
     SUBDIR += pmccabe
     SUBDIR += pmd
@@ -3582,6 +3594,7 @@
     SUBDIR += py-cxx
     SUBDIR += py-d2to1
     SUBDIR += py-daemon
+    SUBDIR += py-daemons
     SUBDIR += py-dal
     SUBDIR += py-darcsver
     SUBDIR += py-dateutil
@@ -3769,6 +3782,7 @@
     SUBDIR += py-pytemplate
     SUBDIR += py-pytest
     SUBDIR += py-pytest-runner
+    SUBDIR += py-python-statsd
     SUBDIR += py-pythonbrew
     SUBDIR += py-pytz
     SUBDIR += py-pyutil
@@ -3985,10 +3999,14 @@
     SUBDIR += py-zope.traversing
     SUBDIR += py-zope.viewlet
     SUBDIR += py_static_check
+    SUBDIR += py3-dbus
+    SUBDIR += py3-gobject3
     SUBDIR += pybaz
     SUBDIR += pybugz
     SUBDIR += pychecker
     SUBDIR += pycount
+    SUBDIR += pydbus-common
+    SUBDIR += pygobject3-common
     SUBDIR += pylint
     SUBDIR += pymacs
     SUBDIR += pyobfuscate
@@ -4176,6 +4194,7 @@
     SUBDIR += rubygem-coffee-rails
     SUBDIR += rubygem-coffee-script
     SUBDIR += rubygem-coffee-script-source
+    SUBDIR += rubygem-colorize
     SUBDIR += rubygem-columnize
     SUBDIR += rubygem-commander
     SUBDIR += rubygem-configatron
@@ -4279,6 +4298,7 @@
     SUBDIR += rubygem-kafo_parsers
     SUBDIR += rubygem-kgio
     SUBDIR += rubygem-launchy
+    SUBDIR += rubygem-launchy22
     SUBDIR += rubygem-librarian
     SUBDIR += rubygem-listen
     SUBDIR += rubygem-little_plugger

@@ -3,10 +3,11 @@
 
 PORTNAME=	recoll
 PORTVERSION=	1.19.13
+PORTREVISION=	1
 CATEGORIES=	deskutils
 MASTER_SITES=	http://www.lesbonscomptes.com/${PORTNAME}/
 
-MAINTAINER=	nemysis@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Personal full text search package, based on Xapian
 
 LICENSE=	GPLv2
@@ -28,7 +29,8 @@ CONFIGURE_ARGS=	--enable-pic
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS_DEFINE=	ASPELL CHM DJVU KONQUEROR LATEX IMAGE PDF PS PYTHON SOUND QT4 X11MON
+OPTIONS_DEFINE=	ASPELL CHM DJVU KONQUEROR LATEX IMAGE PDF PS PYTHON SOUND \
+		QT4 X11MON
 CHM_DESC=	CHM via CHMLIB
 IMAGE_DESC=	Store personal tags or textual descriptions in images
 X11MON_DESC=	X11 session monitoring support
