@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libdvdcss
-PORTVERSION=	1.2.12
-PORTREVISION=	1
+PORTVERSION=	1.2.13
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.videolan.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTVERSION}
@@ -25,15 +24,6 @@ OPTIONS_DEFINE=	DOXYGEN
 .if ${PORT_OPTIONS:MDOXYGEN}
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 PORTDOCS=	*
-.endif
-
-post-patch:
-.if ${PORT_OPTIONS:MDOXYGEN}
-# we do not want the latex documents... too many dependencies just
-# to get in ps what we already have in html
-	@${REINPLACE_CMD} '/^all:/s/stamp-latex//' ${WRKSRC}/doc/Makefile.in
-.else
-	@${REINPLACE_CMD} '/^SUBDIRS =/s/doc//' ${WRKSRC}/Makefile.in
 .endif
 
 post-install:

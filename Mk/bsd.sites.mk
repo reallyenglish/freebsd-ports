@@ -26,14 +26,10 @@
 # Where to put distfiles that don't have any other master site
 .if !defined(IGNORE_MASTER_SITE_LOCAL)
 MASTER_SITE_LOCAL+= \
-	http://ftp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.se.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.uk.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.ru.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.jp.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.tw.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/ \
-	ftp://ftp.cn.FreeBSD.org/pub/FreeBSD/ports/local-distfiles/%SUBDIR%/
+	http://distcache.FreeBSD.org/local-distfiles/%SUBDIR%/ \
+	http://distcache.us-east.FreeBSD.org/local-distfiles/%SUBDIR%/ \
+	http://distcache.eu.FreeBSD.org/local-distfiles/%SUBDIR%/ \
+	http://distcache.us-west.FreeBSD.org/local-distfiles/%SUBDIR%/
 
 MASTER_SITE_PORTS_JP+= \
 	ftp://ports.jp.FreeBSD.org/pub/FreeBSD-jp/ports-jp/LOCAL_PORTS/%SUBDIR%/ \
@@ -627,7 +623,7 @@ MASTER_SITE_HORDE+= \
 
 .if !defined(IGNORE_MASTER_SITE_IDSOFTWARE)
 MASTER_SITE_IDSOFTWARE+= \
-	ftp://ftp.chg.ru/pub/games/idgames/idstuff/%SUBDIR%/ \
+	ftp://ftp.gwdg.de/pub/misc2/ftp.idsoftware.com/idstuff/%SUBDIR%/ \
 	http://ftp4.de.freesbie.org/pub/misc/ftp.idsoftware.com/idstuff/%SUBDIR%/ \
 	ftp://ftp.fu-berlin.de/pc/games/idgames/idstuff/%SUBDIR%/ \
 	ftp://ftp.gamers.org/pub/idgames/idstuff/%SUBDIR%/ \
@@ -1448,12 +1444,8 @@ MASTER_SITE_XFCE+= \
 	http://xfce.mirror.uber.com.au/%SUBDIR%/ \
 	http://archive.be.xfce.org/%SUBDIR%/ \
 	http://archive.be2.xfce.org/%SUBDIR%/ \
-	http://archive.se.xfce.org/%SUBDIR%/ \
 	http://archive.al-us.xfce.org/%SUBDIR%/ \
-	http://mirrors.tummy.com/pub/archive.xfce.org/%SUBDIR%/ \
-	http://mirror.yongbok.net/X11/xfce-mirror/%SUBDIR%/ \
-	http://xfce.ognisco.com/%SUBDIR%/ \
-	http://mirror.sinn3r.org/xfce/%SUBDIR%/
+	http://mirrors.tummy.com/pub/archive.xfce.org/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XORG)

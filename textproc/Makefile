@@ -1161,6 +1161,7 @@
     SUBDIR += py-markdown
     SUBDIR += py-markdown2
     SUBDIR += py-openpyxl
+    SUBDIR += py-openpyxl1
     SUBDIR += py-paragrep
     SUBDIR += py-pdfminer
     SUBDIR += py-pss
@@ -1317,6 +1318,7 @@
     SUBDIR += rubygem-markaby
     SUBDIR += rubygem-multi_xml
     SUBDIR += rubygem-nokogiri
+    SUBDIR += rubygem-nokogiri14
     SUBDIR += rubygem-opml
     SUBDIR += rubygem-parslet
     SUBDIR += rubygem-phone
@@ -1437,6 +1439,7 @@
     SUBDIR += teckit
     SUBDIR += tei-guidelines-p3
     SUBDIR += tei-p3
+    SUBDIR += templates_parser
     SUBDIR += tet-aspell
     SUBDIR += tex2im
     SUBDIR += texi2db

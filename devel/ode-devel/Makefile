@@ -3,7 +3,7 @@
 
 PORTNAME=	ode
 DISTVERSION=	${ODEVER}-060223
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://opende.sourceforge.net/snapshots/
 PKGNAMESUFFIX=	-devel
@@ -12,19 +12,21 @@ DISTNAME=	${PORTNAME}-${DISTVERSION:S/${ODEVER}-//}
 MAINTAINER=	acm@FreeBSD.org
 COMMENT=	Articulated rigid body dynamics library (devel)
 
+DEPRECATED=	Outdated by devel/ode
+EXPIRATION_DATE=2014-06-27
+
 ODEVER=		0.5
 
 CONFLICTS=	ode-[0-9].*
 
 USE_GL=		yes
-USE_GMAKE=	yes
+USES=		gmake
 MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFINE=	OPCODE
 OPTIONS_DEFAULT=	OPCODE
 OPCODE_DESC=	Enable code required by TriList (trimesh) class
 
-NO_STAGE=	yes
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == "amd64" || ${ARCH} == "ia64"
@@ -49,9 +51,9 @@ do-configure:
 	@${REINPLACE_CMD} -e '/include.*values.h/d' ${WRKSRC}/include/ode/config.h
 
 do-install:
-	@${INSTALL_DATA} ${WRKSRC}/lib/libode.a ${PREFIX}/lib
-	@${INSTALL_DATA} ${WRKSRC}/lib/libdrawstuff.a ${PREFIX}/lib
-	@${MKDIR} ${PREFIX}/include/ode
-	@${INSTALL_DATA} ${WRKSRC}/include/ode/*.h ${PREFIX}/include/ode
+	@${INSTALL_DATA} ${WRKSRC}/lib/libode.a ${STAGEDIR}${PREFIX}/lib
+	@${INSTALL_DATA} ${WRKSRC}/lib/libdrawstuff.a ${STAGEDIR}${PREFIX}/lib
+	@${MKDIR} ${STAGEDIR}${PREFIX}/include/ode
+	@${INSTALL_DATA} ${WRKSRC}/include/ode/*.h ${STAGEDIR}${PREFIX}/include/ode
 
 .include <bsd.port.post.mk>

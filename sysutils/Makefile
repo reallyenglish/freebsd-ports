@@ -134,6 +134,7 @@
     SUBDIR += consolehm
     SUBDIR += consolekit
     SUBDIR += contool
+    SUBDIR += contractor
     SUBDIR += copytape
     SUBDIR += coreutils
     SUBDIR += cotty
@@ -779,6 +780,7 @@
     SUBDIR += rsyncrypto
     SUBDIR += rsyslog7
     SUBDIR += rsyslog7-devel
+    SUBDIR += rsyslog8
     SUBDIR += rsyslog8-devel
     SUBDIR += rtty
     SUBDIR += ruby-quota
@@ -827,6 +829,7 @@
     SUBDIR += rubygem-sys-uname
     SUBDIR += rubygem-sys-uptime
     SUBDIR += rubygem-teamocil
+    SUBDIR += rubygem-winrm
     SUBDIR += rubygem-yell
     SUBDIR += runit
     SUBDIR += runwhen
@@ -894,7 +897,6 @@
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
-    SUBDIR += synergy-devel
     SUBDIR += sysgather
     SUBDIR += sysinfo
     SUBDIR += syslinux
