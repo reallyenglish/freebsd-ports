@@ -1,21 +1,20 @@
 # $FreeBSD$
 
 PORTNAME=	fluentd
-PORTVERSION=	0.10.35
+PORTVERSION=	0.10.48
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	kuriyama@FreeBSD.org
 COMMENT=	Fluent event collector
 
-BROKEN=		Requires http_parser version 0.5.1 while version 0.6 is installed
-
 RUN_DEPENDS=	\
 	rubygem-msgpack>=0.5.4:${PORTSDIR}/devel/rubygem-msgpack \
 	rubygem-json>=1.4.3:${PORTSDIR}/devel/rubygem-json \
 	rubygem-yajl-ruby>=1.0:${PORTSDIR}/devel/rubygem-yajl-ruby \
-	rubygem-cool.io>=1.1.0:${PORTSDIR}/devel/rubygem-cool.io \
-	rubygem-http_parser.rb>=0.5.1:${PORTSDIR}/net/rubygem-http_parser.rb
+	rubygem-cool.io>=1.1.1:${PORTSDIR}/devel/rubygem-cool.io \
+	rubygem-http_parser.rb>=0.6.0:${PORTSDIR}/net/rubygem-http_parser.rb \
+	rubygem-sigdump>=0.2.2:${PORTSDIR}/devel/rubygem-sigdump
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes

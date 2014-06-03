@@ -1,0 +1,5 @@
+Setup signal handler which dumps backtrace of running threads and number of
+allocated objects per class. Require 'sigdump/setup', send SIGCONT, and see
+/tmp/sigdump-<pid>.log.
+
+WWW: https://github.com/frsyuki/sigdump
