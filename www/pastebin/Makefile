@@ -3,7 +3,7 @@
 
 PORTNAME=	pastebin
 PORTVERSION=	0.62
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 
 MAINTAINER=	mitsuruy@reallyenglish.com
@@ -29,6 +29,9 @@ DOCS=		INSTALL README.md CHANGES UPGRADE
 
 post-extract:
 	@cd ${WRKDIR} && ${FIND} . -name .gitignore -delete
+
+post-patch:
+	@cd ${WRKDIR} && ${FIND} . -name "*.orig" -delete
 
 do-install:
 	@${MKDIR} ${WWWDIR}
