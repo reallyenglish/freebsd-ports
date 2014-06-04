@@ -1,0 +1,3 @@
+Output filter plugin for modifying each event record
+
+WWW: https://github.com/repeatedly/fluent-plugin-record-modifier
