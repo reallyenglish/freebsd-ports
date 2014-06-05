@@ -1837,6 +1837,7 @@
     SUBDIR += rubygem-nicovideo
     SUBDIR += rubygem-ntlm-http
     SUBDIR += rubygem-passenger
+    SUBDIR += rubygem-patron
     SUBDIR += rubygem-puma
     SUBDIR += rubygem-puma16
     SUBDIR += rubygem-rabbirack
