@@ -2,6 +2,7 @@
 
 PORTNAME=	fluentd
 PORTVERSION=	0.10.48
+PORTREVISION=	1
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 
@@ -25,6 +26,6 @@ RUBYGEM_AUTOPLIST=	yes
 USE_RC_SUBR=	fluentd
 USERS=		fluentd
 GROUPS=		fluentd
-SUB_LIST+=	USER=${USERS} GROUP=${GROUPS}
+SUB_LIST+=	USER=${USERS} GROUP=${GROUPS} RUBY=${RUBY}
 
 .include <bsd.port.mk>
