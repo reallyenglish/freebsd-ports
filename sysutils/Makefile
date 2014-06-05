@@ -799,6 +799,7 @@
     SUBDIR += rubygem-fluent-mixin-plaintextformatter
     SUBDIR += rubygem-fluent-plugin-config-expander
     SUBDIR += rubygem-fluent-plugin-file-alternative
+    SUBDIR += rubygem-fluent-plugin-record-modifier
     SUBDIR += rubygem-fluent-plugin-tail-asis
     SUBDIR += rubygem-fluentd
     SUBDIR += rubygem-fssm
