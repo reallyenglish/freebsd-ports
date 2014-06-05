@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	msgpack
-PORTVERSION=	0.5.5
+PORTVERSION=	0.5.8
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
