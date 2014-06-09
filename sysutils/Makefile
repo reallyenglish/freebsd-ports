@@ -801,6 +801,7 @@
     SUBDIR += rubygem-fluent-plugin-elasticsearch
     SUBDIR += rubygem-fluent-plugin-file-alternative
     SUBDIR += rubygem-fluent-plugin-record-modifier
+    SUBDIR += rubygem-fluent-plugin-redis
     SUBDIR += rubygem-fluent-plugin-tail-asis
     SUBDIR += rubygem-fluentd
     SUBDIR += rubygem-fssm
