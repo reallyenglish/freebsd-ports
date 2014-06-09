@@ -17,14 +17,9 @@ WRKSRC=		${WRKDIR}/${DISTNAME}
 USE_PHP=	hash ldap mcrypt
 
 NO_BUILD=	yes
-PLIST_SUB+=	WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
 
 do-install:
 	@${MKDIR} ${WWWDIR}
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${WWWDIR}
-#	@cd ${WRKSRC} && ${COPYTREE_SHARE} lib ${WWWDIR}
-#	@cd ${WRKSRC} && ${COPYTREE_SHARE} public_html ${WWWDIR}
-#	@${MKDIR} ${WWWDIR}/posts
-#	@${CHOWN} ${WWWOWN}:${WWWGRP} ${WWWDIR}/posts
 
 .include <bsd.port.mk>
