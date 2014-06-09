@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cool.io
-PORTVERSION=	1.2.1
+PORTVERSION=	1.2.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
