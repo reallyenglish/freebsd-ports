@@ -3,10 +3,11 @@
 
 PORTNAME=	mpop
 PORTVERSION=	1.0.28
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	SF
 
-MAINTAINER=	sylvio@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	MPOP is a small and fast POP3 client
 
 LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
@@ -21,8 +22,7 @@ GSASL_DESC=	GSASL GNU SASL authentication support
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
 
-USES=		pkgconfig
-USE_BZIP2=	yes
+USES=		pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-libidn
 

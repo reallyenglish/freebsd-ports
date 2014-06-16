@@ -30,6 +30,7 @@
     SUBDIR += artha
     SUBDIR += asciidoc
     SUBDIR += asm-xml
+    SUBDIR += asm2html
     SUBDIR += aspell
     SUBDIR += aspell-ispell
     SUBDIR += ast-aspell
@@ -200,6 +201,7 @@
     SUBDIR += go.text
     SUBDIR += goldendict
     SUBDIR += google-ctemplate
+    SUBDIR += google-translate-cli
     SUBDIR += gpp
     SUBDIR += grap
     SUBDIR += grc-aspell
@@ -344,10 +346,14 @@
     SUBDIR += latex-service
     SUBDIR += latex2html
     SUBDIR += lemmatizer2
+    SUBDIR += libabw
+    SUBDIR += libabw00
     SUBDIR += libcrm114
     SUBDIR += libcroco
     SUBDIR += libcsv
     SUBDIR += libcue
+    SUBDIR += libe-book
+    SUBDIR += libe-book00
     SUBDIR += libebml
     SUBDIR += libextractor
     SUBDIR += libexttextcat
@@ -364,6 +370,7 @@
     SUBDIR += libnxml
     SUBDIR += libodfgen
     SUBDIR += libparsifal
+    SUBDIR += librevenge
     SUBDIR += libroxml
     SUBDIR += libsass
     SUBDIR += libsoldout
@@ -1332,6 +1339,7 @@
     SUBDIR += rubygem-redcarpet
     SUBDIR += rubygem-ri_cal
     SUBDIR += rubygem-rich
+    SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-sanitize
     SUBDIR += rubygem-sass

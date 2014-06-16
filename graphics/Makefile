@@ -497,6 +497,8 @@
     SUBDIR += libexif
     SUBDIR += libexif-gtk
     SUBDIR += libfpx
+    SUBDIR += libfreehand
+    SUBDIR += libfreehand00
     SUBDIR += libgaiagraphics
     SUBDIR += libgeotiff
     SUBDIR += libgfx
@@ -813,6 +815,7 @@
     SUBDIR += pure-gl
     SUBDIR += pvmpov
     SUBDIR += py-PyX
+    SUBDIR += py-PyX12
     SUBDIR += py-aafigure
     SUBDIR += py-actdiag
     SUBDIR += py-blockdiag
@@ -992,6 +995,7 @@
     SUBDIR += tgif
     SUBDIR += tif22pnm
     SUBDIR += tiff
+    SUBDIR += tiffgt
     SUBDIR += tifmerge
     SUBDIR += tilecache
     SUBDIR += tiled
