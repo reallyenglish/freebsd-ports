@@ -3,7 +3,7 @@
 
 PORTNAME=	self-service-password
 PORTVERSION=	0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	http://tools.ltb-project.org/attachments/download/497/
 DISTNAME=	ltb-project-${PORTNAME}-${PORTVERSION}
@@ -15,7 +15,7 @@ LICENSE=	GPLv2
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
-USE_PHP=	hash ldap mcrypt filter
+USE_PHP=	hash ldap mcrypt filter xml iconv
 
 NO_BUILD=	yes
 
