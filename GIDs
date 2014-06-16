@@ -205,6 +205,7 @@ bnetd:*:700:
 beaver:*:702:
 bopm:*:717:
 openxpki:*:777:
+zetacoin:*:780:
 foreman_proxy:*:812:
 puppet:*:814:
 jenkins:*:818:

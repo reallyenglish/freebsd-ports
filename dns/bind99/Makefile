@@ -1,11 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	bind
-PORTVERSION=	9.9.5
-PORTREVISION=	16
+PORTVERSION=	${ISCVERSION:S/-P/P/}
 CATEGORIES=	dns net ipv6
-MASTER_SITES=	${MASTER_SITE_ISC}
-MASTER_SITE_SUBDIR=	bind9/${ISCVERSION}
+MASTER_SITES=	ISC/bind9/${ISCVERSION}
 PKGNAMESUFFIX?=	99
 DISTNAME=	${PORTNAME}-${ISCVERSION}
 
@@ -15,7 +13,7 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	ISCL
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.9.5
+ISCVERSION=	9.9.5-P1
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -97,8 +95,8 @@ RPZ_NSIP_CONFIGURE_ENABLE=	rpz-nsip
 
 RPZ_NSDNAME_CONFIGURE_ENABLE=	rpz-nsdname
 
-RPZ_PATCH_PATCHFILES=	9.9.5-rpz2+rl.14038.05.patch:vix
-RPZ_PATCH_PATCH_SITES=	http://ss.vix.su/~vjs/:vix
+RPZ_PATCH_PATCHFILES=	9.9.5-P1-rpz2+rl.14038.05.patch:vix
+RPZ_PATCH_PATCH_SITES=	http://ss.vix.su/~vjs/:vix ${MASTER_SITE_LOCAL:S/%SUBDIR%/mat\/bind/:S/$/:vix/}
 
 RRL_CONFIGURE_ENABLE=	rrl
 
@@ -141,27 +139,26 @@ CONFIGURE_ARGS+=	--disable-threads
 .if ${PORT_OPTIONS:MREPLACE_BASE}
 .if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
 IGNORE=		REPLACE_BASE option is not supported on this release
-.endif
+.endif # >= 10.0
 PKGNAMESUFFIX=	-base
 PREFIX=		/usr
 PLIST_SUB+=	SHARE_MAN="share/"
 NO_MTREE=	yes
 BIND_DESTETC=	/etc/namedb
-.else
+.else # REPLACE_BASE
 PLIST_SUB+=	SHARE_MAN=""
 .if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
 BIND_DESTETC=	${PREFIX}/etc/namedb
 PKGINSTALL=	${NONEXISTENT}
-.else
+.else # >= 10.0
 BIND_DESTETC=	${PREFIX}/etc
-.endif
-.endif
+.endif # >= 10.0
+.endif # REPLACE_BASE
 
 PKGDEINSTALL=	${PKGINSTALL}
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX} \
 			--sysconfdir=${BIND_DESTETC}
-PLIST_SUB+=	BIND_DESTETC="${BIND_DESTETC}"
 SUB_LIST+=	BIND_DESTETC="${BIND_DESTETC}"
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
@@ -210,19 +207,17 @@ post-install:
 .endif
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
-	${MKDIR} ${STAGEDIR}${BIND_DESTETC}
+	${MKDIR} ${STAGEDIR}${ETCDIR}
 .for i in dynamic master slave working
-	@${MKDIR} ${STAGEDIR}${BIND_DESTETC}/$i
+	@${MKDIR} ${STAGEDIR}${ETCDIR}/$i
 .endfor
-	${INSTALL_DATA} ${WRKDIR}/named.conf ${STAGEDIR}${BIND_DESTETC}/named.conf.sample
-	${INSTALL_DATA} ${FILESDIR}/named.root ${STAGEDIR}${BIND_DESTETC}
-	${INSTALL_DATA} ${FILESDIR}/empty.db ${STAGEDIR}${BIND_DESTETC}/master
-	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${STAGEDIR}${BIND_DESTETC}/master
-	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${BIND_DESTETC}/master
+	${INSTALL_DATA} ${WRKDIR}/named.conf ${STAGEDIR}${ETCDIR}/named.conf.sample
+	${INSTALL_DATA} ${FILESDIR}/named.root ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/empty.db ${STAGEDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${STAGEDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf ${STAGEDIR}${ETCDIR}/rndc.conf.sample
 .endif
-	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
-		${STAGEDIR}${BIND_DESTETC}/rndc.conf.sample
-
 .endif	# BIND_TOOLS_SLAVE
 
 .include <bsd.port.mk>

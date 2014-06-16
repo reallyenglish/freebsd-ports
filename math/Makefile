@@ -274,6 +274,7 @@
     SUBDIR += numdiff
     SUBDIR += nyh-hoc
     SUBDIR += ocaml-ocamlgraph
+    SUBDIR += ocaml-zarith
     SUBDIR += ocamlgsl
     SUBDIR += octave
     SUBDIR += octave-forge
@@ -611,6 +612,8 @@
     SUBDIR += ruby-numru_units
     SUBDIR += rubygem-narray
     SUBDIR += rubygem-narray_miss
+    SUBDIR += rubygem-numru-misc
+    SUBDIR += rubygem-numru-units
     SUBDIR += saga
     SUBDIR += sage
     SUBDIR += sc
@@ -659,6 +662,8 @@
     SUBDIR += vtk6
     SUBDIR += wcalc
     SUBDIR += wfmath
+    SUBDIR += why3
+    SUBDIR += why3-gpl
     SUBDIR += wingz3
     SUBDIR += wxMaxima
     SUBDIR += x12arima

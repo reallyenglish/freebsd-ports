@@ -1,16 +1,14 @@
 # $FreeBSD$
 
 PORTNAME=	pkg
-DISTVERSION=	1.3.0.b2
+DISTVERSION=	1.3.0.b4
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	\
-		http://files.etoilebsd.net/pkg/ \
-		http://mirror.shatow.net/freebsd/${PORTNAME}/ \
-		http://miwibox.org/distfiles/${PORTNAME}/ \
-		LOCAL/portmgr
+		http://highsecure.ru/distfiles/ \
+		http://pkg.semmy.ru/
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	portmgr@FreeBSD.org
+MAINTAINER=	pkg@FreeBSD.org
 COMMENT=	Package manager
 
 LICENSE=	BSD2CLAUSE
