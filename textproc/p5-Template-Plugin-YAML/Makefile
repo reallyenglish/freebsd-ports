@@ -14,7 +14,7 @@ LICENSE=	ART10
 RUN_DEPENDS=	p5-Template-Toolkit>0:${PORTSDIR}/www/p5-Template-Toolkit \
 	p5-YAML>0:${PORTSDIR}/textproc/p5-YAML
 
-USES=	perl5
-USE_PERL5=	configure build
+PERL_CONFIGURE=	Yes
+MAN3=	Template::Plugin::YAML.3
 
 .include <bsd.port.mk>
