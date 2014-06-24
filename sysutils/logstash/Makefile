@@ -1,9 +1,5 @@
-# New ports collection makefile for:    logstash
-# Date created:         10 May 2013
-# Whom:			Daniel Solsona <daniel@ish.com.au> et al.
-#
+# Created by: Daniel Solsona <daniel@ish.com.au>, Guido Falsi <madpilot@FreeBSD.org>
 # $FreeBSD$
-#
 
 # TODO
 # - DOCs
@@ -11,22 +7,16 @@
 # - TMP must NOT be world-writable
 # 
 PORTNAME=	logstash
-PORTVERSION=	1.2.1
-PORTREVISION=	1
+PORTVERSION=	1.4.1
 CATEGORIES=	sysutils java
-MASTER_SITES=	https://logstash.objects.dreamhost.com/release/
-DISTNAME=	${PORTNAME}-${PORTVERSION}-flatjar
-EXTRACT_SUFX=	.jar
-EXTRACT_ONLY=
-PATCH_DEPENDS+=	${DEPEND_JAVA}
+MASTER_SITES=	https://download.elasticsearch.org/logstash/logstash/
 
-MAINTAINER=	daniel@ish.com.au
+MAINTAINER=	regis.despres@gmail.com
 COMMENT=	Tool for managing events and logs
 
+NO_BUILD=	yes
 USE_JAVA=	yes
 JAVA_VERSION=	1.7+
-JAVA_EXTRACT=	yes
-WRKSRC=	${WRKDIR}/${DISTNAME}
 
 USE_RC_SUBR=	logstash
 USERS=	${PORTNAME}
@@ -53,30 +43,19 @@ PLIST_SUB+=	LOGSTASH_HOME=${LOGSTASH_HOME_REL} LOGSTASH_JAR=${LOGSTASH_JAR} \
 RUN_DEPENDS+=	rubygem-ffi-rzmq>=0:${PORTSDIR}/devel/rubygem-ffi-rzmq
 .endif
 
-do-extract:
-	${INSTALL} -d ${WRKDIR}
-	${INSTALL} -d ${WRKSRC}
-	(cd ${WRKSRC} && ${JAR} xf ${DISTDIR}/${LOGSTASH_JAR})
-
-post-patch:
-	${JAR} cfe ${WRKDIR}/${LOGSTASH_JAR} logstash.runner -C ${WRKSRC} .
-
-do-build:
-	# NOOP
-
 do-install:
-	${INSTALL} -d ${LOGSTASH_RUN}
-	${INSTALL} -d ${ETCDIR}
-	${INSTALL} -d ${LOGSTASH_HOME}
-	${INSTALL} -d ${LOGSTASH_DATA_DIR}
-	${INSTALL_DATA} ${WRKDIR}/${LOGSTASH_JAR} ${LOGSTASH_HOME}/${LOGSTASH_JAR}
-	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${ETCDIR}
-	@if [ ! -f ${ETCDIR}/logstash.conf ]; then \
-		${CP} -p ${ETCDIR}/logstash.conf.sample ${ETCDIR}/logstash.conf ; \
-	fi
-	${INSTALL_DATA} ${FILESDIR}/elasticsearch.yml.sample ${ETCDIR}
-	@if [ ! -f ${ETCDIR}/elasticsearch.yml ]; then \
-		${CP} -p ${ETCDIR}/elasticsearch.yml.sample ${ETCDIR}/elasticsearch.yml ; \
-	fi
+	# create LOGSTASH_RUN dir in logstash.in
+	${INSTALL} -d ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/logstash.conf.sample ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${FILESDIR}/elasticsearch.yml.sample ${STAGEDIR}${ETCDIR}
+
+	${INSTALL} -d ${STAGEIDR}${LOGSTASH_HOME}
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${LOGSTASH_HOME}/)
+	${INSTALL} -d ${STAGEIDR}${LOGSTASH_HOME}/bin
+	(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${LOGSTASH_HOME}/bin/)
+	#(cd ${STAGEDIR}${PREFIX}/logstash && find * -type f | sort -r)
+	#(cd ${STAGEDIR}${PREFIX}/logstash && find * -type d | sort -r)
+
+	${INSTALL} -d ${STAGEDIR}/${LOGSTASH_DATA_DIR}
 
 .include <bsd.port.mk>
