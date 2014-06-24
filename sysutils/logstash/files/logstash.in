@@ -1,10 +1,11 @@
 #!/bin/sh
 
-# $FreeBSD:
+# $FreeBSD$
+#
 # PROVIDE: logstash
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
-
+#
 #
 # Configuration settings for logstash in /etc/rc.conf:
 #
