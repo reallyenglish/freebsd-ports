@@ -3,7 +3,7 @@
 
 PORTNAME=	phpvirtualbox
 DISTVERSION=	4.2-4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		LOCAL/decke
@@ -15,7 +15,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USE_ZIP=	yes
-USE_PHP=	json session soap simplexml
+USE_PHP=	json session soap simplexml hash
 NO_BUILD=	yes
 USE_DOS2UNIX=	yes
 DOS2UNIX_REGEX=	.*\.(php|txt|js|css|html)
