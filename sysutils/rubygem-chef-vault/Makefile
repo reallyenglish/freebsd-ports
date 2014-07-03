@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	chef-vault
-PORTVERSION=	2.2.2
+PORTVERSION=	2.2.3
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 
@@ -10,8 +10,6 @@ MAINTAINER=	mitsuruy@reallyenglish.com
 COMMENT=	Data encryption support for Chef using data bags
 
 LICENSE=	AL2
-
-RUN_DEPENDS=	rubygem-chef>=0.10.10:${PORTSDIR}/sysutils/rubygem-chef
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
