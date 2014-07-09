@@ -44,7 +44,7 @@ LIB_DEPENDS+=	libjs.so:${PORTSDIR}/lang/spidermonkey17
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} 's/\["-O3"\]/"${CFLAGS}"/' \
+	@${REINPLACE_CMD} 's|\["-O3"\]|"${CFLAGS}"|' \
 		${WRKSRC}/SConstruct
 
 post-install:
