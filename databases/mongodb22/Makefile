@@ -43,6 +43,10 @@ MAKE_ARGS+=	--usesm --use-system-sm
 LIB_DEPENDS+=	libjs.so:${PORTSDIR}/lang/spidermonkey17
 .endif
 
+post-patch:
+	@${REINPLACE_CMD} 's/\["-O3"\]/"${CFLAGS}"/' \
+		${WRKSRC}/SConstruct
+
 post-install:
 	@if [ ! -f ${PREFIX}/etc/mongodb.conf ]; then \
 		${TOUCH} ${PREFIX}/etc/mongodb.conf ; \
