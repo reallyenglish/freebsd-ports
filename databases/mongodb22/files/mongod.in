@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# PROVIDE: mongod
+# REQUIRE: NETWORK ldconfig
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# mongod_enable (bool):   Set to NO by default.
+#               Set it to YES to enable mongod.
+#
+# Additional configurable variables:
+# mongod_config (path):   Set to %%PREFIX%%/etc/mongodb.conf
+#               by default. Additional configuration. You
+#               can also use mongod_flags for additional
+#               command line arguments.
+# mongod_dbpath (path):   Set to /var/db/mongodb by default
+# mongod_user (username): Set to "mongodb" by default
+
+. /etc/rc.subr
+
+name="mongod"
+rcvar=mongod_enable
+
+command=%%PREFIX%%/bin/${name}
+
+load_rc_config $name
+
+: ${mongod_enable="NO"}
+: ${mongod_config="%%PREFIX%%/etc/mongodb.conf"}
+: ${mongod_dbpath="/var/db/mongodb"}
+: ${mongod_user="mongodb"}
+
+# Note: if you use a config file for mongodb, 
+# the parameters passed on cl override the config file
+# ie, dbpath, logappend, logpath etc in the command_args below.
+# This means that your config file will be ignored unless
+# you comment out remove the cl parameters.
+#
+# Using config file: uncomment the following line AND comment out
+# the next line.
+
+# command_args="-f $mongod_config"
+
+command_args="-f $mongod_config --dbpath $mongod_dbpath --logappend --logpath $mongod_dbpath/mongod.log --fork"
+
+required_dirs=${mongod_dbpath}
+
+run_rc_command "$1"
+
