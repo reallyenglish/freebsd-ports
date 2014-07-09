@@ -15,7 +15,7 @@ diff -ru ./SConstruct ../../mongodb-src-r2.2.0/SConstruct
 +        if not conf.CheckLib("snappy"):
 +            Exit(1)
 +
-+    if use_system_version_of_library("js"):
++    if use_system_version_of_library("sm"):
 +        if not conf.CheckLib("js"):
 +            Exit(1)
 +
