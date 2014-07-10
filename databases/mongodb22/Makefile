@@ -24,9 +24,11 @@ V8_DESC=	Use v8 instead of spider monkey for javascript
 
 CONFLICTS?=	${PORTNAME}-2.[46].*
 USES+=	scons compiler:gcc-c++11-lib
-MAKE_ARGS+=	--prefix=${PREFIX} --cxx=${CXX} --cpp=${CPP} --use-system-all --ssl
+MAKE_ARGS+=	--prefix=${PREFIX} --cxx=${CXX} --cpp=${CPP} --use-system-pcre --use-system-snappy --ssl
+MAKE_ENV+=	CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}"
 # --use-system-pcre --use-system-snappy --use-system-boost
 NO_STAGE=	yes
+#MAKE_JOBS_UNSAFE=yes
 
 USERS=	mongodb
 GROUPS=	mongodb
@@ -44,8 +46,12 @@ LIB_DEPENDS+=	libjs.so:${PORTSDIR}/lang/spidermonkey17
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} 's|\["-O3"\]|"${CFLAGS}"|' \
+	@${REINPLACE_CMD} -e 's|\["-O3"\]|"${CFLAGS}"|' \
 		${WRKSRC}/SConstruct
+
+pre-build:
+	rm -r ${WRKSRC}/src/third_party/pcre-8.30
+	rm -r ${WRKSRC}/src/third_party/snappy
 
 post-install:
 	@if [ ! -f ${PREFIX}/etc/mongodb.conf ]; then \
