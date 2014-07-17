@@ -22,6 +22,7 @@ ONLY_FOR_ARCHS_REASON=	"not yet ported to anything other than i386 and amd64"
 OPTIONS_DEFINE=	V8
 V8_DESC=	Use v8 instead of spider monkey for javascript
 
+IGNORE=	does not build
 CONFLICTS?=	${PORTNAME}-2.[46].*
 USES+=	scons compiler:gcc-c++11-lib
 MAKE_ARGS+=	--prefix=${PREFIX} --cxx=${CXX} --cpp=${CPP} --use-system-pcre --use-system-snappy --ssl
