@@ -1,0 +1,41 @@
+--- ./SConstruct.orig	2012-11-27 13:08:44.000000000 +0900
++++ ./SConstruct	2014-07-10 15:42:10.000000000 +0900
+@@ -695,7 +695,7 @@
+     env.Append( LIBS=[] )
+ 
+     #make scons colorgcc friendly
+-    for key in ('HOME', 'TERM'):
++    for key in ('HOME', 'TERM', 'CCFLAGS', 'CXXFLAGS', 'CPPPATH', 'LINKFLAGS', 'LIBPATH', 'LDFLAGS'):
+         try:
+             env['ENV'][key] = os.environ[key]
+         except KeyError:
+@@ -790,6 +790,20 @@
+             print( "c++ compiler not installed!" )
+             Exit(1)
+ 
++    if use_system_version_of_library("pcre"):
++        if not conf.CheckLib("pcrecpp"):
++            Exit(1)
++        if not conf.CheckLib("pcre"):
++            Exit(1)
++
++    if use_system_version_of_library("snappy"):
++        if not conf.CheckLib("snappy"):
++            Exit(1)
++
++    if use_system_version_of_library("sm"):
++        if not conf.CheckLib("js"):
++            Exit(1)
++
+     if use_system_version_of_library("boost"):
+         if not conf.CheckCXXHeader( "boost/filesystem/operations.hpp" ):
+             print( "can't find boost headers" )
+@@ -1103,7 +1117,7 @@
+ Export("has_option use_system_version_of_library")
+ Export("installSetup")
+ Export("usesm usev8")
+-Export("darwin windows solaris linux nix")
++Export("darwin windows solaris linux nix freebsd")
+ 
+ env.SConscript( 'src/SConscript', variant_dir='$BUILD_DIR', duplicate=False )
+ env.SConscript( 'src/SConscript.client', variant_dir='$BUILD_DIR/client_build', duplicate=False )
