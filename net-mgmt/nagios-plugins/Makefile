@@ -3,7 +3,7 @@
 
 PORTNAME=	nagios-plugins
 PORTVERSION=	2.0.2
-PORTEPOCH=	1
+PORTEPOCH=	2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://www.nagios-plugins.org/download/ \
 		LOCAL/mat/${PORTNAME}
@@ -23,10 +23,10 @@ USE_AUTOTOOLS=	aclocal autoconf automake
 ACLOCAL_ARGS=	-I m4 -I gl/m4
 AUTOMAKE_ARGS=	--add-missing
 
-OPTIONS_DEFINE=	QSTAT FPING NETSNMP RADIUS MYSQL PGSQL LDAP IPV6 JAIL NLS DBI EXTRAOPTS
+OPTIONS_DEFINE=	QSTAT FPING NETSNMP RADIUS MYSQL PGSQL LDAP IPV6 JAIL NLS DBI EXTRAOPTS PROCJID
 OPTIONS_SINGLE=	DNS
 OPTIONS_SINGLE_DNS=	DNS_BASE DNS_BINDTOOLS DNS_BIND98 DNS_BIND99 DNS_BIND910
-OPTIONS_DEFAULT=IPV6 EXTRAOPTS DNS_BASE
+OPTIONS_DEFAULT=IPV6 EXTRAOPTS DNS_BASE PROCJID
 OPTIONS_SUB=	yes
 
 QSTAT_DESC=	Game server query support (check_game)
@@ -39,6 +39,7 @@ LDAP_DESC=	OpenLDAP support (check_ldap)
 JAIL_DESC=	Compilation within jail(8) (see help)
 DBI_DESC=	Check database using DBI
 EXTRAOPTS_DESC=	Parsing of plugins ini config files for extra options
+PROCJID_DESC=	Add --jid option to check_procs
 
 DNS_DESC=	Configuration of check_dig and check_dns (see help)
 
@@ -149,6 +150,10 @@ PLIST_SUB+=	CHECK_DNS=""
 PLIST_SUB+=	SSH="@comment "
 .else
 PLIST_SUB+=	SSH=""
+.endif
+
+.if ${PORT_OPTIONS:MPROCJID}
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-jid.diff
 .endif
 
 post-patch:
