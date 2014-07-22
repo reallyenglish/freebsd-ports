@@ -14,5 +14,6 @@ LICENSE=	APACHE20
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
+CONFLICTS=	rubygem-bson-1*
 
 .include <bsd.port.mk>
