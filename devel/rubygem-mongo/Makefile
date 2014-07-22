@@ -11,7 +11,7 @@ COMMENT=	Ruby driver for MongoDB
 
 LICENSE=	APACHE20
 
-RUN_DEPENDS=	rubygem-bson>=1.9.2:${PORTSDIR}/devel/rubygem-bson
+RUN_DEPENDS=	rubygem-bson=1.10.2:${PORTSDIR}/devel/rubygem-bson1
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
