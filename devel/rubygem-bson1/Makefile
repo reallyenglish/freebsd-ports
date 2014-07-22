@@ -1,22 +1,19 @@
 # Created by: Evan Sarmiento <bsdports@wayfair.com>
 # $FreeBSD$
 
-PORTNAME=	mongo
+PORTNAME=	bson
 PORTVERSION=	1.10.2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	ruby@FreeBSD.org
-COMMENT=	Ruby driver for MongoDB
+COMMENT=	Full featured BSON specification implementation in Ruby
 
 LICENSE=	APACHE20
-
-RUN_DEPENDS=	rubygem-bson=1.10.2:${PORTSDIR}/devel/rubygem-bson1
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
-
-PLIST_FILES=	bin/mongo_console
+CONFLICTS=	rubygem-bson-2*
 
 .include <bsd.port.mk>
