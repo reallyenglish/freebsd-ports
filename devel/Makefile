@@ -4178,6 +4178,7 @@
     SUBDIR += rubygem-blankslate
     SUBDIR += rubygem-blockenspiel
     SUBDIR += rubygem-bson
+    SUBDIR += rubygem-bson1
     SUBDIR += rubygem-bugspots
     SUBDIR += rubygem-builder
     SUBDIR += rubygem-builder31
