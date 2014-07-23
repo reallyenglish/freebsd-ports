@@ -112,6 +112,7 @@
     SUBDIR += phpbb3-tw
     SUBDIR += pine4
     SUBDIR += py-cconv
+    SUBDIR += pyzy
     SUBDIR += qe
     SUBDIR += qt4-codecs-cn
     SUBDIR += qt4-codecs-tw
@@ -133,7 +134,6 @@
     SUBDIR += wenju
     SUBDIR += wordpress-zh_CN
     SUBDIR += wordpress-zh_TW
-    SUBDIR += xemacs21
     SUBDIR += xpdf
     SUBDIR += xsim
     SUBDIR += ydict

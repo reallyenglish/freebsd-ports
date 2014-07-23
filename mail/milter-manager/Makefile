@@ -6,14 +6,14 @@ PORTVERSION=	1.8.6
 CATEGORIES=	mail ruby
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME:S/-/%20/}/${PORTVERSION}
 
-MAINTAINER=	umq@ueo.co.jp
-COMMENT=	A super milter that can invoke several milters selectively
+MAINTAINER= ports@FreeBSD.org
+COMMENT=	Super milter that can invoke several milters selectively
 
 LICENSE=	AGPLv3 GFDL GPLv3 LGPL3
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	rubygem-glib2>0:${PORTSDIR}/devel/rubygem-glib2
-LIB_DEPENDS=	ev:${PORTSDIR}/devel/libev
+LIB_DEPENDS=	libev.so:${PORTSDIR}/devel/libev
 RUN_DEPENDS=	rubygem-glib2>0:${PORTSDIR}/devel/rubygem-glib2
 
 USE_RC_SUBR=	milter-manager

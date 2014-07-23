@@ -7,7 +7,7 @@ PORTREVISION=	1
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF
 
-MAINTAINER=	db@FreeBSD.org
+MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Shared libraries for Amateur Radio Equipment Control Applications
 
 LICENSE=	LGPL20
@@ -25,6 +25,8 @@ CONFIGURE_ARGS=	--with-perl-binding \
 		--enable-tcl-binding --with-tcl=${TCL_LIBDIR} \
 		--with-python-binding --without-rigmatrix
 PLIST_SUB=	VER=${PORTVERSION} TCL_VER=${TCL_VER}
+
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	${REINPLACE_CMD} -e 's|%%PYTHON_SITELIBDIR%%|${PYTHON_SITELIBDIR}|g' \
@@ -45,5 +47,9 @@ post-install:
 	${WRKSRC}/THANKS
 	@${INSTALL_DATA} ${WRKSRC}/${d} ${STAGEDIR}${DOCSDIR}
 .endfor
+
+post-stage:
+	${FIND} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto -name .packlist -exec ${SED} -i '' 's|^${STAGEDIR}||' '{}' \;
+	@${RM} -f ${STAGEDIR}${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/perllocal.pod*
 
 .include <bsd.port.mk>

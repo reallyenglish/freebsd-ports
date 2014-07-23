@@ -23,7 +23,6 @@
     SUBDIR += cdcat
     SUBDIR += charmap
     SUBDIR += charmtimetracker
-    SUBDIR += checkrdf
     SUBDIR += clipit
     SUBDIR += conduit
     SUBDIR += conkyemail
@@ -181,6 +180,7 @@
     SUBDIR += plopfolio
     SUBDIR += preferencepanes
     SUBDIR += preferences
+    SUBDIR += py-pystash
     SUBDIR += py-send2trash
     SUBDIR += py-vobject
     SUBDIR += pybookreader

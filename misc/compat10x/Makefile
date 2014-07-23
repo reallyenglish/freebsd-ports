@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	compat10x
-PORTVERSION=	10.0.1000510.201403
+PORTVERSION=	10.0.1000510.201407
 CATEGORIES=	misc
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	garga/compat
@@ -9,7 +9,7 @@ PKGNAMESUFFIX=	-${ARCH}
 DISTNAME=	${PORTNAME}-${ARCH}-${PORTVERSION}
 
 MAINTAINER=	garga@FreeBSD.org
-COMMENT=	A convenience package to install the compat10x libraries
+COMMENT=	Convenience package to install the compat10x libraries
 
 LICENSE=	BSD2CLAUSE
 

@@ -7,7 +7,7 @@
 # Valid ARGS:
 #				build	Adds twisted and any additional component as build
 #						dependency to the port
-#				run		Adds twisted and any additional component as build
+#				run	Adds twisted and any additional component as run
 #						dependency to the port
 #				comp	Adds the specified twisted component to as build or
 #						run dependency to the ports
@@ -66,7 +66,6 @@ runner_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/runner/__init__.py:${PORTSDIR}/deve
 web2_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/web2/__init__.py:${PORTSDIR}/www/py-twistedWeb2
 web_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/web/__init__.py:${PORTSDIR}/www/py-twistedWeb
 words_DEPENDS=	${PYTHON_SITELIBDIR}/twisted/words/__init__.py:${PORTSDIR}/net-im/py-twistedWords
-
 
 .for component in ${_TWISTED_ARGS}
 .  if ${_TWISTED_COMPONENTS:M${component}}==""

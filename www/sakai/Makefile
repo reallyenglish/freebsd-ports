@@ -2,28 +2,31 @@
 # $FreeBSD$
 
 PORTNAME=	sakai
-PORTVERSION=	2.7.1
-PORTREVISION=	1
+PORTVERSION=	10.0
 CATEGORIES=	www java
 MASTER_SITES=	http://source.sakaiproject.org/release/${PORTVERSION}/artifacts/
-DISTFILES=	${PORTNAME}-bin-${PORTVERSION}.tgz
+DISTNAME=	${PORTNAME}-bin-${PORTVERSION}
 
 MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Online Collaboration and Learning Environment
 
-RUN_DEPENDS=	${LOCALBASE}/apache-tomcat-6.0/bin/bootstrap.jar:${PORTSDIR}/www/tomcat6
+LICENSE=	ECLv2
+LICENSE_NAME=	Educational Community License version 2
+LICENSE_FILE=	${WRKDIR}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+RUN_DEPENDS=	${LOCALBASE}/apache-tomcat-7.0/bin/bootstrap.jar:${PORTSDIR}/www/tomcat7
 
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 
 NO_BUILD=	yes
 WRKSRC=		${WRKDIR}
-SYSTEM_DIR=	common components licenses server shared webapps
-TOMCAT_DIR=	${PREFIX}/apache-tomcat-6.0
+SYSTEM_DIR=	common components licenses shared webapps
+TOMCAT_DIR=	${PREFIX}/apache-tomcat-7.0
 PLIST_SUB+=	TOMCAT_DIR=${TOMCAT_DIR:S|^${PREFIX}/||} \
-	SAKAI_VER="${PORTVERSION}" 
+		SAKAI_VER="${PORTVERSION}"
 
-NO_STAGE=	yes
 post-extract:
 	@cd ${WRKSRC}/webapps && `${LS} -1 |${SED} 's/.war//' >> ${WRKSRC}/list`
 	@cd ${WRKSRC}/webapps && ${MKDIR} `${CAT} ${WRKSRC}/list`
@@ -33,10 +36,9 @@ post-extract:
 do-install:
 .for i in ${SYSTEM_DIR}
 	cd ${WRKSRC}/${i} && ${FIND} . -type d \
-		-exec ${INSTALL} -d ${TOMCAT_DIR}/${i}/{} \;
+		-exec ${INSTALL} -d ${STAGEDIR}${TOMCAT_DIR}/${i}/{} \;
 	cd ${WRKSRC}/${i} && ${FIND} . -type f \
-		-exec ${INSTALL} -m 644 {} ${TOMCAT_DIR}/${i}/{} \;
+		-exec ${INSTALL} -m 644 {} ${STAGEDIR}${TOMCAT_DIR}/${i}/{} \;
 .endfor
-	@${CAT} ${PKGMESSAGE}
 
 .include <bsd.port.mk>

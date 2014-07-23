@@ -3,7 +3,7 @@
 
 PORTNAME=	netgen
 PORTVERSION=	5.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad
 MASTER_SITES=	SF/netgen-mesher/netgen-mesher/${PORTVERSION:S|.0$||}/
 
@@ -15,7 +15,7 @@ LIB_DEPENDS=	libTix8.4.3.so:${PORTSDIR}/x11-toolkits/tix \
 		libtogl.so:${PORTSDIR}/graphics/togl
 
 USE_LDCONFIG=	yes
-USES=		gmake tk
+USES=		gmake libtool tk
 USE_GL=		yes
 USE_XORG=	xmu xi
 GNU_CONFIGURE=	yes
@@ -52,7 +52,7 @@ SUB_FILES=	pkg-message
 MAKE_ENV=	TK_VER=${TK_VER} TCL_VER=${TCL_VER}	\
 		TCL_INCLUDEDIR="${TCL_INCLUDEDIR}"	\
 		TK_INCLUDEDIR="${TK_INCLUDEDIR}"	\
-		MACHINE=${MACHINE} MAKE=${GMAKE}
+		MACHINE=${MACHINE} MAKE=${MAKE_CMD}
 
 pre-configure:
 	${REINPLACE_CMD} -e "s|%%DATADIR%%|${DATADIR}|"		\

@@ -8,8 +8,11 @@ CATEGORIES=	www
 MASTER_SITES=	http://oops-cache.org/ \
 		ftp://kucha.ru/pub/misc/oops/
 
-MAINTAINER=	marck@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	A caching web proxy server
+BROKEN=		Fails to stage
+DEPRECATED=	Development stops long ago, domain has been expired
+EXPIRATION_DATE=	2014-08-31
 
 BUILD_DEPENDS+=	gawk:${PORTSDIR}/lang/gawk
 
@@ -55,16 +58,15 @@ DB4_DESC=	Berkeley DB v4 storage
 MYSQL_DESC=	MySQL auth support
 PGSQL_DESC=	PostgreSQL auth support
 
-NO_STAGE=	yes
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MGIGABASE}
-LIB_DEPENDS+=	gigabase_r.2:${PORTSDIR}/databases/gigabase
+LIB_DEPENDS+=	libgigabase_r.so:${PORTSDIR}/databases/gigabase
 CONFIGURE_ARGS+=	--without-DB
 .endif
 
 .if ${PORT_OPTIONS:MDB4}
-LIB_DEPENDS+=	db4.0:${PORTSDIR}/databases/db4
+LIB_DEPENDS+=	libdb4.so:${PORTSDIR}/databases/db4
 CONFIGURE_ARGS+=	--without-GB
 .endif
 
@@ -79,7 +81,7 @@ CONFIGURE_ARGS+=	--with-PGSQL=${PREFIX}/pgsql
 .endif
 
 .if ${PORT_OPTIONS:MPCRE}
-LIB_DEPENDS+=	pcre.3:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre
 CONFIGURE_ARGS+=	--with-regexp=pcre
 .endif
 

@@ -22,29 +22,26 @@ BUILD_WRKSRC=	${WRKSRC}/src
 ALL_TARGET=	jar
 MAKE_ENV+=	CLASSPATH="${JAVALIBDIR}/junit.jar"
 
-.if !defined(NOPORTDOCS)
 PORTDOCS=	*
-.endif
 
 SUB_FILES=	jflex.sh
 
-NO_STAGE=	yes
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
 post-extract:
 	${MKDIR} ${WRKSRC}/tools
 	${CP} ${DISTDIR}/JFlex.jar ${WRKSRC}/tools/
 	${CP} ${DISTDIR}/java_cup.jar ${WRKSRC}/tools/
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/jflex.sh ${PREFIX}/bin/jflex
-	${INSTALL_DATA} ${WRKSRC}/lib/JFlex.jar ${JAVAJARDIR}/JFlex.jar
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/* ${DOCSDIR}
-.endif
-	${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/jflex.sh ${STAGEDIR}${PREFIX}/bin/jflex
+	${INSTALL_DATA} ${WRKSRC}/lib/JFlex.jar ${STAGEDIR}${JAVAJARDIR}/JFlex.jar
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/* ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 .for EXAMPLE in binary byaccj cup interpreter java simple standalone
-	${MKDIR} ${EXAMPLESDIR}/${EXAMPLE}
-	${INSTALL_DATA} ${WRKSRC}/examples/${EXAMPLE}/* ${EXAMPLESDIR}/${EXAMPLE}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/${EXAMPLE}
+	${INSTALL_DATA} ${WRKSRC}/examples/${EXAMPLE}/* ${STAGEDIR}${EXAMPLESDIR}/${EXAMPLE}
 .endfor
 
 .include <bsd.port.mk>

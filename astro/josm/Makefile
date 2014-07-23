@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	josm
-PORTVERSION=	7182
+PORTVERSION=	7287
 CATEGORIES=	astro java
 MASTER_SITES=	http://josm.openstreetmap.de/download/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -16,7 +16,7 @@ COMMENT=	Comprehensive editor for OpenStreetMap.org database
 NO_WRKSUBDIR=	yes
 
 USE_JAVA=	yes
-JAVA_VERSION=	1.6+
+JAVA_VERSION=	1.7+
 
 JOSM_MEMORY_LIMIT?=1024
 

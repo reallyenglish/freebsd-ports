@@ -1,4 +1,4 @@
-# Created by: Skylord
+# Created by: Mikle Davidkin <skylord@vt.net.ru>
 # $FreeBSD$
 
 PORTNAME=	luascript
@@ -19,15 +19,14 @@ CXXFLAGS+=	${LDFLAGS}
 CPPFLAGS+=	-I${LUA_INCDIR}
 LDFLAGS+=	-L${LUA_LIBDIR}
 
-OPTIONS_DEFINE=	SOCKET
-SOCKET_DESC=	Build with LuaSocket support
-
 PLIST_FILES=	share/verlihub/scripts/ptokax.lua.inc \
 		share/verlihub/scripts/ptokaxtest.lua \
 		share/verlihub/scripts/script.lua
 PLIST_DIRS=	share/verlihub/scripts
 
-NO_STAGE=	yes
+OPTIONS_DEFINE=	SOCKET
+SOCKET_DESC=	Build with LuaSocket support
+
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MSOCKET}
@@ -42,7 +41,7 @@ post-patch::
 		-e 's|-lluamime|${LUA_MODLIBDIR}/mime/core.so|g' \
 		${WRKSRC}/configure
 .endif
-	@${REINPLACE_CMD} -e 's|llua50|llua-${LUA_VER}|g' \
+	@${REINPLACE_CMD} -e 's|llua5\.1|llua-${LUA_VER}|g' \
 		${WRKSRC}/configure
 
 .include <bsd.port.pre.mk>

@@ -17,23 +17,20 @@ LICENSE=	GPLv2
 RUN_DEPENDS=	${LOCALBASE}/bin/fig2dev:${PORTSDIR}/print/transfig \
 		${LOCALBASE}/bin/gnuplot:${PORTSDIR}/math/gnuplot
 
+USES=		perl5 shebangfix
 NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
+SHEBANG_FILES=	bargraph.pl
 
-NO_STAGE=	yes
-.include <bsd.port.pre.mk>
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/bargraph.pl ${PREFIX}/bin/bargraph
+	${INSTALL_SCRIPT} ${WRKSRC}/bargraph.pl ${STAGEDIR}${PREFIX}/bin/bargraph
 
 post-install:
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_MAN} ${WRKSRC}/README ${DOCSDIR}
-.endif
-.if !defined (NOPORTEXAMPLES)
-	${MKDIR} ${EXAMPLESDIR}
-	${CP} ${WRKSRC}/samples/*.perf  ${WRKSRC}/samples/*.png ${EXAMPLESDIR}
-.endif
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${CP} ${WRKSRC}/samples/*.perf  ${WRKSRC}/samples/*.png ${STAGEDIR}${EXAMPLESDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

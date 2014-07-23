@@ -11,7 +11,7 @@ DIST_SUBDIR=	cmigemo
 MAINTAINER=	nobutaka@FreeBSD.org
 COMMENT=	C implementation of Migemo Japanese incremental search tool
 
-.if !defined(MASTERDIR)
+.if !defined(PKGNAMESUFFIX)
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/doc/LICENSE_MIT.txt
 
@@ -24,23 +24,29 @@ INSTALL_TARGET=	gcc-install
 
 DOCSDIR=	${PREFIX}/share/doc/ja/${PORTNAME}
 PORTDOCS=	README_j.txt
+
 .endif
 
-USES+=		iconv gmake zip
+OPTIONS_DEFINE+=DOCS
+USES+=		iconv:build,wchar_t gmake zip
 
 HAS_CONFIGURE=	yes
-CONFIGURE_ARGS=	--prefix=${PREFIX}
+CONFIGURE_ARGS=	--prefix=${STAGEDIR}${PREFIX}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-default-src
 
-.if !defined(MASTERDIR) && !defined(NOPORTDOCS)
+.include <bsd.port.options.mk>
+
+.if !defined(PKGNAMESUFFIX) && ${PORT_OPTIONS:MDOCS}
 INSTALL_TARGET+=gcc-install-doc
 .endif
 
 .if !target(post-extract)
-NO_STAGE=	yes
 post-extract:
 	${CHMOD} a+x ${WRKSRC}/configure
 .endif
+
+post-patch:
+	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/compile/config.mk.in
 
 .include <bsd.port.mk>

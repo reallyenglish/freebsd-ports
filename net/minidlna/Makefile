@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	minidlna
-PORTVERSION=	1.1.2
+PORTVERSION=	1.1.3
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net multimedia www

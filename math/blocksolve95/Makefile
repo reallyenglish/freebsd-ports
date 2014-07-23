@@ -15,12 +15,12 @@ MAINTAINER=	bf@FreeBSD.org
 COMMENT=	Software for the efficient solution of large, sparse linear systems
 
 BUILD_DEPENDS=	${MPIDIR}/lib/libmpich.a:${PORTSDIR}/net/mpich2
-LIB_DEPENDS=	f2c.2:${PORTSDIR}/lang/f2c
+LIB_DEPENDS=	libf2c.so:${PORTSDIR}/lang/f2c
 RUN_DEPENDS=	${MPIDIR}/bin/mpirun:${PORTSDIR}/net/mpich2
 
 USES=		fortran gmake
 MAKEFILE=	makefile
-MAKE_ARGS=	GMAKE=${GMAKE} PETSC_ARCH=${PETSC_ARCH} BOPT=${BOPT}	\
+MAKE_ARGS=	GMAKE=${MAKE_CMD} PETSC_ARCH=${PETSC_ARCH} BOPT=${BOPT}	\
 		BLAS_LIB="${BLAS_LIB}" LAPACK_LIB="${LAPACK_LIB}"
 
 MPIDIR=		${LOCALBASE}
@@ -39,12 +39,12 @@ NO_STAGE=	yes
 WITH_ATLAS=	yes
 .endif
 .if defined(WITH_ATLAS)
-LIB_DEPENDS+=	atlas.2:${PORTSDIR}/math/atlas
+LIB_DEPENDS+=	libatlas.so:${PORTSDIR}/math/atlas
 BLAS_LIB=	-lf77blas
 LAPACK_LIB=	-L${LOCALBASE}/lib -lalapack -lcblas
 .else
-LIB_DEPENDS+=	lapack.4:${PORTSDIR}/math/lapack
-LIB_DEPENDS+=	blas.2:${PORTSDIR}/math/blas
+LIB_DEPENDS+=	liblapack.so:${PORTSDIR}/math/lapack
+LIB_DEPENDS+=	libblas.so:${PORTSDIR}/math/blas
 BLAS_LIB=	-lblas
 LAPACK_LIB=	-L${LOCALBASE}/lib -llapack
 .endif
@@ -71,7 +71,7 @@ regression-test:	build
 . endif
 	${LOCALBASE}/bin/mpd &
 	@(cd ${BUILD_WRKSRC}/examples;	\
-	${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} bsrunexamples clean)
+	${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} bsrunexamples clean)
 	${LOCALBASE}/bin/mpdallexit
 .endif
 

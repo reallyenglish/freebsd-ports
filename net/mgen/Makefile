@@ -11,7 +11,7 @@ DISTNAME=	src-${PORTNAME}-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	jmohacsi@bsd.hu
-COMMENT=	An IP network performance tests and measurements
+COMMENT=	IP network performance tests and measurements
 
 # Dumps core on 64-bit architectures. This was reported to the upstream
 # author, who promised to fix it in one of the next releases.
@@ -32,7 +32,7 @@ post-patch:
 	                ${WRKSRC}/protolib/unix/Makefile.freebsd
 
 do-build:
-	cd ${WRKSRC}/unix && ${GMAKE} -f Makefile.freebsd ${PORTNAME}
+	cd ${WRKSRC}/unix && ${MAKE_CMD} -f Makefile.freebsd ${PORTNAME}
 
 do-install:
 	${INSTALL_PROGRAM}	${WRKSRC}/unix/mgen ${PREFIX}/bin

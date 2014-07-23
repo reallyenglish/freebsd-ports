@@ -44,6 +44,7 @@
     SUBDIR += bcusdk-eibd
     SUBDIR += beacon
     SUBDIR += beanstalkd
+    SUBDIR += belle-sip
     SUBDIR += bindtest
     SUBDIR += binkd
     SUBDIR += bird
@@ -94,7 +95,6 @@
     SUBDIR += datapipe
     SUBDIR += dbeacon
     SUBDIR += delegate
-    SUBDIR += desktop-data-model
     SUBDIR += despoof
     SUBDIR += dgd
     SUBDIR += dgd-kernel
@@ -153,7 +153,6 @@
     SUBDIR += g2ipmsg
     SUBDIR += get_iplayer
     SUBDIR += gini
-    SUBDIR += gkrellmqst
     SUBDIR += gkrellmwireless2
     SUBDIR += glflow
     SUBDIR += glib-networking
@@ -347,7 +346,6 @@
     SUBDIR += linc-reference
     SUBDIR += linknx
     SUBDIR += linphone
-    SUBDIR += linphone-base
     SUBDIR += linux-f10-nss_ldap
     SUBDIR += linux-f10-openldap
     SUBDIR += linuxigd
@@ -361,6 +359,7 @@
     SUBDIR += mad_fcl
     SUBDIR += mcast-tools
     SUBDIR += mediaproxy
+    SUBDIR += mediastreamer
     SUBDIR += mediatomb
     SUBDIR += mgen
     SUBDIR += micro_inetd
@@ -445,12 +444,12 @@
     SUBDIR += omnitty
     SUBDIR += onenetd
     SUBDIR += onioncat
-    SUBDIR += online-desktop
     SUBDIR += opal
     SUBDIR += openafs
     SUBDIR += openam
     SUBDIR += openbgpd
     SUBDIR += opendpi
+    SUBDIR += openggsn
     SUBDIR += openh323
     SUBDIR += openldap24-client
     SUBDIR += openldap24-sasl-client
@@ -517,7 +516,6 @@
     SUBDIR += p5-IP-Country
     SUBDIR += p5-IPC-Session
     SUBDIR += p5-JavaScript-RPC
-    SUBDIR += p5-Jifty-Plugin-Authentication-Ldap
     SUBDIR += p5-MaxMind-DB-Common
     SUBDIR += p5-MaxMind-DB-Reader
     SUBDIR += p5-Net
@@ -1148,6 +1146,7 @@
     SUBDIR += tac_plus4
     SUBDIR += tapidbus
     SUBDIR += tayga
+    SUBDIR += tclsoap
     SUBDIR += tcludp
     SUBDIR += tcpcat
     SUBDIR += tcpdstat
@@ -1196,7 +1195,6 @@
     SUBDIR += tshark
     SUBDIR += tshark-lite
     SUBDIR += tsocks
-    SUBDIR += ttbudget
     SUBDIR += ttlscan
     SUBDIR += tucan
     SUBDIR += turnserver
@@ -1207,6 +1205,7 @@
     SUBDIR += udptunnel
     SUBDIR += udpxy
     SUBDIR += udt
+    SUBDIR += uget
     SUBDIR += ulxmlrpcpp
     SUBDIR += unfs3
     SUBDIR += unison

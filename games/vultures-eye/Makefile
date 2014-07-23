@@ -12,7 +12,7 @@ DISTFILES=	${DISTNAME}-full${EXTRACT_SUFX}?format=raw
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Graphical interface for NetHack 3.4.3 forked from Falcon's Eye
 
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
 
 LATEST_LINK=	${PORTNAME}${PKGNAMESUFFIX}
 
@@ -25,7 +25,7 @@ CONFIGURE_WRKSRC=	${WRKSRC}/sys/unix
 CONFIGURE_SCRIPT=	setup.sh
 DATADIR=	${PREFIX}/share/${PORTNAME}${PKGNAMESUFFIX}
 CFLAGS+=	-I${LOCALBASE}/include/libpng15
-MAKE_ENV+=	DATADIR="${DATADIR}" MAKE="${GMAKE}" BASECFLAGS="${CFLAGS}"
+MAKE_ENV+=	DATADIR="${DATADIR}" MAKE="${MAKE_CMD}" BASECFLAGS="${CFLAGS}"
 MAKE_JOBS_UNSAFE=	yes
 
 NO_STAGE=	yes

@@ -10,7 +10,7 @@ CATEGORIES+=	python
 MASTER_SITES=	SF \
 		LOCAL/${MAINTAINER:C/([^@]*)@.*/\1/}
 
-MAINTAINER=	sbz@FreeBSD.org
+MAINTAINER= 	cy@FreeBSD.org
 COMMENT?=	Password-checking library
 
 LICENSE=	LGPL21
@@ -20,7 +20,7 @@ DICTFILE=	${DICTPATH}/pw_dict
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=--with-default-dict=${DICTPATH}
 USE_LDCONFIG=	yes
-NO_STAGE=	yes
+USES=		gettext
 
 .if defined(PYTHON_SLAVEPORT)
 USE_PYTHON=	yes
@@ -37,7 +37,17 @@ PLIST_FILES=	%%PYTHON_SITELIBDIR%%/_cracklib.a \
 .else
 CONFIGURE_ARGS+=--without-python
 PLIST_DIRS=	libdata/cracklib \
-		share/cracklib
+		share/cracklib \
+		share/locale/as/LC_MESSAGES \
+		share/locale/as \
+		share/locale/bn_IN/LC_MESSAGES \
+		share/locale/bn_IN \
+		share/locale/mr/LC_MESSAGES \
+		share/locale/mr \
+		share/locale/sl_SI/LC_MESSAGES \
+		share/locale/sl_SI \
+		share/locale/te/LC_MESSAGES \
+		share/locale/te
 
 PLIST_FILES=	include/crack.h \
 		include/packer.h \
@@ -54,7 +64,42 @@ PLIST_FILES=	include/crack.h \
 		sbin/cracklib-unpacker \
 		sbin/create-cracklib-dict \
 		%%DATADIR%%/cracklib-small \
-		%%DATADIR%%/cracklib.magic
+		%%DATADIR%%/cracklib.magic \
+		share/locale/as/LC_MESSAGES/cracklib.mo \
+		share/locale/bn_IN/LC_MESSAGES/cracklib.mo \
+		share/locale/cs/LC_MESSAGES/cracklib.mo \
+		share/locale/da/LC_MESSAGES/cracklib.mo \
+		share/locale/de/LC_MESSAGES/cracklib.mo \
+		share/locale/el/LC_MESSAGES/cracklib.mo \
+		share/locale/es/LC_MESSAGES/cracklib.mo \
+		share/locale/fi/LC_MESSAGES/cracklib.mo \
+		share/locale/fr/LC_MESSAGES/cracklib.mo \
+		share/locale/gu/LC_MESSAGES/cracklib.mo \
+		share/locale/hi/LC_MESSAGES/cracklib.mo \
+		share/locale/hu/LC_MESSAGES/cracklib.mo \
+		share/locale/it/LC_MESSAGES/cracklib.mo \
+		share/locale/ja/LC_MESSAGES/cracklib.mo \
+		share/locale/kn/LC_MESSAGES/cracklib.mo \
+		share/locale/ko/LC_MESSAGES/cracklib.mo \
+		share/locale/lt/LC_MESSAGES/cracklib.mo \
+		share/locale/ml/LC_MESSAGES/cracklib.mo \
+		share/locale/mr/LC_MESSAGES/cracklib.mo \
+		share/locale/nb/LC_MESSAGES/cracklib.mo \
+		share/locale/nl/LC_MESSAGES/cracklib.mo \
+		share/locale/or/LC_MESSAGES/cracklib.mo \
+		share/locale/pa/LC_MESSAGES/cracklib.mo \
+		share/locale/pl/LC_MESSAGES/cracklib.mo \
+		share/locale/pt/LC_MESSAGES/cracklib.mo \
+		share/locale/pt_BR/LC_MESSAGES/cracklib.mo \
+		share/locale/ru/LC_MESSAGES/cracklib.mo \
+		share/locale/sk/LC_MESSAGES/cracklib.mo \
+		share/locale/sl_SI/LC_MESSAGES/cracklib.mo \
+		share/locale/ta/LC_MESSAGES/cracklib.mo \
+		share/locale/te/LC_MESSAGES/cracklib.mo \
+		share/locale/tr/LC_MESSAGES/cracklib.mo \
+		share/locale/uk/LC_MESSAGES/cracklib.mo \
+		share/locale/zh_CN/LC_MESSAGES/cracklib.mo \
+		share/locale/zh_TW/LC_MESSAGES/cracklib.mo
 .endif
 
 .if defined(PYTHON_SLAVEPORT)
@@ -66,13 +111,14 @@ regression-test: extract
 	${PYTHON_CMD} -c \
 	"from test_${PORTNAME} import run; run(use_dictpath=\"${DICTFILE}\")")
 .else
-MAN3=		${PORTNAME}.3
-MLINKS=		${PORTNAME}.3 FascistCheck.3
+PLIST_FILES+=	man/man3/${PORTNAME}.3.gz \
+		@exec\ ln\ -s\ man/man3/${PORTNAME}.3.gz\ man/man3/FascistCheck.3.gz \
+		@unexec\ rm\ man/man3/FascistCheck.3.gz
 
 post-install:
-	${INSTALL_MAN} ${FILESDIR}/${MAN3} ${MAN3PREFIX}/man/man3/
-	@${MKDIR} ${DICTPATH}
-	${INSTALL_DATA} ${FILESDIR}/pw_dict* ${DICTPATH}/
+	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.3 ${STAGEDIR}${MAN3PREFIX}/man/man3/
+	@${MKDIR} ${STAGEDIR}${DICTPATH}
+	${INSTALL_DATA} ${FILESDIR}/pw_dict* ${STAGEDIR}${DICTPATH}/
 .endif
 
 .include <bsd.port.mk>

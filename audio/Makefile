@@ -52,7 +52,6 @@
     SUBDIR += beast
     SUBDIR += beets
     SUBDIR += blop
-    SUBDIR += bonk
     SUBDIR += boodler
     SUBDIR += bristol
     SUBDIR += btc
@@ -180,10 +179,8 @@
     SUBDIR += ghostess
     SUBDIR += gigedit
     SUBDIR += gimmix
-    SUBDIR += gkrellmms
     SUBDIR += gkrellmms2
     SUBDIR += gkrellmss2
-    SUBDIR += gkrellmvolume
     SUBDIR += gkrellmvolume2
     SUBDIR += glame
     SUBDIR += glurp
@@ -295,6 +292,7 @@
     SUBDIR += hs-OpenAL
     SUBDIR += hs-libmpd
     SUBDIR += hydrogen
+    SUBDIR += hydrogen-devel
     SUBDIR += icecast-kh
     SUBDIR += icecast2
     SUBDIR += icegenerator
@@ -401,7 +399,6 @@
     SUBDIR += libworkman
     SUBDIR += libxmp
     SUBDIR += lingot
-    SUBDIR += linnya
     SUBDIR += linux-f10-alsa-lib
     SUBDIR += linux-f10-alsa-plugins-oss
     SUBDIR += linux-f10-arts
@@ -490,7 +487,6 @@
     SUBDIR += mpiosh
     SUBDIR += mps
     SUBDIR += msilbc
-    SUBDIR += muine
     SUBDIR += mumble
     SUBDIR += murmur
     SUBDIR += muse
@@ -617,6 +613,7 @@
     SUBDIR += py-xmms2
     SUBDIR += pytone
     SUBDIR += qjackctl
+    SUBDIR += qmidinet
     SUBDIR += qmpdclient
     SUBDIR += qsampler
     SUBDIR += qsynth
@@ -641,7 +638,6 @@
     SUBDIR += rsynth
     SUBDIR += rubberband
     SUBDIR += ruby-audiofile
-    SUBDIR += ruby-esound
     SUBDIR += ruby-freedb
     SUBDIR += ruby-mp3info
     SUBDIR += ruby-mp3tag
@@ -711,7 +707,6 @@
     SUBDIR += stymulator
     SUBDIR += sweep
     SUBDIR += swhplugins
-    SUBDIR += tagger
     SUBDIR += taglib
     SUBDIR += taglib-extras
     SUBDIR += taglib-sharp
@@ -793,7 +788,6 @@
     SUBDIR += xmixer
     SUBDIR += xmmix
     SUBDIR += xmms-ahx
-    SUBDIR += xmms-bonk
     SUBDIR += xmms-curses
     SUBDIR += xmms-faad
     SUBDIR += xmms-festalon

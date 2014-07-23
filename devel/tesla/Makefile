@@ -11,8 +11,8 @@ USES=		cmake:outsource ninja
 
 BUILD_DEPENDS=	clang33:${PORTSDIR}/lang/clang33
 RUN_DEPENDS=	clang33:${PORTSDIR}/lang/clang33
-LIB_DEPENDS=	execinfo:${PORTSDIR}/devel/libexecinfo \
-		protobuf:${PORTSDIR}/devel/protobuf
+LIB_DEPENDS=	libexecinfo.so:${PORTSDIR}/devel/libexecinfo \
+		libprotobuf.so:${PORTSDIR}/devel/protobuf
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	CTSRD-TESLA
@@ -28,4 +28,10 @@ CMAKE_ARGS+=	-DCMAKE_LLVM_CONFIG=llvm-config33
 CONFIGURE_WRKSRC=	${WRKSRC}/build
 BUILD_WRKSRC=		${WRKSRC}/build
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${OPSYS} == "FreeBSD" && ${OSVERSION} < 1000000
+BROKEN=	does not build on 8 and 9
+.endif
+
+.include <bsd.port.post.mk>

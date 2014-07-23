@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	memcached
-PORTVERSION=	1.4.17
-PORTREVISION=	3
+PORTVERSION=	1.4.20
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
@@ -12,6 +12,9 @@ MASTER_SITE_SUBDIR=	distfiles
 MAINTAINER=	swills@FreeBSD.org
 COMMENT=	High-performance distributed memory object cache system
 
+LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 LIB_DEPENDS=	libevent-2.0.so:${PORTSDIR}/devel/libevent2
 
 TEST_DEPENDS=	prove:${PORTSDIR}/lang/${PERL_PORT} \
@@ -19,33 +22,30 @@ TEST_DEPENDS=	prove:${PORTSDIR}/lang/${PERL_PORT} \
 
 CONFLICTS=	memcached-1.2*
 
-USES=	perl5
 # Dtrace option disabled until it is fixed upstream
-OPTIONS_DEFINE=	SASL DOCS
+OPTIONS_DEFINE=	SASL DOCS DTRACE
+OPTIONS_DEFAULT=	SASL DOCS
+
 DTRACE_DESC=	Enable dtrace probes
 SASL_DESC=	Enable SASL Authentication
 
 USE_RC_SUBR=	memcached
 SUB_LIST+=	RC_SUBR_SUFFIX=${RC_SUBR_SUFFIX}
 
+#USES=	perl5
+USES=		shebangfix
+SHEBANG_FILES=	scripts/memcached-tool
+
 USE_CSTD=	c99
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libevent=${LOCALBASE}/lib/event2 --program-prefix= \
 		--disable-coverage
 
-PLIST_FILES=	bin/memcached \
-		bin/memcached-tool \
-		include/memcached/protocol_binary.h \
-		man/man1/memcached.1.gz
-PLIST_DIRS=	include/memcached
-
-PORTDOCS=	protocol.txt readme.txt
-
 CFLAGS+=	-fstack-protector \
 		-I${LOCALBASE}/include/event2/compat \
 		-I${LOCALBASE}/include
 
-DTRACE_COFNIGURE_ENABLE=	dtrace
+DTRACE_CONFIGURE_ENABLE=	dtrace
 
 SASL_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 SASL_CONFIGURE_ENABLE=	sasl
@@ -63,16 +63,22 @@ CONFIGURE_ARGS+=	--enable-64bit
 BROKEN=			DTRACE broken with gcc/clang - reported upstream
 .endif
 
+.if ${PORT_OPTIONS:MDOCS}
+BUILD_DEPENDS=	xml2rfc:${PORTSDIR}/textproc/xml2rfc
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e "s,-levent,-levent-2.0,g" ${WRKSRC}/configure
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${STAGEDIR}${PREFIX}/bin
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for i in ${PORTDOCS}
+.for i in protocol-binary-range.txt protocol-binary.txt protocol.txt \
+		readme.txt threads.txt
 	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${STAGEDIR}${DOCSDIR}
 .endfor
-
+.endif
 
 regression-test: test
 test: build

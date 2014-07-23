@@ -3,6 +3,7 @@
 
 PORTNAME=	scribus
 PORTVERSION=	1.4.4
+PORTREVISION=	1
 CATEGORIES=	print editors
 MASTER_SITES=	SF \
 		http://www.scribus.net/downloads/${PORTVERSION}/
@@ -34,6 +35,8 @@ USES=		cmake desktop-file-utils pkgconfig shared-mime-info tar:xz
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS+=	-DWANT_HUNSPELL=YES -Wno-ferror-limit
+
+OPTIONS_DEFINE=	DOCS
 
 post-install:
 	${LN} -sf ${DATADIR}/icons/scribus.png ${STAGEDIR}${PREFIX}/share/pixmaps/

@@ -10,13 +10,15 @@ PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
 DISTNAME=	ruby-${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	tota@FreeBSD.org
-COMMENT=	A text progress bar library for Ruby
+COMMENT=	Text progress bar library for Ruby
 
 USE_RUBY=	yes
 NO_BUILD=	yes
 
 RUBY_RD_FILES=	progressbar.en.rd progressbar.ja.rd
 DOCS=	ChangeLog ${RUBY_RD_FILES}
+
+OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${MKDIR} ${STAGEDIR}${RUBY_SITELIBDIR}

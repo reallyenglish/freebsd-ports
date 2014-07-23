@@ -8,12 +8,12 @@ CATEGORIES=	emulators security
 MASTER_SITES=	SF/${PORTNAME}.berlios
 DISTNAME=	${PORTNAME:S,-,_,}-${PORTVERSION}
 
-MAINTAINER=	hrs@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Trusted Platform Module (TPM) emulator
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	gmp:${PORTSDIR}/math/gmp
+LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
 CONFLICTS=	trousers-tddl-[0-9]*
 

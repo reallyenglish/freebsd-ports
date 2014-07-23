@@ -23,6 +23,8 @@ USES=		gmake
 MAKE_ARGS=	CC="${CC}" TARGET_CC="${CC}" CXX="${CXX}" TARGET_CXX="${CXX}" \
 		AS="${AS}" TARGET_AS="${CC}" LD="${LD}" TARGET_LD="${CC}"
 
+OPTIONS_DEFINE=	DOCS
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} != "i386" || defined(WITHOUT_X86_ASM)
@@ -37,7 +39,7 @@ MAKE_ARGS+=	TARGET=Linux_GTK
 PKGNAMESUFFIX=	-gtk
 .else
 .if defined(WITH_SVGALIB)
-LIB_DEPENDS+=	vga:${PORTSDIR}/graphics/svgalib
+LIB_DEPENDS+=	libvga.so:${PORTSDIR}/graphics/svgalib
 MAKE_ARGS+=	TARGET=Linux_svgalib
 PKGNAMESUFFIX=	-svgalib
 .else
@@ -50,9 +52,7 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/darcnes ${STAGEDIR}${PREFIX}/bin
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/readme ${STAGEDIR}${DOCSDIR}
-.endif
 
 .include <bsd.port.post.mk>

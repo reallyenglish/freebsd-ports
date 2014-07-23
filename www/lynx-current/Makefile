@@ -16,8 +16,7 @@ RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support
 CONFLICTS_INSTALL=	lynx-2.8.[0-7].* ja-lynx-[0-9]*
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/./-/g:C/p.*//}
-USE_BZIP2=	yes
-USES=		iconv shebangfix
+USES=		iconv shebangfix tar:bzip2
 USE_OPENSSL=	yes
 SHEBANG_FILES=	samples/mailto-form.pl
 GNU_CONFIGURE=	yes
@@ -44,7 +43,7 @@ L_DOC=		${PREFIX}/share/doc/lynx
 L_HELP=		${PREFIX}/share/lynx_help
 DOCSDIR=	${L_DOC}
 
-OPTIONS_DEFINE=	IDN NLS
+OPTIONS_DEFINE=	IDN NLS DOCS
 OPTIONS_DEFAULT=IDN NLS
 OPTIONS_SUB=	yes
 

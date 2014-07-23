@@ -10,7 +10,7 @@ MASTER_SITES=	CHEESESHOP \
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	Durus-${PORTVERSION}
 
-MAINTAINER=	ports@robakdesign.com
+MAINTAINER=	robak@FreeBSD.org
 COMMENT=	Persistent object storage system for Python
 
 LICENSE=	MIT
@@ -19,6 +19,8 @@ USE_PYTHON=		yes
 USE_PYDISTUTILS=	yes
 PYDISTUTILS_AUTOPLIST=	yes
 PYDISTUTILS_PKGNAME=	Durus
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.options.mk>
 

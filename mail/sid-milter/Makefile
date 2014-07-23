@@ -6,7 +6,7 @@ CATEGORIES=	mail
 MASTER_SITES=	SF/${PORTNAME}/SenderID%20Milter/${PORTVERSION}
 
 MAINTAINER=	dinoex@FreeBSD.org
-COMMENT=	An sid and spf milter for Sendmail
+COMMENT=	sid and spf milter for Sendmail
 
 RESTRICTED=	May incorporate intellectual property, possible patent issues
 
@@ -28,7 +28,7 @@ IGNORE=		your system does not support sysvipc
 .endif
 .endif
 
-OPTIONS_DEFINE=	LIBAR NH_MFROM
+OPTIONS_DEFINE=	LIBAR NH_MFROM DOCS
 LIBAR_DESC=	build and install libar
 NH_MFROM_DESC=	use NH_MFROM
 

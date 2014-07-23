@@ -10,7 +10,7 @@ MASTER_SITES=	http://www.sqlite.org/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	SQL database engine in a C library
 
-USES=		gmake pkgconfig
+USES=		gmake pkgconfig readline
 USE_AUTOTOOLS=	libtool
 USE_LDCONFIG=	YES
 
@@ -19,11 +19,13 @@ CONFIGURE_ARGS=		--prefix=${PREFIX} --with-hints=freebsd.hints
 DOCSDIR=	${PREFIX}/share/doc/sqlite2
 EXAMPLESDIR=	${PREFIX}/share/examples/sqlite2
 
-LATEST_LINK=	${PKGNAMEPREFIX}${PORTNAME}2
-
 EXTRACT_AFTER_ARGS=	--exclude CVS
 
 OPTIONS_DEFINE=	TCL THREADS DOCS
+
+.if !exists(/usr/lib/libreadline.so)
+MAKE_ARGS=	READLINE_FLAGS="-DHAVE_READLINE=1 -I${LOCALBASE}/include -L${LOCALBASE}/lib"
+.endif
 
 .include <bsd.port.options.mk>
 
@@ -70,12 +72,12 @@ post-patch:
 post-build:
 .if ${PORT_OPTIONS:MDOCS}
 	@${ECHO_MSG} "===> Building docs"
-	@(cd ${WRKSRC} && ${GMAKE} ${MAKE_ARGS} doc)
+	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} doc)
 .endif
 
 post-install:
 .if ${PORT_OPTIONS:MTCL}
-	@(cd ${WRKSRC} && ${GMAKE} ${MAKE_ARGS} install-tcl)
+	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-tcl)
 	${INSTALL_DATA} ${FILESDIR}/pkgIndex.tcl ${STAGEDIR}${PREFIX}/lib/sqlite
 .endif
 	${MKDIR} ${STAGEDIR}${DOCSDIR}

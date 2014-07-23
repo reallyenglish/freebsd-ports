@@ -22,18 +22,15 @@ CFLAGS+=	-Wno-return-type
 USES=		imake
 USE_XORG=	xbitmaps xaw
 
-XFREE86_HTML_MAN=	no
-MANCOMPRESSED=	no
-MAN1=		xgvis.1 xgobi.1
-
 PROGRAMS=	xgvis xgobi
 MANDIR=		${WRKSRC}/manpages
+
+OPTIONS_DEFINE=	DOCS
 
 # The distfile is a shar file.  It also does not extract cleanly.
 # 3 files extract to current directory so use post-extract to move
 # them to proper locations.
 
-NO_STAGE=	yes
 do-extract:
 	@${MKDIR} ${WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
@@ -46,21 +43,19 @@ do-extract:
 
 do-install:
 .for file in ${PROGRAMS}
-	${INSTALL_PROGRAM} ${WRKSRC}/src/${file} ${PREFIX}/bin
-	${STRIP_CMD} ${PREFIX}/bin/${file}
-	${INSTALL_MAN} ${MANDIR}/${file}.1 ${PREFIX}/man/man1
+	${INSTALL_PROGRAM} -s ${WRKSRC}/src/${file} ${STAGEDIR}${PREFIX}/bin
+#	${STRIP_CMD} ${PREFIX}/bin/${file}
+	${INSTALL_MAN} ${MANDIR}/${file}.1 ${STAGEDIR}${PREFIX}/man/man1
 .endfor
-	${INSTALL_DATA} ${WRKSRC}/XGobi.ex ${PREFIX}/lib/X11/app-defaults
-.if !defined(NOPORTDOCS)
-	 @${MKDIR} ${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/XGobi.ex ${STAGEDIR}${PREFIX}/lib/X11/app-defaults
+	 @${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	 @ cd ${WRKSRC}; \
 	   for dir in data_*; do \
-		${MKDIR} ${EXAMPLESDIR}/$${dir}; \
+		${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/$${dir}; \
 		cd ${WRKSRC}/$${dir}; \
 		for file in *; do \
-			${INSTALL_DATA} $${file} ${EXAMPLESDIR}/$${dir}; \
+			${INSTALL_DATA} $${file} ${STAGEDIR}${EXAMPLESDIR}/$${dir}; \
 		done \
 	   done
-.endif
 
 .include <bsd.port.mk>

@@ -3,6 +3,7 @@
 
 PORTNAME=	hydrogen
 PORTVERSION=	0.9.5.1
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/Hydrogen/${MAJORVERSION}%20Sources
 
@@ -10,6 +11,8 @@ MAINTAINER=	FreeBSD@ShaneWare.Biz
 COMMENT=	Advanced drum machine
 
 LICENSE=	GPLv2
+
+CONFLICTS=	hydrogen-devel-0.*
 
 LIB_DEPENDS+=	libsndfile.so:${PORTSDIR}/audio/libsndfile \
 		libtar.so:${PORTSDIR}/devel/libtar \

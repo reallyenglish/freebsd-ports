@@ -3,7 +3,7 @@
 
 PORTNAME=	gnutls
 PORTVERSION=	3.1.25
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security net
 MASTER_SITES=	ftp://ftp.gnutls.org/gcrypt/gnutls/v3.1/
 PKGNAMESUFFIX=	${GNUTLS_SUFFIX}
@@ -19,12 +19,12 @@ LIB_DEPENDS=	libgpg-error.so:${PORTSDIR}/security/libgpg-error \
 
 GNUTLS_SUFFIX=	3
 
-USES=		gmake iconv libtool:keepla pkgconfig tar:xz
+USES=		gmake iconv libtool:keepla makeinfo pkgconfig tar:xz
 USE_LDCONFIG=	${PREFIX}/lib/gnutls3
 CPPFLAGS+=	-I${LOCALBASE}/include -fPIC
 LDFLAGS=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=		MAKEINFO="/usr/bin/makeinfo --no-split"
+CONFIGURE_ENV=		MAKEINFO="makeinfo --no-split"
 CONFIGURE_ARGS=	--program-suffix=${GNUTLS_SUFFIX} \
 			--includedir="${PREFIX}/include/gnutls${GNUTLS_SUFFIX}" \
 			--libdir="${PREFIX}/lib/gnutls${GNUTLS_SUFFIX}" \

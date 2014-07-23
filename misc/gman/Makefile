@@ -14,8 +14,11 @@ PATCH_SITE_SUBDIR=	${MASTER_SITE_SUBDIR}
 PATCHFILES=	${PORTNAME}_${PORTVERSION}-5.diff.gz
 PATCH_DIST_STRIP=	-p1
 
-MAINTAINER=	cy@FreeBSD.org
-COMMENT=	A user-friendly graphical front end for the man system
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	User-friendly graphical front end for the man system
+
+DEPRECATED=	Depends on expiring ghostview
+EXPIRATION_DATE=	2014-07-31
 
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 RUN_DEPENDS=	ghostview:${PORTSDIR}/print/ghostview	\
@@ -23,12 +26,14 @@ RUN_DEPENDS=	ghostview:${PORTSDIR}/print/ghostview	\
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USES=		gettext gmake
+USES=		gettext gmake shebangfix
 USE_GNOME=	gtk12
+USE_GCC=	any
 
 CXXFLAGS+=	-L${LOCALBASE}/lib
 
 .include <bsd.port.pre.mk>
+
 SHEBANG_LANG+=	perlw
 perlw_OLD_CMD=  /usr/bin/perl -w
 perlw_CMD=	${LOCALBASE}/bin/perl -w
@@ -41,6 +46,8 @@ post-patch:
 		-e 's,= /usr,= ${PREFIX},g' \
 		-e 's,\-O2,,g' \
 		-e 's,\-lgtk \-lgdk \-lpthread ,`${GTK_CONFIG} \-\-libs gthread` ,g' ${WRKSRC}/Makefile
+	# XXX - workaround for shebangfix not working
+	@${REINPLACE_CMD} -e "s|/usr/bin/perl|${LOCALBASE}/bin/perl|" ${WRKSRC}/gman.pl
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/gman ${STAGEDIR}${PREFIX}/bin

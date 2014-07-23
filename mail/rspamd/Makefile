@@ -2,6 +2,7 @@
 
 PORTNAME=	rspamd
 PORTVERSION=	0.6.9
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	http://rspamd.com/downloads/
 
@@ -43,7 +44,7 @@ USE_OPENSSL=	yes
 
 .if ${PORT_OPTIONS:MGPERF}
  CMAKE_ARGS+=	-DENABLE_GPERF_TOOLS=ON
- LIB_DEPENDS+=	profiler.1:${PORTSDIR}/devel/google-perftools
+ LIB_DEPENDS+=	libprofiler.so:${PORTSDIR}/devel/google-perftools
 .endif
 
 .if ${PORT_OPTIONS:MREDIRECTOR}
@@ -66,5 +67,11 @@ USE_OPENSSL=	yes
 .else
  PLIST_SUB+=		REDIRECTOR="@comment "
 .endif
+
+post-install:
+	${INSTALL} -d \
+		${STAGEDIR}/var/log/rspamd \
+		${STAGEDIR}/var/db/rspamd \
+		${STAGEDIR}/var/run/rspamd
 
 .include <bsd.port.mk>

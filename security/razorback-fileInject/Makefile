@@ -8,13 +8,13 @@ MASTER_SITES=	SF/razorbacktm/Nuggets
 PKGNAMEPREFIX=	razorback-
 DIST_SUBDIR=	razorback
 
-MAINTAINER=	tj@FreeBSD.org
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Framework for an intelligence driven security - File Injector
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	razorback_api.2:${PORTSDIR}/security/razorback-api
+LIB_DEPENDS=	librazorback_api.so:${PORTSDIR}/security/razorback-api
 
 OPTIONS_DEFINE=	DEBUG ASSERT
 

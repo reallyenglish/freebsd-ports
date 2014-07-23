@@ -3,16 +3,18 @@
 
 PORTNAME=	opencore-amr
 PORTVERSION=	0.1.3
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}
 
-MAINTAINER=	gslin@gslin.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	OpenCORE implementation of AMR Narrowband & Wideband speech codec
 
 LICENSE=	APACHE20
 
 GNU_CONFIGURE=	yes
-USES=		gmake pathfix
+USES=		gmake libtool pathfix
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

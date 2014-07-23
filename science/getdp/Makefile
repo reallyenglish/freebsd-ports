@@ -10,10 +10,10 @@ DISTNAME=	${PORTNAME}-${PORTVERSION}-source
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	stephen@FreeBSD.org
-COMMENT=	A rather general finite element solver using mixed finite elements
+COMMENT=	Rather general finite element solver using mixed finite elements
 
-LIB_DEPENDS=	gsl:${PORTSDIR}/math/gsl	\
-		lapack.4:${PORTSDIR}/math/lapack
+LIB_DEPENDS=	libgsl.so:${PORTSDIR}/math/gsl	\
+		liblapack.so:${PORTSDIR}/math/lapack
 
 USES=		fortran gmake
 GNU_CONFIGURE=	yes
@@ -28,16 +28,14 @@ MAKE_JOBS_UNSAFE=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
 post-patch:
 	@${REINPLACE_CMD} -e 's/-lgfortran/& $${LDFLAGS}/' ${WRKSRC}/configure
 
 post-install:
-.if !defined(NOPORTDOCS)
 	cd ${WRKSRC}/doc && ${FIND} -s ${WRKSRC}/doc/* | ${SED} -e 's#${WRKSRC}/doc/##' | ${CPIO} -pmud -R ${BINOWN}:${BINGRP} ${STAGEDIR}${DOCSDIR}
-.endif
-.if !defined(NOPORTEXAMPLES)
 	cd ${WRKSRC}/demos && ${FIND} -s ${WRKSRC}/demos/* | ${SED} -e 's#${WRKSRC}/demos/##' | ${CPIO} -pmud -R ${BINOWN}:${BINGRP} ${STAGEDIR}${EXAMPLESDIR}
-.endif
 
 .include <bsd.port.pre.mk>
 

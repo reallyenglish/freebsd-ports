@@ -3,11 +3,11 @@
 
 PORTNAME=	greylite
 PORTVERSION=	2.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	http://mij.oltrelinux.com/net/greylite/releases/
 
-MAINTAINER=	mij@bitchx.it
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Modified greylisting for qmail and for any other MDA
 
 RUN_DEPENDS=	tcpserver:${PORTSDIR}/sysutils/ucspi-tcp
@@ -31,12 +31,12 @@ NO_STAGE=	yes
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MGEOIP}
-LIB_DEPENDS+=	GeoIP:${PORTSDIR}/net/GeoIP
+LIB_DEPENDS+=	libGeoIP.so:${PORTSDIR}/net/GeoIP
 MAKE_ARGS+=	WITH_GEOIP=yep
 .endif
 
 .if ${PORT_OPTIONS:MDNSBLENV}
-LIB_DEPENDS+=	cares:${PORTSDIR}/dns/c-ares
+LIB_DEPENDS+=	libcares.so:${PORTSDIR}/dns/c-ares
 MAKE_ARGS+=	WITH_DNSBLENV=yep
 PLIST_SUB+=	DNSBLENV=""
 .else

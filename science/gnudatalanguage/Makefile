@@ -3,7 +3,7 @@
 
 PORTNAME=	gnudatalanguage
 DISTVERSION=	0.9.4
-PORTREVISION=	5
+PORTREVISION=	7
 CATEGORIES=	science lang
 MASTER_SITES=	SF/${PORTNAME}/gdl/${DISTVERSION}
 .if defined(BUILD_PYTHON_MODULE)
@@ -52,6 +52,8 @@ LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib
 
 SLAVEDIRS=	science/py-gnudatalanguage
 
+OPTIONS_DEFINE=	EXAMPLES
+
 .if defined(BUILD_PYTHON_MODULE)
 CATEGORIES+=	python
 CMAKE_ARGS+=	-DPYTHON_MODULE:BOOL=YES -DOPENMP:BOOL=NO
@@ -63,7 +65,7 @@ PLIST_SUB+=	MASTER=""
 .endif
 
 .if !defined(WITHOUT_GRAPHICSMAGICK)
-LIB_DEPENDS+=	libGraphicsMagick.so.14:${PORTSDIR}/graphics/GraphicsMagick13
+LIB_DEPENDS+=	libGraphicsMagick.so.14:${PORTSDIR}/graphics/GraphicsMagick
 CMAKE_ARGS+=	-DGRAPHICSMAGICK:BOOL=YES
 .else
 CMAKE_ARGS+=	-DGRAPHICSMAGICK:BOOL=NO
@@ -134,10 +136,8 @@ do-install:
 
 .if !defined(BUILD_PYTHON_MODULE)
 post-stage:
-. if !defined(NOPORTEXAMPLES)
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/testsuite
 	(cd ${WRKSRC}/testsuite && ${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR}/testsuite/)
-. endif
 .endif
 
 .if defined(MAINTAINER_MODE)

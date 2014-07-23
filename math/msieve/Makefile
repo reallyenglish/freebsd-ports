@@ -23,10 +23,9 @@ PLIST_FILES=	bin/msieve lib/libmsieve.a ${HEADERS:S|^|include/msieve/|}
 PLIST_DIRS=	include/msieve
 PORTDOCS=	Changes Readme Readme.nfs Readme.qs
 
-OPTIONS_DEFINE=		OPTIMIZED_CFLAGS
+OPTIONS_DEFINE=		OPTIMIZED_CFLAGS DOCS
 OPTIONS_DEFAULT=	OPTIMIZED_CFLAGS
 
-NO_STAGE=	yes
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
@@ -63,13 +62,13 @@ post-patch:
 		${WRKSRC}/Makefile
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/msieve ${PREFIX}/bin
-	@${MKDIR} ${PREFIX}/include/msieve
-	@cd ${WRKSRC}/include; ${INSTALL_DATA} ${HEADERS} ${PREFIX}/include/msieve
-	@${INSTALL_LIB} ${WRKSRC}/libmsieve.a ${PREFIX}/lib
+	@${INSTALL_PROGRAM} ${WRKSRC}/msieve ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${STAGEDIR}${PREFIX}/include/msieve
+	@cd ${WRKSRC}/include; ${INSTALL_DATA} ${HEADERS} ${STAGEDIR}${PREFIX}/include/msieve
+	@${INSTALL_LIB} ${WRKSRC}/libmsieve.a ${STAGEDIR}${PREFIX}/lib
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	@cd ${WRKSRC}; ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@cd ${WRKSRC}; ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 .endif
 
 regression-test test check: build

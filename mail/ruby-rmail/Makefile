@@ -10,13 +10,15 @@ DISTNAME=	rubymail-${PORTVERSION}
 DIST_SUBDIR=	ruby
 
 MAINTAINER=	ruby@FreeBSD.org
-COMMENT=	A lightweight mail manipulating library for Ruby
+COMMENT=	Lightweight mail manipulating library for Ruby
 
 USE_RUBY=	yes
 USE_RUBY_SETUP=	yes
 RUBY_SETUP=	install.rb
 
 DOCS=		NEWS NOTES README THANKS TODO doc
+
+OPTIONS_DEFINE=	DOCS
 
 post-extract:
 	${FIND} ${WRKSRC} -name '*~' -delete

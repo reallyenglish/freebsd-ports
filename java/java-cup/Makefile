@@ -11,7 +11,7 @@ PKGNAMEPREFIX=	java-
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-v${PORTVERSION:S|.||}-20050516-sources
 
 MAINTAINER=	eg@fbsd.lt
-COMMENT=	An LALR parser generator in Java
+COMMENT=	LALR parser generator in Java
 
 USE_JAVA=	yes
 USE_ANT=	yes
@@ -23,9 +23,8 @@ DISTJARNAME=	${PKGNAMEPREFIX}${PORTNAME}-10k-TUM
 PLIST_FILES=	%%JAVAJARDIR%%/${DISTJARNAME}.jar \
 		%%JAVAJARDIR%%/${DISTJARNAME}-runtime.jar
 
-NO_STAGE=	yes
 do-install:
-	${INSTALL_DATA} ${WRKSRC}/dist/${DISTJARNAME}.jar ${JAVAJARDIR}
-	${INSTALL_DATA} ${WRKSRC}/dist/${DISTJARNAME}-runtime.jar ${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKSRC}/dist/${DISTJARNAME}.jar ${STAGEDIR}${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKSRC}/dist/${DISTJARNAME}-runtime.jar ${STAGEDIR}${JAVAJARDIR}
 
 .include <bsd.port.mk>

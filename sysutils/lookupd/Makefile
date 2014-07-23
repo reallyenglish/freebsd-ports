@@ -7,8 +7,11 @@ PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://sfedu.ru/~bushman/lookupd/downloads/
 
-MAINTAINER=	bushman@rsu.ru
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Lookupd daemon - IPC nsswitch implementation with system-wide caching
+
+DEPRECATED=	Fails to build with new utmpx
+EXPIRATION_DATE=	2014-07-23
 
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	lookupd

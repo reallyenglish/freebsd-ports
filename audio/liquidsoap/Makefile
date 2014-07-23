@@ -8,7 +8,7 @@ CATEGORIES=	audio net
 MASTER_SITES=	SF/savonet/${PORTNAME}/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-full
 
-MAINTAINER=	i@levsha.me
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	The audio stream generator of the Savonet project
 
 LICENSE=	GPLv2
@@ -114,8 +114,8 @@ BUILD_DEPENDS_dssi=	${LOCALBASE}/include/dssi.h:${PORTSDIR}/audio/dssi
 LIB_DEPENDS_faad=	libfaad.so:${PORTSDIR}/audio/faad
 LIB_DEPENDS_gavl=	libgavl.so:${PORTSDIR}/multimedia/gavl
 BUILD_DEPENDS_gstreamer=${LOCALBASE}/lib/ocaml/libcamlidl.a:${PORTSDIR}/lang/ocaml-camlidl
-LIB_DEPENDS_gstreamer=	libgstreamer-0.10:${PORTSDIR}/multimedia/gstreamer \
-			libgstapp-0.10:${PORTSDIR}/multimedia/gstreamer-plugins
+LIB_DEPENDS_gstreamer=	libgstreamer-0.10.so:${PORTSDIR}/multimedia/gstreamer \
+			libgstapp-0.10.so:${PORTSDIR}/multimedia/gstreamer-plugins
 BUILD_DEPENDS_ladspa=	${LOCALBASE}/include/ladspa.h:${PORTSDIR}/audio/ladspa
 LIB_DEPENDS_lame=	libmp3lame.so:${PORTSDIR}/audio/lame
 LIB_DEPENDS_mad=	libmad.so:${PORTSDIR}/audio/libmad
@@ -124,7 +124,8 @@ LIB_DEPENDS_vorbis=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 LIB_DEPENDS_speex=	libspeex.so:${PORTSDIR}/audio/speex
 LIB_DEPENDS_theora=	libtheora.so:${PORTSDIR}/multimedia/libtheora
 LIB_DEPENDS_samplerate=	libsamplerate.so:${PORTSDIR}/audio/libsamplerate
-LIB_DEPENDS_soundtouch=	libSoundTouch.so:${PORTSDIR}/audio/soundtouch bpm:${PORTSDIR}/audio/libbpm
+LIB_DEPENDS_soundtouch=	libSoundTouch.so:${PORTSDIR}/audio/soundtouch \
+			libbpm.so:${PORTSDIR}/audio/libbpm
 LIB_DEPENDS_portaudio=	libportaudio.so:${PORTSDIR}/audio/portaudio2
 LIB_DEPENDS_pulseaudio=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 LIB_DEPENDS_taglib=	libtag.so:${PORTSDIR}/audio/taglib
@@ -188,6 +189,6 @@ post-patch:
 	${SED} ${_DISABLE_SED_ARGS} ${WRKSRC}/PACKAGES.default > ${WRKSRC}/PACKAGES
 
 pre-configure:
-	(cd ${WRKSRC} && ${GMAKE} bootstrap && ${SED} -i '' -e 's/^RUNNING_USER="$$USER"/RUNNING_USER=liquidsoap/' */configure)
+	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} bootstrap && ${SED} -i '' -e 's/^RUNNING_USER="$$USER"/RUNNING_USER=liquidsoap/' */configure)
 
 .include <bsd.port.mk>

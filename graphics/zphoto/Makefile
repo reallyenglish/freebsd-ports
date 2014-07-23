@@ -8,7 +8,7 @@ CATEGORIES=	graphics www
 MASTER_SITES=	http://namazu.org/~satoru/zphoto/
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	umeno@rr.iij4u.or.jp
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Zooming photo album generator
 
 OPTIONS_DEFINE=	ZIP
@@ -26,11 +26,9 @@ CONFIGURE_ARGS=	--disable-avifile
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 USE_EFL=	imlib2
-PLIST_FILES+=	bin/wxzphoto
 USES=		perl5 gmake
 USE_PERL5=	build
 
-NO_STAGE=	yes
 post-patch:
 	@${REINPLACE_CMD} -e 's|<ming.h>|<ming/ming.h>|g' ${WRKSRC}/*.c ${WRKSRC}/configure
 

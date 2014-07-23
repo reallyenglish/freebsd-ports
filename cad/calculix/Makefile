@@ -7,14 +7,8 @@ PORTREVISION=	3
 CATEGORIES=	cad
 MASTER_SITES=	http://www.dhondt.de/
 DISTFILES=	${DIST_SOURCES}
-.ifdef WITH_EXAMPLES
-DISTFILES+=	${DIST_EXAMPLES}
-.endif
 DIST_SUBDIR=	calculix
 EXTRACT_ONLY=	${DIST_SOURCES}
-.ifdef WITH_EXAMPLES
-EXTRACT_ONLY+=	${DIST_EXAMPLES}
-.endif
 
 MAINTAINER=	maho@FreeBSD.org
 COMMENT=	Three-Dimensional Structural Finite Element Program
@@ -24,8 +18,6 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libarpack.so:${PORTSDIR}/math/arpack	\
 		libspooles.so:${PORTSDIR}/math/spooles \
 		libtaucs.so:${PORTSDIR}/math/taucs
-
-USE_BZIP2=	yes
 
 DIST_SOURCES=	ccx_${PORTVERSION}.src${EXTRACT_SUFX}	\
 		cgx_${PORTVERSION}.all${EXTRACT_SUFX}
@@ -40,7 +32,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 CCX_VER=	ccx_${PORTVERSION}
 CGX_VER=	cgx_${PORTVERSION}
 
-USES=		fortran gmake
+USES=		fortran gmake tar:bzip2
 USE_GCC=	yes
 USE_XORG=	xmu
 USE_GL=	glut
@@ -48,12 +40,17 @@ USE_GL=	glut
 BROWSER?=	firefox
 PSVIEWER?=	gv
 
-OPTIONS_DEFINE= METIS METIS_EDF
+OPTIONS_DEFINE= ATLAS METIS METIS_EDF DOCS EXAMPLES
 OPTIONS_DEFAULT=METIS
 
 .include <bsd.port.options.mk>
 
-.if $(PORT_OPTIONS:MDOCS)
+.if ${PORT_OPTIONS:MEXAMPLES}
+DISTFILES+=	${DIST_EXAMPLES}
+EXTRACT_ONLY+=	${DIST_EXAMPLES}
+.endif
+
+.if ${PORT_OPTIONS:MDOCS}
 DISTFILES+=	${DIST_HTM} ${DIST_PS} ${DIST_PDF}
 EXTRACT_ONLY+=	${DIST_HTM} ccx_${PORTVERSION}.ps${EXTRACT_SUFX}
 .endif
@@ -68,7 +65,8 @@ LIB_DEPENDS+= 	libmetis.so:${PORTSDIR}/math/metis-edf
 .if exists(${LOCALBASE}/lib/libatlas.so) && !defined(WITH_BLAS)
 WITH_ATLAS=             yes
 .endif
-.if defined(WITH_ATLAS)
+
+.if ${PORT_OPTIONS:MATLAS}
 LIB_DEPENDS+=	libatlas.so:${PORTSDIR}/math/atlas
 BLAS_LIBS=	-lf77blas
 LAPACK_LIBS=	-lalapack -lcblas
@@ -87,15 +85,10 @@ CFLAGS+=	-fpic
 FFLAGS+=	-fpic
 .endif
 
-.if !defined(WITH_EXAMPLES)
+.if empty(PORT_OPTIONS:MEXAMPLES)
 PLIST_SUB=	WITH_EXAMPLES="@comment "
 .else
 PLIST_SUB=	WITH_EXAMPLES=""
-.endif
-
-.ifndef (WITH_EXAMPLES)
-pre-everything::
-	@${ECHO} "You can define WITH_EXAMPLES=yes to install example files"
 .endif
 
 pre-build:
@@ -112,9 +105,9 @@ pre-build:
 		${WRKSRC}/${CGX_VER}/src/cgx.h
 
 do-build:
-	@(cd ${WRKSRC}/${CCX_VER}/src; ${SETENV} ${MAKE_ENV} $(GMAKE) )
-	@(cd ${WRKSRC}/libSNL/src; ${SETENV} ${MAKE_ENV} $(GMAKE) )
-	@(cd ${WRKSRC}/${CGX_VER}/src; ${SETENV} ${MAKE_ENV} $(GMAKE) )
+	@(cd ${WRKSRC}/${CCX_VER}/src; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} )
+	@(cd ${WRKSRC}/libSNL/src; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} )
+	@(cd ${WRKSRC}/${CGX_VER}/src; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} )
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/${CCX_VER}/src/${CCX_VER} \
@@ -133,7 +126,7 @@ do-install:
 	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/cgx_${PORTVERSION}.pdf \
 	  ${STAGEDIR}${DOCSDIR}
 .endif
-.ifdef WITH_EXAMPLES
+.if ${PORT_OPTIONS:MEXAMPLES}
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	@(cd ${WRKSRC}/${CGX_VER}/examples && ${COPYTREE_SHARE} . \
 	  ${STAGEDIR}${EXAMPLESDIR})

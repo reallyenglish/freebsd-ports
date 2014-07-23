@@ -93,6 +93,7 @@
     SUBDIR += medit
     SUBDIR += meep
     SUBDIR += mei
+    SUBDIR += metaf2xml
     SUBDIR += minc
     SUBDIR += minc2
     SUBDIR += mol2ps
@@ -173,6 +174,7 @@
     SUBDIR += sigrok-cli
     SUBDIR += silo
     SUBDIR += simlib
+    SUBDIR += simsmith
     SUBDIR += step
     SUBDIR += svmlight
     SUBDIR += szip

@@ -3,7 +3,7 @@
 
 PORTNAME=	aubio
 PORTVERSION=	0.3.2
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	audio
 MASTER_SITES=	http://aubio.org/pub/
 
@@ -24,5 +24,6 @@ USES=		gmake pathfix pkgconfig libtool
 USE_LDCONFIG=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-lm
 
 .include <bsd.port.mk>

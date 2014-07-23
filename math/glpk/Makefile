@@ -9,13 +9,13 @@ MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	glpk
 
 MAINTAINER=	bf@FreeBSD.org
-COMMENT=	A GNU Linear Programming Kit
+COMMENT=	GNU Linear Programming Kit
 
 LICENSE=	GPLv3
 
 LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
-OPTIONS_DEFINE=	IODBC MYSQL
+OPTIONS_DEFINE=	IODBC MYSQL DOCS
 IODBC_DESC=	MathProg iodbc support
 MYSQL_DESC=	MathProg mysql support
 

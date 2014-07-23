@@ -8,10 +8,10 @@ CATEGORIES=	www
 MASTER_SITES=	http://0pointer.de/lennart/projects/mod_dnssd/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	An Apache module that provides DNS-SD capabilities
 
-LIB_DEPENDS=	avahi-client.3:${PORTSDIR}/net/avahi-app
+LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
 
 USES=		gmake pkgconfig
 USE_APACHE=	22

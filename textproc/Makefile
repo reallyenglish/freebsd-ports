@@ -63,6 +63,7 @@
     SUBDIR += cbedic
     SUBDIR += cdif
     SUBDIR += cdiff
+    SUBDIR += cgrep
     SUBDIR += chm2pdf
     SUBDIR += chpp
     SUBDIR += cl-meta
@@ -101,7 +102,6 @@
     SUBDIR += denature
     SUBDIR += dict
     SUBDIR += dictem
-    SUBDIR += dictem-xemacs21-mule
     SUBDIR += dictfmt
     SUBDIR += dictionary
     SUBDIR += diffmark
@@ -151,7 +151,6 @@
     SUBDIR += enchant
     SUBDIR += eo-aspell
     SUBDIR += eqe
-    SUBDIR += eruby
     SUBDIR += es-aspell
     SUBDIR += es-hunspell
     SUBDIR += es-hyphen
@@ -412,7 +411,6 @@
     SUBDIR += lucene
     SUBDIR += lucene4
     SUBDIR += lv-aspell
-    SUBDIR += m17n-contrib
     SUBDIR += m17n-im-config
     SUBDIR += makefaq
     SUBDIR += makepatch
@@ -423,7 +421,6 @@
     SUBDIR += mathml-xsd
     SUBDIR += mdocml
     SUBDIR += meld
-    SUBDIR += metaf2xml
     SUBDIR += metauml
     SUBDIR += mgdiff
     SUBDIR += mguesser
@@ -1059,6 +1056,8 @@
     SUBDIR += pdftohtml
     SUBDIR += pear-File_Fortune
     SUBDIR += pear-File_MARC
+    SUBDIR += pear-Horde_CssMinify
+    SUBDIR += pear-Horde_JavascriptMinify
     SUBDIR += pear-Horde_Kolab_Format
     SUBDIR += pear-Horde_Pdf
     SUBDIR += pear-Horde_SpellChecker
@@ -1095,6 +1094,7 @@
     SUBDIR += pecl-xdiff
     SUBDIR += pecl-xslcache
     SUBDIR += pecl-yaml
+    SUBDIR += peco
     SUBDIR += perl2html
     SUBDIR += permute
     SUBDIR += php5-ctype
@@ -1148,6 +1148,7 @@
     SUBDIR += py-creole
     SUBDIR += py-docutils
     SUBDIR += py-dsv
+    SUBDIR += py-elasticsearch-py
     SUBDIR += py-elib.intl
     SUBDIR += py-empy
     SUBDIR += py-enchant
@@ -1161,6 +1162,7 @@
     SUBDIR += py-html2text
     SUBDIR += py-hyperestraier-python
     SUBDIR += py-jaxml
+    SUBDIR += py-junit-xml
     SUBDIR += py-libtre
     SUBDIR += py-libxml2
     SUBDIR += py-libxslt
@@ -1192,6 +1194,7 @@
     SUBDIR += py-sgrep
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-sphinx_rtd_theme
     SUBDIR += py-sphinxcontrib-adadomain
     SUBDIR += py-sphinxcontrib-bitbucket
     SUBDIR += py-sphinxcontrib-httpdomain
@@ -1269,7 +1272,6 @@
     SUBDIR += ruby-diff
     SUBDIR += ruby-escape
     SUBDIR += ruby-format
-    SUBDIR += ruby-hikidoc
     SUBDIR += ruby-html-fillinform
     SUBDIR += ruby-html-template
     SUBDIR += ruby-htmlrepair
@@ -1424,13 +1426,8 @@
     SUBDIR += srilm
     SUBDIR += ss-hunspell
     SUBDIR += ssddiff
-    SUBDIR += stardict-BritannicaConcise
-    SUBDIR += stardict-MerrianWebster
-    SUBDIR += stardict-OxfordCollocation
     SUBDIR += stardict-dict-fa_IR
     SUBDIR += stardict-dictd_mova
-    SUBDIR += stardict-longman
-    SUBDIR += stardict-oald
     SUBDIR += stardict-quick
     SUBDIR += stardict-rptts
     SUBDIR += stardict3
@@ -1483,9 +1480,6 @@
     SUBDIR += txt2tags
     SUBDIR += uim
     SUBDIR += uim-el
-    SUBDIR += uim-el-emacs21
-    SUBDIR += uim-el-emacs22
-    SUBDIR += uim-el-xemacs21-mule
     SUBDIR += uim-gtk
     SUBDIR += uim-gtk3
     SUBDIR += uim-kde4
@@ -1568,7 +1562,6 @@
     SUBDIR += yali
     SUBDIR += yamcha
     SUBDIR += yaml-mode.el
-    SUBDIR += yaml-mode.el-emacs21
     SUBDIR += yelp-tools
     SUBDIR += yelp-xsl
     SUBDIR += yi-aspell

@@ -3,6 +3,7 @@
 
     COMMENT = X11 fonts and font utilities
 
+    SUBDIR += alef
     SUBDIR += alegreya-sans
     SUBDIR += alfont
     SUBDIR += andika
@@ -100,6 +101,7 @@
     SUBDIR += gnu-unifont-ttf
     SUBDIR += gohufont
     SUBDIR += hanazono-fonts-ttf
+    SUBDIR += hasklig
     SUBDIR += inconsolata-lgc-ttf
     SUBDIR += inconsolata-ttf
     SUBDIR += indic-ttf
@@ -132,6 +134,7 @@
     SUBDIR += montecarlo_fonts
     SUBDIR += moveable-type-fonts
     SUBDIR += nexfontsel
+    SUBDIR += noto
     SUBDIR += nucleus
     SUBDIR += p5-Font-AFM
     SUBDIR += p5-Font-TTF

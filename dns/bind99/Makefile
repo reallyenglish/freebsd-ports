@@ -2,9 +2,10 @@
 
 PORTNAME=	bind
 PORTVERSION=	${ISCVERSION:S/-P/P/}
+PORTREVISION=	3
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
-PKGNAMESUFFIX?=	99
+PKGNAMESUFFIX=	99
 DISTNAME=	${PORTNAME}-${ISCVERSION}
 
 MAINTAINER=	mat@FreeBSD.org
@@ -17,27 +18,36 @@ ISCVERSION=	9.9.5-P1
 
 MAKE_JOBS_UNSAFE=	yes
 
+USES=	cpe
+
+CPE_VENDOR=	isc
+CPE_VERSION=	${ISCVERSION:C/-.*//}
+.if ${ISCVERSION:M*-*}
+CPE_UPDATE=	${ISCVERSION:C/.*-//:tl}
+.endif
+
 LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
 		--disable-symtable \
 		--with-randomdev=/dev/random \
-		--with-libxml2=${LOCALBASE} \
-		--without-python
+		--with-libxml2=${LOCALBASE}
 ETCDIR=		${PREFIX}/etc/namedb
 
 CONFLICTS=	bind9*-9.[45678].* bind9*-sdb-9.[45678].* bind-tools-9.*
 
-OPTIONS_DEFAULT=	IPV6 SSL THREADS
+OPTIONS_DEFAULT=	IPV6 SSL THREADS GSSAPI_NONE
 OPTIONS_DEFINE=		SSL IDN REPLACE_BASE LARGE_FILE FIXED_RRSET SIGCHASE \
-			IPV6 THREADS GSSAPI FILTER_AAAA GOST
-.if !defined(BIND_TOOLS_SLAVE)
-OPTIONS_DEFINE+=	LINKS RPZ_NSIP RPZ_NSDNAME RRL DOCS RPZ_PATCH NEWSTATS
+			IPV6 THREADS FILTER_AAAA GOST PYTHON \
+			LINKS RPZ_NSIP RPZ_NSDNAME RRL DOCS RPZ_PATCH NEWSTATS
 OPTIONS_GROUP=		DLZ
 OPTIONS_GROUP_DLZ=	DLZ_POSTGRESQL DLZ_MYSQL DLZ_BDB \
 			DLZ_LDAP DLZ_FILESYSTEM DLZ_STUB
-.endif	# BIND_TOOLS_SLAVE
+OPTIONS_SINGLE=		GSSAPI
+OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
+
+OPTIONS_SUB=	yes
 
 SSL_DESC=		Build with OpenSSL (Required for DNSSEC)
 REPLACE_BASE_DESC=	Replace base BIND (FreeBSD 9.x and earlier)
@@ -46,6 +56,7 @@ FIXED_RRSET_DESC=	Enable fixed rrset ordering
 SIGCHASE_DESC=		dig/host/nslookup will do DNSSEC validation
 FILTER_AAAA_DESC=	Enable filtering of AAAA records
 GOST_DESC=		Enable GOST ciphers, needs SSL (see help)
+PYTHON_DESC=		Build with Python utilities
 
 LINKS_DESC=		Create conf file symlinks in ${PREFIX}
 NEWSTATS_DESC=		Enable alternate xml statistics channel format
@@ -60,10 +71,10 @@ DLZ_BDB_DESC=		DLZ BDB driver
 DLZ_LDAP_DESC=		DLZ LDAP driver
 DLZ_FILESYSTEM_DESC=	DLZ filesystem driver
 DLZ_STUB_DESC=		DLZ stub driver
-
-.if !defined(BIND_TOOLS_SLAVE)
-CONFLICTS+=		bind-tools-9.*
-.endif	# BIND_TOOLS_SLAVE
+GSSAPI_BASE_DESC=	${GSSAPI_DESC} (Heimdal in base)
+GSSAPI_HEIMDAL_DESC=	${GSSAPI_DESC} (security/heimdal)
+GSSAPI_MIT_DESC=	${GSSAPI_DESC} (security/krb5)
+GSSAPI_NONE_DESC=	No ${GSSAPI_DESC}
 
 SSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
 SSL_USE=		openssl=yes
@@ -85,6 +96,10 @@ IPV6_CONFIGURE_ENABLE=	ipv6
 FILTER_AAAA_CONFIGURE_ENABLE=	filter-aaaa
 
 GOST_CONFIGURE_WITH=	gost
+
+PYTHON_CONFIGURE_WITH=	python
+PYTHON_USE=	PYTHON=yes
+PYTHON_USES=	gmake
 
 DLZ_POSTGRESQL_CONFIGURE_ON=	--with-dlz-postgres=yes
 DLZ_POSTGRESQL_USE=		pgsql=yes
@@ -113,12 +128,16 @@ DLZ_FILESYSTEM_CONFIGURE_ON=	--with-dlz-filesystem=yes
 
 DLZ_STUB_CONFIGURE_ON=	--with-dlz-stub=yes
 
-.if defined(HEIMDAL_HOME)
-GSSAPI_CONFIGURE_ON=	--with-gssapi=${HEIMDAL_HOME}
-GSSAPI_CONFIGURE_OFF=	--without-gssapi
-.else
-GSSAPI_CONFIGURE_WITH=	gssapi
-.endif
+GSSAPI_BASE_USES=	gssapi
+GSSAPI_BASE_CONFIGURE_ON= \
+	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_HEIMDAL_USES=	gssapi:heimdal
+GSSAPI_HEIMDAL_CONFIGURE_ON= \
+	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_MIT_USES=	gssapi:mit
+GSSAPI_MIT_CONFIGURE_ON= \
+	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
+GSSAPI_NONE_CONFIGURE_ON=	--without-gssapi
 
 .include <bsd.port.options.mk>
 
@@ -175,7 +194,6 @@ WITH_OPENSSL_PORT=	yes
 .endif
 .endif
 
-.if !defined(BIND_TOOLS_SLAVE)
 post-patch:
 .for FILE in check/named-checkconf.8 named/named.8 nsupdate/nsupdate.1 \
 	rndc/rndc.8
@@ -218,6 +236,5 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/master
 	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf ${STAGEDIR}${ETCDIR}/rndc.conf.sample
 .endif
-.endif	# BIND_TOOLS_SLAVE
 
 .include <bsd.port.mk>

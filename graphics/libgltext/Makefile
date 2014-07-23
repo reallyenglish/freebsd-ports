@@ -3,7 +3,7 @@
 
 PORTNAME=	libgltext
 PORTVERSION=	0.3.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	graphics
 MASTER_SITES=	SF/gltext/gltext/${PORTVERSION}
 DISTNAME=	gltext-${PORTVERSION}
@@ -13,15 +13,15 @@ COMMENT=	Portable font rendering library for C++
 
 LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 
-USE_AUTOTOOLS=	libtool
-USES=		gmake
+USES=		gmake libtool
 USE_GL=		glu
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 
-OPTIONS_DEFINE=	EXAMPLES
+OPTIONS_DEFINE=	EXAMPLES DOCS
 EXAMPLES_DESC=	Compile examples, need libglut
+
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MEXAMPLES}

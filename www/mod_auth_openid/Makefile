@@ -3,15 +3,16 @@
 
 PORTNAME=	mod_auth_openid
 PORTVERSION=	0.7
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://cloud.github.com/downloads/bmuller/mod_auth_openid/
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 
-MAINTAINER=	zhoushuqun@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	An authentication module for the Apache 2 webserver with OpenID
 
-LIB_DEPENDS=	opkele:${PORTSDIR}/devel/libopkele \
-		sqlite3:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS=	libopkele.so:${PORTSDIR}/devel/libopkele \
+		libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 
 PLIST_FILES=	${APACHEMODDIR}/mod_auth_openid.so

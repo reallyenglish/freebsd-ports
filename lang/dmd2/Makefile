@@ -23,6 +23,8 @@ LICENSE_NAME_DMD=	Digital Mars license
 LICENSE_FILE_DMD=	${WRKSRC}/backendlicense.txt
 LICENSE_PERMS_DMD=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell auto-accept
 
+OPTIONS_DEFINE=	DOCS
+
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 800000
@@ -69,9 +71,9 @@ post-patch:
 
 post-build:
 	cd ${WRKSRC}/../druntime && \
-		${SETENV} PATH=${WRKSRC}:${PATH} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS}
+		${SETENV} PATH=${WRKSRC}:${PATH} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS}
 	cd ${WRKSRC}/../phobos && \
-		${SETENV} PATH=${WRKSRC}:${PATH} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${BUILD}
+		${SETENV} PATH=${WRKSRC}:${PATH} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${BUILD}
 
 do-install:
 	${INSTALL_MAN} ${WRKDIR}/dmd2/man/man1/dmd.1 ${STAGEDIR}${MANPREFIX}/man/man1/dmd.1
@@ -96,7 +98,6 @@ do-install:
 	cd ${WRKSRC}/../phobos && ${COPYTREE_SHARE} std ${STAGEDIR}${MODULEDIR}
 	${MKDIR} ${STAGEDIR}${MODULEDIR}/../druntime
 	cd ${WRKSRC}/../druntime && ${COPYTREE_SHARE} import ${STAGEDIR}${MODULEDIR}/../druntime
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/*.txt ${STAGEDIR}${DOCSDIR}
 	cd ${WRKDIR}/dmd2 && ${COPYTREE_SHARE} html ${STAGEDIR}${DOCSDIR}
@@ -104,6 +105,5 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/../druntime/LICENSE ${STAGEDIR}${DOCSDIR}/druntime
 	${INSTALL_DATA} ${WRKSRC}/../druntime/README.md ${STAGEDIR}${DOCSDIR}/druntime
 	cd ${WRKSRC}/../druntime && ${COPYTREE_SHARE} doc ${STAGEDIR}${DOCSDIR}/druntime
-.endif
 
 .include <bsd.port.post.mk>

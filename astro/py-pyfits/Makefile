@@ -2,13 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	pyfits
-PORTVERSION=	3.1.2
-PORTREVISION=	2
+PORTVERSION=	3.3
 CATEGORIES=	astro python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	tonymaher@optusnet.com.au
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Python Interface to FITS Formatted Files
 
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/numpy/core/numeric.py:${PORTSDIR}/math/py-numpy \

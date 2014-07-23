@@ -8,8 +8,8 @@ CATEGORIES=	sysutils
 MASTER_SITES=	http://subwiki.honeypot.net/pub/Freebsd/JailAdmin/
 DISTNAME=	jailadmin-${PORTVERSION}
 
-MAINTAINER=	kirk@strauser.com
-COMMENT=	A system for managing a set of named jails
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	System for managing a set of named jails
 
 USES=		perl5
 
@@ -19,7 +19,7 @@ NO_STAGE=	yes
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_SNMP)
-LIB_DEPENDS+=	netsnmp.30:${PORTSDIR}/net-mgmt/net-snmp
+LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 PLIST_SUB+=	SNMP=""
 .else
 INSTALL_TARGET=	installbase

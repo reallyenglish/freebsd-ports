@@ -20,7 +20,7 @@ USES=		gmake pkgconfig tar:xz
 USE_XORG=	x11 xtst xext
 INSTALLS_ICONS=	YES
 USE_LDCONFIG=	YES
-OPTIONS_DEFINE=	ANTHY QT_IM_MODULE
+OPTIONS_DEFINE=	ANTHY QT_IM_MODULE DOCS
 ANTHY_DESC=	Japanese anthy IM module
 QT_IM_MODULE_DESC=	QT IM module
 
@@ -78,7 +78,7 @@ post-patch:
 		${WRKSRC}/scripts/utf8-edit
 	@${REINPLACE_CMD} -e '/make/ d' ${WRKSRC}/IMdkit/lib/Makefile
 	@${REINPLACE_CMD} -e 's,/usr/X11R6/lib,${LOCALBASE}/lib,' ${WRKSRC}/im-client/Makefile
-.ifdef NOPORTDOCS
+.if empty(PORT_OPTIONS:MDOCS)
 	@${REINPLACE_CMD} '/install.*DOC_DIR/d' ${WRKSRC}/Makefile
 .endif
 

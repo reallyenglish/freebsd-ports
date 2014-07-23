@@ -5,13 +5,13 @@ PORTREVISION=	0
 CATEGORIES=	multimedia python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	avilla@FreeBSD.org
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Python bindings for the MLT multimedia framework
 
 LICENSE=	GPLv2
 LICENSE_COMB=	single
 
-LIB_DEPENDS=	mlt:${PORTSDIR}/${MASTER_PORT}
+LIB_DEPENDS=	libmlt.so:${PORTSDIR}/${MASTER_PORT}
 BUILD_DEPENDS=	swig:${PORTSDIR}/devel/swig13
 
 USE_PYTHON=	yes

@@ -20,7 +20,9 @@ USE_LDCONFIG=	yes
 USE_GNOME=	libxml2
 USE_GCC=	yes
 
-INFO=		liblouisxml-guide
+INFO=		liblouisxml
+
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.options.mk>
 

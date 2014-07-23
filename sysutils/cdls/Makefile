@@ -7,13 +7,12 @@ CATEGORIES=	sysutils
 MASTER_SITES=	ftp://pd7w.fs2a.eu/
 
 MAINTAINER=	hans@dehartog.nl
-COMMENT=	A curses based file manager for system managers
+COMMENT=	Curses based file manager for system managers
 
 PLIST_FILES=	bin/cdls
 
 USES=		ncurses
 
-NO_STAGE=	yes
 .include <bsd.port.pre.mk>
 
 .if ${NCURSESBASE} == /usr
@@ -22,6 +21,6 @@ CONFIGURE_ARGS+=	NCURSES_CONFIG=/usr/bin/true
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|g' ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e 's|/usr/local|${STAGEDIR}${PREFIX}|g' ${WRKSRC}/Makefile
 
 .include <bsd.port.post.mk>

@@ -8,7 +8,6 @@
     SUBDIR += Coin
     SUBDIR += EZWGL
     SUBDIR += GraphicsMagick
-    SUBDIR += GraphicsMagick13
     SUBDIR += Hermes
     SUBDIR += IPA
     SUBDIR += ImageMagick
@@ -407,7 +406,6 @@
     SUBDIR += jpgraph2
     SUBDIR += jpgtn
     SUBDIR += jslice
-    SUBDIR += k3d
     SUBDIR += kamera-kde4
     SUBDIR += kcolorchooser
     SUBDIR += kcoloredit
@@ -566,6 +564,7 @@
     SUBDIR += lprof-devel
     SUBDIR += lua-gd
     SUBDIR += luminance
+    SUBDIR += luminance-qt5
     SUBDIR += luxrays
     SUBDIR += luxrender
     SUBDIR += mahotas
@@ -865,7 +864,7 @@
     SUBDIR += py-seqdiag
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-soya3d
-    SUBDIR += py-stl
+    SUBDIR += py-stltools
     SUBDIR += py-wand
     SUBDIR += py-webcolors
     SUBDIR += py3-cairo

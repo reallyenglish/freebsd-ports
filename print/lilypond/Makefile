@@ -24,6 +24,7 @@ BUILD_DEPENDS=	pdftexi2dvi:${PORTSDIR}/print/texinfo \
 		pngtopnm:${PORTSDIR}/graphics/netpbm \
 		rsync:${PORTSDIR}/net/rsync \
 		zip:${PORTSDIR}/archivers/zip \
+		texi2html:${PORTSDIR}/textproc/texi2html \
 		${LOCALBASE}/share/ghostscript/fonts/c059033l.pfb:${PORTSDIR}/print/gsfonts
 
 RUN_DEPENDS=	mftrace:${PORTSDIR}/print/mftrace \
@@ -69,8 +70,6 @@ NO_CCACHE=	yes
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
-OPTIONS_DEFINE=	NLS
-
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MNLS}
@@ -90,6 +89,6 @@ post-install:
 	@${LN} -fs ${DATADIR}/${PORTVERSION} ${STAGEDIR}${DATADIR}/current
 
 regression-test: build
-	cd ${WRKSRC} && ${GMAKE} -f ${MAKEFILE} test
+	cd ${WRKSRC} && ${MAKE_CMD} -f ${MAKEFILE} test
 
 .include <bsd.port.mk>

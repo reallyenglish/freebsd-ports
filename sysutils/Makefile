@@ -56,6 +56,7 @@
     SUBDIR += bacula-client-static
     SUBDIR += bacula-docs
     SUBDIR += bacula-server
+    SUBDIR += bamf
     SUBDIR += bashburn
     SUBDIR += batmon
     SUBDIR += battfink
@@ -82,6 +83,7 @@
     SUBDIR += bsdhwmon
     SUBDIR += bsdinfo
     SUBDIR += bsdmoted
+    SUBDIR += bsdploy
     SUBDIR += bsdstats
     SUBDIR += bubblemon-dockapp
     SUBDIR += bulk_extractor
@@ -317,7 +319,6 @@
     SUBDIR += gkleds2
     SUBDIR += gkrellfire
     SUBDIR += gkrellflynn
-    SUBDIR += gkrellm
     SUBDIR += gkrellm-trayicons
     SUBDIR += gkrellm2
     SUBDIR += gkrelltop
@@ -352,7 +353,6 @@
     SUBDIR += gstreamer-plugins-hal
     SUBDIR += gstreamer1-plugins-cdio
     SUBDIR += gtk-imonc
-    SUBDIR += gtk-send-pr
     SUBDIR += hachoir-metadata
     SUBDIR += hachoir-subfile
     SUBDIR += hachoir-urwid
@@ -388,6 +388,7 @@
     SUBDIR += iat
     SUBDIR += installwatch
     SUBDIR += intel-pcm
+    SUBDIR += iocage
     SUBDIR += iogen
     SUBDIR += iograph
     SUBDIR += ioping
@@ -544,6 +545,7 @@
     SUBDIR += munin-node
     SUBDIR += muse
     SUBDIR += mybashburn
+    SUBDIR += n98-magerun
     SUBDIR += nagios-statd
     SUBDIR += namefix
     SUBDIR += nbosd
@@ -649,7 +651,6 @@
     SUBDIR += patchelf
     SUBDIR += pax-utils
     SUBDIR += pbimaker
-    SUBDIR += pc-sysinstall
     SUBDIR += pcbsd-utils
     SUBDIR += pcbsd-utils-qt4
     SUBDIR += pcfclock
@@ -707,10 +708,10 @@
     SUBDIR += procenv
     SUBDIR += procmap
     SUBDIR += progsreiserfs
-    SUBDIR += psgconf
     SUBDIR += pslist
     SUBDIR += psmisc
     SUBDIR += pstack
+    SUBDIR += pstacku
     SUBDIR += pstree
     SUBDIR += ptools
     SUBDIR += puppet
@@ -727,12 +728,18 @@
     SUBDIR += py-bcfg2
     SUBDIR += py-danzfs
     SUBDIR += py-drmaa
+    SUBDIR += py-execnet
     SUBDIR += py-ezjailremote
     SUBDIR += py-filelike
     SUBDIR += py-glances
     SUBDIR += py-halite
     SUBDIR += py-iowait
     SUBDIR += py-nagiosplugin
+    SUBDIR += py-ploy
+    SUBDIR += py-ploy_ansible
+    SUBDIR += py-ploy_ec2
+    SUBDIR += py-ploy_ezjail
+    SUBDIR += py-ploy_fabric
     SUBDIR += py-plumbum
     SUBDIR += py-psutil
     SUBDIR += py-psutil121
@@ -745,6 +752,7 @@
     SUBDIR += py-zdaemon
     SUBDIR += py-zfs
     SUBDIR += pydf
+    SUBDIR += qchroot
     SUBDIR += qjail
     SUBDIR += qjail2
     SUBDIR += qlogtools
@@ -907,7 +915,6 @@
     SUBDIR += sysinfo
     SUBDIR += syslinux
     SUBDIR += syslog-ng
-    SUBDIR += syslog-ng-devel
     SUBDIR += syslog-ng-incubator
     SUBDIR += syslog-ng2
     SUBDIR += syslog-ng33
@@ -915,10 +922,10 @@
     SUBDIR += syslogger
     SUBDIR += sysrc
     SUBDIR += system-tools-backends
-    SUBDIR += sysupdate
     SUBDIR += sysvbanner
     SUBDIR += tai64nfrac
     SUBDIR += tarsnap
+    SUBDIR += tartarus
     SUBDIR += tbku
     SUBDIR += tclsyslog
     SUBDIR += tcplist

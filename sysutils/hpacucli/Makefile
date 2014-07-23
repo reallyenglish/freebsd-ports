@@ -10,24 +10,23 @@ MASTER_SITES=	LOCAL/brooks
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	HP configuration utility for Smart Array RAID cards
 
-LIB_DEPENDS=	c.4:${PORTSDIR}/misc/compat4x \
-		c.5:${PORTSDIR}/misc/compat5x
+LIB_DEPENDS=	libc.so.4:${PORTSDIR}/misc/compat4x \
+		libc.so.5:${PORTSDIR}/misc/compat5x
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 NO_BUILD=	yes
 IA32_BINARY_PORT=	yes
 
 APP_PREFIX=	${PREFIX}/lib/compaq/hpacucli
 
-NO_STAGE=	yes
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${PREFIX}|' ${WRKSRC}/${PORTNAME}
 
 do-install:
-	@${MKDIR} ${APP_PREFIX}
-	${CP} -a ${WRKSRC}/lib* ${APP_PREFIX}
-	${INSTALL_PROGRAM} ${WRKSRC}/.${PORTNAME} ${PREFIX}/libexec
-	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${PREFIX}/sbin
+	@${MKDIR} ${STAGEDIR}${APP_PREFIX}
+	${CP} -a ${WRKSRC}/lib* ${STAGEDIR}${APP_PREFIX}
+	${INSTALL_PROGRAM} ${WRKSRC}/.${PORTNAME} ${STAGEDIR}${PREFIX}/libexec
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin
 
 .include <bsd.port.pre.mk>
 

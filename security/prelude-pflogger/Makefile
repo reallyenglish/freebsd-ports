@@ -7,10 +7,10 @@ PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://www.prelude-ids.com/download/releases/${PORTNAME}/
 
-MAINTAINER=	freebsd@troback.com
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Prelude-PFlogger Listens at OpenBSD PF
 
-LIB_DEPENDS+=	prelude:${PORTSDIR}/security/libprelude
+LIB_DEPENDS+=	libprelude.so:${PORTSDIR}/security/libprelude
 
 USES=		gmake
 GNU_CONFIGURE=	yes

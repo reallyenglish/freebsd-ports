@@ -1,14 +1,15 @@
 # $FreeBSD$
 
 PORTNAME=	asterisk
-PORTVERSION=	11.10.0
+PORTVERSION=	11.10.2
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	http://downloads.asterisk.org/pub/telephony/asterisk/ \
 		http://downloads.asterisk.org/pub/telephony/asterisk/old-releases/
 PKGNAMESUFFIX=	11
 
 MAINTAINER=	flo@FreeBSD.org
-COMMENT=	An Open Source PBX and telephony toolkit
+COMMENT=	Open Source PBX and telephony toolkit
 
 LIB_DEPENDS=	libspeex.so:${PORTSDIR}/audio/speex \
 		libnewt.so:${PORTSDIR}/devel/newt \
@@ -256,7 +257,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's|/var/lib|${PREFIX}/share|g' ${WRKSRC}/configs/musiconhold.conf.sample
 
 post-configure:
-	@cd ${WRKSRC} && ${GMAKE} menuselect.makeopts
+	@cd ${WRKSRC} && ${MAKE_CMD} menuselect.makeopts
 	@cd ${WRKSRC} && ./menuselect/menuselect --disable res_timing_kqueue menuselect.makeopts
 .if ${PORT_OPTIONS:MMYSQL}
 	@cd ${WRKSRC} && ./menuselect/menuselect --enable res_config_mysql menuselect.makeopts

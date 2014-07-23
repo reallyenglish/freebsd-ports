@@ -9,7 +9,7 @@ MASTER_SITES=	SF/husky/${PORTNAME}/1.4-RC5
 MAINTAINER=	os@rsu.ru
 COMMENT=	Highly Portable Tosser (full-featured FTN tosser). Development version
 
-LIB_DEPENDS=	fidoconfig.1:${PORTSDIR}/news/husky-fidoconf-devel
+LIB_DEPENDS=	libfidoconfig.so:${PORTSDIR}/news/husky-fidoconf-devel
 
 CONFLICTS=	husky-hpt-[0-9]*
 
@@ -38,12 +38,12 @@ post-patch:
 
 post-build:
 .if !defined(NOPORTDOCS)
-	@cd ${WRKSRC}/doc && ${GMAKE} ${MAKE_ARGS} all
+	@cd ${WRKSRC}/doc && ${MAKE_CMD} ${MAKE_ARGS} all
 .endif
 
 post-install:
 .if !defined(NOPORTDOCS)
-	@cd ${WRKSRC}/doc && ${GMAKE} ${MAKE_ARGS} install
+	@cd ${WRKSRC}/doc && ${MAKE_CMD} ${MAKE_ARGS} install
 .endif
 
 .include "${.CURDIR}/../husky-base-devel/Makefile.inc"

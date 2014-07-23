@@ -11,7 +11,7 @@ COMMENT=	X frontend for Crafty, GNUChess, Chess Servers, or e-mail chess
 
 LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo
 
-OPTIONS_DEFINE=	NLS CRAFTY FAIRYMAX GNUCHESS KNIGHTCAP PHALANX
+OPTIONS_DEFINE=	NLS CRAFTY FAIRYMAX GNUCHESS KNIGHTCAP PHALANX DOCS
 OPTIONS_DEFAULT=
 OPTIONS_SUB=	yes
 CRAFTY_DESC=	Install crafty engine
@@ -27,7 +27,7 @@ PHALANX_RUN_DEPENDS+=	phalanx:${PORTSDIR}/games/phalanx
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 
-USES=		desktop-file-utils perl5 pkgconfig shared-mime-info
+USES=		desktop-file-utils makeinfo perl5 pkgconfig shared-mime-info
 USE_XORG=	xt xpm xaw
 USE_GNOME=	librsvg2
 GNU_CONFIGURE=	yes

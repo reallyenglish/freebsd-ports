@@ -15,8 +15,7 @@ LICENSE=	GPLv3
 
 CONFLICTS_INSTALL=	multimarkdown-*
 
-USES=	gmake
-USE_BZIP2=	yes
+USES=		gmake makeinfo tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_malloc_h=no
 CONFIGURE_ARGS=	--enable-xdf
@@ -44,7 +43,7 @@ PLIST_SUB=	X11=""
 .else
 CONFIGURE_ARGS+=	--without-x
 PLIST_SUB=	X11="@comment "
-MAKE_ENV+=	WITHOUT_X11=${WITHOUT_X11}
+MAKE_ENV+=	WITHOUT_X11=yes
 .endif
 
 post-patch:

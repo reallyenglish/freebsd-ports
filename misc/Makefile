@@ -25,7 +25,6 @@
     SUBDIR += bestfit
     SUBDIR += bibletime
     SUBDIR += biblical-curse
-    SUBDIR += bigboard
     SUBDIR += biosfont-demos
     SUBDIR += birthday
     SUBDIR += bogosort
@@ -96,6 +95,7 @@
     SUBDIR += fortune-mod-bible
     SUBDIR += fortune-mod-bofh
     SUBDIR += fortune-mod-culmea-culmilor
+    SUBDIR += fortune-mod-epictetus
     SUBDIR += fortune-mod-ferengi_rules_of_acquisition
     SUBDIR += fortune-mod-futurama
     SUBDIR += fortuneit
@@ -143,10 +143,7 @@
     SUBDIR += gkrellm-helium
     SUBDIR += gkrellm-xkb
     SUBDIR += gkrellmbgchg2
-    SUBDIR += gkrellmfmonitor
-    SUBDIR += gkrellmlaunch
     SUBDIR += gkrellmlaunch2
-    SUBDIR += gkrellshoot
     SUBDIR += gkrellshoot2
     SUBDIR += gkrellweather2
     SUBDIR += gkx86info2
@@ -402,6 +399,7 @@
     SUBDIR += ruby-progressbar
     SUBDIR += ruby-vpim
     SUBDIR += rubygem-dotenv
+    SUBDIR += rubygem-iesd
     SUBDIR += rubygem-mime-types
     SUBDIR += rubygem-mime-types117
     SUBDIR += rubygem-rabbit
@@ -453,6 +451,7 @@
     SUBDIR += us-zipcodes
     SUBDIR += usbrh-libusb
     SUBDIR += utftools
+    SUBDIR += valspeak
     SUBDIR += vera
     SUBDIR += vifm
     SUBDIR += viz

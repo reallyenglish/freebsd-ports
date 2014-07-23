@@ -131,6 +131,7 @@
     SUBDIR += pear-File_Archive
     SUBDIR += pear-Horde_Compress
     SUBDIR += pear-Horde_Compress_Fast
+    SUBDIR += pear-Horde_Pack
     SUBDIR += pear-PHP_Archiv
     SUBDIR += pecl-lzf
     SUBDIR += pecl-phk
@@ -163,7 +164,6 @@
     SUBDIR += quazip
     SUBDIR += rar
     SUBDIR += rox-archive
-    SUBDIR += rpm
     SUBDIR += rpm2cpio
     SUBDIR += rpm4
     SUBDIR += rpm5

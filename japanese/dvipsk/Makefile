@@ -17,13 +17,13 @@ EXTRACT_ONLY=	${TETEX_SRC}${EXTRACT_SUFX} \
 		dvipsk-${PORTVERSION}-p1.7a.tar.gz
 
 MAINTAINER=	hrs@FreeBSD.org
-COMMENT=	A DVI to PostScript translator + Japanese patch
+COMMENT=	DVI to PostScript translator + Japanese patch
 
 BUILD_DEPENDS=	${LOCALBASE}/${TEXMFDIR}/fonts/tfm/ptex/min10.tfm:${PORTSDIR}/japanese/ptex
 RUN_DEPENDS=	${LOCALBASE}/${TEXMFDIR}/fonts/tfm/ptex/min10.tfm:${PORTSDIR}/japanese/ptex
-LIB_DEPENDS=	png15:${PORTSDIR}/graphics/png \
-		wwwcore.1:${PORTSDIR}/www/libwww \
-		t1.5:${PORTSDIR}/devel/t1lib
+LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+		libwwwcore.so:${PORTSDIR}/www/libwww \
+		libt1.so:${PORTSDIR}/devel/t1lib
 
 PATCH_WRKSRC=	${WRKDIR}/${TETEX_SRC}/texk
 EXTRA_PATCHES=	${WRKDIR}/dvipsk-${PORTVERSION}-p1.7a.diff
@@ -91,10 +91,10 @@ post-configure:
 
 do-build:
 	cd ${WRKDIR}/${TETEX_SRC}/texk/dvipsk &&\
-		${SETENV} ${MAKE_ENV} ${GMAKE} \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} ${MAKEFILE} ${ALL_TARGET}
 	cd ${WRKDIR}/${TETEX_SRC}/texk/udvipsk &&\
-		${SETENV} ${MAKE_ENV} ${GMAKE} \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} ${MAKEFILE} \
 		program=udvips XDEFS=-DUDVIPS \
 		${ALL_TARGET}
@@ -102,7 +102,7 @@ do-build:
 do-install:
 	${MKDIR} ${PREFIX}/${DVIPSCONFIGDIR}/config
 	cd ${WRKDIR}/${TETEX_SRC}/texk/dvipsk &&\
-		${SETENV} ${MAKE_ENV} ${GMAKE} \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} ${MAKEFILE} ${INSTALL_TARGET}
 	${INSTALL_PROGRAM} \
 		${PATCH_WRKSRC}/udvipsk/udvips \

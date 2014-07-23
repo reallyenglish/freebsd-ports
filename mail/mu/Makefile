@@ -7,13 +7,13 @@ PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://mu0.googlecode.com/files/
 
-MAINTAINER=	rea@FreeBSD.org
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Mail searching frontend for Xapian
 
 LICENSE=	GPLv3
 
-LIB_DEPENDS=	xapian:${PORTSDIR}/databases/xapian-core \
-		gmime:${PORTSDIR}/mail/gmime24
+LIB_DEPENDS=	libxapian.so:${PORTSDIR}/databases/xapian-core \
+		libgmime.so:${PORTSDIR}/mail/gmime24
 
 GNU_CONFIGURE=	yes
 USES=		pkgconfig gmake

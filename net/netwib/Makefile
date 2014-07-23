@@ -3,6 +3,7 @@
 
 PORTNAME=	netwib
 PORTVERSION=	5.38.0
+PORTREVISION=	1
 CATEGORIES=	net devel ipv6
 MASTER_SITES=	http://www.laurentconstantin.com/common/netw/netwib/download/v5/ \
 		http://membres.lycos.fr/lauconstantin/common/netw/netwib/download/v5/ \
@@ -12,25 +13,15 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}-src.tgz ${PORTNAME}-${PORTVERSION}-doc_htm
 MAINTAINER=	jmohacsi@bsd.hu
 COMMENT=	Netwib network programming library
 
-BUILD_DEPENDS=	${LIBNET_CONFIG}:${PORTSDIR}/net/libnet
-RUN_DEPENDS:=	${BUILD_DEPENDS}
+LIB_DEPENDS=	libnet.so:${PORTSDIR}/net/libnet
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-src/src
 SHORTPORTVERSION=${PORTVERSION:C/([0-9]*)\.([0-9]*)\.[0-9]*/\1\2/}
-MAN3=		netwib.3 netwib_dat.3 netwib_err.3 netwib_net.3 \
-		netwib_pkt.3 netwib_shw.3 netwib_sys.3
-MAN3+=		netwib${SHORTPORTVERSION}.3 netwib${SHORTPORTVERSION}_dat.3 \
-		netwib${SHORTPORTVERSION}_err.3 \
-		netwib${SHORTPORTVERSION}_net.3 \
-		netwib${SHORTPORTVERSION}_pkt.3 \
-		netwib${SHORTPORTVERSION}_shw.3 \
-		netwib${SHORTPORTVERSION}_sys.3
 
 PLIST_SUB+=	SHORTPORTVERSION=${SHORTPORTVERSION}
 
 LIBNET_CONFIG?=	${LOCALBASE}/bin/libnet11-config
 
-NO_STAGE=	yes
 post-patch:
 	@${REINPLACE_CMD} -Ee \
 		's|libnet-config|${LIBNET_CONFIG}|; \

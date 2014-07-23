@@ -8,7 +8,7 @@ CATEGORIES?=	misc
 MASTER_SITES=	ftp://sh.wide.ad.jp/WIDE/free-ware/mgp/
 
 MAINTAINER=	dinoex@FreeBSD.org
-COMMENT=	An X11-based presentation tool
+COMMENT=	X11-based presentation tool
 
 LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png \
 		libmng.so:${PORTSDIR}/graphics/libmng
@@ -40,7 +40,7 @@ EMACS_LISPS_MGP=COPYING README mgp.el mgp.sty sample.tex
 SAMPLE_SCRIPTS=	eqn2eps.sh tex2eps.sh mgp2html.pl mgp2latex.pl
 
 
-OPTIONS_DEFINE=FREETYPE XFT GIF IMLIB
+OPTIONS_DEFINE=	FREETYPE XFT GIF IMLIB DOCS
 OPTIONS_DEFAULT=FREETYPE XFT
 NO_OPTIONS_SORT=yes
 

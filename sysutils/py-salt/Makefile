@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	salt
-PORTVERSION=	2014.1.4
+PORTVERSION=	2014.1.7
+PORTREVISION=	1
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -58,6 +59,7 @@ post-patch:
 		-e 's|/srv/salt|${ETCDIR}/states|' \
 		-e 's|/srv/pillar|${ETCDIR}/pillar|' ${WRKSRC}/${file}
 .endfor
+	@${REINPLACE_CMD} -e 's|yumpkg5|pkgng|' ${WRKSRC}/conf/minion
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}

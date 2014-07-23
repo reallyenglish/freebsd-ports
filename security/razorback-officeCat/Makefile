@@ -8,13 +8,13 @@ MASTER_SITES=	SF/razorbacktm/Nuggets
 PKGNAMEPREFIX=	razorback-
 DIST_SUBDIR=	razorback
 
-MAINTAINER=	tj@FreeBSD.org
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Framework for an intelligence driven security - OfficeCat Detection
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	razorback_api:${PORTSDIR}/security/razorback-api
+LIB_DEPENDS=	librazorback_api.so:${PORTSDIR}/security/razorback-api
 BUILD_DEPENDS=	razorback-masterNugget>=0.5.0:${PORTSDIR}/security/razorback-masterNugget \
 		wine:${PORTSDIR}/emulators/wine
 RUN_DEPENDS=	razorback-masterNugget>=0.5.0:${PORTSDIR}/security/razorback-masterNugget \

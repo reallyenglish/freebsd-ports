@@ -3,14 +3,14 @@
 
 PORTNAME=	ruby-augeas
 PORTVERSION=	0.5.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	http://download.augeas.net/ruby/
 
 MAINTAINER=	ruby@FreeBSD.org
 COMMENT=	Ruby bindings for Augeas
 
-LIB_DEPENDS=	augeas:${PORTSDIR}/textproc/augeas
+LIB_DEPENDS=	libaugeas.so:${PORTSDIR}/textproc/augeas
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes

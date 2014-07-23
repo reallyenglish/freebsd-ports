@@ -11,7 +11,7 @@ DISTNAME=	${PORTNAME}
 DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	bf@FreeBSD.org
-COMMENT=	A Two-Dimensional Quality Mesh Generator and Delaunay Triangulator
+COMMENT=	Two-Dimensional Quality Mesh Generator and Delaunay Triangulator
 
 NO_CDROM=	No commercial use without prior arrangement with the author
 
@@ -22,9 +22,8 @@ MAKEFILE=	makefile
 
 PLIST_FILES=	bin/triangle bin/showme
 
-NO_STAGE=	yes
 do-install:
-	${INSTALL_PROGRAM} ${PLIST_FILES:S|^bin|${WRKSRC}|} ${PREFIX}/bin
+	${INSTALL_PROGRAM} ${PLIST_FILES:S|^bin|${WRKSRC}|} ${STAGEDIR}${PREFIX}/bin
 
 .if defined(MAINTAINER_MODE)
 test:	build

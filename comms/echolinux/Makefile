@@ -3,7 +3,7 @@
 
 PORTNAME=	echolinux
 PORTVERSION=	0.17a
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/cqinet/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
@@ -16,7 +16,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libforms.so:${PORTSDIR}/x11-toolkits/xforms \
 		libgsm.so:${PORTSDIR}/audio/gsm
 
-.include <bsd.port.options.mk>
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|gcc|$${CC}|' -e 's|/usr/include/X11|$${LOCALBASE}/include|' \
