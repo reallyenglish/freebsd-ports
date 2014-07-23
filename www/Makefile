@@ -46,6 +46,7 @@
     SUBDIR += axis2
     SUBDIR += b2evolution
     SUBDIR += bacula-web
+    SUBDIR += baikal
     SUBDIR += bannerfilter
     SUBDIR += bblog
     SUBDIR += bigbluebutton
@@ -181,9 +182,6 @@
     SUBDIR += eliom
     SUBDIR += elog
     SUBDIR += emacs-w3m
-    SUBDIR += emacs-w3m-emacs21
-    SUBDIR += emacs-w3m-emacs22
-    SUBDIR += emacs-w3m-xemacs21-mule
     SUBDIR += encode-explorer
     SUBDIR += entrans
     SUBDIR += ephemera
@@ -407,7 +405,6 @@
     SUBDIR += linux-firefox
     SUBDIR += linux-libgtkembedmoz
     SUBDIR += linux-opera
-    SUBDIR += linux-opera-devel
     SUBDIR += linux-seamonkey
     SUBDIR += lionwiki
     SUBDIR += ljdeps
@@ -426,6 +423,7 @@
     SUBDIR += mediawiki119
     SUBDIR += mediawiki121
     SUBDIR += mediawiki122
+    SUBDIR += mediawiki123
     SUBDIR += mergelog
     SUBDIR += mgstat
     SUBDIR += mhonarc
@@ -473,6 +471,7 @@
     SUBDIR += mod_cloudflare
     SUBDIR += mod_cplusplus
     SUBDIR += mod_cvs2
+    SUBDIR += mod_dav_svn
     SUBDIR += mod_dnssd
     SUBDIR += mod_domaintree
     SUBDIR += mod_encoding
@@ -503,6 +502,7 @@
     SUBDIR += mod_memcache
     SUBDIR += mod_memcache_block
     SUBDIR += mod_mono
+    SUBDIR += mod_mpm_itk
     SUBDIR += mod_musicindex
     SUBDIR += mod_myvhost
     SUBDIR += mod_ntlm2
@@ -522,7 +522,6 @@
     SUBDIR += mod_reproxy
     SUBDIR += mod_rivet
     SUBDIR += mod_rpaf2
-    SUBDIR += mod_ruby
     SUBDIR += mod_scgi
     SUBDIR += mod_security
     SUBDIR += mod_setenvifplus
@@ -535,7 +534,6 @@
     SUBDIR += mod_vhs
     SUBDIR += mod_webkit
     SUBDIR += mod_whatkilledus
-    SUBDIR += mod_wsgi2
     SUBDIR += mod_wsgi3
     SUBDIR += mod_xml2enc
     SUBDIR += mod_xmlns
@@ -585,7 +583,6 @@
     SUBDIR += opencart
     SUBDIR += openxmldir
     SUBDIR += opera
-    SUBDIR += opera-devel
     SUBDIR += opera-linuxplugins
     SUBDIR += orangehrm
     SUBDIR += oscommerce
@@ -1432,7 +1429,6 @@
     SUBDIR += php55-session
     SUBDIR += php55-tidy
     SUBDIR += phpbb
-    SUBDIR += phpbb-devel
     SUBDIR += phpbb3
     SUBDIR += phpgedview
     SUBDIR += phpgroupware
@@ -1442,7 +1438,6 @@
     SUBDIR += phprecipebook
     SUBDIR += phproxy
     SUBDIR += phpsysinfo
-    SUBDIR += phpsysinfo-dev
     SUBDIR += phpvirtualbox
     SUBDIR += phpwebapp
     SUBDIR += pivotx
@@ -1474,6 +1469,7 @@
     SUBDIR += py-WebError
     SUBDIR += py-WebFlash
     SUBDIR += py-WebTest
+    SUBDIR += py-aiohttp
     SUBDIR += py-albatross
     SUBDIR += py-amf
     SUBDIR += py-apachelog
@@ -1522,6 +1518,7 @@
     SUBDIR += py-django-pipeline12
     SUBDIR += py-django-piston
     SUBDIR += py-django-profiles
+    SUBDIR += py-django-redis
     SUBDIR += py-django-registration
     SUBDIR += py-django-registration-defaults
     SUBDIR += py-django-reversion
@@ -1549,6 +1546,7 @@
     SUBDIR += py-feedfinder
     SUBDIR += py-feedgenerator
     SUBDIR += py-flask
+    SUBDIR += py-flask-admin
     SUBDIR += py-flask-cache
     SUBDIR += py-flask-flatpages
     SUBDIR += py-flask-uploads
@@ -1669,6 +1667,7 @@
     SUBDIR += py-qt4-webkit
     SUBDIR += py-rackspace-monitoring
     SUBDIR += py-recaptcha
+    SUBDIR += py-requestbuilder
     SUBDIR += py-requests
     SUBDIR += py-requests-oauth-hook
     SUBDIR += py-requests-oauthlib
@@ -1877,6 +1876,7 @@
     SUBDIR += rubygem-selenium-webdriver
     SUBDIR += rubygem-simple-rss
     SUBDIR += rubygem-sinatra
+    SUBDIR += rubygem-sinatra-contrib
     SUBDIR += rubygem-sinatra-r18n
     SUBDIR += rubygem-sinatra-respond_to
     SUBDIR += rubygem-taggable
@@ -1956,6 +1956,7 @@
     SUBDIR += tdom
     SUBDIR += template_
     SUBDIR += templatelite
+    SUBDIR += tengine
     SUBDIR += testlink
     SUBDIR += textpattern
     SUBDIR += thttpd
@@ -1977,9 +1978,9 @@
     SUBDIR += tomcat-native
     SUBDIR += tomcat6
     SUBDIR += tomcat7
+    SUBDIR += tomcat8
     SUBDIR += trac
     SUBDIR += trac-OhlohWidgetsMacro
-    SUBDIR += trac-TracDuplicates
     SUBDIR += trac-TracGoogleAnalytics
     SUBDIR += trac-accountmanager
     SUBDIR += trac-advancedticketworkflow
@@ -2164,7 +2165,6 @@
     SUBDIR += xpi-cookiesafe
     SUBDIR += xpi-cssviewer
     SUBDIR += xpi-cutemenus-crystalsvg
-    SUBDIR += xpi-deepestsender
     SUBDIR += xpi-default_full_zoom_level
     SUBDIR += xpi-delicious
     SUBDIR += xpi-downthemall

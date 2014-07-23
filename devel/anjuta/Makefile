@@ -63,7 +63,7 @@ SHEBANG_FILES=	scripts/builder2schema.pl \
 		plugins/gbf-mkfile/gbf-mkfile-parse.in \
 		plugins/tools/scripts/*.pl
 
-OPTIONS_DEFINE=	SVN DEVHELP
+OPTIONS_DEFINE=	SVN DEVHELP DOCS
 OPTIONS_DEFAULT=DEVHELP
 DEVHELP_DESC=	Devhelp support
 
@@ -93,6 +93,15 @@ PLIST_SUB+=	DEVHELP=""
 
 post-patch:
 	@${RM} ${WRKSRC}/plugins/debug-manager/anjuta-debug-manager.schemas
+	@${REINPLACE_CMD} '/^test_LDADD =/ \
+		s/=/= -lgtk-x11-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0 -lxml2 $$(INTLLIBS)/' \
+		${WRKSRC}/plugins/gbf-am/Makefile.in
+	@${REINPLACE_CMD} '/^gdbmi_test_LDADD =/s/$$/ -lgtk-x11-2.0 -lglib-2.0/' \
+		${WRKSRC}/plugins/gdb/Makefile.in
+	@${REINPLACE_CMD} -e '/^anjuta_LDADD =/s/=/= $$(ANJUTA_LIBS)/' \
+		-e '/^anjuta_shell_LDADD =/ \
+		s/=/= -lgtk-x11-2.0 -lgobject-2.0 -lglib-2.0 $$(INTLLIBS)/' \
+		${WRKSRC}/src/Makefile.in
 
 post-configure:
 	@${REINPLACE_CMD} -e 's|"make|"gmake|g' \

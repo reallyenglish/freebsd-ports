@@ -38,6 +38,8 @@ NOCCACHE=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-src-${PORTVERSION}/TuxGuitar
 
+OPTIONS_DEFINE=	DOCS
+
 .include <bsd.port.pre.mk>
 PLUGINS=	ascii browser-ftp compat converter fluidsynth gervill gtp \
 		jsa lilypond midi musicxml oss pdf ptb tef tray tuner
@@ -73,9 +75,9 @@ post-build:
 	(cd ${WRKSRC}/../TuxGuitar-${p}; \
 	    ${SETENV} ${MAKE_ENV} ${ANT} ${MAKE_ARGS} ${ALL_TARGET})
 .endfor
-	cd ${WRKSRC}/../TuxGuitar-oss/jni && ${GMAKE}
-	cd ${WRKSRC}/../TuxGuitar-fluidsynth/jni && ${GMAKE}
-	cd ${WRKSRC}/../TuxGuitar-jack/jni && ${GMAKE}
+	cd ${WRKSRC}/../TuxGuitar-oss/jni && ${SETENV} ${MAKE_ENV} ${MAKE_CMD}
+	cd ${WRKSRC}/../TuxGuitar-fluidsynth/jni && ${SETENV} ${MAKE_ENV} ${MAKE_CMD}
+	cd ${WRKSRC}/../TuxGuitar-jack/jni && ${SETENV} ${MAKE_ENV} ${MAKE_CMD}
 
 do-install:
 	@${INSTALL} -d ${STAGEDIR}${DATADIR}

@@ -8,8 +8,8 @@ CATEGORIES=		sysutils gnome
 MASTER_SITES=		SF
 DIST_SUBDIR=		gnome2
 
-MAINTAINER=		dominique.goncalves@gmail.com
-COMMENT=		A CD/DVD recording GUI for Gnome
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=		CD/DVD recording GUI for Gnome
 
 OPTIONS_DEFINE=		DVD
 DVD_DESC=		DVD support

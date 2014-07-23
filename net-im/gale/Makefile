@@ -8,12 +8,12 @@ CATEGORIES=	net-im
 MASTER_SITES=	http://download.ofb.net/${PORTNAME}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}ruit
 
-MAINTAINER=	jason-fbsd-ports-gale@shalott.net
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Secure instant messaging system
 
-LIB_DEPENDS=	gc.1:${PORTSDIR}/devel/boehm-gc \
-		wwwcore.1:${PORTSDIR}/www/libwww \
-		adns.1:${PORTSDIR}/dns/adns
+LIB_DEPENDS=	libgc.so:${PORTSDIR}/devel/boehm-gc \
+		libwwwcore.so:${PORTSDIR}/www/libwww \
+		libadns.so:${PORTSDIR}/dns/adns
 
 USES=		iconv
 USE_GNOME=	glib12

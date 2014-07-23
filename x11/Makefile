@@ -134,6 +134,7 @@
     SUBDIR += keynav
     SUBDIR += kgamma
     SUBDIR += konsole
+    SUBDIR += leechcraft
     SUBDIR += libICE
     SUBDIR += libSM
     SUBDIR += libX11
@@ -426,7 +427,6 @@
     SUBDIR += xorg-apps
     SUBDIR += xorg-cf-files
     SUBDIR += xorg-docs
-    SUBDIR += xorg-edit
     SUBDIR += xorg-libraries
     SUBDIR += xorg-minimal
     SUBDIR += xplsprinters

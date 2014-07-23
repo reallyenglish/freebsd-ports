@@ -3,11 +3,11 @@
 
 PORTNAME=	gnash
 PORTVERSION=	0.8.10
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	graphics
 MASTER_SITES=	GNU/${PORTNAME}/${PORTVERSION}/
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GNU Flash movie player
 
 LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs \
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libboost_thread.so:${PORTSDIR}/devel/boost-libs \
 
 CONFLICTS=	gnash-devel-[0-9]*
 
-USES=		tar:bzip2 pkgconfig gmake
+USES=		tar:bzip2 pkgconfig gmake libtool
 USE_AUTOTOOLS=	libltdl
 GNU_CONFIGURE=	yes
 WANT_SDL=	yes
@@ -237,11 +237,11 @@ post-install:
 .if ${PORT_OPTIONS:MPLUGIN}
 .if ${PORT_OPTIONS:MGTK2}
 	cd ${INSTALL_WRKSRC}/plugin && \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS} install-plugin
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-plugin
 .endif
 .if ${PORT_OPTIONS:MKDE4}
 	cd ${INSTALL_WRKSRC}/plugin/klash4 && \
-		${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_ARGS} install-plugin
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-plugin
 .endif
 .endif
 

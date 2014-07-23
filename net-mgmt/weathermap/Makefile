@@ -3,21 +3,22 @@
 
 PORTNAME=	weathermap
 PORTVERSION=	1.1.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://netmon.grnet.gr/weathermap/dist/
 
 MAINTAINER=	lippe@FreeBSD.org
 COMMENT=	This tool displays the utilization of the network links
 
-LIB_DEPENDS=	gd:${PORTSDIR}/graphics/gd
+LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd
 RUN_DEPENDS=	p5-GD>=0:${PORTSDIR}/graphics/p5-GD \
 		mrtg:${PORTSDIR}/net-mgmt/mrtg
 
-USES=		perl5
+USES=		perl5 shebangfix
 NO_BUILD=	yes
+SHEBANG_FILES=	weathermap
 
-OPTIONS_DEFINE=	WGET
+OPTIONS_DEFINE=	WGET DOCS EXAMPLES
 WGET_DESC=	WGET support
 
 PORTDOCS=	README LICENSE INSTALL
@@ -27,8 +28,7 @@ CONFIGURE_ARGS=	--with-gd-lib=${LOCALBASE}/lib \
 
 SUB_FILES=	pkg-message
 
-NO_STAGE=	yes
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MWGET}
 RUN_DEPENDS+=	wget:${PORTSDIR}/ftp/wget
@@ -40,19 +40,14 @@ post-patch:
 		${WRKSRC}/weathermap
 
 do-install:
-	@${INSTALL_SCRIPT} ${WRKSRC}/weathermap ${PREFIX}/bin
-	@${MKDIR} ${EXAMPLESDIR}
-	@${MKDIR} ${PREFIX}/etc/weathermap
-	@${INSTALL_DATA} ${WRKSRC}/example/* ${EXAMPLESDIR}
-	@${INSTALL_DATA} ${WRKSRC}/example/weathermap.conf ${PREFIX}/etc/weathermap/weathermap.sample.conf
-	@[ -f ${PREFIX}/etc/weathermap/weathermap.conf ] || \
-		${INSTALL_DATA} ${WRKSRC}/example/weathermap.conf ${PREFIX}/etc/weathermap/weathermap.conf
+	@${INSTALL_SCRIPT} ${WRKSRC}/weathermap ${STAGEDIR}${PREFIX}/bin
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	@${INSTALL_DATA} ${WRKSRC}/example/* ${STAGEDIR}${EXAMPLESDIR}
+	@${INSTALL_DATA} ${WRKSRC}/example/weathermap.conf ${STAGEDIR}${ETCDIR}/weathermap.conf.sample
 .if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 .endif
 
-post-install:
-	@${CAT} ${PKGMESSAGE}
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

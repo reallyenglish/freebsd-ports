@@ -23,8 +23,6 @@
     SUBDIR += awffull
     SUBDIR += bible_names-fpw
     SUBDIR += bookview
-    SUBDIR += bugzilla40
-    SUBDIR += bugzilla42
     SUBDIR += bugzilla44
     SUBDIR += calligra-l10n
     SUBDIR += canna-lib
@@ -56,7 +54,6 @@
     SUBDIR += egg-canna
     SUBDIR += eijiro-fpw
     SUBDIR += elisa8x8
-    SUBDIR += emacs-emcws
     SUBDIR += epwutil
     SUBDIR += esecanna
     SUBDIR += esecanna-module-vje25
@@ -81,6 +78,7 @@
     SUBDIR += font-mplus
     SUBDIR += font-mplus-ipa
     SUBDIR += font-ricty
+    SUBDIR += font-ricty-discord
     SUBDIR += font-sazanami
     SUBDIR += font-shinonome
     SUBDIR += font-std
@@ -153,7 +151,6 @@
     SUBDIR += libtomoe-gtk
     SUBDIR += lipsf
     SUBDIR += lookup
-    SUBDIR += lookup-emacs21
     SUBDIR += lsd-fpw
     SUBDIR += lynx
     SUBDIR += lynx-current
@@ -169,10 +166,8 @@
     SUBDIR += mg
     SUBDIR += mh
     SUBDIR += migemo
-    SUBDIR += migemo-emacs21
-    SUBDIR += migemo-emacs22
     SUBDIR += migemo-emacs23
-    SUBDIR += migemo-xemacs-devel-mule
+    SUBDIR += migemo.el
     SUBDIR += mikachan-ttfonts
     SUBDIR += mime_pls
     SUBDIR += ming
@@ -321,7 +316,6 @@
     SUBDIR += wwasw-fpw
     SUBDIR += xdtp
     SUBDIR += xdvik
-    SUBDIR += xemacs21-canna
     SUBDIR += xgate
     SUBDIR += xjtext
     SUBDIR += xlockmore

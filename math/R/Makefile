@@ -37,7 +37,7 @@ CONFIGURE_ENV=		LIBR_LDFLAGS="${LDFLAGS}" OBJC="${CC}" \
 			SED="${LOCALBASE}/bin/gsed" \
 			ac_cv_have_decl_powl=yes ac_cv_have_decl_log1pl=yes
 
-OPTIONS_DEFINE=		MISSING
+OPTIONS_DEFINE=		MISSING DOCS
 
 MISSING_DESC=		use libmissing rather than libquadmath
 
@@ -72,7 +72,7 @@ OPTIONS_DEFAULT+=	ICU PCRE_PORT THREADS
 RUN_DEPENDS+=		${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
 USE_LDCONFIG=		${PREFIX}/lib/R/lib
 #now only used to build the R.1 manpage:
-USES+=			perl5
+USES+=			makeinfo perl5
 USE_PERL5=		build
 
 OPTIONS_DEFINE+=	GHOSTSCRIPT INFO_MANUALS JPEG LETTER_PAPER LIBR \

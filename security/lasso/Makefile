@@ -23,7 +23,7 @@ USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
 USE_PYTHON_BUILD=	yes
 
-OPTIONS_DEFINE=	PERL PHP PYTHON
+OPTIONS_DEFINE=	PERL PHP PYTHON DOCS
 
 .include <bsd.port.options.mk>
 
@@ -40,7 +40,7 @@ PLIST_SUB+=	WITH_PERL="@comment "
 CONFIGURE_ARGS+=	--enable-php5 \
 		--with-php5-config="${LOCALBASE}/bin/php-config"
 LDFLAGS+=	"-L${LOCALBASE}/lib"
-LIB_DEPENDS+=	expat:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS+=	libexpat.so:${PORTSDIR}/textproc/expat2
 PLIST_SUB+=	WITH_PHP5=""
 USE_PHP=	yes
 USE_PHP_BUILD=	yes
@@ -60,8 +60,5 @@ PLIST_SUB+=	WITH_PYTHON="@comment "
 
 post-install:
 	${RM} -f ${STAGEDIR}${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/perllocal.pod
-.ifdef(NOPORTDOCS)
-	${RM} -rf ${STAGEDIR}${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>

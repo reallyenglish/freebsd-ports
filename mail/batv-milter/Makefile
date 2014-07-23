@@ -7,14 +7,13 @@ CATEGORIES=	mail
 MASTER_SITES=	SF
 
 MAINTAINER=	umq@ueo.co.jp
-COMMENT=	A milter for BATV (Bounce Address Tag Validation)
+COMMENT=	Milter for BATV (Bounce Address Tag Validation)
 
 USE_RC_SUBR=	milter-batv
 USE_OPENSSL=	TRUE
 
 WCONF=		${WRKSRC}/devtools/Site
-MAN8=		batv-filter.8
-PLIST_FILES=	bin/batv-filter
+PLIST_FILES=	bin/batv-filter man/man8/batv-filter.8.gz
 PORTDOCS=	INSTALL KNOWNBUGS LICENSE README RELEASE_NOTES \
 		draft-levine-smtp-batv-01.txt
 
@@ -24,7 +23,8 @@ SITE_SUB=	-e "s|%%PREFIX%%|${PREFIX}|g" \
 		-e "s|%%OPENSSLINC%%|${OPENSSLINC}|g" \
 		-e "s|%%OPENSSLLIB%%|${OPENSSLLIB}|g"
 
-NO_STAGE=	yes
+OPTIONS_DEFINE=	DOCS
+
 .include <bsd.port.pre.mk>
 .include "${PORTSDIR}/mail/sendmail/bsd.milter.mk"
 
@@ -38,17 +38,13 @@ pre-configure:
 
 post-install:
 .if !defined(WITH_DEBUG)
-	@${STRIP_CMD} ${PREFIX}/bin/batv-filter
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/batv-filter
 .endif
-.for i in ${MAN8}
-	@${RM} -f ${MANPREFIX}/man/cat8/${i} ${MANPREFIX}/man/cat8/${i}.gz
-	${INSTALL_MAN} ${WRKSRC}/*/${i} ${MANPREFIX}/man/man8/
-.endfor
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
+	@${RM} -f ${MANPREFIX}/man/cat8/batv-filter.8 ${MANPREFIX}/man/cat8/batv-filter.8.gz
+	${INSTALL_MAN} ${WRKSRC}/*/batv-filter.8 ${STAGEDIR}${MANPREFIX}/man/man8/
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.post.mk>

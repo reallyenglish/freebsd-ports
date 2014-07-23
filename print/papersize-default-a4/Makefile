@@ -3,13 +3,14 @@
 
 PORTNAME=	papersize-default
 PORTVERSION=	0.0.20120302
+PORTREVISION=	1
 CATEGORIES=	print
 MASTER_SITES=	# none
 PKGNAMESUFFIX=	-${DEFAULTPAPERSIZE:tl}
 DISTFILES=	# none
 
 MAINTAINER=	hrs@FreeBSD.org
-COMMENT=	A default paper size configuration file for libpaper
+COMMENT=	Default paper size configuration file for libpaper
 
 LIB_DEPENDS=	libpaper.so:${PORTSDIR}/print/libpaper
 

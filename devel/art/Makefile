@@ -16,6 +16,8 @@ LIB_DEPENDS=	libxml++-2.6.so:${PORTSDIR}/textproc/libxml++26
 
 USES=	gmake pkgconfig
 
+OPTIONS_DEFINE=	DOCS
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/artlibgen/src/artlibgen ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/artrepgen/artrepgen ${STAGEDIR}${PREFIX}/bin
@@ -27,7 +29,7 @@ do-install:
 
 .if defined(MAINTAINER_MODE)
 full-regression-test: build
-	cd ${WRKSRC}; ${GMAKE} test
+	cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} test
 .endif
 
 .include <bsd.port.mk>

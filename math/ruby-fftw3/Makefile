@@ -13,7 +13,7 @@ DISTNAME=	ruby-${PORTNAME}-${PORTVERSION}
 DIST_SUBDIR=	ruby
 
 MAINTAINER=	murashin@gfd-dennou.org
-COMMENT=	A Ruby interface to the FFTW ver.3
+COMMENT=	Ruby interface to the FFTW ver.3
 
 LICENSE=	BSD
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
@@ -28,6 +28,8 @@ USE_RUBY_EXTCONF=	yes
 CONFIGURE_ARGS+=	--with-narray-include=${LOCALBASE}/lib/ruby/gems/${RUBY_VER}/gems/narray-${NARRAY_VERSION}/
 
 DOCS=		LICENSE.txt doc/*
+
+OPTIONS_DEFINE=	DOCS
 
 post-install:
 	${MKDIR} ${STAGEDIR}${RUBY_MODDOCDIR}

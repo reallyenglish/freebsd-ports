@@ -71,6 +71,7 @@ $1 == "@fcfontsdir" {
 }
 
 $1 == "@fontsdir" {
+	font_dir=$2
 	print "@comment begin " $0
 	print "@exec mkfontscale %D/" font_dir " 2>/dev/null || true"
 	print "@exec mkfontdir %D/" font_dir " 2>/dev/null || true"
@@ -79,6 +80,18 @@ $1 == "@fontsdir" {
 	print "@unexec mkfontdir %D/" font_dir " 2>/dev/null || true"
 	print "@unexec if [ -e %D/" font_dir "/fonts.dir -a \"`stat -f '%%z' %D/" font_dir "/fonts.dir 2>/dev/null`\" = '2' ]; then rm %D/" font_dir "/fonts.dir ; fi"
 	print "@unexec rmdir %D/"font_dir" 2>/dev/null || true"
+	print "@comment end " $0
+	next
+}
+
+$1 == "@dirrmtry" {
+	directory=substr($0, 11, length($0) - 10)
+	print "@comment begin " $0
+	if ($2 ~ /^\//) {
+		print "@unexec rmdir \"" directory "\" 2>/dev/null || true"
+	} else {
+		print "@unexec rmdir \"%D/" directory "\" 2>/dev/null || true"
+	}
 	print "@comment end " $0
 	next
 }

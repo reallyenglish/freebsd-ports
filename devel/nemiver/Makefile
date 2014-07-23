@@ -3,13 +3,13 @@
 
 PORTNAME=	nemiver
 PORTVERSION=	0.8.2
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	devel
 MASTER_SITES=	${MASTER_SITE_GNOME}
 MASTER_SITE_SUBDIR=	sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+\.[0-9]+).*/\1/}
 DIST_SUBDIR=	gnome2
 
-MAINTAINER=	romain@FreeBSD.org
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	C/C++ Debugger for GNOME
 
 LIB_DEPENDS=	libboost_unit_test_framework.so:${PORTSDIR}/devel/boost-libs \
@@ -56,7 +56,7 @@ GLIB_SCHEMAS=	org.nemiver.gschema.xml
 .if ${PORT_OPTIONS:MGHEX}
 CONFIGURE_ARGS+=--enable-memoryview
 PLIST_SUB+=	GHEX=""
-LIB_DEPENDS+=	gtkhex.0:${PORTSDIR}/editors/ghex
+LIB_DEPENDS+=	libgtkhex.so:${PORTSDIR}/editors/ghex
 .else
 CONFIGURE_ARGS+=--disable-memoryview
 PLIST_SUB+=	GHEX="@comment "

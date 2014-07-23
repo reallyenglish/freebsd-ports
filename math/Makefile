@@ -107,7 +107,6 @@
     SUBDIR += eigen3
     SUBDIR += eispack
     SUBDIR += elmer-umfpack
-    SUBDIR += emacs-calc
     SUBDIR += emc2
     SUBDIR += ent
     SUBDIR += entropy
@@ -164,6 +163,7 @@
     SUBDIR += grpn
     SUBDIR += gsl
     SUBDIR += hexcalc
+    SUBDIR += hfst
     SUBDIR += hs-Agda
     SUBDIR += hs-NumInstances
     SUBDIR += hs-categories
@@ -258,6 +258,7 @@
     SUBDIR += mpc
     SUBDIR += mpexpr
     SUBDIR += mpfr
+    SUBDIR += mpir
     SUBDIR += mprime
     SUBDIR += msieve
     SUBDIR += mtl
@@ -537,7 +538,6 @@
     SUBDIR += ploticus-nox11
     SUBDIR += plplot
     SUBDIR += plplot-ada
-    SUBDIR += polymake
     SUBDIR += primegen
     SUBDIR += prng
     SUBDIR += proofgeneral
@@ -626,6 +626,7 @@
     SUBDIR += sdpara
     SUBDIR += sedumi
     SUBDIR += sfft
+    SUBDIR += sfst
     SUBDIR += simd-viterbi
     SUBDIR += slatec
     SUBDIR += slgrace

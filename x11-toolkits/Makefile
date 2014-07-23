@@ -92,7 +92,6 @@
     SUBDIR += libXt
     SUBDIR += libbonoboui
     SUBDIR += libbonoboui-reference
-    SUBDIR += libgail-gnome
     SUBDIR += libgdiplus
     SUBDIR += libgnomeprintui
     SUBDIR += libgnomeprintuimm
@@ -106,6 +105,7 @@
     SUBDIR += libsexymm
     SUBDIR += libunique3
     SUBDIR += libwnck
+    SUBDIR += libwnck3
     SUBDIR += libwnck-reference
     SUBDIR += libxaw3dxft
     SUBDIR += libxfce4gui
@@ -191,7 +191,6 @@
     SUBDIR += py-gui
     SUBDIR += py-kivy
     SUBDIR += py-kiwi
-    SUBDIR += py-pyqwt
     SUBDIR += py-qt4-gui
     SUBDIR += py-sexy
     SUBDIR += py-tkinter
@@ -200,10 +199,11 @@
     SUBDIR += py-traitsgui
     SUBDIR += py-vte
     SUBDIR += py-wax
-    SUBDIR += py-wmdockapps
+    SUBDIR += py-wxPython-common
     SUBDIR += py-wxPython28
     SUBDIR += py-wxPython28-common
     SUBDIR += py-wxPython28-unicode
+    SUBDIR += py-wxPython30
     SUBDIR += py-xlib
     SUBDIR += qt4-declarative
     SUBDIR += qt4-gui

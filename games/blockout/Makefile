@@ -9,7 +9,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/BlockOut%20${PORTVERSION}/ \
 		http://www.stasyan.com/devel/distfiles/
 DISTNAME=	bl24-src-linux-i586
 
-MAINTAINER=	devel@stasyan.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	BlockOut II is an adaptation of the original Blockout DOS game
 
 ONLY_FOR_ARCHS=	i386
@@ -25,7 +25,7 @@ SUB_FILES=	pkg-message
 
 NO_STAGE=	yes
 pre-build:
-		cd ${WRKSRC}/ImageLib/src && ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS}
+		cd ${WRKSRC}/ImageLib/src && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS}
 
 do-install:
 		${INSTALL_PROGRAM} ${WRKSRC}/BlockOut/blockout ${PREFIX}/bin

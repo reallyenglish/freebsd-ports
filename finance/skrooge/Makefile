@@ -2,7 +2,7 @@
 
 PORTNAME=	skrooge
 PORTVERSION=	1.7.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	finance kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	stable/${PORTNAME}/${PORTVERSION}/src/
@@ -11,10 +11,10 @@ MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE4 personal finance manager
 
 BUILD_DEPENDS=	xsltproc:${PORTSDIR}/textproc/libxslt
-LIB_DEPENDS=	ofx:${PORTSDIR}/finance/libofx \
-		qca:${PORTSDIR}/devel/qca \
-		grantlee_gui:${PORTSDIR}/devel/grantlee \
-		kactivities:${PORTSDIR}/x11/kactivities
+LIB_DEPENDS=	libofx.so:${PORTSDIR}/finance/libofx \
+		libqca.so:${PORTSDIR}/devel/qca \
+		libgrantlee_gui.so:${PORTSDIR}/devel/grantlee \
+		libkactivities.so:${PORTSDIR}/x11/kactivities
 
 USE_BZIP2=	yes
 USES=		cmake:outsource gettext shared-mime-info

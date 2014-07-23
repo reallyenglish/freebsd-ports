@@ -8,13 +8,12 @@ MASTER_SITES=	GITHUB
 MAINTAINER=	makc@FreeBSD.org
 COMMENT=	2D CAD system
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libmuparser.a:${PORTSDIR}/math/muparser \
-		${LOCALBASE}/include/boost/version.hpp:${PORTSDIR}/devel/boost-libs
+BUILD_DEPENDS=	${LOCALBASE}/include/boost/version.hpp:${PORTSDIR}/devel/boost-libs
+LIB_DEPENDS=	libmuparser.so:${PORTSDIR}/math/muparser
 
 USE_QT4=	help qt3support help-tools_build linguist_build moc_build \
 		rcc_build uic_build uic3_build
 USES=		compiler:c++11-lib desktop-file-utils pkgconfig qmake
-MAKE_ENV=	XDG_CONFIG_HOME=/dev/null
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	LibreCAD

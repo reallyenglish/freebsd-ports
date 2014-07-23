@@ -10,10 +10,10 @@ MASTER_SITES=	http://download.adaptec.com/raid/u160raid/unix/ \
 DISTNAME=	u160raid_sm_v304_fbsd411
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	obrien@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Adaptec ASR RAID Management Software
 
-LIB_DEPENDS+=	c.4:${PORTSDIR}/misc/compat4x
+LIB_DEPENDS+=	libc.so.4:${PORTSDIR}/misc/compat4x
 
 ONLY_FOR_ARCHS=	i386
 
@@ -32,9 +32,10 @@ PLIST_SUB+=	LIBXM=""
 PLIST_SUB+=	LIBXM="@comment "
 .endif
 
+NO_STAGE=	yes
+
 .ifndef (WITHOUT_X11)
 PLIST_SUB+=	X11=""
-NO_STAGE=	yes
 do-build:
 	${SED} -e 's,%%PREFIX%%,${PREFIX},g' \
 	    ${FILESDIR}/dptmgr.sh.in > ${WRKDIR}/dptmgr.sh

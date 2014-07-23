@@ -20,7 +20,11 @@ ICONDIR=	${PREFIX}/lib/${PORTNAME}
 BINS=		icont iconx
 BINXS=		colrbook colrpick fontpick palette vib wevents xgamma
 
-.if defined(WITHOUT_X11)
+OPTIONS_DEFINE=	DOCS X11
+
+.include <bsd.port.options.mk>
+
+.if empty(PORT_OPTIONS:MX11)
 CONFIG_CMD=	Configure
 PLIST_SUB=	WITHOUT_X11="@comment "
 .else
@@ -58,16 +62,14 @@ do-install:
 	@${LN} -sf ${ICONDIR}/bin/icont ${STAGEDIR}${PREFIX}/bin/icon
 	@${MKDIR} ${STAGEDIR}${ICONDIR}/lib
 	cd ${WRKSRC}/lib; ${INSTALL_DATA} *.* ${STAGEDIR}${ICONDIR}/lib
-.if !defined(WITHOUT_X11)
+.if ${PORT_OPTIONS:MX11}
 .for file in ${BINXS}
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/${file} ${STAGEDIR}${ICONDIR}/bin/${file}
 .endfor
 	@${LN} -sf ${ICONDIR}/bin/vib ${STAGEDIR}${PREFIX}/bin/vib
 .endif
-.if !defined(NOPORTDOCS)
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/doc; ${INSTALL_DATA} *.* ${STAGEDIR}${DOCSDIR}
-.endif
 
 .if defined(MAINTAINER_MODE)
 test:	install

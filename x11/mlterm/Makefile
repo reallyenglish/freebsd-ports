@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mlterm
-PORTVERSION=	3.3.2
-PORTREVISION=	1
+PORTVERSION=	3.3.6
 CATEGORIES=	x11
 MASTER_SITES=	SF/${PORTNAME}/01release/${PORTNAME}-${PORTVERSION}
 
@@ -16,7 +15,7 @@ USE_GNOME=	gtk20 vte
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-imagelib=gdk-pixbuf2 --enable-utmp \
+CONFIGURE_ARGS=	--with-gui=x11 --with-imagelib=gdk-pixbuf2 --enable-utmp \
 		--enable-optimize-redrawing \
 		--with-tools="mlclient,mlconfig,mlterm-menu,mlcc,w3mmlconfig,mlimgloader" \
 		--disable-iiimf
@@ -37,7 +36,7 @@ UIM_DESC=	"uim support (experimental)"
 
 .if ${PORT_OPTIONS:MFRIBIDI}
 CONFIGURE_ARGS+=	--enable-fribidi
-LIB_DEPENDS+=	fribidi:${PORTSDIR}/converters/fribidi
+LIB_DEPENDS+=	libfribidi.so:${PORTSDIR}/converters/fribidi
 PLIST_SUB+=	FRIBIDI=""
 .else
 CONFIGURE_ARGS+=	--disable-fribidi
@@ -46,7 +45,7 @@ PLIST_SUB+=	FRIBIDI="@comment "
 
 .if ${PORT_OPTIONS:MUIM}
 CONFIGURE_ARGS+=	--enable-uim
-LIB_DEPENDS+=	uim:${PORTSDIR}/textproc/uim
+LIB_DEPENDS+=	libuim.so:${PORTSDIR}/textproc/uim
 PLIST_SUB+=	UIM=""
 .else
 CONFIGURE_ARGS+=	--disable-uim
@@ -55,7 +54,7 @@ PLIST_SUB+=	UIM="@comment "
 
 .if ${PORT_OPTIONS:MM17NLIB}
 CONFIGURE_ARGS+=	--enable-m17nlib
-LIB_DEPENDS+=	m17n:${PORTSDIR}/devel/m17n-lib
+LIB_DEPENDS+=	libm17n.so:${PORTSDIR}/devel/m17n-lib
 PLIST_SUB+=	M17NLIB=""
 .else
 CONFIGURE_ARGS+=	--disable-m17nlib
@@ -64,7 +63,7 @@ PLIST_SUB+=	M17NLIB="@comment "
 
 .if ${PORT_OPTIONS:MSCIM}
 CONFIGURE_ARGS+=	--enable-scim
-LIB_DEPENDS+=	scim-1.0:${PORTSDIR}/textproc/scim
+LIB_DEPENDS+=	libscim-1.0.so:${PORTSDIR}/textproc/scim
 PLIST_SUB+=	SCIM=""
 .else
 CONFIGURE_ARGS+=	--disable-scim
@@ -73,7 +72,7 @@ PLIST_SUB+=	SCIM="@comment "
 
 .if ${PORT_OPTIONS:MIBUS}
 CONFIGURE_ARGS+=	--enable-ibus
-LIB_DEPENDS+=	ibus-1.0:${PORTSDIR}/textproc/ibus
+LIB_DEPENDS+=	libibus-1.0.so:${PORTSDIR}/textproc/ibus
 PLIST_SUB+=	IBUS=""
 .else
 CONFIGURE_ARGS+=	--disable-ibus
@@ -82,7 +81,7 @@ PLIST_SUB+=	IBUS="@comment "
 
 .if ${PORT_OPTIONS:MCAIRO}
 CONFIGURE_ARGS+=	--with-type-engines="xcore,xft,cairo"
-LIB_DEPENDS+=	cairo:${PORTSDIR}/graphics/cairo
+LIB_DEPENDS+=	libcairo.so:${PORTSDIR}/graphics/cairo
 PLIST_SUB+=	CAIRO=""
 .else
 CONFIGURE_ARGS+=	--with-type-engines="xcore,xft"
@@ -98,7 +97,7 @@ PLIST_SUB+=	SIXEL="@comment "
 .endif
 
 .if ${OSVERSION} < 900004
-LIB_DEPENDS+=	utempter:${PORTSDIR}/sysutils/libutempter
+LIB_DEPENDS+=	libutempter.so:${PORTSDIR}/sysutils/libutempter
 .endif
 
 post-configure:

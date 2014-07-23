@@ -7,7 +7,7 @@ CATEGORIES=	net
 MASTER_SITES=	http://openvswitch.org/releases/
 
 MAINTAINER=	emaste@FreeBSD.org
-COMMENT=	A production quality, multilayer virtual switch
+COMMENT=	Production quality, multilayer virtual switch
 
 LICENSE=	APACHE20
 
@@ -51,6 +51,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/vswitchd/vswitch.ovsschema ${PREFIX}/share/openvswitch/
 
 #regression-test: build
-#	@cd ${WRKSRC} && ${GMAKE} check
+#	@cd ${WRKSRC} && ${MAKE_CMD} check
 
 .include <bsd.port.post.mk>

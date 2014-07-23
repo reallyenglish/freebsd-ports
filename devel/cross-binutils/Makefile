@@ -12,10 +12,10 @@ PKGNAMEPREFIX=	${TGTARCH}-${TGTABI}-
 PATCH_SITES=	ftp://ftp.rtems.com/pub/rtems/SOURCES/4.11/
 PATCH_DIST_STRIP=	-p1
 
-MAINTAINER=	christoph.mallon@gmx.de
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	GNU binutils port for cross-target development
 
-USES=		tar:bzip2 gmake
+USES=		gmake makeinfo tar:bzip2
 GNU_CONFIGURE=	yes
 ALL_TARGET=	all info
 MAKE_JOBS_UNSAFE=	yes

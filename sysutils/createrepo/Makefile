@@ -7,7 +7,7 @@ PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://createrepo.baseurl.org/download/
 
-MAINTAINER=	afb@rpm5.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Creates a common metadata repository
 
 RUN_DEPENDS=	${PYTHON_SITELIBDIR}/sqlitecachec.py:${PORTSDIR}/devel/py-yum-metadata-parser \
@@ -21,7 +21,7 @@ USES=		gmake
 BUILD_DEPENDS+=	ginstall:${PORTSDIR}/sysutils/coreutils
 GINSTALL=	ginstall
 
-MAKE_ARGS=	MAKE=${GMAKE} INSTALL="${GINSTALL} -p -v" PYTHON=${PYTHON_CMD} \
+MAKE_ARGS=	MAKE=${MAKE_CMD} INSTALL="${GINSTALL} -p -v" PYTHON=${PYTHON_CMD} \
 		prefix=${PREFIX} mandir=${MANPREFIX}/man sysconfdir=${PREFIX}/etc
 
 MAN1=		mergerepo.1 modifyrepo.1

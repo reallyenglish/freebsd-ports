@@ -8,12 +8,12 @@ CATEGORIES=	graphics
 MASTER_SITES=	http://sugachan.dip.jp/obsolete/arch/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
-MAINTAINER=	gslin@gslin.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Tool to recompress JPEG/PNG/GIF
 
 BROKEN=		Unfetchable
 
-LIB_DEPENDS=	gd:${PORTSDIR}/graphics/gd
+LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lgd

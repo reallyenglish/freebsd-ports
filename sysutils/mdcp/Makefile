@@ -7,14 +7,11 @@ CATEGORIES=	sysutils
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/shine
 
 MAINTAINER=	wamonzyne@hotmail.com
-COMMENT=	A fastest utility for copy from a disk device for many
+COMMENT=	Fastest utility for copy from a disk device for many
 
 GNU_CONFIGURE=	yes
 USES=		gmake
 
-PLIST_FILES=	sbin/mdcp
+PLIST_FILES=	sbin/mdcp man/man1/mdcp.1.gz
 
-MAN1=		mdcp.1
-
-NO_STAGE=	yes
 .include <bsd.port.mk>

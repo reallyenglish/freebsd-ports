@@ -25,13 +25,12 @@ ANT_TARGETS=	jar-server
 JAVA_BUILD=	yes
 .endif
 
-.if !defined(NOPORTDOCS)
+OPTIONS_DEFINE=	DOCS
+
 PORTDOCS=	README.txt\
 		LICENSE.txt\
 		history.txt
-.endif
 
-NO_STAGE=	yes
 .include <bsd.port.pre.mk>
 
 pre-fetch:
@@ -39,7 +38,6 @@ pre-fetch:
 	@${ECHO_MSG} "You may use the following build options:"
 	@${ECHO_MSG} ""
 	@${ECHO_MSG} "    WITHOUT_COMPILE=yes    Install the pre-compiled .jar file"
-	@${ECHO_MSG} "    NOPORTDOCS=yes    	 Don't install the port documentation"
 	@${ECHO_MSG} ""
 
 do-build:
@@ -49,17 +47,15 @@ do-build:
 
 do-install:
 	@${ECHO_CMD} -n  ">> Installing avisd..."
-	@${MKDIR} ${PREFIX}/libexec/avis/
-	@${INSTALL_SCRIPT} ${WRKSRC}/server/bin/avisd ${PREFIX}/sbin/avisd
-	@${INSTALL_DATA} ${WRKSRC}/server/lib/avis-router.jar ${PREFIX}/libexec/avis/avis-router.jar
+	@${MKDIR} ${STAGEDIR}${PREFIX}/libexec/avis/
+	@${INSTALL_SCRIPT} ${WRKSRC}/server/bin/avisd ${STAGEDIR}${PREFIX}/sbin/avisd
+	@${INSTALL_DATA} ${WRKSRC}/server/lib/avis-router.jar ${STAGEDIR}${PREFIX}/libexec/avis/avis-router.jar
 	@${ECHO_CMD} " [DONE]"
-	@${INSTALL_DATA} ${WRKSRC}/server/etc/avisd.config ${PREFIX}/etc/avisd.conf.sample
+	@${INSTALL_DATA} ${WRKSRC}/server/etc/avisd.config ${STAGEDIR}${PREFIX}/etc/avisd.conf.sample
 
-.if !defined(NOPORTDOCS)
 	@${ECHO_CMD} -n ">> Installing documentation in ${DOCSDIR}..."
-	@${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@cd ${WRKSRC}/server/doc && ${FIND} . \
-		| ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${DOCSDIR}
-.endif
+		| ${CPIO} -pdmu -R ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>

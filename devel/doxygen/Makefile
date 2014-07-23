@@ -2,7 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	doxygen
-PORTVERSION=	1.8.7
+PORTVERSION=	1.8.3.1
+PORTREVISION=	1
+PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/dimitri/ \
 		http://ftp.stack.nl/pub/users/dimitri/
@@ -14,18 +16,15 @@ COMMENT=	Documentation system for C, C++, and other languages
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake \
-		flex>0:${PORTSDIR}/textproc/flex \
-		python:${PORTSDIR}/lang/python
+BUILD_DEPENDS=	tmake:${PORTSDIR}/devel/tmake
 LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
 
 USES=		bison iconv perl5 gmake
 ALL_TARGET=	all
 HAS_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=	yes
 QT_NONSTANDARD=	yes	# non-standard configure arguments
-CONFIGURE_ARGS=	--prefix ${PREFIX} --perl ${PERL} --make ${GMAKE} \
-		--install "${INSTALL}" --flex ${LOCALBASE}/bin/flex
+CONFIGURE_ARGS=	--prefix ${PREFIX} --perl ${PERL} --make ${MAKE_CMD} \
+		--install "${INSTALL}"
 REINPLACE_ARGS=	-i ''
 
 EXTRACT_AFTER_ARGS=	--exclude '*/libmd5'	\
@@ -87,7 +86,7 @@ post-configure:
 
 post-build:
 	cd ${BUILD_WRKSRC}/examples; \
-	${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} Makefile ${MAKE_ARGS} all
+	${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} Makefile ${MAKE_ARGS} all
 
 pre-install:
 	${RM} -rf ${TMPDOCDEST} ${PLIST}

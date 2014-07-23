@@ -14,8 +14,10 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	A squid redirector used for blocking unwanted content
 
 BROKEN=		Fails to checksum
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2014-08-22
 
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 RUN_DEPENDS=	squid:${PORTSDIR}/www/squid
 
 PLIST_SUB=	INSTALL_DIR=${INSTALL_DIR}

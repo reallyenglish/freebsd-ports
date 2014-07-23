@@ -9,7 +9,7 @@ MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 DISTNAME=	cacheboy-1.6-r13601
 # EXTRACT_SUFX=	.tar.gz
 
-MAINTAINER=	adrian@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	HTTP Caching Proxy (Squid Derivative) - Development Release
 
 CONFLICTS=	squid-[0-9]* cacheboy*
@@ -140,7 +140,7 @@ external_acl+=	ldap_group
 libexec+=	digest_ldap_auth squid_ldap_auth squid_ldap_group
 .endif
 .if ${PORT_OPTIONS:MSQUID_SASL_AUTH}
-LIB_DEPENDS+=	sasl2:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 CFLAGS+=	-I${LOCALBASE}/include
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

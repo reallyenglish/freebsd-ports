@@ -59,9 +59,9 @@ WRKSRC=${WRKDIR}/iscan-${PORTVERSION}
 MAN5=		sane-epkowa.5
 
 # We use LIB_DEPENDS, but the dependency is also at build time
-LIB_DEPENDS+=	ltdl:${PORTSDIR}/devel/libltdl
-LIB_DEPENDS+=	getline:${PORTSDIR}/devel/libgetline
-LIB_DEPENDS+=	sane.1:${PORTSDIR}/graphics/sane-backends
+LIB_DEPENDS+=	libltdl.so:${PORTSDIR}/devel/libltdl
+LIB_DEPENDS+=	libgetline.so:${PORTSDIR}/devel/libgetline
+LIB_DEPENDS+=	libsane.so:${PORTSDIR}/graphics/sane-backends
 
 #BUILD_DEPENDS+=	${LOCALBASE}/lib/libltdl.so:${PORTSDIR}/devel/libltdl
 
@@ -82,10 +82,10 @@ CONFIGURE_ARGS+=--prefix=${PREFIX} LDFLAGS="-L${PREFIX}/lib -lgetline" CPPFLAGS=
 do-patch:	# nothing to do
 
 do-build:
-	( cd ${WRKSRC}/libltdl ; ${GMAKE} )
-	( cd ${WRKSRC}/sanei ; ${GMAKE} )
-	( cd ${WRKSRC}/backend ; ${GMAKE} )
-	( cd ${WRKSRC}/doc ; ${GMAKE} )
+	( cd ${WRKSRC}/libltdl ; ${MAKE_CMD} )
+	( cd ${WRKSRC}/sanei ; ${MAKE_CMD} )
+	( cd ${WRKSRC}/backend ; ${MAKE_CMD} )
+	( cd ${WRKSRC}/doc ; ${MAKE_CMD} )
 .else
 .warning version 2.15.0 not working yet
 # Remove versioned symbols to link with FreeBSD's [g]libc
@@ -95,8 +95,8 @@ post-patch:
 
 # only build the backend part
 do-build:
-	( cd ${WRKSRC}/backend ; ${GMAKE} )
-	( cd ${WRKSRC}/doc ; ${GMAKE} )
+	( cd ${WRKSRC}/backend ; ${MAKE_CMD} )
+	( cd ${WRKSRC}/doc ; ${MAKE_CMD} )
 .endif
 
 do-install:

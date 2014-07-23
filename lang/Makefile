@@ -27,6 +27,7 @@
     SUBDIR += ccl
     SUBDIR += cdent
     SUBDIR += cduce
+    SUBDIR += ceylon
     SUBDIR += cfortran
     SUBDIR += chicken
     SUBDIR += cint
@@ -120,7 +121,6 @@
     SUBDIR += ici
     SUBDIR += icon
     SUBDIR += ifc
-    SUBDIR += ikarus
     SUBDIR += intel2gas
     SUBDIR += intercal
     SUBDIR += io
@@ -243,7 +243,6 @@
     SUBDIR += php55-extensions
     SUBDIR += php_doc
     SUBDIR += picoc
-    SUBDIR += pike76
     SUBDIR += pike78
     SUBDIR += polyml
     SUBDIR += ptoc
@@ -285,6 +284,7 @@
     SUBDIR += runawk
     SUBDIR += rust
     SUBDIR += s9fes
+    SUBDIR += sagittarius-scheme
     SUBDIR += sather-specification
     SUBDIR += sather-tutorial
     SUBDIR += sbcl
@@ -296,7 +296,6 @@
     SUBDIR += sdcc
     SUBDIR += sdcc-devel
     SUBDIR += see
-    SUBDIR += see-devel
     SUBDIR += seed7
     SUBDIR += siod
     SUBDIR += sisc
@@ -319,7 +318,6 @@
     SUBDIR += sr
     SUBDIR += stalin
     SUBDIR += starlogo
-    SUBDIR += stklos
     SUBDIR += stldoc
     SUBDIR += swi-pl
     SUBDIR += t3x

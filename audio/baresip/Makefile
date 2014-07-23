@@ -45,7 +45,6 @@ ILBC_DESC=	iLBC audio codec
 L16_DESC=	L16 audio codec
 MENU_DESC=	Interactive menu
 OPENGLES_DESC=	OpenGL ES video output
-OPUS_DESC=	Opus audio codec
 PLC_DESC=	Packet Loss Concealment
 PRESENCE_DESC=	Presence module
 SRTP_DESC=	Secure RTP module [broken]
@@ -119,7 +118,7 @@ do-install:
 # Install modules and add to plist
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/modules
-	for m in $$(${GMAKE} -sC ${WRKSRC} ${MAKE_ARGS} showmodules); \
+	for m in $$(${SETENV} ${MAKE_ENV} ${MAKE_CMD} -sC ${WRKSRC} ${MAKE_ARGS} showmodules); \
 	do ${INSTALL_LIB} ${WRKSRC}/$$m.so \
 		${STAGEDIR}${PREFIX}/lib/baresip/modules; \
 	   ${ECHO_CMD} lib/${PORTNAME}/modules/$$m.so >> ${TMPPLIST}; \

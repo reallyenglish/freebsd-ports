@@ -57,6 +57,597 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="ecea9e92-0be5-4931-88da-8772d044972a">
+    <topic>mcollective -- cert valication issue</topic>
+    <affects>
+      <package>
+	<name>mcollective</name>
+	<range><lt>2.5.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Melissa Stone reports:</p>
+	<blockquote cite="https://groups.google.com/forum/#!topic/puppet-announce/cPykqUXMmK4">
+	  <p>The MCollective aes_security public key plugin does not correctly
+	    validate certs against the CA. By exploiting this vulnerability
+	    within a race/initialization window, an attacker with local access
+	    could initiate an unauthorized MCollective client connection with a
+	    server, and thus control the mcollective plugins running on that
+	    server. This vulnerability requires a collective be configured to
+	    use the aes_security plugin. Puppet Enterprise and open source
+	    MCollective are not configured to use the plugin and are not
+	    vulnerable by default.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-3251</cvename>
+      <url>https://groups.google.com/forum/#!topic/puppet-announce/cPykqUXMmK4</url>
+    </references>
+    <dates>
+      <discovery>2014-07-09</discovery>
+      <entry>2014-07-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="904d78b8-0f7e-11e4-8b71-5453ed2e2b49">
+    <topic>qt4-imageformats, qt5-gui -- DoS vulnerability in the GIF image handler</topic>
+    <affects>
+      <package>
+	<name>qt4-imageformats</name>
+	<range><lt>4.8.6_1</lt></range>
+      </package>
+      <package>
+	<name>qt5-gui</name>
+	<range><lt>5.2.1_4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Richard J. Moore reports:</p>
+	<blockquote cite="http://lists.qt-project.org/pipermail/announce/2014-April/000045.html">
+	  <p>The builtin GIF decoder in QtGui prior to Qt 5.3 contained a bug
+	    that would lead to a null pointer dereference when loading certain
+	    hand crafted corrupt GIF files. This in turn would cause the
+	    application loading these hand crafted GIFs to crash.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-0190</cvename>
+      <bid>67087</bid>
+      <mlist>http://lists.qt-project.org/pipermail/announce/2014-April/000045.html</mlist>
+    </references>
+    <dates>
+      <discovery>2014-04-24</discovery>
+      <entry>2014-07-19</entry>
+      <modified>2014-07-21</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="4364e1f1-0f44-11e4-b090-20cf30e32f6d">
+    <topic>apache24 -- several vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>apache24</name>
+	<range><lt>2.4.10</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Apache HTTP SERVER PROJECT reports:</h1>
+	<blockquote cite="http://svn.apache.org/viewvc/httpd/httpd/branches/2.4.x/CHANGES?view=markup&amp;pathrev=1610737">
+	  <p>mod_proxy: Fix crash in Connection header handling which allowed a
+	    denial of service attack against a reverse proxy with a threaded MPM.</p>
+	  <p>Fix a race condition in scoreboard handling, which could lead to a
+	    heap buffer overflow.</p>
+	  <p>mod_deflate: The DEFLATE input filter (inflates request bodies) now
+	    limits the length and compression ratio of inflated request bodies to avoid
+	    denial of sevice via highly compressed bodies.  See directives
+	    DeflateInflateLimitRequestBody, DeflateInflateRatioLimit,
+	    and DeflateInflateRatioBurst.</p>
+	  <p>mod_cgid: Fix a denial of service against CGI scripts that do
+	    not consume stdin that could lead to lingering HTTPD child processes
+	    filling up the scoreboard and eventually hanging the server.  By
+	    default, the client I/O timeout (Timeout directive) now applies to
+	    communication with scripts.  The CGIDScriptTimeout directive can be
+	    used to set a different timeout for communication with scripts.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-0117</cvename>
+      <cvename>CVE-2014-3523</cvename>
+      <cvename>CVE-2014-0226</cvename>
+      <cvename>CVE-2014-0118</cvename>
+      <cvename>CVE-2014-0231</cvename>
+    </references>
+    <dates>
+      <discovery>2014-07-15</discovery>
+      <entry>2014-07-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3f09ca29-0e48-11e4-b17a-6805ca0b3d42">
+    <topic>phpMyAdmin -- multiple XSS vulnerabilities, missing validation</topic>
+    <affects>
+      <package>
+	<name>phpMyAdmin</name>
+	<range><ge>4.2.0</ge><lt>4.2.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The phpMyAdmin development team reports:</p>
+	<blockquote cite="http://www.phpmyadmin.net/home_page/security/PMASA-2014-4.php">
+	  <p>Self-XSS due to unescaped HTML output in database
+	    structure page.</p>
+	  <p>With a crafted table comment, it is possible to trigger
+	    an XSS in database structure page.</p>
+	</blockquote>
+	<blockquote cite="http://www.phpmyadmin.net/home_page/security/PMASA-2014-5.php">
+	  <p>Self-XSS due to unescaped HTML output in database
+	    triggers page.</p>
+	  <p>When navigating into the database triggers page, it is
+	    possible to trigger an XSS with a crafted trigger
+	    name.</p>
+	</blockquote>
+	<blockquote cite="http://www.phpmyadmin.net/home_page/security/PMASA-2014-6.php">
+	  <p>Multiple XSS in AJAX confirmation messages.</p>
+	  <p>With a crafted column name it is possible to trigger an
+	    XSS when dropping the column in table structure page. With
+	    a crafted table name it is possible to trigger an XSS when
+	    dropping or truncating the table in table operations
+	    page.</p>
+	</blockquote>
+	<blockquote cite="http://www.phpmyadmin.net/home_page/security/PMASA-2014-7.php">
+	  <p>Access for an unprivileged user to MySQL user list.</p>
+	  <p>An unpriviledged user could view the MySQL user list and
+	    manipulate the tabs displayed in phpMyAdmin for them.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-4954</cvename>
+      <cvename>CVE-2014-4955</cvename>
+      <cvename>CVE-2014-4986</cvename>
+      <cvename>CVE-2014-4987</cvename>
+      <url>http://www.phpmyadmin.net/home_page/security/PMASA-2014-4.php</url>
+      <url>http://www.phpmyadmin.net/home_page/security/PMASA-2014-5.php</url>
+      <url>http://www.phpmyadmin.net/home_page/security/PMASA-2014-6.php</url>
+      <url>http://www.phpmyadmin.net/home_page/security/PMASA-2014-7.php</url>
+    </references>
+    <dates>
+      <discovery>2014-07-18</discovery>
+      <entry>2014-07-18</entry>
+      <modified>2014-07-20</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="3718833e-0d27-11e4-89db-000c6e25e3e9">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>36.0.1985.125</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Google Chrome Releases reports:</p>
+       <blockquote cite="http://googlechromereleases.blogspot.nl">
+	 <p>26 security fixes in this release, including</p>
+	 <ul>
+	   <li>[380885] Medium CVE-2014-3160: Same-Origin-Policy bypass in SVG. Credit
+	     to Christian Schneider.</li>
+	   <li>[393765] CVE-2014-3162: Various fixes from internal audits, fuzzing and
+	      other initiatives.</li>
+	  </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-3160</cvename>
+      <cvename>CVE-2014-3162</cvename>
+      <url>http://googlechromereleases.blogspot.nl</url>
+    </references>
+    <dates>
+      <discovery>2014-07-16</discovery>
+      <entry>2014-07-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4a114331-0d24-11e4-8dd2-5453ed2e2b49">
+    <topic>kdelibs4 -- KMail/KIO POP3 SSL Man-in-the-middle Flaw</topic>
+    <affects>
+      <package>
+	<name>kdelibs</name>
+	<range><ge>4.10.95</ge><lt>4.12.5_2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Richard J. Moore reports:</p>
+	<blockquote cite="http://www.kde.org/info/security/advisory-20140618-1.txt">
+	  <p>The POP3 kioslave used by KMail will accept invalid
+	  certificates without presenting a dialog to the user due a
+	  bug that leads to an inability to display the dialog
+	  combined with an error in the way the result is checked.</p>
+	  <p>This flaw allows an active attacker to perform MITM
+	  attacks against the ioslave which could result in the leakage of
+	  sensitive data such as the authentication details and the contents of
+	  emails.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-3494</cvename>
+      <bid>68113</bid>
+      <mlist>http://lists.kde.org/?l=kde-announce&amp;m=140312275318160&amp;w=2</mlist>
+    </references>
+    <dates>
+      <discovery>2014-06-17</discovery>
+      <entry>2014-07-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ff98087f-0a8f-11e4-b00b-5453ed2e2b49">
+    <topic>postfixadmin -- SQL injection vulnerability</topic>
+    <affects>
+      <package>
+	<name>postfixadmin</name>
+	<range><lt>2.3.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Thijs Kinkhorst reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2014/03/26/6">
+	  <p>Postfixadmin has an SQL injection vulnerability. This
+	    vulnerability is only exploitable by authenticated users able to
+	    create new aliases.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-2655</cvename>
+      <bid>66455</bid>
+      <freebsdpr>189248</freebsdpr>
+      <mlist>http://www.openwall.com/lists/oss-security/2014/03/26/6</mlist>
+      <url>https://www.debian.org/security/2014/dsa-2889</url>
+    </references>
+    <dates>
+      <discovery>2014-03-28</discovery>
+      <entry>2014-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e6a7636a-02d0-11e4-88b6-080027671656">
+    <topic>dbus -- multiple vulnabilities</topic>
+    <affects>
+      <package>
+	<name>dbus</name>
+	<range><lt>1.8.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Simon McVittie reports:</p>
+	<blockquote cite="http://lists.freedesktop.org/archives/dbus/2014-July/016235.html">
+	  <p>Alban Crequy at Collabora Ltd. discovered a bug in dbus-daemon's
+	    support for file descriptor passing. A malicious process could
+	    force system services or user applications to be disconnected
+	    from the D-Bus system bus by sending them a message containing
+	    a file descriptor, then causing that file descriptor to exceed
+	    the kernel's maximum recursion depth (itself introduced to fix
+	    a DoS) before dbus-daemon forwards the message to the victim
+	    process. Most services and applications exit when disconnected
+	    from the system bus, leading to a denial of service.</p>
+	  <p>Additionally, Alban discovered that bug fd.o#79694, a bug
+	    previously reported by Alejandro Martínez Suárez which was n
+	    believed to be security flaw, could be used for a similar denial
+	    of service, by causing dbus-daemon to attempt to forward invalid
+	    file descriptors to a victim process when file descriptors become
+	    associated with the wrong message.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-3532</cvename>
+      <cvename>CVE-2014-3533</cvename>
+      <url>http://lists.freedesktop.org/archives/dbus/2014-July/016235.html</url>
+    </references>
+    <dates>
+      <discovery>2014-07-02</discovery>
+      <entry>2014-07-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="17dfd984-feba-11e3-b938-5404a68ad561">
+    <topic>mencoder -- potential buffer overrun when processing malicious lzo compressed input</topic>
+    <affects>
+      <package>
+	<name>mencoder</name>
+	<range><lt>1.1.r20140418_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Michael Niedermayer and Luca Barbato report in upstream ffmpeg:</p>
+	<blockquote>
+	  <p>avutil/lzo: Fix integer overflow</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://git.videolan.org/?p=ffmpeg.git;a=commitdiff;h=ccda51b14c0fcae2fad73a24872dce75a7964996</url>
+      <url>http://git.videolan.org/?p=ffmpeg.git;a=commitdiff;h=d6af26c55c1ea30f85a7d9edbc373f53be1743ee</url>
+      <cvename>CVE-2014-4610</cvename>
+    </references>
+    <dates>
+      <discovery>2014-06-24</discovery>
+      <entry>2014-06-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9ab3a22c-feb8-11e3-b938-5404a68ad561">
+    <topic>mplayer -- potential buffer overrun when processing malicious lzo compressed input</topic>
+    <affects>
+      <package>
+	<name>mplayer</name>
+	<range><lt>1.1.r20140418_3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Michael Niedermayer and Luca Barbato report in upstream ffmpeg:</p>
+	<blockquote>
+	  <p>avutil/lzo: Fix integer overflow</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://git.videolan.org/?p=ffmpeg.git;a=commitdiff;h=ccda51b14c0fcae2fad73a24872dce75a7964996</url>
+      <url>http://git.videolan.org/?p=ffmpeg.git;a=commitdiff;h=d6af26c55c1ea30f85a7d9edbc373f53be1743ee</url>
+      <cvename>CVE-2014-4610</cvename>
+    </references>
+    <dates>
+      <discovery>2014-06-24</discovery>
+      <entry>2014-06-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d1f5e12a-fd5a-11e3-a108-080027ef73ec">
+    <topic>LZO -- potential buffer overrun when processing malicious input data</topic>
+    <affects>
+      <package>
+	<name>lzo2</name>
+	<range><lt>2.07</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Markus Franz Xaver Johannes Oberhumer reports, in the package's NEWS file:</p>
+	<blockquote>
+	  <p>Fixed a potential integer overflow condition in the "safe"
+	    decompressor variants which could result in a possible buffer
+	    overrun when processing maliciously crafted compressed input
+	    data.</p>
+
+	  <p>As this issue only affects 32-bit systems and also can only happen
+	    if you use uncommonly huge buffer sizes where you have to decompress
+	    more than 16 MiB (2^24 bytes) compressed bytes within a single
+	    function call, the practical implications are limited.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.oberhumer.com/opensource/lzo/download/lzo-2.07.tar.gz</url>
+    </references>
+    <dates>
+      <discovery>2014-06-25</discovery>
+      <entry>2014-06-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1c840eb9-fb32-11e3-866e-b499baab0cbe">
+    <topic>gnupg -- possible DoS using garbled compressed data packets</topic>
+    <affects>
+      <package>
+	<name>gnupg1</name>
+	<range><lt>1.4.17</lt></range>
+      </package>
+      <package>
+	<name>gnupg</name>
+	<range><lt>2.0.24</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Werner Koch reports:</p>
+	<blockquote cite="http://lists.gnupg.org/pipermail/gnupg-announce/2014q2/000344.html">
+	  <p>This release includes a *security fix* to stop
+	    a possible DoS using garbled compressed data packets which can be used
+	    to put gpg into an infinite loop.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://lists.gnupg.org/pipermail/gnupg-announce/2014q2/000344.html</url>
+      <url>http://lists.gnupg.org/pipermail/gnupg-announce/2014q2/000345.html</url>
+    </references>
+    <dates>
+      <discovery>2014-06-23</discovery>
+      <entry>2014-06-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6ad309d9-fb03-11e3-bebd-000c2980a9f3">
+    <topic>samba -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>samba36</name>
+	<range><lt>3.6.24</lt></range>
+      </package>
+      <package>
+	<name>samba4</name>
+	<range><lt>4.0.19</lt></range>
+      </package>
+      <package>
+	<name>samba41</name>
+	<range><lt>4.1.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The samba project reports:</p>
+	<blockquote cite="https://www.samba.org/samba/history/">
+	  <p>A malformed packet can cause the nmbd server to loop the CPU and
+	    prevent any further NetBIOS name service.</p>
+	  <p>Valid unicode path names stored on disk can cause smbd to
+	    crash if an authenticated client attempts to read them
+	    using a non-unicode request.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-0244</cvename>
+      <cvename>CVE-2014-3493</cvename>
+      <url>https://www.samba.org/samba/security/CVE-2014-0244</url>
+      <url>https://www.samba.org/samba/security/CVE-2014-3493</url>
+    </references>
+    <dates>
+      <discovery>2014-06-23</discovery>
+      <entry>2014-06-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c4892644-f8c6-11e3-9f45-6805ca0b3d42">
+    <topic>phpMyAdmin -- two XSS vulnerabilities due to unescaped db/table names</topic>
+    <affects>
+      <package>
+	<name>phpMyAdmin</name>
+	<range><ge>4.1.0</ge><lt>4.2.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The phpMyAdmin development team reports:</p>
+	<blockquote cite="http://www.phpmyadmin.net/home_page/security/PMASA-2014-2.php">
+	  <p>Self-XSS due to unescaped HTML output in recent/favorite
+	    tables navigation.</p>
+
+	  <p>When marking a crafted database or table name as
+	    favorite or having it in recent tables, it is possible to
+	    trigger an XSS.</p>
+
+
+	  <p>This vulnerability can be triggered only by someone who
+	    logged in to phpMyAdmin, as the usual token protection
+	    prevents non-logged-in users from accessing the required
+	    form.</p>
+
+	</blockquote>
+	<blockquote cite="http://www.phpmyadmin.net/home_page/security/PMASA-2014-3.php">
+	  <p>Self-XSS due to unescaped HTML output in navigation items
+	    hiding feature.</p>
+
+	  <p>When hiding or unhiding a crafted table name in the
+	    navigation, it is possible to trigger an XSS.</p>
+
+	  <p>This vulnerability can be triggered only by someone who
+	    logged in to phpMyAdmin, as the usual token protection
+	    prevents non-logged-in users from accessing the required
+	    form.</p>
+	</blockquote>
+    </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-4348</cvename>
+      <cvename>CVE-2014-4349</cvename>
+      <url>http://www.phpmyadmin.net/home_page/security/PMASA-2014-2.php</url>
+      <url>http://www.phpmyadmin.net/home_page/security/PMASA-2014-3.php</url>
+    </references>
+    <dates>
+      <discovery>2014-06-20</discovery>
+      <entry>2014-06-20</entry>
+      <modified>2014-06-24</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="0981958a-f733-11e3-8276-071f1604ef8a">
+    <topic>iodined -- authentication bypass</topic>
+    <affects>
+      <package>
+	<name>iodine</name>
+	<range><lt>0.7.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Erik Ekman of the iodine project reports:</p>
+    <blockquote cite="https://github.com/yarrick/iodine/commit/b715be5cf3978fbe589b03b09c9398d0d791f850">
+	<p>The client could bypass the password check by continuing after
+	    getting error from the server and guessing the network parameters.
+	    The server would still accept the rest of the setup and also network
+	    traffic.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+	<url>https://github.com/yarrick/iodine/commit/b715be5cf3978fbe589b03b09c9398d0d791f850</url>
+    </references>
+    <dates>
+      <discovery>2014-06-16</discovery>
+      <entry>2014-06-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f109b02f-f5a4-11e3-82e9-00a098b18457">
+    <topic>asterisk -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>asterisk11</name>
+	<range><lt>11.10.1</lt></range>
+      </package>
+      <package>
+	<name>asterisk18</name>
+	<range><lt>1.8.28.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Asterisk project reports:</p>
+	<blockquote cite="https://www.asterisk.org/security">
+	  <p>Asterisk Manager User Unauthorized Shell Access. Manager users can
+	    execute arbitrary shell commands with the MixMonitor manager action.
+	    Asterisk does not require system class authorization for a manager
+	    user to use the MixMonitor action, so any manager user who is
+	    permitted to use manager commands can potentially execute shell
+	    commands as the user executing the Asterisk process.</p>
+	  <p>Exhaustion of Allowed Concurrent HTTP Connections. Establishing a
+	    TCP or TLS connection to the configured HTTP or HTTPS port
+	    respectively in http.conf and then not sending or completing a HTTP
+	    request will tie up a HTTP session. By doing this repeatedly until the
+	    maximum number of open HTTP sessions is reached, legitimate requests
+	    are blocked.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-4046</cvename>
+      <cvename>CVE-2014-4047</cvename>
+      <url>http://downloads.asterisk.org/pub/security/AST-2014-006.pdf</url>
+      <url>http://downloads.asterisk.org/pub/security/AST-2014-007.pdf</url>
+      <url>https://www.asterisk.org/security</url>
+    </references>
+    <dates>
+      <discovery>2014-06-12</discovery>
+      <entry>2014-06-17</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="52bbc7e8-f13c-11e3-bc09-bcaec565249c">
     <topic>dbus -- local DoS</topic>
     <affects>
@@ -138,8 +729,16 @@ Notes:
 	<range><lt>24.6.0,1</lt></range>
       </package>
       <package>
+	<name>seamonkey</name>
+	<range><lt>2.26.1</lt></range>
+      </package>
+      <package>
 	<name>linux-firefox</name>
 	<range><lt>30.0,1</lt></range>
+      </package>
+      <package>
+	<name>linux-seamonkey</name>
+	<range><lt>2.26.1</lt></range>
       </package>
       <package>
 	<name>linux-thunderbird</name>

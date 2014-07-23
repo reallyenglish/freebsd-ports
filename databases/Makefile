@@ -133,6 +133,8 @@
     SUBDIR += kyotocabinet
     SUBDIR += kyototycoon
     SUBDIR += ldb
+    SUBDIR += leo_center
+    SUBDIR += leofs
     SUBDIR += leveldb
     SUBDIR += libdbi
     SUBDIR += libdbi-drivers
@@ -259,6 +261,7 @@
     SUBDIR += p5-Bucardo
     SUBDIR += p5-CDB_File
     SUBDIR += p5-CDB_File-Generator
+    SUBDIR += p5-CGI-Session-Driver-memcached
     SUBDIR += p5-Cache-BDB
     SUBDIR += p5-Cache-Memcached
     SUBDIR += p5-Cache-Memcached-Fast
@@ -332,6 +335,7 @@
     SUBDIR += p5-DBIx-Browse
     SUBDIR += p5-DBIx-Class
     SUBDIR += p5-DBIx-Class-AsFdat
+    SUBDIR += p5-DBIx-Class-BitField
     SUBDIR += p5-DBIx-Class-Candy
     SUBDIR += p5-DBIx-Class-Cursor-Cached
     SUBDIR += p5-DBIx-Class-CustomPrefetch
@@ -560,6 +564,7 @@
     SUBDIR += pgpool-II-22
     SUBDIR += pgpool-II-23
     SUBDIR += pgpool-II-30
+    SUBDIR += pgpool-II-33
     SUBDIR += pgpoolAdmin
     SUBDIR += pgrouting
     SUBDIR += pgsphere
@@ -747,11 +752,11 @@
     SUBDIR += py-pylibmc
     SUBDIR += py-pymysql
     SUBDIR += py-pytc
+    SUBDIR += py-python-rrdtool
     SUBDIR += py-qt4-sql
     SUBDIR += py-redis
     SUBDIR += py-riak
     SUBDIR += py-rrdtool_lgpl
-    SUBDIR += py-simplecouchdb
     SUBDIR += py-south
     SUBDIR += py-sqlalchemy
     SUBDIR += py-sqlalchemy-devel
@@ -796,6 +801,7 @@
     SUBDIR += redis
     SUBDIR += redis-devel
     SUBDIR += riak
+    SUBDIR += rocksdb
     SUBDIR += rrdman
     SUBDIR += rrdmerge
     SUBDIR += rrdtool
@@ -859,6 +865,7 @@
     SUBDIR += rubygem-do_sqlite3
     SUBDIR += rubygem-familia
     SUBDIR += rubygem-jdbc-mysql
+    SUBDIR += rubygem-leo_manager_client
     SUBDIR += rubygem-memcache
     SUBDIR += rubygem-memcache-client
     SUBDIR += rubygem-mysql
@@ -876,7 +883,6 @@
     SUBDIR += sfcgal
     SUBDIR += sharedance
     SUBDIR += skytools
-    SUBDIR += slony1
     SUBDIR += slony1v2
     SUBDIR += soci
     SUBDIR += spatialite

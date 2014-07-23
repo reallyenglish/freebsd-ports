@@ -3,6 +3,7 @@
 
 PORTNAME=	opendbx
 PORTVERSION=	1.4.6
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	http://www.linuxnetworks.de/opendbx/download/
 
@@ -39,9 +40,9 @@ SQLITE_LIB_DEPENDS=	libsqlite.so:${PORTSDIR}/databases/sqlite2
 
 SQLITE3_USE=	SQLITE=3
 
-MSSQL_LIB_DEPENDS=	sybdb:${PORTSDIR}/databases/freetds
+MSSQL_LIB_DEPENDS=	libsybdb.so:${PORTSDIR}/databases/freetds
 
-SYBASE_LIB_DEPENDS=	ct:${PORTSDIR}/databases/freetds
+SYBASE_LIB_DEPENDS=	libct.so:${PORTSDIR}/databases/freetds
 
 NLS_USES=		gettext
 NLS_CONFIGURE_DISABLE=	nls

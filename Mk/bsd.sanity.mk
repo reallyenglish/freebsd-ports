@@ -56,7 +56,7 @@ DEV_WARNING+=	"USE_GNOME=desktopfileutils is deprecated, please use USES=desktop
 .endif
 
 .if defined(LIB_DEPENDS) && ${LIB_DEPENDS:Nlib*}
-DEV_WARNING+=	"Please use the new format for LIB_DEPENDS, see handbook for details"
+DEV_ERROR+=	"Please use the new format for LIB_DEPENDS, see handbook for details"
 .endif
 
 .if defined(USE_TCL) || defined(USE_TCL_BUILD) || defined(USE_TCL_RUN) || defined(USE_TCL_WRAPPER) || \
@@ -101,10 +101,10 @@ DEV_WARNING+=	"LICENSE must not contain BSD, instead use BSD[234]CLAUSE"
 .endif
 
 .if defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} == "easy_install"
-DEV_WARNING+=	"USE_PYDISTUTILS=easy_install is deprecated, please use USE_PYDISTUTILS=yes"
+DEV_ERROR+=	"USE_PYDISTUTILS=easy_install is no longer supported, please use USE_PYDISTUTILS=yes"
 .endif
 
-.if defined(USE_PYDISTUTILS) && ${USE_PYDISTUTILS} != "easy_install" && defined(PYDISTUTILS_AUTOPLIST) && defined(PYDISTUTILS_PKGNAME)
+.if defined(USE_PYDISTUTILS) && defined(PYDISTUTILS_AUTOPLIST) && defined(PYDISTUTILS_PKGNAME)
 DEV_WARNING+=	"PYDISTUTILS_PKGNAME has no effect for USE_PYDISTUTILS=yes and PYDISTUTILS_AUTOPLIST=yes"
 .endif
 
@@ -121,7 +121,7 @@ DEV_WARNING+=	"USE_GNOME=ltverhack is deprecated, please use USES=libtool"
 SANITY_UNSUPPORTED=	USE_OPENAL USE_FAM USE_MAKESELF USE_ZIP USE_LHA USE_CMAKE \
 		USE_READLINE USE_ICONV PERL_CONFIGURE PERL_MODBUILD \
 		USE_PERL5_BUILD USE_PERL5_RUN USE_DISPLAY USE_FUSE \
-		USE_GETTEXT USE_GMAKE USE_SCONS
+		USE_GETTEXT USE_GMAKE USE_SCONS USE_DRUPAL
 SANITY_DEPRECATED=	USE_XZ USE_BZIP2
 
 USE_OPENAL_ALT=		USES=openal
@@ -143,6 +143,7 @@ USE_DISPLAY_ALT=	USES=display
 USE_FUSE_ALT=		USES=fuse
 USE_GETTEXT_ALT=	USES=gettext
 USE_SCONS_ALT=		USES=scons
+USE_DRUPAL_ALT=		USES=drupal
 
 .for a in ${SANITY_DEPRECATED}
 .if defined(${a})

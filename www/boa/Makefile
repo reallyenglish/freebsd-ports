@@ -8,10 +8,10 @@ CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.boa.org/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.r/rc/}
 
-MAINTAINER=	ale@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	High performance single-tasking web server
 
-USES=		gmake tar:bzip2
+USES=		gmake makeinfo tar:bzip2
 GNU_CONFIGURE=	yes
 
 INFO=		boa

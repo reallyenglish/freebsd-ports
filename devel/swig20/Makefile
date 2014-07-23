@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	swig
-PORTVERSION=	2.0.11
-PORTREVISION=	1
+PORTVERSION=	2.0.12
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -31,6 +30,8 @@ CONFIGURE_ARGS+=--with-lua=${LUA_BINDIR}/lua \
 		--with-lualib=${LUA_LIBDIR}
 
 OCTAVE_VER_CMD=	${LOCALBASE}/bin/octave-config -v 2>/dev/null || ${TRUE}
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.port.pre.mk>
 
@@ -65,6 +66,6 @@ post-install:
 .endif
 
 regression-test: build
-	cd ${WRKSRC} && ${GMAKE} check
+	cd ${WRKSRC} && ${MAKE_CMD} check
 
 .include <bsd.port.post.mk>

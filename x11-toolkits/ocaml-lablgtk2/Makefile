@@ -9,7 +9,7 @@ MASTER_SITES=	http://forge.ocamlcore.org/frs/download.php/979/ \
 PKGNAMEPREFIX=	ocaml-
 DISTNAME=	lablgtk-${PORTVERSION}
 
-MAINTAINER=	bf@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	An Objective Caml interface to GTK+ 2.x
 
 LICENSE=	LGPL21
@@ -60,7 +60,7 @@ PORTEXAMPLES=	*
 CONFIGURE_ARGS+=	--with-gl
 BUILD_DEPENDS+=	lablgl:${PORTSDIR}/graphics/ocaml-lablgl
 RUN_DEPENDS+=	lablgl:${PORTSDIR}/graphics/ocaml-lablgl
-LIB_DEPENDS+=	gtkgl-2.0:${PORTSDIR}/x11-toolkits/gtkglarea2
+LIB_DEPENDS+=	libgtkgl-2.0.so:${PORTSDIR}/x11-toolkits/gtkglarea2
 EXAMPLES_SUBDIRS+=	GL
 .else
 CONFIGURE_ARGS+=	--without-gl
@@ -116,7 +116,7 @@ CONFIGURE_ARGS+=	--without-gtksourceview2
 .endif
 
 .if ${PORT_OPTIONS:MGTKSPELL}
-LIB_DEPENDS+=	gtkspell:${PORTSDIR}/textproc/gtkspell
+LIB_DEPENDS+=	libgtkspell.so:${PORTSDIR}/textproc/gtkspell
 CONFIGURE_ARGS+=	--with-gtkspell
 .else
 CONFIGURE_ARGS+=	--without-gtkspell

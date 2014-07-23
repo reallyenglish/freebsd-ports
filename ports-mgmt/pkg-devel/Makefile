@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pkg
-DISTVERSION=	1.3.0.b4
+DISTVERSION=	1.3.0.rc4
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	\
 		http://highsecure.ru/distfiles/ \
@@ -27,7 +27,7 @@ GNU_CONFIGURE=	yes
 USE_SUBMAKE=	yes
 
 .if !exists(/usr/include/jail.h)
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-pkg_pkg.8
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-docs_pkg.8
 .endif
 
 .include <bsd.port.pre.mk>
@@ -43,7 +43,7 @@ NO_LATEST_LINK=	yes
 IGNORE=	WITH_PKGNG is not defined to 'devel', this version is the devel one
 .	endif
 .else
-LATEST_LINK=   pkg
+LATEST_LINK=	pkg
 PKGNAMESUFFIX=
 .endif
 .if exists(${LOCALBASE}/sbin/pkg_info) || exists(/usr/sbin/pkg_info)

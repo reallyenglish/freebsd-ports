@@ -29,6 +29,8 @@ USE_RC_SUBR=	kqemu
 
 USES=		kmod gmake uidfix
 
+OPTIONS_DEFINE=	DOCS
+
 .include <bsd.port.pre.mk>
 
 PORTDOCS=	kqemu-doc.html kqemu-tech.html
@@ -43,7 +45,7 @@ MAKEFILE=	Makefile.freebsd
 MAKE_ARGS+=	LDFLAGS="${LDFLAGS:S/^-Wl,//}"
 
 .if ${ARCH} == "amd64"
-GMAKE_ARGS+=	ARCH=x86_64
+MAKE_CMD_ARGS+=	ARCH=x86_64
 .endif
 
 CFLAGS+=	${DEBUG_FLAGS}
@@ -58,7 +60,7 @@ post-patch:
 
 do-build:
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} beforedepend && ${LN} -sfh @/sys sys)
-	@(cd ${BUILD_WRKSRC}/common; ${SETENV} ${MAKE_ENV} ${GMAKE} ${MAKE_FLAGS} Makefile ${GMAKE_ARGS} ${ALL_TARGET})
+	@(cd ${BUILD_WRKSRC}/common; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} Makefile ${MAKE_CMD_ARGS} ${ALL_TARGET})
 	@(cd ${BUILD_WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${ALL_TARGET})
 
 do-install:

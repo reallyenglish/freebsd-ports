@@ -9,10 +9,13 @@ MASTER_SITES=	GNU
 MAINTAINER=	johans@FreeBSD.org
 COMMENT=	GNU version of Shogi
 
+USES=		makeinfo
 GNU_CONFIGURE=		yes
 MAKE_JOBS_UNSAFE=	yes
 
 INFO=		gnushogi
+
+OPTIONS_DEFINE=	DOCS
 
 post-extract:
 	-@${RM} ${WRKSRC}/doc/gnushogi.info*

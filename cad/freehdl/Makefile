@@ -11,19 +11,12 @@ COMMENT=	Free VHDL simulator
 
 USE_LDCONFIG=	yes
 USES=		gmake perl5 pkgconfig
+USE_GCC=	any
 USE_GNOME=	gnomehack
 USE_AUTOTOOLS=	libtool
 HAS_CONFIGURE=	yes
 
-MAN1=		freehdl-config.1 \
-		freehdl-gennodes.1 \
-		freehdl-v2cc.1 \
-		gvhdl.1
-MAN5=		v2cc.libs.5
-
 INFO=		fire
-
-MANCOMPRESSED=	no
 
 PLIST_TMP=	${WRKDIR}/plist_tmp/
 
@@ -33,7 +26,7 @@ plist: build
 	@${ECHO} "===>  Rebuilding PLIST."
 	@${TOUCH} ${PLIST}
 	@${RM} ${PLIST}
-	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE} \
+	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} \
 		${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} \
 		prefix=${PLIST_TMP} \
 		mandir=${PLIST_TMP}/man \
@@ -53,5 +46,4 @@ plist: build
 		| ${GREP} -vE '%%DATADIR%%|freehdl' >> ${PLIST}
 	@${RM} -rf ${PLIST_TMP}
 
-NO_STAGE=	yes
 .include <bsd.port.mk>

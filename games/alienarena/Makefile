@@ -16,7 +16,7 @@ MASTER_SITES=	ftp://ftp.linux.kiev.ua/pub/Linux/Gentoo/distfiles/ \
 		${MASTER_SITE_GENTOO:S|$|distfiles/|}
 DISTNAME=	${PORTNAME}-7.66-linux20130827
 
-MAINTAINER=	acm@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Alien Arena (native version)
 
 RUN_DEPENDS=	${DATADIR}/data1/default.cfg:${PORTSDIR}/games/alienarena-data
@@ -53,11 +53,11 @@ NO_STAGE=	yes
 
 .if ${PORT_OPTIONS:MCLIENT}
 USES+=		openal:soft,alut pkgconfig
-LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl \
+LIB_DEPENDS+=	libcurl.so:${PORTSDIR}/ftp/curl \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		jpeg.11:${PORTSDIR}/graphics/jpeg \
-		png15:${PORTSDIR}/graphics/png \
-		vorbis.4:${PORTSDIR}/audio/libvorbis
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng15.so:${PORTSDIR}/graphics/png \
+		libvorbis.so:${PORTSDIR}/audio/libvorbis
 USE_GL=		yes
 USE_XORG=	xxf86dga xxf86vm
 .endif

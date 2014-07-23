@@ -7,14 +7,15 @@ CATEGORIES=	mail
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	mich@FreeBSD.org
-COMMENT=	A program showing where new mail has been placed
+COMMENT=	Program showing where new mail has been placed
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 LDFLAGS+=	-lncurses
 CFLAGS+=	-fno-exceptions -fno-rtti
 
-NO_STAGE=	yes
+OPTIONS_DEFINE=	DOCS
+
 do-build:
 	cd ${WRKSRC} && \
 	${CXX} -c ${CFLAGS} -Iinclude/ -o src/curswin.o src/curswin.cpp && \
@@ -40,13 +41,11 @@ do-build:
 	${LDFLAGS} -o ${PORTNAME}
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/gubby ${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/${MAN1} ${PREFIX}/man/man1
+	${INSTALL_PROGRAM} ${WRKSRC}/gubby ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/doc/gubby.1 ${STAGEDIR}${PREFIX}/man/man1
 
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.TXT ${DOCSDIR}/README
-.endif
+post-install:
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.TXT ${STAGEDIR}${DOCSDIR}/README
 
-MAN1=		gubby.1
 .include <bsd.port.mk>

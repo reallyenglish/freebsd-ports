@@ -17,8 +17,8 @@ LICENSE_FILE=	${WRKSRC}/third_party/gyp/LICENSE
 
 BUILD_DEPENDS=	python:${PORTSDIR}/lang/python
 EXTRACT_DEPENDS=${PYTHON_CMD}:${PYTHON_PORTSDIR}
-LIB_DEPENDS=	protobuf:${PORTSDIR}/devel/protobuf \
-		zinnia:${PORTSDIR}/japanese/zinnia
+LIB_DEPENDS=	libprotobuf.so:${PORTSDIR}/devel/protobuf \
+		libzinnia.so:${PORTSDIR}/japanese/zinnia
 RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 
 USES=		pkgconfig iconv gmake tar:bzip2
@@ -64,7 +64,7 @@ GYP_DEFINES=	use_libprotobuf=1 \
 		enable_unittest=0 \
 		zinnia_model_file="${LOCALBASE}/share/tegaki/models/zinnia/handwriting-ja.model"
 BUILD_MODE=	Release
-BUILD_CMD=	${SETENV} ${MAKE_ENV} PATH=/bin:/usr/bin:${PATH} ${GMAKE}
+BUILD_CMD=	${SETENV} ${MAKE_ENV} PATH=/bin:/usr/bin:${PATH} ${MAKE_CMD}
 BUILD_MOZC_CMD=	cd ${BUILD_WRKSRC} && \
 		${SETENV} BUILD_COMMAND="${WRKSRC}/mozcmake" \
 		PYTHONPATH=${WRKSRC}/third_party/gyp/local/lib/python${PYTHON_VER}/site-packages \
@@ -193,7 +193,7 @@ GYP_OPTIONS+=	--noqt
 GYP_DEFINES+=	use_libibus=1 \
 		enable_gtk_renderer=1
 
-LIB_DEPENDS+=	ibus-1.0:${PORTSDIR}/textproc/ibus
+LIB_DEPENDS+=	libibus-1.0.so:${PORTSDIR}/textproc/ibus
 RUN_DEPENDS+=	mozc_server:${PORTSDIR}/japanese/mozc-server \
 		mozc_tool:${PORTSDIR}/japanese/mozc-tool \
 		mozc_server_start:${PORTSDIR}/japanese/mozc-additions \
@@ -226,6 +226,7 @@ do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
 		${WRKSRC}/out_linux/${BUILD_MODE}/ibus_mozc \
 		${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/ibus/component
 	${INSTALL_DATA} \
 		${WRKSRC}/out_linux/${BUILD_MODE}/obj/gen/unix/ibus/mozc.xml \
 		${STAGEDIR}${PREFIX}/share/ibus/component/mozc.xml
@@ -327,7 +328,7 @@ do-build-mozc_el:
 				-f batch-byte-compile mozc.el
 
 do-install-mozc_el:
-	@${MKDIR} ${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
+	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
 	${INSTALL_DATA} \
 		${WRKSRC}/unix/emacs/mozc.el \
 		${WRKSRC}/unix/emacs/mozc.elc \

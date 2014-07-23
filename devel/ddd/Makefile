@@ -11,7 +11,7 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	sergio@softshark.org
 COMMENT=	Data Display Debugger -- a common graphical front-end for GDB/DBX/XDB
 
-USES=		gmake motif
+USES=		gmake makeinfo motif
 USE_XORG=	xpm
 GNU_CONFIGURE=	yes
 
@@ -27,6 +27,8 @@ DOCS=		AUTHORS INSTALL PROBLEMS README TIPS TODO \
 		doc/html/ddd.html doc/ddd-paper.ps \
 		doc/ddd-themes.pdf doc/ddd.pdf
 INFO=		ddd ddd-themes
+
+OPTIONS_DEFINE=	DOCS
 
 .if defined(MOTIFLIB)
 .if defined(MOTIF_STATIC)
@@ -57,6 +59,6 @@ post-install:
 	${GZIP_CMD} ${STAGEDIR}${DOCSDIR}/*.ps
 
 check:
-	(cd ${WRKSRC} ; ${GMAKE} check)
+	(cd ${WRKSRC} ; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check)
 
 .include <bsd.port.mk>

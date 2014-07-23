@@ -9,7 +9,7 @@ MASTER_SITES=	http://src.linuxhacker.at/socket++/
 DISTNAME=	socket++-${PORTVERSION}
 
 MAINTAINER=	arved@FreeBSD.org
-COMMENT=	A C++ wrapper library to the sockets
+COMMENT=	C++ wrapper library to the sockets
 
 LICENSE=	BSD
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -18,7 +18,7 @@ OPTIONS_DEFINE=	DOCS
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		libtool:keepla
+USES=		libtool:keepla makeinfo
 USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtoolize
 AUTOMAKE_ARGS=	-a -c
 LIBTOOLIZE_ARGS=-i -c

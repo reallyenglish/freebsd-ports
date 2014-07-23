@@ -23,9 +23,8 @@ PLIST=		${MASTERDIR}/pkg-plist
 
 THEMES=		Escreen Eterm auto trans
 
-NO_STAGE=	yes
 pre-configure:
-	@${REINPLACE_CMD} -e "s,echo aout,echo elf,g" ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e "s,@PERL@,${LOCALBASE}/bin/perl," ${WRKSRC}/utils/kEsetroot.in
 
 post-configure:
 	for theme in ${THEMES} ; do \

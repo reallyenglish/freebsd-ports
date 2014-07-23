@@ -20,7 +20,7 @@ RUN_DEPENDS=	conky:${PORTSDIR}/sysutils/conky \
 
 USE_PYTHON=	yes
 USE_PYDISTUTILS=yes
-INSTALL_EGGINFO=yes
+INSTALLS_EGGINFO=	yes
 USES=		gettext
 SUB_FILES=	pkg-message
 SUB_LIST+=	FONTSDIR="${FONTSDIR:S|${PREFIX}/||}"
@@ -29,7 +29,6 @@ FONTSDIR=	${PREFIX}/lib/X11/fonts/${PORTNAME}
 
 WRKSRC=		${WRKDIR}/src
 
-NO_STAGE=	yes
 post-patch:
 	@cd ${WRKSRC} && ${REINPLACE_CMD} -e 's,/usr/share/${PORTNAME},${DATADIR},g' \
 		setup.py \
@@ -49,11 +48,7 @@ post-patch:
 	@cd ${WRKSRC} && ${RM} -fr test/*.bak example/*.bak
 
 post-install:
-	@${MKDIR} ${FONTSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/fonts/* ${FONTSDIR}
-	@${ECHO_MSG} "===> Running fc-cache"
-	-${LOCALBASE}/bin/fc-cache -f -v ${FONTSDIR}
-	@${ECHO_MSG}
-	${CAT} ${PKGMESSAGE}
+	@${MKDIR} ${STAGEDIR}${FONTSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/fonts/* ${STAGEDIR}${FONTSDIR}
 
 .include <bsd.port.mk>

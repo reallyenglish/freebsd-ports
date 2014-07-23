@@ -2,14 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	cfengine
-PORTVERSION=	3.6.0b1
-PORTREVISION=	1
+PORTVERSION=	3.6.0
+PORTEPOCH=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://s3.amazonaws.com/cfengine.package-repos/tarballs/
 
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
-COMMENT=	A systems administration tool for networks
+COMMENT=	Systems administration tool for networks
 
 LICENSE=	GPLv3
 
@@ -27,7 +27,7 @@ USE_RC_SUBR=	cf-execd cf-serverd cf-monitord
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-USES=		gmake
+USES=		gmake libtool
 CFLAGS+=	-Wno-return-type
 # EXAMPLESDIR=	${PREFIX}/share/examples/cfengine3
 DOCSDIR=	${PREFIX}/share/doc/cfengine

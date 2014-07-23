@@ -6,7 +6,7 @@
 # See http://www.infracaninophile.co.uk/articles/sphinxse.html
 
 PORTNAME=	sphinxsearch
-PORTVERSION=	2.1.8
+PORTVERSION=	2.1.9
 CATEGORIES=	textproc databases
 MASTER_SITES=	http://sphinxsearch.com/files/ \
 		http://snowball.tartarus.org/dist/:libstemmer
@@ -24,7 +24,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 
 OPTIONS_DEFINE=	ICONV ID64 LIBSTEMMER MYSQL OPTIMIZED_CFLAGS PGSQL \
-		SYSLOG UNIXODBC
+		SYSLOG UNIXODBC DOCS
 OPTIONS_DEFAULT=ICONV MYSQL SYSLOG
 
 ICONV_CONFIGURE_WITH=	iconv

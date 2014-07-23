@@ -6,10 +6,10 @@ PORTVERSION=	3.1.6
 CATEGORIES=	sysutils tcl
 MASTER_SITES=	SF/${PORTNAME}/Modules/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	hokan@me.umn.edu
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Dynamic modification of a user's environment
 
-LIB_DEPENDS=	tcl${TCL_VER}:${PORTSDIR}/lang/tcl${TCL_VER}
+LIB_DEPENDS=	libtcl${TCL_VER}.so:${PORTSDIR}/lang/tcl${TCL_VER}
 
 PLIST_SUB=	MODULES_VERSION=${PORTVERSION}
 

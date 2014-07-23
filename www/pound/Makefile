@@ -10,7 +10,7 @@ MASTER_SITES=	http://www.apsis.ch/pound/ \
 DISTNAME=	Pound-${PORTVERSION}
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	anders@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Reverse proxy, load balancer and HTTP(S) frontend for web servers
 
 LICENSE=	GPLv3
@@ -40,7 +40,7 @@ CONFIGURE_ARGS+=	--enable-msdav
 .endif
 
 .if ${PORT_OPTIONS:MPCRE}
-LIB_DEPENDS+=		pcre.3:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=		libpcre.so:${PORTSDIR}/devel/pcre
 CFLAGS+=		"-I${LOCALBASE}/include"
 CPPFLAGS+=		"-I${LOCALBASE}/include"
 LDFLAGS+=		"-L${LOCALBASE}/lib"

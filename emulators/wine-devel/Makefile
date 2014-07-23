@@ -2,12 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	1.7.20
+DISTVERSION=	1.7.22
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
 		http://ibiblio.org/pub/linux/system/emulators/wine/
 PKGNAMESUFFIX=	-devel
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER?=	gerald@FreeBSD.org
 COMMENT?=	Microsoft Windows compatibility environment
@@ -16,7 +17,8 @@ LICENSE=	LGPL21 LGPL3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex \
+		prelink:${PORTSDIR}/sysutils/prelink
 LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
 CONFLICTS_INSTALL=	i386-wine-[0-9]* i386-wine-devel-[0-9]* wine-[0-9]*
@@ -42,10 +44,11 @@ SHEBANG_FILES=	tools/winemaker tools/winedump/function_grep.pl
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-OPTIONS_DEFINE=	CUPS DOCS DOSBOX GNUTLS HAL LDAP LIBXSLT OPENAL WINEMAKER GECKO MONO X11
+OPTIONS_DEFINE=	COMPHOLIO CUPS DOCS DOSBOX GNUTLS HAL LDAP LIBXSLT OPENAL WINEMAKER GECKO MONO X11
 OPTIONS_DEFAULT=X11
 OPTIONS_SUB=	yes
 
+COMPHOLIO_DESC=	Include the Compholio patchset, needed for Pipelight support
 DOSBOX_DESC=	Use DOSBox to run MS-DOS programs
 LIBXSLT_DESC=	Use libxslt (only used by msxml3.dll)
 WINEMAKER_DESC=	Fully support winemaker (requires Perl)
@@ -91,8 +94,21 @@ PORTDATA=	l_intl.nls wine.inf
 
 .include <bsd.port.options.mk>
 
+.if ${PORT_OPTIONS:MCOMPHOLIO}
+MASTER_SITES+=	https://github.com/compholio/wine-compholio-daily/archive/:cho
+COMP_DIST=	v${DISTVERSION}.tar.gz
+DISTFILES+=	${COMP_DIST}:cho
+USE_AUTOTOOLS=	autoconf
+BUILD_DEPENDS+=	bash:${PORTSDIR}/shells/bash \
+		git:${PORTSDIR}/devel/git
+
+pre-configure:
+	cd ${WRKSRC} && ${TAR} xf ${DISTDIR}/${COMP_DIST} --strip-components 1
+	cd ${WRKSRC} && ${MAKE_CMD} -C ./patches DESTDIR=${WRKSRC} install
+.endif
+
 pre-build:
-	cd ${WRKSRC} && ${GMAKE} depend
+	cd ${WRKSRC} && ${MAKE_CMD} depend
 
 post-install:
 	@${MV} -f ${STAGEDIR}${WINELIBDIR}/libwine.so.1.0 \

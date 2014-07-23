@@ -37,7 +37,6 @@
     SUBDIR += binwalk
     SUBDIR += bioapi
     SUBDIR += blindelephant
-    SUBDIR += botan
     SUBDIR += botan110
     SUBDIR += bro
     SUBDIR += broccoli
@@ -240,6 +239,7 @@
     SUBDIR += knock
     SUBDIR += knocker
     SUBDIR += kpcli
+    SUBDIR += kqoauth
     SUBDIR += krb5
     SUBDIR += krb5-appl
     SUBDIR += krb5-maint
@@ -272,6 +272,7 @@
     SUBDIR += libpreludedb
     SUBDIR += libpwquality
     SUBDIR += libpwstor
+    SUBDIR += libressl
     SUBDIR += libscrypt
     SUBDIR += libsecret
     SUBDIR += libsectok
@@ -560,7 +561,6 @@
     SUBDIR += p5-HTML-Email-Obfuscate
     SUBDIR += p5-IO-Async-SSL
     SUBDIR += p5-IO-Socket-SSL
-    SUBDIR += p5-Jifty-Plugin-OpenID
     SUBDIR += p5-MD5
     SUBDIR += p5-Mcrypt
     SUBDIR += p5-Module-Signature
@@ -623,7 +623,6 @@
     SUBDIR += pam_mkhomedir
     SUBDIR += pam_p11
     SUBDIR += pam_per_user
-    SUBDIR += pam_pgina
     SUBDIR += pam_pseudo
     SUBDIR += pam_pwdfile
     SUBDIR += pam_require
@@ -912,6 +911,7 @@
     SUBDIR += shishi
     SUBDIR += shttpscanner
     SUBDIR += sig2dot
+    SUBDIR += signify
     SUBDIR += signing-party
     SUBDIR += silktools
     SUBDIR += sinfp
@@ -962,13 +962,12 @@
     SUBDIR += strobe
     SUBDIR += strongswan
     SUBDIR += stunnel
+    SUBDIR += subversion-gnome-keyring
+    SUBDIR += subversion-kwallet
     SUBDIR += subweb
     SUBDIR += sud
     SUBDIR += sudo
     SUBDIR += sudoscript
-    SUBDIR += sudosh
-    SUBDIR += sudosh2
-    SUBDIR += sudosh3
     SUBDIR += super
     SUBDIR += suricata
     SUBDIR += swatch

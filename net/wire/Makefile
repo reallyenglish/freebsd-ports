@@ -27,7 +27,7 @@ MAN1=		wire.1
 #.include <bsd.port.pre.mk>
 
 .if exists(${LOCALBASE}/lib/libreadline.so.6)
-LIB_DEPENDS+=	readline.6:${PORTSDIR}/devel/readline
+LIB_DEPENDS+=	libreadline.so.6:${PORTSDIR}/devel/readline
 .endif
 
 #.include <bsd.port.post.mk>
@@ -35,6 +35,6 @@ LIB_DEPENDS+=	readline.6:${PORTSDIR}/devel/readline
 #TODO this is fucking dirty :(
 NO_STAGE=	yes
 do-build:
-	cd ${WRKSRC} ;${GMAKE}
+	cd ${WRKSRC} ;${MAKE_CMD}
 
 .include <bsd.port.mk>

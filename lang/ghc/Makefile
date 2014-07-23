@@ -26,7 +26,7 @@ EXAMPLESDIR=	${PREFIX}/share/examples/ghc-${GHC_VERSION}
 CONFLICTS=	ghc-6.8.* ghc-6.10.* ghc-6.12.* ghc-7.0.* ghc-7.2.* ghc-7.4.*
 
 USE_BZIP2=	yes
-LIB_DEPENDS+=	gmp.10:${PORTSDIR}/math/gmp
+LIB_DEPENDS+=	libgmp.so:${PORTSDIR}/math/gmp
 
 USE_AUTOTOOLS=		autoconf autoheader
 USE_PERL5=		build
@@ -69,7 +69,7 @@ OPTIONS_DEFINE+=	BOOTH
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MDYNAMIC}
-LIB_DEPENDS+=	ffi.6:${PORTSDIR}/devel/libffi
+LIB_DEPENDS+=	libffi.so.6:${PORTSDIR}/devel/libffi
 .endif
 
 .if empty(PORT_OPTIONS:MBOOT)
@@ -261,7 +261,7 @@ post-install-script:
 		's,^${STAGEDIR}${PREFIX}/?,@dirrm ,' >> ${TMPPLIST}
 
 #post-build:
-#	@(cd ${WRKSRC} && ${GMAKE} binary-dist)
+#	@(cd ${WRKSRC} && ${MAKE_CMD} binary-dist)
 #
 #do-install:
 #	@${NONE}
@@ -289,7 +289,7 @@ pre-configure:
 	@${MKDIR} ${TMPDIR}
 .if empty(PORT_OPTIONS:MBOOT)
 	@(cd ${BOOT_DIR} && ${CONFIGURE_ENV} ./${CONFIGURE_SCRIPT} ${CONFIGURE_ARGS_BOOT})
-	@(cd ${BOOT_DIR} && PACKAGES='' ${GMAKE} install)
+	@(cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install)
 .endif
 
 # Defining with documentation:

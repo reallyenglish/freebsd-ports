@@ -7,13 +7,13 @@
 
 PORTNAME=	dspam
 PORTVERSION=	3.9.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	mail
 MASTER_SITES=	SF \
 		http://T32.TecNik93.com/FreeBSD/ports/${PORTNAME}/sources/
 MASTER_SITE_SUBDIR=${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	itetcu@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Bayesian spam filter
 
 MIN_OPTIONS_VER=	${PORTNAME}-3.9.0
@@ -22,14 +22,14 @@ OPTIONS_DEFINE=	SYSLOG DEBUG VERBOSE_DEBUG BNR_DEBUG PREF_EXT DAEMON \
 		CLAMAV CLAMAV_LOCAL EXTERNAL_LOOKUP \
 		USER_HOMEDIR TRUSTED_USERS VIRT_USERS LONG_USERNAMES \
 		LARGE_SCALE DOMAIN_SCALE NICESENDMAIL POSTFIX_MBC \
-		QMAIL WEBUI LIGHTTPD
+		QMAIL WEBUI LIGHTTPD DOCS EXAMPLES
 
 OPTIONS_MULTI=	DB
 OPTIONS_MULTI_DB=	HASH MYSQL MYSQL_COMPRESS MYSQL_LOCAL \
 			PGSQL PGSQL_LOCAL SQLITE2 SQLITE3
 
 OPTIONS_RADIO=	LDA
-OPTIONS_RADIO_LDA=	CYRUS21 CYRUS22 CYRUS23 CYRUS24 DOVECOT1 \
+OPTIONS_RADIO_LDA=	CYRUS23 CYRUS24 DOVECOT1 \
 		DOVECOT2 EXIM MAILDROP PROCMAIL SAFECAT SENDMAIL
 
 VERBOSE_DEBUG_DESC=	Debug in LOGDIR/dspam.debug
@@ -53,8 +53,6 @@ VIRT_USERS_DESC=	Virtual users (needs SQL back-end)
 LONG_USERNAMES_DESC=	Usernames longer that OS supports
 LARGE_SCALE_DESC=	File structure for large scale
 DOMAIN_SCALE_DESC=	File structure for multiple domains
-CYRUS21_DESC=	Cyrus's 2.1 deliver as LDA
-CYRUS22_DESC=	Cyrus's 2.2 deliver as LDA
 CYRUS23_DESC=	Cyrus's 2.3 deliver as LDA
 CYRUS24_DESC=	Cyrus's 2.4 deliver as LDA
 DOVECOT1_DESC=	Dovecot 1.2 deliver as LDA
@@ -296,16 +294,6 @@ CONFIGURE_ARGS+=	--enable-large-scale
 CONFIGURE_ARGS+=	--enable-domain-scale
 .endif
 
-.if ${PORT_OPTIONS:MCYRUS21}
-RUN_DEPENDS+=	${LOCALBASE}/cyrus/bin/deliver:${PORTSDIR}/mail/cyrus-imapd2
-CONFIGURE_ARGS+=	--with-delivery-agent='${LOCALBASE}/cyrus/bin/deliver'
-.endif
-
-.if ${PORT_OPTIONS:MCYRUS22}
-RUN_DEPENDS+=	${LOCALBASE}/cyrus/bin/deliver:${PORTSDIR}/mail/cyrus-imapd22
-CONFIGURE_ARGS+=	--with-delivery-agent='${LOCALBASE}/cyrus/bin/deliver'
-.endif
-
 .if ${PORT_OPTIONS:MCYRUS23}
 RUN_DEPENDS+=	${LOCALBASE}/cyrus/bin/deliver:${PORTSDIR}/mail/cyrus-imapd23
 CONFIGURE_ARGS+=	--with-delivery-agent='${LOCALBASE}/cyrus/bin/deliver'
@@ -381,7 +369,7 @@ RUN_DEPENDS+=	${LOCALBASE}/sbin/lighttpd:${PORTSDIR}/www/lighttpd
 .	else
 USE_APACHE_RUN=	22+
 .	endif
-LIB_DEPENDS+=	gd:${PORTSDIR}/graphics/gd
+LIB_DEPENDS+=	libgd.so:${PORTSDIR}/graphics/gd
 RUN_DEPENDS+=	p5-GD>=0:${PORTSDIR}/graphics/p5-GD
 RUN_DEPENDS+=	p5-GD-Graph>=0:${PORTSDIR}/graphics/p5-GD-Graph
 RUN_DEPENDS+=	p5-GD-Graph3d>=0:${PORTSDIR}/graphics/p5-GD-Graph3d
@@ -531,7 +519,7 @@ post-install:
 		${INSTALL_DATA} admins ${STAGEDIR}${WWWDIR}/admins.sample
 	${MKDIR} ${STAGEDIR}${WWWDIR}/templates && cd ${WRKSRC}/webui/cgi-bin/templates && \
 		${INSTALL_DATA} *.html ${STAGEDIR}${WWWDIR}/templates/ && \
-		${INSTALL_SCRIPT} strings.pl ${STAGEDIR}${WWWDIR}/templates/ &&
+		${INSTALL_SCRIPT} strings.pl ${STAGEDIR}${WWWDIR}/templates/ && \
 		for _dir in de es-es fr he pt-br ro; do \
 			${INSTALL_DATA} -d ${STAGEDIR}${WWWDIR}/templates/$${_dir} && \
 			cd ${WRKSRC}/webui/cgi-bin/templates/$${_dir} && \

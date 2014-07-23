@@ -7,11 +7,11 @@ PORTREVISION=	8
 CATEGORIES=	devel
 MASTER_SITES=	SF
 
-MAINTAINER=	acm@FreeBSD.org
+MAINTAINER= ports@FreeBSD.org
 COMMENT=	Software simulator for Microchip PIC microcontrollers
 
-LIB_DEPENDS=	popt.0:${PORTSDIR}/devel/popt \
-		gtkextra-x11-2.0.1:${PORTSDIR}/x11-toolkits/gtkextra2
+LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
+		libgtkextra-x11-2.0.so:${PORTSDIR}/x11-toolkits/gtkextra2
 RUN_DEPENDS=	gpasm:${PORTSDIR}/devel/gputils
 
 USE_AUTOTOOLS=	libtool

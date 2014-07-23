@@ -8,10 +8,10 @@ CATEGORIES=	games python
 MASTER_SITES=	http://download.gna.org/balazar/
 DISTNAME=	Balazar-${PORTVERSION}
 
-MAINTAINER=	acm@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	3D adventure and roleplaying game
 
-LIB_DEPENDS=	cal3d.12:${PORTSDIR}/graphics/cal3d \
+LIB_DEPENDS=	libcal3d.so:${PORTSDIR}/graphics/cal3d \
 		libfreetype.so:${PORTSDIR}/print/freetype2
 RUN_DEPENDS=	soya_editor:${PORTSDIR}/graphics/py-soya3d \
 		${PYTHON_SITELIBDIR}/_openal.so:${PORTSDIR}/audio/py-openal \

@@ -42,7 +42,7 @@ MAKE_ARGS+=	GTK_CONFIG=:
 .if ${PORT_OPTIONS:MGSSAPI}
 _COMPAT=		-DSTATIC_GSSAPI
 .if ${OSVERSION} >= 900000
-LIB_DEPENDS+=		krb5support:${PORTSDIR}/security/krb5
+LIB_DEPENDS+=		libkrb5support.so:${PORTSDIR}/security/krb5
 .endif
 .else
 _COMPAT=		-DNO_GSSAPI
@@ -66,7 +66,7 @@ MAKE_ARGS+=	COMPAT="${_COMPAT}" \
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,prefix=/usr/local,prefix=${PREFIX},;\
-			      s,make,${GMAKE},'\
+			      s,make,${MAKE_CMD},'\
 		${WRKSRC}/${MAKEFILE}
 
 .include <bsd.port.post.mk>

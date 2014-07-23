@@ -1,15 +1,15 @@
 # Created by: Adam Weinberger <adamw@FreeBSD.org>
 # $FreeBSD$
 
-PORTNAME=		vimpager
+PORTNAME=	vimpager
 PORTVERSION=	1.8.9
-CATEGORIES=		sysutils
+CATEGORIES=	sysutils
 MASTER_SITES=	http://github.com/rkitover/${PORTNAME}/archive/${PORTVERSION}.tar.gz?dummy=/
 
-MAINTAINER=		adamw@FreeBSD.org
-COMMENT=		Use ViM as a pager
+MAINTAINER=	adamw@FreeBSD.org
+COMMENT=	Use ViM as a pager
 
-LICENSE=		BSD2CLAUSE
+LICENSE=	BSD2CLAUSE
 
 RUN_DEPENDS=	vim:${PORTSDIR}/editors/vim
 

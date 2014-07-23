@@ -28,25 +28,25 @@ BUILD_DEPENDS+=	${LOCALBASE}/intel_cc_80/bin/icc:${PORTSDIR}/lang/icc
 WITH_ATLAS=	yes
 .endif
 .if defined(WITH_ATLAS)
-LIB_DEPENDS+=	atlas.2:${PORTSDIR}/math/atlas
+LIB_DEPENDS+=	libatlas.so:${PORTSDIR}/math/atlas
 BLAS=		-lf77blas
 LAPACK=		-lalapack -lcblas
 .else
-LIB_DEPENDS+=	blas.2:${PORTSDIR}/math/blas
-LIB_DEPENDS+=	lapack.4:${PORTSDIR}/math/lapack
+LIB_DEPENDS+=	libblas.so:${PORTSDIR}/math/blas
+LIB_DEPENDS+=	liblapack.so:${PORTSDIR}/math/lapack
 BLAS=		-lblas
 LAPACK=		-llapack
 .endif
 .if defined(WITH_MPICH)
-LIB_DEPENDS+=	mpich:${PORTSDIR}/net/mpich2
+LIB_DEPENDS+=	libmpich.so:${PORTSDIR}/net/mpich2
 .endif
-LIB_DEPENDS+=	int.1:${PORTSDIR}/science/libint
+LIB_DEPENDS+=	libint.so:${PORTSDIR}/science/libint
 .if ${PORT_OPTIONS:MDOCS}
 USE_TEX=	latex:build
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 BUILD_DEPENDS+=	dot:${PORTSDIR}/graphics/graphviz
 BUILD_DEPENDS+=	${LOCALBASE}/bin/gsed:${PORTSDIR}/textproc/gsed
-LIB_DEPENDS+=	execinfo.1:${PORTSDIR}/devel/libexecinfo
+LIB_DEPENDS+=	libexecinfo.so:${PORTSDIR}/devel/libexecinfo
 .endif
 
 .if defined(WITH_ICC)
@@ -91,14 +91,14 @@ pre-configure:
 	@${ECHO} "You can optimize by setting WITH_OPTIMIZED_FLAGS=yes."
 
 do-build:
-	@cd ${WRKSRC} ; ${GMAKE}
+	@cd ${WRKSRC} ; ${MAKE_CMD}
 .if ${PORT_OPTIONS:MDOCS}
-	@cd ${WRKSRC}/doc ; ${GMAKE}
+	@cd ${WRKSRC}/doc ; ${MAKE_CMD}
 .endif
 
 do-install:
-	(cd ${WRKSRC} ; ${GMAKE} install)
-	(cd ${WRKSRC} ; ${GMAKE} install_devel)
+	(cd ${WRKSRC} ; ${MAKE_CMD} install)
+	(cd ${WRKSRC} ; ${MAKE_CMD} install_devel)
 	${MKDIR} ${PREFIX}/share/mpqc/validate
 	cd ${WRKSRC}/src/bin/mpqc/validate/ ; ${TAR} -chf - . | \
 		${TAR} -xf - -C ${PREFIX}/share/mpqc/validate
@@ -124,6 +124,6 @@ do-install:
 	${SORT} -r ${WRKDIR}/dir.tmp | ${XARGS} -n 1 ${ECHO_CMD} @dirrm >> ${TMPPLIST}
 
 validate:
-	cd ${WRKSRC}/src/bin/mpqc/validate ; ${GMAKE} check0 ; ${GMAKE} check0_run ; ${GMAKE} check0_chk
+	cd ${WRKSRC}/src/bin/mpqc/validate ; ${MAKE_CMD} check0 ; ${MAKE_CMD} check0_run ; ${MAKE_CMD} check0_chk
 
 .include <bsd.port.post.mk>

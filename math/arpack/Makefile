@@ -7,9 +7,6 @@ PORTREVISION=	12
 CATEGORIES=	math
 MASTER_SITES=	http://www.caam.rice.edu/software/ARPACK/SRC/
 DISTFILES=	${PORTNAME}${PORTVERSION}.tar.gz patch.tar.gz
-.ifndef NOPORTDOCS
-DISTFILES+=	ug.ps.gz
-.endif
 DIST_SUBDIR=	arpack
 EXTRACT_ONLY=	${PORTNAME}${PORTVERSION}.tar.gz
 
@@ -28,7 +25,6 @@ USE_LDCONFIG=	yes
 WRKSRC =	${WRKDIR}/ARPACK
 
 # The following lapack symbols in arpack are renamed to avoid conflicts with other
-NO_STAGE=	yes
 # lapack libraries:
 RENAMED_SYMBOLS=	cgbtf2 cgbtrf cgbtrs cgeqr2 cgttrf cgttrs clacgv \
 			clacon clacpy cladiv clahqr clange clanhs clarf \
@@ -71,7 +67,13 @@ SVDTESTS=	ssvd dsvd
 SYMTESTS=	ssdrv1 ssdrv2 ssdrv3 ssdrv4 ssdrv5 ssdrv6 \
 		dsdrv1 dsdrv2 dsdrv3 dsdrv4 dsdrv5 dsdrv6
 
+OPTIONS_DEFINE=	DOCS
+
 .include <bsd.port.pre.mk>
+
+.if ${PORT_OPTIONS:MDOCS}
+DISTFILES+=	ug.ps.gz
+.endif
 
 .if exists(${LOCALBASE}/lib/libatlas.so)
 WITH_BLAS?=	atlas
@@ -80,10 +82,10 @@ WITH_BLAS?=	reference
 .endif
 
 .if ${WITH_BLAS} == atlas
-LIB_DEPENDS+=		atlas:${PORTSDIR}/math/atlas
+LIB_DEPENDS+=		libatlas.so:${PORTSDIR}/math/atlas
 BLAS?=			-lf77blas
 .else
-LIB_DEPENDS+=		blas:${PORTSDIR}/math/blas
+LIB_DEPENDS+=		libblas.so:${PORTSDIR}/math/blas
 BLAS?=			-lblas
 .endif
 
@@ -147,14 +149,14 @@ do-build:
 
 do-install:
 	@${INSTALL_DATA} ${FILESDIR}/arpack.h ${WRKDIR}/arpack_compat_c.h \
-		${WRKDIR}/arpack_compat_f.h ${PREFIX}/include
-	@${INSTALL_DATA} ${WRKSRC}/libarpack.a ${PREFIX}/lib
-	@${INSTALL_DATA} ${WRKSRC}_SHARED/libarpack.so.1 ${PREFIX}/lib
-	@${LN} -sf libarpack.so.1 ${PREFIX}/lib/libarpack.so
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/DOCUMENTS/ex-*.doc.gz ${DOCSDIR}
-	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/ug.ps.gz ${DOCSDIR}
+		${WRKDIR}/arpack_compat_f.h ${STAGEDIR}${PREFIX}/include
+	@${INSTALL_DATA} ${WRKSRC}/libarpack.a ${STAGEDIR}${PREFIX}/lib
+	@${INSTALL_DATA} -s ${WRKSRC}_SHARED/libarpack.so.1 ${STAGEDIR}${PREFIX}/lib
+	@${LN} -sf libarpack.so.1 ${STAGEDIR}${PREFIX}/lib/libarpack.so
+.if ${PORT_OPTIONS:MDOCS}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${WRKSRC}/DOCUMENTS/ex-*.doc.gz ${STAGEDIR}${DOCSDIR}
+	@${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/ug.ps.gz ${STAGEDIR}${DOCSDIR}
 .endif
 
 .if defined(MAINTAINER_MODE)

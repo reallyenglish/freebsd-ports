@@ -5,6 +5,243 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20140722:
+  AFFECTS: users of mail/exim
+  AUTHOR: vsevolod@FreeBSD.org
+
+  The behaviour of expansion of arguments to math comparison functions (<, <=,
+  =, =>, >) was unexpected, expanding the values twice. Please update your
+  configuration if you have relied on such an expansion.
+
+20140722:
+  AFFECTS: users of multimedia/mediainfo
+  AUTHOR: sunpoet@FreeBSD.org
+
+  mediainfo has been split into 3 ports: libzen, libmediainfo and mediainfo.
+  Please uninstall mediainfo before you update this port.
+
+20140722
+  AFFECTS: users of games/bsdgames
+  AUTHOR: adamw@FreeBSD.org
+
+  bsdgames now expects savegame data in /usr/local/var/games instead of
+  /var/games. To continue using your saved games,
+
+  cp -rp /var/games/* /usr/local/var/games
+
+20140714:
+  AFFECTS: users of databases/db6
+  AUTHOR:  mandree@FreeBSD.org
+
+  Oracle Berkeley DB 6 has been upgraded to version 6.1.19.  Since the
+  previous 6.0 version, the log file format has changed in 6.1.
+  Depending on applications used, you may need to take action BEFORE you
+  upgrade.  For details, please see the online upgrade manual at
+  <http://docs.oracle.com/cd/E17076_04/html/upgrading/upgrade_process.html>
+  <http://docs.oracle.com/cd/E17076_04/html/installation/upgrade_61_toc.html>
+
+  Note: if you've got Apache installed and depending on db6, you may
+  need to upgrade it separately BEFORE upgrading other ports.
+
+  Note: some GNOME-related ports, for instance, evolution-data-server,
+  cannot be built if their older version is installed because they run
+  their own executables at build-time and prefer libraries from
+  $LOCALPATH over freshly-built ones.  For these ports, deinstall
+  them with pkg_delete -f or pkg delete -f before trying to upgrade them.
+
+  After that, you must rebuild all applications that link to db6 because
+  the shared library name has changed with the upgrade.  To do that:
+
+  If you use portmaster:
+        portmaster -w -r db6-
+  If you use portupgrade:
+        portupgrade -fr databases/db6
+
+20140714:
+  AFFECTS: users of net/linphone-base
+  AUTHOR: tijl@FreeBSD.org
+
+  Linphone has been updated to version 3.7.0 and the linphone-base port
+  has been split into separate components.  You must first delete the
+  linphone-base package before you can update ports that depend on it.
+
+  pkg del -f linphone-base
+    or
+  pkg_delete -f linphone-base\*
+
+20140713:
+  AFFECTS: users of mail/postfix-current
+  AUTHOR: sahil@FreeBSD.org
+
+  This is a significant update; so, please carefully review the
+  RELEASE_NOTES to identify which incompatible changes impact your
+  environment. Of particular note are changes to the Postfix
+  build/install procedure.
+
+  Please backup main.cf, master.cf and any other important files
+  associated with your Postfix setup before updating.
+
+20140713:
+  AFFECTS: users of www/apache22
+  AUTHOR: ohauer@FreeBSD.org
+
+  The default version was changed from www/apache22 to www/apache24,
+  pre-build apache modules and web applications will also reflect this!
+
+  In case ports are build by yourself and apache22 is required
+  use the following command to keep apache22 as default.
+
+  # echo "DEFAULT_VERSIONS+=apache=2.2" >> /etc/make.conf
+
+20140710:
+  AFFECTS: users of lang/rust
+  AUTHOR: robak@FreeBSD.org
+
+  The lang/rust port was updated to 0.11 and is now only working on FreeBSD
+  versions 10 and 11 - the 9.x support has been removed by upstream.
+
+20140709:
+  AFFECTS: users of security/pam-pgsql
+  AUTHOR: tijl@FreeBSD.org
+
+  The pam_pgsql.so module is now installed in PREFIX/lib (/usr/local/lib)
+  instead of /usr/lib.
+
+20140627:
+  AFFECTS: Users of Java
+  AUTHOR: swills@FreeBSD.org
+
+  The default version of OpenJDK has been updated from 1.6 to 1.7. To update,
+  users of Java will need to rebuild all ports that depend on Java:
+
+  If you use pkg (regardless of if you build ports from source or install
+  binary packages):
+  # pkg set -o java/openjdk6:java/openjdk7
+
+  If you use portmaster to build ports from source:
+
+  # portmaster -o java/openjdk7 openjdk6
+  # portmaster -R -r openjdk
+
+  If you use portupgrade to build ports from source:
+
+  # portupgrade -fo java/openjdk7 java/openjdk6
+
+  If you use pkg to install prebuilt binary packages:
+
+  # pkg install -fR java/openjdk7
+
+  If you wish to keep the 1.6 version as default, add the following lines to
+  your /etc/make.conf file:
+
+  #
+  # Keep OpenJDK 1.6 as default version.
+  #
+  JAVA_PREFERRED_PORTS=JAVA_PORT_NATIVE_OPENJDK_JDK_1_6
+
+20140627:
+  AFFECTS: users of security/amavisd-milter
+  AUTHOR: delphij@FreeBSD.org
+
+  The default working directory of security/amavisd-milter have been
+  changed to /var/run/amavis/.  Users will have to adjust path to the
+  milter socket.
+
+20140627:
+  AFFECTS: users of editors/emacs21 and editors/emacs22
+  AUTHOR: ashish@FreeBSD.org
+
+  editors/emacs21, and editors/emacs22 are removed as they were
+  unmaintained upstream for a while. Their dependent ports are removed
+  as well. Please switch to editors/emacs (Emacs 24 release), or
+  editors/emacs23 (Emacs 23 release), or editors/emacs-devel (Emacs
+  development branch) ports.
+
+20140626:
+  AFFECTS: users of mail/qmail-spamcontrol
+  AUTHOR: bdrewery@FreeBSD.org
+
+  Spamcontrol has been updated to the 2.7 release.
+
+  It is advised to read the release notes as some features were removed and
+  others reworked.
+
+  http://www.fehcom.de/qmail/spamcontrol/RELEASE_27.spamcontrol
+
+  2.7 manual: http://www.fehcom.de/qmail/spamcontrol/README_spamcontrol.html
+
+20140626:
+  AFFECTS: users of comms/smstools3
+  AUTHOR: madpilot@FreeBSD.org
+
+  The smstools3 startup screen has been modified to allow smsd to
+  change uid/gid by itself. The rc options smsd_logfile, smsd_user
+  and smsd_group are not supported anymore, user, group and log
+  filename should be specified in the configuration file.
+
+  The sample configuration file has been updated to have defaults
+  equivalent to the old ones.
+
+20140624:
+  AFFECTS: users of databases/p5-Bucardo
+  AUTHOR: mat@FreeBSD.org
+
+  The bucardo_ctl script has been renamed to bucardo, so, to follow the naming,
+  the bucardo_ctl_enable rc variable has been renamed to bucardo_enable.
+
+20140622:
+  AFFECTS: users of security/gpgme
+  AUTHOR: jhale@FreeBSD.org
+
+  If you have both security/gnupg AND security/gnupg1 installed, gpgme will
+  now automatically detect and use security/gnupg.  Specifically, it will
+  search for gpgconf(1) first and use the paths for the binaries provided
+  by it.  Failing that, it will search for a binary named "gpg".
+
+  It is no longer possible to specify the location of the gpg binary at
+  buildtime to differentiate between version 1.x and version 2.x.  The port
+  options GNUPG1 and GNUPG2 now merely add their respective versions of gnupg
+  as build and runtime dependencies.
+
+20140618:
+  AFFECTS: users of devel/m17n-* textproc/*m17n*
+  AUTHOR: Nikola Lecic <nikola.lecic@anthesphoria.net>
+
+  devel/m17n-db now incorporates a set of user-contributed input methods and
+  a conversion script, formerly available through textproc/m17n-contrib.
+  Delete textproc/m17n-contrib first and then update/install devel/m17n-db.
+
+20140616:
+  AFFECTS: users of devel/subversion
+  AUTHOR: lev@FreeBSD.org
+
+  The subversion port has been overhauled. Some optional parts were extracted
+  into separate ports. These ports are:
+
+  www/mod_dav_svn
+    instead of option MOD_DAV_SVN.
+  security/subversion-gnome-keyring
+    instead of option GNOME_KEYRING.
+  security/subversion-kwallet
+    instead of option KDE_KWALLET.
+
+  If you used devel/subversion with one (or more) of these non-standard
+  options, you should install the appropriate port(s) after upgrading
+  subversion.
+
+  "mod_dontdothat" is installed unconditionally by www/mod_dav_svn port (it
+  depended on the TOOLS option before), but is not activated by default, you
+  may need to edit apache's configuration file.
+
+  The devel/subversion port now installs svndiff, svndiff3 and svndiff4
+  commands if TOOLS option is enabled. They was skipped before.
+  The official names "diff", "diff3" and "diff4" are prefixed with "svn" to
+  avoid conflicts with base and other diff versions.
+
+  All libraries and binaries are now stripped if the MAINTAINER_DEBUG
+  option is not selected (including all sub-ports, like bindings
+  and mod_dav_svn).
+
 20140611:
   AFFECTS: users of devel/icu
   AUTHOR: bapt@FreeBSD.org

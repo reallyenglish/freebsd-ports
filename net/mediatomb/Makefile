@@ -3,16 +3,15 @@
 
 PORTNAME=	mediatomb
 PORTVERSION=	0.12.1
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	net multimedia
 MASTER_SITES=	SF/${PORTNAME}/MediaTomb/${PORTVERSION}
 
 MAINTAINER=	leo@mediatomb.cc
 COMMENT=	UPnP AV MediaServer
 
-LIB_DEPENDS=	expat:${PORTSDIR}/textproc/expat2
+LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 
-MAN1=		mediatomb.1
 GNU_CONFIGURE=	yes
 LDFLAGS+=	${PTHREAD_LIBS}
 CFLAGS+=	${PTHREAD_CFLAGS}
@@ -64,14 +63,13 @@ EXTERNAL_TRANSCODING_DESC=	external transcoding support
 ID3LIB_DESC=			id3lib support
 LIBEXTRACTOR_DESC=		libextractor support
 
-NO_STAGE=	yes
 .include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MSQLITE}
 CONFIGURE_ARGS+=	--enable-sqlite3 \
 			--with-sqlite3-h="${LOCALBASE}/include" \
 			--with-sqlite3-libs="${LOCALBASE}/lib"
-LIB_DEPENDS+=		sqlite3:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS+=		libsqlite3.so:${PORTSDIR}/databases/sqlite3
 .else
 CONFIGURE_ARGS+=	--disable-sqlite3
 .endif
@@ -88,7 +86,7 @@ CONFIGURE_ARGS+=	--disable-mysql
 CONFIGURE_ARGS+=	--enable-libjs \
 			--with-js-h="${LOCALBASE}/include" \
 			--with-js-libs="${LOCALBASE}/lib"
-LIB_DEPENDS+=		js:${PORTSDIR}/lang/spidermonkey17
+LIB_DEPENDS+=		libjs.so:${PORTSDIR}/lang/spidermonkey17
 .else
 CONFIGURE_ARGS+=	--disable-libjs
 .endif
@@ -97,7 +95,7 @@ CONFIGURE_ARGS+=	--disable-libjs
 CONFIGURE_ARGS+=	--enable-libexif \
 			--with-libexif-h="${LOCALBASE}/include" \
 			--with-libexif-libs="${LOCALBASE}/lib"
-LIB_DEPENDS+=		exif:${PORTSDIR}/graphics/libexif
+LIB_DEPENDS+=		libexif.so:${PORTSDIR}/graphics/libexif
 .else
 CONFIGURE_ARGS+=	--disable-libexif
 .endif
@@ -112,7 +110,7 @@ CONFIGURE_ARGS+=	--disable-external-transcoding
 CONFIGURE_ARGS+=	--enable-ffmpegthumbnailer \
 			--with-ffmpegthumbnailer-h="${LOCALBASE}/include" \
 			--with-ffmpegthumbnailer-libs="${LOCALBASE}/lib"
-LIB_DEPENDS+=		ffmpegthumbnailer:${PORTSDIR}/multimedia/ffmpegthumbnailer
+LIB_DEPENDS+=		libffmpegthumbnailer.so:${PORTSDIR}/multimedia/ffmpegthumbnailer
 .else
 CONFIGURE_ARGS+=	--disable-ffmpegthumbnailer
 .endif
@@ -121,14 +119,14 @@ CONFIGURE_ARGS+=	--disable-ffmpegthumbnailer
 .if ${PORT_OPTIONS:MCURL} && ${PORT_OPTIONS:MEXTERNAL_TRANSCODING}
 CONFIGURE_ARGS+=	--enable-curl \
 			--with-curl-cfg="${LOCALBASE}/bin/curl-config"
-LIB_DEPENDS+=	curl:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	libcurl.so:${PORTSDIR}/ftp/curl
 .else
 CONFIGURE_ARGS+=	--disable-curl
 .endif
 
 .if ${PORT_OPTIONS:MFFMPEG}
 CONFIGURE_ARGS+=	--enable-ffmpeg
-LIB_DEPENDS+=		avformat:${PORTSDIR}/multimedia/ffmpeg
+LIB_DEPENDS+=		libavformat.so:${PORTSDIR}/multimedia/ffmpeg
 .else
 CONFIGURE_ARGS+=	--disable-ffmpeg
 .endif
@@ -137,7 +135,7 @@ CONFIGURE_ARGS+=	--disable-ffmpeg
 CONFIGURE_ARGS+=	--enable-libextractor \
 			--with-extractor-h="${LOCALBASE}/include" \
 			--with-extractor-libs="${LOCALBASE}/lib"
-LIB_DEPENDS+=		extractor:${PORTSDIR}/textproc/libextractor
+LIB_DEPENDS+=		libextractor.so:${PORTSDIR}/textproc/libextractor
 .else
 CONFIGURE_ARGS+=	--disable-libextractor
 .endif
@@ -146,7 +144,7 @@ CONFIGURE_ARGS+=	--disable-libextractor
 CONFIGURE_ARGS+=	--enable-id3lib \
 			--with-id3lib-h="${LOCALBASE}/include" \
 			--with-id3lib-libs="${LOCALBASE}/lib"
-LIB_DEPENDS+=		id3:${PORTSDIR}/audio/id3lib
+LIB_DEPENDS+=		libid3.so:${PORTSDIR}/audio/id3lib
 .else
 CONFIGURE_ARGS+=	--disable-id3lib
 .endif
@@ -154,7 +152,7 @@ CONFIGURE_ARGS+=	--disable-id3lib
 .if ${PORT_OPTIONS:MTAGLIB}
 CONFIGURE_ARGS+=	--enable-taglib \
 			--with-taglib-cfg="${LOCALBASE}/bin/taglib-config"
-LIB_DEPENDS+=		tag:${PORTSDIR}/audio/taglib
+LIB_DEPENDS+=		libtag.so:${PORTSDIR}/audio/taglib
 .else
 CONFIGURE_ARGS+=	--disable-taglib
 .endif
@@ -169,16 +167,7 @@ pre-install:
 		PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} PRE-INSTALL
 
 post-install:
-	@${MKDIR} -m ${MEDIATOMB_MASK} -p ${PREFIX}/etc/mediatomb
-	@${CHOWN} ${MEDIATOMB_USER}:${MEDIATOMB_GROUP} ${PREFIX}/etc/mediatomb
-	@${INSTALL} ${COPY} -o ${MEDIATOMB_USER} -g ${MEDIATOMB_GROUP} -m 640 ${WRKDIR}/config.xml.dist ${PREFIX}/etc/mediatomb/config.xml.dist
-	@if [ ! -f ${PREFIX}/etc/mediatomb/config.xml ]; then \
-		${CP} -p ${PREFIX}/etc/mediatomb/config.xml.dist ${PREFIX}/etc/mediatomb/config.xml ; \
-	fi
-	@${CHGRP} ${MEDIATOMB_GROUP} ${PREFIX}/bin/mediatomb
-	@${CHMOD} a-x ${PREFIX}/bin/mediatomb
-	@${CHMOD} g+x ${PREFIX}/bin/mediatomb
-	@${MKDIR} -m ${MEDIATOMB_MASK} -p ${MEDIATOMB_DIR}
-	@${CHOWN} ${MEDIATOMB_USER}:${MEDIATOMB_GROUP} ${MEDIATOMB_DIR}
+	@${MKDIR} -m ${MEDIATOMB_MASK} -p ${STAGEDIR}${PREFIX}/etc/mediatomb
+	@${INSTALL} ${COPY} ${WRKDIR}/config.xml.dist ${STAGEDIR}${PREFIX}/etc/mediatomb/config.xml.dist
 
 .include <bsd.port.post.mk>

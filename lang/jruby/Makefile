@@ -8,7 +8,7 @@ MASTER_SITES=	http://jruby.org.s3.amazonaws.com/downloads/${PORTVERSION}/
 DISTNAME=	${PORTNAME}-bin-${PORTVERSION}
 
 MAINTAINER=	ruby@FreeBSD.org
-COMMENT=	An implementation of Ruby Interpreter in Pure Java
+COMMENT=	Implementation of Ruby Interpreter in Pure Java
 
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
@@ -25,6 +25,8 @@ REPLACE_LIST_TEMP=	${REPLACE_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/}
 SHEBANG_FILES=	rake spec spec_translator Rakefile '*.rb'
 
 PLIST_SUB+=	PORTNAME=${PORTNAME} PORTVERSION=${PORTVERSION} JRUBY_HOME=${JRUBY_HOME:S,${PREFIX}/,,}
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.port.pre.mk>
 

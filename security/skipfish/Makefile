@@ -9,22 +9,20 @@ MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	zi@FreeBSD.org
-COMMENT=	A fully automated, active web application security reconnaissance tool
+COMMENT=	Fully automated, active web application security reconnaissance tool
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	idn:${PORTSDIR}/dns/libidn \
-    		pcre:${PORTSDIR}/devel/pcre
-    		
+LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn \
+		libpcre.so:${PORTSDIR}/devel/pcre
+
 USES=		gmake
 SUB_FILES=	pkg-message
 
-.if !defined(NOPORTDOCS)
-PORTDOCS=	README COPYING ChangeLog
-.endif
+OPTIONS_DEFINE=	DOCS
 
-.include <bsd.port.pre.mk>
+PORTDOCS=	README COPYING ChangeLog
 
 post-patch:
 	@${REINPLACE_CMD} -e 's:"skipfish.wl":"${DATADIR}/dictionaries/complete.wl":' \
@@ -36,11 +34,9 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/skipfish.1 ${STAGEDIR}${PREFIX}/man/man1
 	(cd ${WRKSRC}/assets/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/assets/)
 	(cd ${WRKSRC}/dictionaries/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}/dictionaries/)
-.if !defined(NOPORTDOCS)
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .	for doc in ${PORTDOCS}
 		${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}
 .	endfor
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

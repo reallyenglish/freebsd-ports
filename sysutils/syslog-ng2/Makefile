@@ -3,16 +3,19 @@
 
 PORTNAME=	syslog-ng
 PORTVERSION=	2.0.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.balabit.com/downloads/files/syslog-ng/sources/2.0/src/
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	ivan.lago@ifom.eu
-COMMENT=	A powerful syslogd replacement
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Powerful syslogd replacement
 
-LIB_DEPENDS=	net:${PORTSDIR}/net/libnet \
-		evtlog.0:${PORTSDIR}/sysutils/eventlog
+DEPRECATED=	Fails to build with new utmpx
+EXPIRATION_DATE=	2014-07-23
+
+LIB_DEPENDS=	libnet.so:${PORTSDIR}/net/libnet \
+		libevtlog.so:${PORTSDIR}/sysutils/eventlog
 
 MAN5=		syslog-ng.conf.5
 MAN8=		syslog-ng.8

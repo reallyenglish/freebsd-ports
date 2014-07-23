@@ -9,12 +9,13 @@ MASTER_SITES=	http://www.tinc-vpn.org/packages/ \
 		http://www.mirrors.wiretapped.net/security/network-security/tinc/
 
 MAINTAINER=	dinoex@FreeBSD.org
-COMMENT=	A Virtual Private Network (VPN) daemon
+COMMENT=	Virtual Private Network (VPN) daemon
 
 LIB_DEPENDS=	liblzo2.so:${PORTSDIR}/archivers/lzo2
 
 LICENSE=	GPLv3
 
+USES=		makeinfo
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include

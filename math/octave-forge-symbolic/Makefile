@@ -10,12 +10,13 @@ MAINTAINER=	stephen@FreeBSD.org
 COMMENT=	Octave-forge package ${OCTAVE_PKGNAME}
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKDIR}/${OCTSRC}/COPYING
 
 # OCTSRC is the name of the directory of the package.
 # It is usually ${OCTAVE_PKGNAME} or ${DISTNAME}.
 OCTSRC=		${OCTAVE_PKGNAME}
 
-LIB_DEPENDS+=	ginac:${PORTSDIR}/math/GiNaC
+LIB_DEPENDS+=	libginac.so:${PORTSDIR}/math/GiNaC
 
 WRKSRC=		${WRKDIR}/${OCTSRC}/src
 
