@@ -3,6 +3,7 @@
 
 PORTNAME=	ohai
 PORTVERSION=	7.0.2
+PORTREVISION=	1
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 
@@ -18,7 +19,8 @@ RUN_DEPENDS=	rubygem-ipaddress>=0:${PORTSDIR}/net/rubygem-ipaddress \
 		rubygem-mixlib-log>=0:${PORTSDIR}/devel/rubygem-mixlib-log \
 		rubygem-mixlib-shellout>=0:${PORTSDIR}/devel/rubygem-mixlib-shellout \
 		rubygem-systemu>=2.5.2:${PORTSDIR}/devel/rubygem-systemu \
-		rubygem-yajl-ruby>=0:${PORTSDIR}/devel/rubygem-yajl-ruby
+		rubygem-yajl-ruby>=0:${PORTSDIR}/devel/rubygem-yajl-ruby \
+		dmidecode>0:${PORTSDIR}/sysutils/dmidecode
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
