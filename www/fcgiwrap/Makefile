@@ -36,4 +36,6 @@ post-patch:
 post-stage:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/fcgiwrap
 
+BSDPORTMK=	${PORTSDIR}/Mk/bsd-staging.port.mk
+
 .include <bsd.port.mk>
