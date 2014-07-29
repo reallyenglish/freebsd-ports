@@ -1,0 +1,13 @@
+--- ./configure.ac.orig	2014-07-25 17:29:41.000000000 +0900
++++ ./configure.ac	2014-07-25 17:30:28.000000000 +0900
+@@ -28,10 +28,6 @@
+   [], [with_systemd=check])
+ have_systemd=no
+ if test "x$with_systemd" != "xno"; then
+-  PKG_CHECK_MODULES(systemd, [libsystemd-daemon],
+-    [AC_DEFINE(HAVE_SYSTEMD, 1, [Define if systemd is available])
+-    have_systemd=yes],
+-  have_systemd=no)
+   if test "x$have_systemd" = xno -a "x$with_systemd" = xyes; then
+     AC_MSG_ERROR([systemd support requested but libraries not found])
+   fi

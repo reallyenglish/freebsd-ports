@@ -1,0 +1,11 @@
+--- ./Makefile.in.orig	2014-07-25 17:38:11.000000000 +0900
++++ ./Makefile.in	2014-07-25 17:38:17.000000000 +0900
+@@ -16,7 +16,7 @@
+ 	install -m 644 systemd/fcgiwrap.service $(DESTDIR)@systemdsystemunitdir@
+ endif
+ 
+-LDLIBS = -lfcgi @systemd_LIBS@
++LDLIBS = -lfcgi
+ CFLAGS = @AM_CFLAGS@
+ 
+ fcgiwrap: fcgiwrap.c
