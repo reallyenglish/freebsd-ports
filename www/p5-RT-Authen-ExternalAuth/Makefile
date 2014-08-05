@@ -29,6 +29,8 @@ RT40_DESC=                      Install for rt-4.0.x (www/rt40)
 RT42_DESC=                      Install for rt-4.2.x (www/rt42)
 OPTIONS_DEFAULT=                RT42
 
+BSDPORTMK=	${PORTSDIR}/Mk/bsd-staging.port.mk
+
 .include <bsd.port.options.mk>
 
 .for opt in 38 40 42
