@@ -8,12 +8,12 @@
 #   o install a sample into etc/apache22/Includes
 
 PORTNAME=	rt
-PORTVERSION=	3.8.16
+PORTVERSION=	3.8.17
 CATEGORIES=	www
 MASTER_SITES=	http://download.bestpractical.com/pub/rt/release/ \
 		ftp://ftp.eu.uu.net/pub/unix/ticketing/rt/release/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	flo@FreeBSD.org
 COMMENT=	RT is an industrial-grade ticketing system written in Perl
 
 CONFLICTS=	rt-4.0* brlcad-[0-9]*
