@@ -419,6 +419,7 @@
     SUBDIR += ngrep
     SUBDIR += nifmon
     SUBDIR += nload
+    SUBDIR += nmsg
     SUBDIR += nocatsplash
     SUBDIR += nos-ttb
     SUBDIR += nph
@@ -582,6 +583,8 @@
     SUBDIR += p5-Net-GrowlClient
     SUBDIR += p5-Net-HL7
     SUBDIR += p5-Net-HTTP
+    SUBDIR += p5-Net-HTTP-Spore
+    SUBDIR += p5-Net-HTTP-Spore-Middleware-Header
     SUBDIR += p5-Net-HTTPS-Any
     SUBDIR += p5-Net-HTTPS-NB
     SUBDIR += p5-Net-Hiveminder
@@ -633,6 +636,7 @@
     SUBDIR += p5-Net-Proxy
     SUBDIR += p5-Net-PubSubHubbub-Publisher
     SUBDIR += p5-Net-RTP
+    SUBDIR += p5-Net-RabbitFoot
     SUBDIR += p5-Net-RabbitMQ
     SUBDIR += p5-Net-Radius
     SUBDIR += p5-Net-Random
@@ -1080,7 +1084,6 @@
     SUBDIR += seda
     SUBDIR += self-service-password
     SUBDIR += sendemail
-    SUBDIR += sendfile
     SUBDIR += sendsms
     SUBDIR += sendsnpp
     SUBDIR += ser
@@ -1092,6 +1095,7 @@
     SUBDIR += shaperprobe
     SUBDIR += shelldap
     SUBDIR += shmux
+    SUBDIR += sie-nmsg
     SUBDIR += silc-client
     SUBDIR += silc-irssi-plugin
     SUBDIR += silc-server

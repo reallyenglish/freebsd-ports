@@ -13,7 +13,6 @@
     SUBDIR += abyssws
     SUBDIR += ach
     SUBDIR += adzap
-    SUBDIR += ajaxplorer
     SUBDIR += amphetadesk
     SUBDIR += analog
     SUBDIR += anyremote2html
@@ -93,7 +92,6 @@
     SUBDIR += chtml
     SUBDIR += ckeditor
     SUBDIR += cl-lml
-    SUBDIR += cl-lml-clisp
     SUBDIR += cl-lml-sbcl
     SUBDIR += claroline
     SUBDIR += clearsilver
@@ -541,8 +539,8 @@
     SUBDIR += mohawk
     SUBDIR += moinmoin
     SUBDIR += monast
+    SUBDIR += mongoose
     SUBDIR += mongrel2
-    SUBDIR += moodle
     SUBDIR += moodle24
     SUBDIR += moodle25
     SUBDIR += moodle26
@@ -1496,6 +1494,7 @@
     SUBDIR += py-django-classy-tags
     SUBDIR += py-django-cms
     SUBDIR += py-django-crispy-forms
+    SUBDIR += py-django-datetime-widget
     SUBDIR += py-django-debug-toolbar
     SUBDIR += py-django-devel
     SUBDIR += py-django-dpaste
@@ -1712,6 +1711,7 @@
     SUBDIR += py-wsgiauth
     SUBDIR += py-zope.app.wsgi
     SUBDIR += pyblosxom
+    SUBDIR += pydio
     SUBDIR += pyjamas
     SUBDIR += pylot
     SUBDIR += pyweblib
@@ -1788,6 +1788,7 @@
     SUBDIR += rubygem-faraday_middleware
     SUBDIR += rubygem-feed-normalizer
     SUBDIR += rubygem-feedzirra
+    SUBDIR += rubygem-flowdock
     SUBDIR += rubygem-geminabox
     SUBDIR += rubygem-gitlab-gollum-lib
     SUBDIR += rubygem-gitlab-grack
@@ -1801,6 +1802,7 @@
     SUBDIR += rubygem-heroku-nav
     SUBDIR += rubygem-hpricot
     SUBDIR += rubygem-html2haml
+    SUBDIR += rubygem-http
     SUBDIR += rubygem-http-cookie
     SUBDIR += rubygem-httpi
     SUBDIR += rubygem-httparty

@@ -67,10 +67,8 @@
     SUBDIR += chm2pdf
     SUBDIR += chpp
     SUBDIR += cl-meta
-    SUBDIR += cl-meta-clisp
     SUBDIR += cl-meta-sbcl
     SUBDIR += cl-ppcre
-    SUBDIR += cl-ppcre-clisp
     SUBDIR += cl-ppcre-sbcl
     SUBDIR += clit
     SUBDIR += clucene
@@ -568,6 +566,7 @@
     SUBDIR += p5-Lingua-EN-Numbers
     SUBDIR += p5-Lingua-EN-Numbers-Easy
     SUBDIR += p5-Lingua-EN-Numbers-Ordinate
+    SUBDIR += p5-Lingua-EN-PluralToSingular
     SUBDIR += p5-Lingua-EN-Sentence
     SUBDIR += p5-Lingua-EN-Squeeze
     SUBDIR += p5-Lingua-EN-Summarize
@@ -1140,7 +1139,9 @@
     SUBDIR += py-Chameleon
     SUBDIR += py-MarkupSafe
     SUBDIR += py-Tempita
+    SUBDIR += py-asciinema
     SUBDIR += py-asv
+    SUBDIR += py-bugzillatools
     SUBDIR += py-charade
     SUBDIR += py-chardet
     SUBDIR += py-cloud_sptheme
@@ -1181,6 +1182,7 @@
     SUBDIR += py-pyscss
     SUBDIR += py-pysrt
     SUBDIR += py-pystache
+    SUBDIR += py-pytidylib
     SUBDIR += py-pyx12
     SUBDIR += py-qt4-xml
     SUBDIR += py-qt4-xmlpatterns

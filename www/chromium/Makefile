@@ -5,7 +5,7 @@
 
 PORTNAME=	chromium
 PORTVERSION=	35.0.1916.153
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	http://commondatastorage.googleapis.com/chromium-browser-official/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -34,7 +34,7 @@ LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libnss3.so:${PORTSDIR}/security/nss \
 		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
 		libcups.so:${PORTSDIR}/print/cups-client \
-		libevent-1.4.so:${PORTSDIR}/devel/libevent \
+		libevent.so:${PORTSDIR}/devel/libevent2 \
 		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
 		libpci.so:${PORTSDIR}/devel/libpci \
 		libdrm.so:${PORTSDIR}/graphics/libdrm
@@ -45,7 +45,8 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/a
 ONLY_FOR_ARCHS=	i386 amd64
 USES=		bison compiler:c++11-lib cpe desktop-file-utils pkgconfig \
 		perl5 shebangfix ninja tar:xz
-CPE_VENDOR=	The Chromium Project
+CPE_VENDOR=	google
+CPE_PRODUCT=	chrome
 USE_PERL5=	build
 USE_PYTHON_BUILD=	2
 USE_XORG=	scrnsaverproto x11 xproto xscrnsaver xtst

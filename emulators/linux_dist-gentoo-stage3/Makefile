@@ -6,12 +6,12 @@ CATEGORIES=	emulators linux
 MASTER_SITES=	${MASTER_SITE_GENTOO}
 MASTER_SITE_SUBDIR=	releases/x86/autobuilds/current-stage3$-{GENTOO_OPTIMIZED}
 
-MAINTAINER=	gabor@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Files from Gentoo distribution, for Linux compatibility
 
 RESTRICTED=	binaries licensed under GNU GPL without accompanying source
 
-USE_BZIP2=		YES
+USES=		tar:bzip2
 DIST_SUBDIR=		gentoo-linux
 NO_BUILD=		YES
 ONLY_FOR_ARCHS=		i386 amd64

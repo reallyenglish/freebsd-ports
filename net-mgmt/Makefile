@@ -23,7 +23,6 @@
     SUBDIR += bigsister
     SUBDIR += bpft
     SUBDIR += braa
-    SUBDIR += bsd-airtools
     SUBDIR += bsnmp-jails
     SUBDIR += bsnmp-regex
     SUBDIR += bsnmp-ucd
@@ -79,6 +78,7 @@
     SUBDIR += grepcidr
     SUBDIR += grepip
     SUBDIR += gsnmp
+    SUBDIR += guifi-snpservices
     SUBDIR += hastmon
     SUBDIR += hawk
     SUBDIR += horde3-nic
@@ -117,6 +117,7 @@
     SUBDIR += nagios
     SUBDIR += nagios-certexp-plugin
     SUBDIR += nagios-check_bacula
+    SUBDIR += nagios-check_bacula5
     SUBDIR += nagios-check_clamav
     SUBDIR += nagios-check_cpu_usage
     SUBDIR += nagios-check_email_delivery
