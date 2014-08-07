@@ -158,6 +158,7 @@
     SUBDIR += dae
     SUBDIR += daedalus
     SUBDIR += daemontools
+    SUBDIR += daemontools-encore
     SUBDIR += dar
     SUBDIR += dateutils
     SUBDIR += dc3dd
@@ -382,7 +383,6 @@
     SUBDIR += htop
     SUBDIR += httplog
     SUBDIR += hwstat
-    SUBDIR += hyperic-sigar
     SUBDIR += i2c-tools
     SUBDIR += i7z
     SUBDIR += iat
@@ -475,8 +475,6 @@
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += lookat
-    SUBDIR += lookupd
-    SUBDIR += lookupd_ldap
     SUBDIR += lsof
     SUBDIR += ltrace
     SUBDIR += luckybackup
@@ -627,7 +625,6 @@
     SUBDIR += p5-Sys-Load
     SUBDIR += p5-Sys-Syslog
     SUBDIR += p5-Sys-User-UIDhelper
-    SUBDIR += p5-Sys-Utmp
     SUBDIR += p5-Sysadm-Install
     SUBDIR += p5-SyslogScan
     SUBDIR += p5-Tail-Stat
@@ -915,7 +912,6 @@
     SUBDIR += syslinux
     SUBDIR += syslog-ng
     SUBDIR += syslog-ng-incubator
-    SUBDIR += syslog-ng2
     SUBDIR += syslog-ng33
     SUBDIR += syslog-ng34
     SUBDIR += syslogger
@@ -1045,6 +1041,7 @@
     SUBDIR += xen-tools
     SUBDIR += xfburn
     SUBDIR += xfce4-battery-plugin
+    SUBDIR += xfce4-bsdcpufreq-plugin
     SUBDIR += xfce4-cpugraph-plugin
     SUBDIR += xfce4-diskperf-plugin
     SUBDIR += xfce4-fsguard-plugin
@@ -1068,7 +1065,6 @@
     SUBDIR += xstow
     SUBDIR += xsysstats
     SUBDIR += xvidcap
-    SUBDIR += yawho
     SUBDIR += yum
     SUBDIR += zeitgeist
     SUBDIR += zeroer

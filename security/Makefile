@@ -56,14 +56,12 @@
     SUBDIR += chaosreader
     SUBDIR += checkpassword
     SUBDIR += checkpassword-pam
-    SUBDIR += chkrootkit
     SUBDIR += chntpw
     SUBDIR += chroot_safe
     SUBDIR += chrootuid
     SUBDIR += ckpass
     SUBDIR += cksfv
     SUBDIR += cl-md5
-    SUBDIR += cl-md5-clisp
     SUBDIR += cl-md5-sbcl
     SUBDIR += clamassassin
     SUBDIR += clamav
@@ -154,7 +152,6 @@
     SUBDIR += gnupg
     SUBDIR += gnupg1
     SUBDIR += gnutls
-    SUBDIR += gnutls3
     SUBDIR += go.crypto
     SUBDIR += goptlib
     SUBDIR += gorilla
@@ -348,7 +345,6 @@
     SUBDIR += openconnect
     SUBDIR += opencryptoki
     SUBDIR += openct
-    SUBDIR += openfwtk
     SUBDIR += openpgpsdk
     SUBDIR += opensaml2
     SUBDIR += opensc
@@ -489,6 +485,7 @@
     SUBDIR += p5-Crypt-Rijndael
     SUBDIR += p5-Crypt-Rijndael_PP
     SUBDIR += p5-Crypt-SKey
+    SUBDIR += p5-Crypt-SMIME
     SUBDIR += p5-Crypt-SSLeay
     SUBDIR += p5-Crypt-Salt
     SUBDIR += p5-Crypt-SaltedHash
@@ -601,16 +598,12 @@
     SUBDIR += p5-Yahoo-BBAuth
     SUBDIR += p5-dicewaregen
     SUBDIR += p5-openxpki
-    SUBDIR += p5-openxpki-client
     SUBDIR += p5-openxpki-client-html-mason
-    SUBDIR += p5-openxpki-client-scep
-    SUBDIR += p5-openxpki-deployment
     SUBDIR += p5-openxpki-i18n
     SUBDIR += pad
     SUBDIR += pam-mysql
     SUBDIR += pam-pgsql
     SUBDIR += pam_abl
-    SUBDIR += pam_alreadyloggedin
     SUBDIR += pam_bsdbioapi
     SUBDIR += pam_fprint
     SUBDIR += pam_google_authenticator
@@ -936,7 +929,6 @@
     SUBDIR += sqlmap
     SUBDIR += sqlninja
     SUBDIR += srm
-    SUBDIR += srp
     SUBDIR += ssdeep
     SUBDIR += ssh-copy-id
     SUBDIR += ssh-gui
@@ -965,7 +957,6 @@
     SUBDIR += subversion-gnome-keyring
     SUBDIR += subversion-kwallet
     SUBDIR += subweb
-    SUBDIR += sud
     SUBDIR += sudo
     SUBDIR += sudoscript
     SUBDIR += super

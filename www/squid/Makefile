@@ -75,7 +75,7 @@ NO_STAGE=	yes
 
 PORTNAME=	squid
 PORTVERSION=	2.7.${SQUID_STABLE_VER}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www
 MASTER_SITES=	ftp://ftp.squid-cache.org/pub/%SUBDIR%/ \
 		http://mirrors.ccs.neu.edu/Squid/ \
@@ -115,9 +115,8 @@ COMMENT=	HTTP Caching Proxy
 SQUID_STABLE_VER=	9
 
 CONFLICTS_INSTALL=	squid-2.[^7]* squid3?-* cacheboy-[0-9]* lusca-head-[0-9]*
-USES=		perl5
+USES=		perl5 tar:bzip2
 GNU_CONFIGURE=	yes
-USE_BZIP2=	yes
 USE_RC_SUBR=	squid
 
 SQUID_UID?=	squid

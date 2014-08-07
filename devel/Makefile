@@ -179,6 +179,7 @@
     SUBDIR += c4
     SUBDIR += calibrator
     SUBDIR += capstone
+    SUBDIR += cask
     SUBDIR += catch
     SUBDIR += cbind
     SUBDIR += cbrowser
@@ -209,27 +210,19 @@
     SUBDIR += cil
     SUBDIR += cityhash
     SUBDIR += cl-alexandria
-    SUBDIR += cl-alexandria-clisp
     SUBDIR += cl-alexandria-sbcl
     SUBDIR += cl-asdf
-    SUBDIR += cl-asdf-clisp
     SUBDIR += cl-cffi
-    SUBDIR += cl-cffi-clisp
     SUBDIR += cl-cffi-sbcl
     SUBDIR += cl-infix
-    SUBDIR += cl-infix-clisp
     SUBDIR += cl-infix-sbcl
     SUBDIR += cl-port
-    SUBDIR += cl-port-clisp
     SUBDIR += cl-port-sbcl
     SUBDIR += cl-split-sequence
-    SUBDIR += cl-split-sequence-clisp
     SUBDIR += cl-split-sequence-sbcl
     SUBDIR += cl-trivial-features
-    SUBDIR += cl-trivial-features-clisp
     SUBDIR += cl-trivial-features-sbcl
     SUBDIR += cl-trivial-gray-streams
-    SUBDIR += cl-trivial-gray-streams-clisp
     SUBDIR += cl-trivial-gray-streams-sbcl
     SUBDIR += cl-uffi
     SUBDIR += cl-uffi-sbcl
@@ -271,6 +264,7 @@
     SUBDIR += cpan-upload-http
     SUBDIR += cppcheck
     SUBDIR += cppi
+    SUBDIR += cpptest
     SUBDIR += cppunit
     SUBDIR += cproto
     SUBDIR += cpuflags
@@ -333,9 +327,9 @@
     SUBDIR += dbus-glib
     SUBDIR += dbus-qt4
     SUBDIR += dbus-qt5
-    SUBDIR += dbus-tcl
     SUBDIR += dbus-sharp
     SUBDIR += dbus-sharp-glib
+    SUBDIR += dbus-tcl
     SUBDIR += dcmtk
     SUBDIR += dconf
     SUBDIR += dconf-editor
@@ -409,8 +403,8 @@
     SUBDIR += elftoaout
     SUBDIR += elib
     SUBDIR += entity
-    SUBDIR += epm
     SUBDIR += epl.el
+    SUBDIR += epm
     SUBDIR += epydoc
     SUBDIR += eric4
     SUBDIR += eris
@@ -949,6 +943,7 @@
     SUBDIR += libatomic_ops
     SUBDIR += libaura
     SUBDIR += libavl
+    SUBDIR += libbde
     SUBDIR += libbegemot
     SUBDIR += libbfd
     SUBDIR += libbinio
@@ -1000,7 +995,6 @@
     SUBDIR += libesedb
     SUBDIR += libestr
     SUBDIR += libev
-    SUBDIR += libevent
     SUBDIR += libevent-hiphop
     SUBDIR += libevent2
     SUBDIR += libevt
@@ -1013,6 +1007,7 @@
     SUBDIR += libfortuna
     SUBDIR += libfreefare
     SUBDIR += libftdi
+    SUBDIR += libftdi1
     SUBDIR += libg19
     SUBDIR += libg19draw
     SUBDIR += libgalago
@@ -1066,6 +1061,7 @@
     SUBDIR += libmowgli
     SUBDIR += libmowgli2
     SUBDIR += libmpcbdm
+    SUBDIR += libmpsse
     SUBDIR += libmsiecf
     SUBDIR += libmsocket
     SUBDIR += libmtrie
@@ -1112,8 +1108,11 @@
     SUBDIR += libregf
     SUBDIR += librelp
     SUBDIR += librest
+    SUBDIR += librevisa
+    SUBDIR += librevisa-vish
     SUBDIR += libruin
     SUBDIR += libs11n
+    SUBDIR += libserialport
     SUBDIR += libserver
     SUBDIR += libshbuf
     SUBDIR += libshhmsg
@@ -1127,6 +1126,7 @@
     SUBDIR += libslang2
     SUBDIR += libslave
     SUBDIR += libsmdev
+    SUBDIR += libsmraw
     SUBDIR += libsoup
     SUBDIR += libsoup-gnome
     SUBDIR += libsoup-reference
@@ -1192,6 +1192,7 @@
     SUBDIR += lm4tools
     SUBDIR += lmdbg
     SUBDIR += lndir
+    SUBDIR += lnphost
     SUBDIR += lockfree-malloc
     SUBDIR += log4c
     SUBDIR += log4cplus
@@ -1221,6 +1222,7 @@
     SUBDIR += lua-sysctl
     SUBDIR += luabind
     SUBDIR += luafilesystem
+    SUBDIR += luafilesystem-51
     SUBDIR += luajava
     SUBDIR += lutok
     SUBDIR += lwp
@@ -1248,7 +1250,6 @@
     SUBDIR += mercator
     SUBDIR += mercurial
     SUBDIR += mercurialeclipse
-    SUBDIR += meta-cvs
     SUBDIR += mime
     SUBDIR += mimir
     SUBDIR += mingw32-bin-msvcrt
@@ -1736,6 +1737,7 @@
     SUBDIR += p5-Data-ParseBinary
     SUBDIR += p5-Data-Path
     SUBDIR += p5-Data-Peek
+    SUBDIR += p5-Data-Perl
     SUBDIR += p5-Data-Printer
     SUBDIR += p5-Data-Properties
     SUBDIR += p5-Data-Rand
@@ -1867,6 +1869,7 @@
     SUBDIR += p5-Devel-Caller-IgnoreNamespaces
     SUBDIR += p5-Devel-Caller-Perl
     SUBDIR += p5-Devel-Callsite
+    SUBDIR += p5-Devel-CheckBin
     SUBDIR += p5-Devel-CheckCompiler
     SUBDIR += p5-Devel-CheckLib
     SUBDIR += p5-Devel-CheckOS
@@ -2301,7 +2304,6 @@
     SUBDIR += p5-Memoize
     SUBDIR += p5-Memoize-ExpireLRU
     SUBDIR += p5-Meta-Builder
-    SUBDIR += p5-MetaCPAN-API
     SUBDIR += p5-MetaCPAN-Client
     SUBDIR += p5-Metabase-Client-Simple
     SUBDIR += p5-Metabase-Fact
@@ -2371,6 +2373,7 @@
     SUBDIR += p5-Moo
     SUBDIR += p5-MooX-ConfigFromFile
     SUBDIR += p5-MooX-File-ConfigDir
+    SUBDIR += p5-MooX-HandlesVia
     SUBDIR += p5-MooX-Options
     SUBDIR += p5-MooX-StrictConstructor
     SUBDIR += p5-MooX-Types-MooseLike
@@ -3436,8 +3439,8 @@
     SUBDIR += pipestatus
     SUBDIR += pire
     SUBDIR += pit
-    SUBDIR += pkgconf
     SUBDIR += pkg-info.el
+    SUBDIR += pkgconf
     SUBDIR += plan9port
     SUBDIR += pmccabe
     SUBDIR += pmd
@@ -3602,6 +3605,7 @@
     SUBDIR += py-collective.monkeypatcher
     SUBDIR += py-collective.z3cform.datetimewidget
     SUBDIR += py-colorama
+    SUBDIR += py-colorlog
     SUBDIR += py-conditional
     SUBDIR += py-configobj
     SUBDIR += py-configparser
@@ -3915,6 +3919,7 @@
     SUBDIR += py-twistedCore
     SUBDIR += py-twistedFlow
     SUBDIR += py-twistedRunner
+    SUBDIR += py-tzlocal
     SUBDIR += py-ua_parser
     SUBDIR += py-ujson
     SUBDIR += py-uncompyle2
@@ -4245,6 +4250,7 @@
     SUBDIR += rubygem-deep_merge
     SUBDIR += rubygem-deeptest
     SUBDIR += rubygem-delayed_job
+    SUBDIR += rubygem-delayer
     SUBDIR += rubygem-dep_selector
     SUBDIR += rubygem-deprecated
     SUBDIR += rubygem-deprecated2
@@ -4679,6 +4685,7 @@
     SUBDIR += vera++
     SUBDIR += viewvc
     SUBDIR += violet
+    SUBDIR += visualparadigm
     SUBDIR += vstr
     SUBDIR += vtcl
     SUBDIR += vtg

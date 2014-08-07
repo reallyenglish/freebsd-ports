@@ -3,7 +3,7 @@
 
 PORTNAME=	memcached
 PORTVERSION=	1.4.20
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE} \
 		${MASTER_SITE_GENTOO}
@@ -15,10 +15,7 @@ COMMENT=	High-performance distributed memory object cache system
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libevent-2.0.so:${PORTSDIR}/devel/libevent2
-
-TEST_DEPENDS=	prove:${PORTSDIR}/lang/${PERL_PORT} \
-		git:${PORTSDIR}/devel/git
+LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
 
 CONFLICTS=	memcached-1.2*
 
@@ -38,11 +35,10 @@ SHEBANG_FILES=	scripts/memcached-tool
 
 USE_CSTD=	c99
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-libevent=${LOCALBASE}/lib/event2 --program-prefix= \
+CONFIGURE_ARGS=	--with-libevent=${LOCALBASE} --program-prefix= \
 		--disable-coverage
 
 CFLAGS+=	-fstack-protector \
-		-I${LOCALBASE}/include/event2/compat \
 		-I${LOCALBASE}/include
 
 DTRACE_CONFIGURE_ENABLE=	dtrace
@@ -66,9 +62,6 @@ BROKEN=			DTRACE broken with gcc/clang - reported upstream
 .if ${PORT_OPTIONS:MDOCS}
 BUILD_DEPENDS=	xml2rfc:${PORTSDIR}/textproc/xml2rfc
 .endif
-
-post-patch:
-	@${REINPLACE_CMD} -e "s,-levent,-levent-2.0,g" ${WRKSRC}/configure
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/scripts/memcached-tool ${STAGEDIR}${PREFIX}/bin

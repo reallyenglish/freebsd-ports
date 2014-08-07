@@ -37,7 +37,6 @@
     SUBDIR += clang33
     SUBDIR += clang34
     SUBDIR += clay
-    SUBDIR += clisp
     SUBDIR += clojure
     SUBDIR += clojure-mode.el
     SUBDIR += cmucl
@@ -50,10 +49,9 @@
     SUBDIR += dlv
     SUBDIR += dmd1
     SUBDIR += dmd2
-    SUBDIR += dragonegg46-33
-    SUBDIR += dragonegg47-33
     SUBDIR += ecl
     SUBDIR += elan
+    SUBDIR += elixir
     SUBDIR += elk
     SUBDIR += emacs-lisp-intro
     SUBDIR += embryo
@@ -305,8 +303,7 @@
     SUBDIR += slisp
     SUBDIR += smalltalk
     SUBDIR += sml-mode.el
-    SUBDIR += sml-nj
-    SUBDIR += sml-nj-devel
+    SUBDIR += smlnj
     SUBDIR += snobol4
     SUBDIR += spidermonkey17
     SUBDIR += spidermonkey170

@@ -2,7 +2,7 @@
 
 PORTNAME=	transmission
 PORTVERSION=	2.84
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	net-p2p
 #MASTER_SITES=	http://download.m0k.org/${PORTNAME}/files/
 MASTER_SITES=	http://transmission.cachefly.net/
@@ -34,7 +34,7 @@ LIB_DEPENDS?=	${GEN_LIB_DEPENDS}
 
 # General dependencies
 GEN_LIB_DEPENDS=libcurl.so:${PORTSDIR}/ftp/curl \
-		libevent-2.0.so.6:${PORTSDIR}/devel/libevent2
+		libevent.so:${PORTSDIR}/devel/libevent2
 GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/transmission-web
 
 # This is master port of transmission-*, so don't override USES definition 
@@ -42,11 +42,15 @@ USES+=		gmake pkgconfig iconv
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
+LDFLAGS+=	-L${LOCALBASE}/lib -lcrypto ${ICONV_LIB}
 CONFIGURE_ARGS=--with-zlib=/usr \
 		${EXTRA_CONF_ARGS}
-CONFIGURE_ENV+=	OPENSSL_LIBS=${OPENSSL_LDFLAGS} \
-		OPENSSL_CFLAGS=${OPENSSL_CFLAGS},-I${OPENSSLINC}
+CONFIGURE_ENV+=	OPENSSL_LIBS=${OPENSSL_LDFLAGS}
+.if empty(OPENSSL_CFLAGS)
+CONFIGURE_ENV+=	OPENSSL_CFLAGS=-I${OPENSSLINC}
+.else
+CONFIGURE_ENV+=	OPENSSL_CFLAGS=${OPENSSL_CFLAGS},-I${OPENSSLINC}
+.endif
 EXTRA_CONF_ARGS?=--enable-cli \
 		 --disable-daemon \
 		 --without-gtk \

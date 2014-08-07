@@ -9,7 +9,7 @@ MASTER_SITES=	https://launchpadlibrarian.net/119058962/
 DISTNAME=	${PORTNAME}-src-${PORTVERSION}
 
 MAINTAINER=	gahr@FreeBSD.org
-COMMENT=	A general purpose C++ XQuery processor
+COMMENT=	General purpose C++ XQuery processor
 
 LICENSE=	APACHE20
 
@@ -35,6 +35,7 @@ USES=		cmake:outsource iconv compiler:c++11-lib
 CXXFLAGS+=	-I${LOCALBASE}/include -O1 # compiler hangs with -O2 on CURRENT
 LDFLAGS+=	-L${LOCALBASE}/lib
 CMAKE_ARGS=	-DCMAKE_REQUIRED_FLAGS:STRING="-I${LOCALBASE}/include -L${LOCALBASE}/lib" \
+    		-DLOCALBASE:STRING=${LOCALBASE} \
     		-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON
 
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${PORTVERSION}

@@ -9,7 +9,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-2013.0
 PKGNAMESUFFIX=	-devel
 DISTNAME=	hugin-2013.0.0_beta1
 
-MAINTAINER=	grog@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GUI for Panorama Tools, to stitch panoramic images
 
 LIB_DEPENDS=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
@@ -31,14 +31,13 @@ RUN_DEPENDS=	enblend>=3.1.r20080615:${PORTSDIR}/graphics/enblend \
 
 WRKSRC=		${WRKDIR}/hugin-2013.0.0
 CONFLICTS_INSTALL=	hugin-201[0-2]*
-USE_BZIP2=	yes
 
 OPTIONS_DEFINE=	PANOMATIC AUTOPANOSIFTC
 OPTIONS_DEFAULT=	PANOMATIC AUTOPANOSIFTC
 PANOMATIC_DESC=		Install graphics/panomatic
 AUTOPANOSIFTC_DESC=	Install graphics/autopano-sift-c
 
-USES=		cmake gettext pkgconfig
+USES=		cmake gettext pkgconfig tar:bzip2
 
 CMAKE_ARGS=	-DwxWidgets_CONFIG_EXECUTABLE=${WX_CONFIG}
 
