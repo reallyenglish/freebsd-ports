@@ -42,12 +42,6 @@ IGNORE=	Incorrect 'USES+=perl5:${perl5_ARGS}' perl5 takes no arguments
 
 USE_PERL5?=	run build
 
-.if exists(${LOCALBASE}/bin/perl5)
-.sinclude "${LOCALBASE}/etc/perl5_version"
-.if !defined(PERL_VERSION)
-PERL_VERSION!=	perl -e 'printf "%vd\n", $$^V;'
-.endif
-.else
 .include "${PORTSDIR}/Mk/bsd.default-versions.mk"
 .if ${PERL5_DEFAULT} == 5.14
 PERL_VERSION=	5.14.2
@@ -59,7 +53,6 @@ PERL_VERSION=	5.18.2
 PERL_VERSION=	5.20.0
 .else
 IGNORE=	Invalid perl5 version ${PERL5_DEFAULT}
-.endif
 .endif
 
 PERL_VER?=	${PERL_VERSION:C/\.[0-9]+$//}
