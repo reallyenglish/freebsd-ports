@@ -10,8 +10,8 @@ MASTER_SITES=	http://www.nsca-ng.org/download/
 MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	NSCA alternative
 
-LIB_DEPENDS=	confuse:${PORTSDIR}/devel/libconfuse \
-				ev:${PORTSDIR}/devel/libev
+LIB_DEPENDS=	libconfuse.so:${PORTSDIR}/devel/libconfuse \
+				libev.so:${PORTSDIR}/devel/libev
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--mandir=${LOCALBASE}/man \
