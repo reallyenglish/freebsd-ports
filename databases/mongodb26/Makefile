@@ -10,19 +10,15 @@ DISTNAME=	${PORTNAME}-src-r${PORTVERSION}
 MAINTAINER=	ale@FreeBSD.org
 COMMENT=	NOSQL distributed document-oriented database
 
-# mongodb is AGPLv3, C++ driver is APACHE20
-LICENSE=	AGPLv3 APACHE20
-LICENSE_COMB=	multi
-
-LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
-		libsnappy.so:${PORTSDIR}/archivers/snappy \
-		libv8.so:${PORTSDIR}/lang/v8 \
+LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre \
+		snappy:${PORTSDIR}/archivers/snappy \
+		v8:${PORTSDIR}/lang/v8 \
 # boost 1.52/1.55 from ports make mongod segfaulting with many tests
-# LIB_DEPENDS+=	libboost_system.so:${PORTSDIR}/devel/boost-libs
+# LIB_DEPENDS+=	boost_system:${PORTSDIR}/devel/boost-libs
 # MAKE_ARGS+=	--use-system-boost
 # use bundled yaml
 # MAKE_ARGS+=	--use-system-yaml
-# LIB_DEPENDS+=	libyaml-cpp.so:${PORTSDIR}/devel/yaml-cpp
+# LIB_DEPENDS+=	yaml-cpp:${PORTSDIR}/devel/yaml-cpp
 
 ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON=	"not yet ported to anything other than i386 and amd64"
@@ -51,7 +47,7 @@ MAKE_ARGS+=	--ssl
 
 .if ${PORT_OPTIONS:MSASL}
 MAKE_ARGS+=	--use-sasl-client
-LIB_DEPENDS+=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
+LIB_DEPENDS+=	sasl2:${PORTSDIR}/security/cyrus-sasl2
 .endif
 
 .if ${PORT_OPTIONS:MTEST}
