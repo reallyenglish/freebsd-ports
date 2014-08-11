@@ -11,7 +11,11 @@
 _INCLUDE_USES_EXECINFO_MK=	yes
 
 .if !exists(/usr/lib/libexecinfo.so)
+.if ${OSVERSION} >= 1000000
 LIB_DEPENDS+=	libexecinfo.so:${PORTSDIR}/devel/libexecinfo
+.else
+LIB_DEPENDS+=	execinfo:${PORTSDIR}/devel/libexecinfo
+.endif
 .endif
 
 .endif
