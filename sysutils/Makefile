@@ -385,6 +385,8 @@
     SUBDIR += hptcli
     SUBDIR += hs-angel
     SUBDIR += hs-cpu
+    SUBDIR += hs-ekg
+    SUBDIR += hs-ekg-core
     SUBDIR += htop
     SUBDIR += httplog
     SUBDIR += hwstat
@@ -451,6 +453,7 @@
     SUBDIR += less
     SUBDIR += lfm
     SUBDIR += libcdio
+    SUBDIR += libcdio-paranoia
     SUBDIR += libchk
     SUBDIR += libfvde
     SUBDIR += libgksu
@@ -743,6 +746,7 @@
     SUBDIR += py-ploy_ezjail
     SUBDIR += py-ploy_fabric
     SUBDIR += py-plumbum
+    SUBDIR += py-power
     SUBDIR += py-psutil
     SUBDIR += py-psutil121
     SUBDIR += py-pytsk
