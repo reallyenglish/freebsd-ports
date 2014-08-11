@@ -207,6 +207,7 @@
     SUBDIR += metakit
     SUBDIR += mird
     SUBDIR += mongodb
+    SUBDIR += mongodb26
     SUBDIR += mrtg-mysql-load
     SUBDIR += msql
     SUBDIR += msql3
