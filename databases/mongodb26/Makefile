@@ -70,4 +70,11 @@ test: build-depends build
 		${MAKE_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} ${TEST_TARGET}
 .endif
 
+# as USES=scons requires newer bsd.port.mk, in which ${MAKE} != ${MAKE_CMD},
+# override do-build target.
+do-build:
+	(cd ${BUILD_WRKSRC} &&	 ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET})
+
+do-install:
+	(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS} ${INSTALL_TARGET})
 .include <bsd.port.mk>
