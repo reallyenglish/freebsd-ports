@@ -90,6 +90,7 @@ cbsd:*:150:
 rbldns:*:153:
 trircd:*:154:
 xorp:*:155:
+monetdb:*:156:
 sfs:*:171:
 agk:*:172:
 polipo:*:173:
@@ -288,5 +289,6 @@ minetest:*:976:
 ums:*:979:
 hbase:*:980:
 uvncrep:*:981:
+bro:*:982:
 nogroup:*:65533:
 nobody:*:65534:
