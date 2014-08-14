@@ -40,7 +40,8 @@ BUILD_DEPENDS+=	${CORE_DEPS} \
 		${SMTP_DEPS}
 
 RUN_DEPENDS+=	${BUILD_DEPENDS} \
-		p5-Module-Refresh>0:${PORTSDIR}/devel/p5-Module-Refresh
+		p5-Module-Refresh>0:${PORTSDIR}/devel/p5-Module-Refresh \
+		p5-FCGI>=0:${PORTSDIR}/www/p5-FCGI
 
 USE_PERL5=	yes
 USE_AUTOTOOLS=	autoconf
