@@ -9,6 +9,7 @@
 
 PORTNAME=	rt
 PORTVERSION=	3.8.17
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://download.bestpractical.com/pub/rt/release/ \
 		ftp://ftp.eu.uu.net/pub/unix/ticketing/rt/release/
@@ -38,7 +39,8 @@ BUILD_DEPENDS+=	${CORE_DEPS} \
 		${MASON_DEPS} \
 		${SMTP_DEPS}
 
-RUN_DEPENDS+=	${BUILD_DEPENDS}
+RUN_DEPENDS+=	${BUILD_DEPENDS} \
+		p5-Module-Refresh>0:${PORTSDIR}/devel/p5-Module-Refresh
 
 USE_PERL5=	yes
 USE_AUTOTOOLS=	autoconf
