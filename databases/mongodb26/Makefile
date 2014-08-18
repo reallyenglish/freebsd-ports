@@ -3,6 +3,7 @@
 
 PORTNAME=	mongodb
 PORTVERSION=	2.6.3
+PORTREVISION=	1
 CATEGORIES=	databases net
 MASTER_SITES=	http://downloads.mongodb.org/src/
 DISTNAME=	${PORTNAME}-src-r${PORTVERSION}
@@ -22,6 +23,7 @@ LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre \
 
 ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON=	"not yet ported to anything other than i386 and amd64"
+CONFLICTS=	mongodb-2.2.*
 
 OPTIONS_DEFINE=	SSL SASL TEST
 OPTIONS_DEFAULT=SSL
