@@ -29,7 +29,7 @@ lib/libdbus-1.a
 lib/libdbus-1.la
 lib/libdbus-1.so
 lib/libdbus-1.so.3
-lib/libdbus-1.so.3.8.6
+lib/libdbus-1.so.3.8.7
 libdata/pkgconfig/dbus-1.pc
 @group %%GROUPS%%
 @mode 4750
@@ -43,11 +43,6 @@ libexec/dbus-daemon-launch-helper
 %%MANPAGES%%man/man1/dbus-run-session.1.gz
 %%MANPAGES%%man/man1/dbus-send.1.gz
 %%MANPAGES%%man/man1/dbus-uuidgen.1.gz
-@exec mkdir -p %D/etc/dbus-1/system.d
-@exec mkdir -p %D/share/dbus-1/interfaces
-@exec mkdir -p %D/share/dbus-1/services
-@exec mkdir -p %D/share/dbus-1/system-services
-@exec mkdir -p %D/etc/dbus-1/session.d
 @dirrmtry share/dbus-1/system-services
 @dirrmtry share/dbus-1/services
 @dirrmtry share/dbus-1/interfaces
@@ -59,7 +54,5 @@ libexec/dbus-daemon-launch-helper
 @dirrm etc/dbus-1/system.d
 @dirrm etc/dbus-1/session.d
 @dirrm etc/dbus-1
-@cwd /
 @dirrmtry /var/db/dbus
 @dirrmtry /var/run/dbus
-@cwd
