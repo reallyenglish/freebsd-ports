@@ -1,19 +1,19 @@
 # $FreeBSD$
 
 PORTNAME=	rsyslog
-PORTVERSION=	7.6.3
-PORTREVISION=	3
+PORTVERSION=	7.6.7
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
 
 MAINTAINER=	brd@FreeBSD.org
 COMMENT=	Syslogd supporting SQL, TCP, and TLS
 
-BUILD_DEPENDS=	libgcrypt-config:${PORTSDIR}/security/libgcrypt
+BUILD_DEPENDS=	libgcrypt-config:${PORTSDIR}/security/libgcrypt \
+		rst2man:${PORTSDIR}/textproc/py-docutils
 
 LIB_DEPENDS=	libee.so:${PORTSDIR}/devel/libee \
 		libestr.so:${PORTSDIR}/devel/libestr \
-		libjson.so:${PORTSDIR}/devel/json-c \
+		libjson-c.so:${PORTSDIR}/devel/json-c \
 		liblogging-stdlog.so:${PORTSDIR}/devel/liblogging
 
 USE_LDCONFIG=	yes
