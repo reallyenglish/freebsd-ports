@@ -44,13 +44,13 @@ PLIST_SUB+=	SERVER=""
 
 post-install:
 .for M in ${MAN5}
-	${INSTALL_MAN} ${WRKSRC}/man/${M:S/.5$//}.man ${MANPREFIX}/man/man5/${M}
+	${INSTALL_MAN} ${WRKSRC}/man/${M:S/.5$//}.man ${STAGEDIR}${MANPREFIX}/man/man5/${M}
 .endfor
 .for M in ${MAN8}
-	${INSTALL_MAN} ${WRKSRC}/man/${M:S/.8$//}.man ${MANPREFIX}/man/man8/${M}
+	${INSTALL_MAN} ${WRKSRC}/man/${M:S/.8$//}.man ${STAGEDIR}${MANPREFIX}/man/man8/${M}
 .endfor
 .for F in ${NSCA_NG_CONF}
-	${INSTALL_DATA} ${WRKSRC}/etc/${F} ${PREFIX}/etc/${F}-dist
+	${INSTALL_DATA} ${WRKSRC}/etc/${F} ${STAGEDIR}${PREFIX}/etc/${F}-dist
 .endfor
 
 .include <bsd.port.mk>
