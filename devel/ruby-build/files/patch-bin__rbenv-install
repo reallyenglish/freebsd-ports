@@ -1,0 +1,13 @@
+--- bin/rbenv-install.orig	2014-05-09 03:51:19 UTC
++++ bin/rbenv-install
+@@ -33,6 +33,10 @@ if [ -z "$RBENV_ROOT" ]; then
+   RBENV_ROOT="${HOME}/.rbenv"
+ fi
+ 
++if [ `uname -s` = "FreeBSD" ]; then
++  export MAKE="gmake"
++fi
++
+ # Load shared library functions
+ eval "$(ruby-build --lib)"
+ 
