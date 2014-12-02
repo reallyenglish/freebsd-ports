@@ -259,6 +259,8 @@
     SUBDIR += racket
     SUBDIR += racket-minimal
     SUBDIR += ratfor
+    SUBDIR += rbenv-ruby
+    SUBDIR += rbenv-ruby-1.8.7p357
     SUBDIR += rexx-imc
     SUBDIR += rexx-regina
     SUBDIR += rexx-regutil
