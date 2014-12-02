@@ -2,8 +2,9 @@
 export PATH="%%PREFIX%%/rbenv/bin:$PATH"
 export RBENV_ROOT="%%PREFIX%%/rbenv_root"
 export CONFIGURE_OPTS="--with-iconv-dir=%%PREFIX%%"
-export CC=gcc
+export CC=%%CC%%
 export RUBY_BUILD_MIRROR_URL="file://%%DISTDIR%%"
+export RUBY_CONFIGURE_OPTS="--disable-install-rdoc"
 eval "$(rbenv init -)"
 if [ -f %%WRKDIR%%/extra-patches ]; then
     cat %%WRKDIR%%/extra-patches | rbenv install --verbose --patch $1
