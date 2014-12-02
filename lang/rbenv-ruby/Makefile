@@ -26,12 +26,28 @@ DISTINFO_FILE=		${.CURDIR}/distinfo
 
 MY_RUBY_TARGET_ARCH=	${ARCH:S/i386/x86/:S/amd64/x86_64/}
 MY_RUBY_VER=	${RUBY_VERSION:C/.[0-9]+$//}
-RBCONFIG?=	rbenv_root/versions/${RUBY_VERSION}-p${RUBY_PATCHLEVEL}/lib/ruby/${MY_RUBY_VER}/${MY_RUBY_TARGET_ARCH}-freebsd${OSREL}/rbconfig.rb
+
+# to my surprise, ruby has "ruby lib version" that is not as same as RUBY_VERSION or RUBY_VER
+.if ${MY_RUBY_VER} == 1.8
+MY_RUBY_LIB_VERSION=	1.8
+
+# 1.8 does not like cc
+USE_GCC=	4.6
+.elif ${MY_RUBY_VER} == 1.9
+MY_RUBY_LIB_VERSION=	1.9.1
+.endif
+
+# qa-check in poudrier exits with fatal error when USES does not contain
+# libtool and '*.la' file exists
+USES=	libtool
+PLIST_SUB+=	RUBY_VERSION=${RUBY_VERSION} RUBY_PATCHLEVEL=${RUBY_PATCHLEVEL} MY_RUBY_TARGET_ARCH=${MY_RUBY_TARGET_ARCH}
+
+RBCONFIG?=	rbenv_root/versions/${RUBY_VERSION}-p${RUBY_PATCHLEVEL}/lib/ruby/${MY_RUBY_LIB_VERSION}/${MY_RUBY_TARGET_ARCH}-freebsd${OSREL}/rbconfig.rb
 
 do-build:
 	${MKDIR} ${WRKSRC}
 	${CP} ${FILESDIR}/install.sh ${WRKSRC}/install.sh
-	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' -e 's|%%DISTDIR%%|${DISTDIR}|' -e 's|%%WRKDIR%%|${WRKDIR}|' ${WRKSRC}/install.sh
+	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' -e 's|%%DISTDIR%%|${DISTDIR}|' -e 's|%%WRKDIR%%|${WRKDIR}|' -e 's|%%CC%%|${CC}|' ${WRKSRC}/install.sh
 
 do-install:
 	# copy an extra patche if exists, which is picked up by install.sh.
@@ -41,8 +57,7 @@ do-install:
 	#   defined but empty.
 	${CP} ${FILESDIR}/extra-patches-${RUBY_VERSION}-p${RUBY_PATCHLEVEL} ${WRKDIR}/extra-patches || ${TRUE}
 	${WRKSRC}/install.sh ${RUBY_VERSION}-p${RUBY_PATCHLEVEL}
-	${STRIP_CMD} ${PREFIX}/rbenv_root/versions/${RUBY_VERSION}-p${RUBY_PATCHLEVEL}/lib/ruby/${MY_RUBY_VER}/${MY_RUBY_TARGET_ARCH}-freebsd${OSREL}/*.so
-	${STRIP_CMD} ${PREFIX}/rbenv_root/versions/${RUBY_VERSION}-p${RUBY_PATCHLEVEL}/lib/ruby/${MY_RUBY_VER}/${MY_RUBY_TARGET_ARCH}-freebsd${OSREL}/*/*.so
+	${STRIP_CMD} `${FIND} ${PREFIX}/rbenv_root/versions/${RUBY_VERSION}-p${RUBY_PATCHLEVEL}/lib/ruby/${MY_RUBY_LIB_VERSION}/${MY_RUBY_TARGET_ARCH}-freebsd${OSREL} -type f -name '*.so'`
 	${STRIP_CMD} ${PREFIX}/rbenv_root/versions/${RUBY_VERSION}-p${RUBY_PATCHLEVEL}/bin/ruby
 	# make portlint happy; ungzippd man page is fatal error
 	${GZIP_CMD} ${PREFIX}/rbenv_root/versions/${RUBY_VERSION}-p${RUBY_PATCHLEVEL}/share/man/man*/*
