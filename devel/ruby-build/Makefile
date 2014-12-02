@@ -42,8 +42,12 @@ PLIST_FILES=	bin/ruby-build \
 		libexec/rbenv-uninstall
 PORTDATA=	*
 
+ADDITIONAL_DEFINITIONS=	1.9.3-p551
+
 post-patch:
-	${CP} ${FILESDIR}/definition-* ${WRKSRC}/share/ruby-build/
+.for F in ${ADDITIONAL_DEFINITIONS}
+	${CP} ${FILESDIR}/${F} ${WRKSRC}/share/ruby-build/
+.endfor
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/ruby-build ${STAGEDIR}${PREFIX}/bin
