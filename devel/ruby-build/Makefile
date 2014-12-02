@@ -2,6 +2,7 @@
 
 PORTNAME=	ruby-build
 PORTVERSION=	20140509.1
+PORTREVISION=	1
 CATEGORIES=	devel ruby
 MASTER_SITES=	GH
 
@@ -14,10 +15,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=${_LICENSE_PERMS_DEFAULT}
 
 RUN_DEPENDS=	autoconf:${PORTSDIR}/devel/autoconf \
-		curl:${PORTSDIR}/ftp/curl
+		curl:${PORTSDIR}/ftp/curl \
+		gmake:${PORTSDIR}/devel/gmake
 
 USE_GCC=	4.6
-USES=	gmake
 
 OPTIONS_DEFINE=	RBENV
 RBENV_DESC=	Install rbenv for installation support
