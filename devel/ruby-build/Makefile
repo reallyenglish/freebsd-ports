@@ -2,7 +2,7 @@
 
 PORTNAME=	ruby-build
 PORTVERSION=	20140509.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel ruby
 MASTER_SITES=	GH
 
@@ -41,6 +41,9 @@ PLIST_FILES=	bin/ruby-build \
 		libexec/rbenv-install \
 		libexec/rbenv-uninstall
 PORTDATA=	*
+
+post-patch:
+	${CP} ${FILESDIR}/definition-* ${WRKSRC}/share/ruby-build/
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/ruby-build ${STAGEDIR}${PREFIX}/bin
