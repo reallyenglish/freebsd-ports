@@ -3,7 +3,7 @@
 
 PORTNAME=	rbenv-ruby
 PORTVERSION=	${RUBY_VERSION}.${RUBY_PATCHLEVEL}
-#PORTREVISION=	1
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES?=	${MASTER_SITE_RUBY:S/$/:ruby/} \
 	${RUBYGEM_MASTER_SITES:S/$/:rubygem/}
@@ -35,6 +35,8 @@ MY_RUBY_LIB_VERSION=	1.8
 USE_GCC=	4.6
 .elif ${MY_RUBY_VER} == 1.9
 MY_RUBY_LIB_VERSION=	1.9.1
+.elif ${MY_RUBY_VER} == 2.0
+MY_RUBY_LIB_VERSION=	2.0.0
 .endif
 
 # qa-check in poudrier exits with fatal error when USES does not contain
