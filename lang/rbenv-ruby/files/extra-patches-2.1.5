@@ -1,0 +1,208 @@
+--- Makefile.in.orig	2014-10-01 13:48:32.240448887 +0000
++++ Makefile.in	2014-10-01 13:49:42.263443819 +0000
+@@ -347,7 +347,7 @@
+ 
+ .d.h:
+ 	@$(ECHO) translating probes $<
+-	$(Q) $(DTRACE) -o $@.tmp -h -C $(INCFLAGS) -s $<
++	$(Q) $(DTRACE) -xnolibs -o $@.tmp -h -C $(INCFLAGS) -s $<
+ 	$(Q) sed -e 's/RUBY_/RUBY_DTRACE_/g' -e 's/PROBES_H_TMP/PROBES_H/g' -e 's/(char \*/(const char */g' -e 's/, char \*/, const char */g' $@.tmp > $@
+ 	$(Q) $(RM) $@.tmp
+ 
+@@ -367,7 +367,7 @@
+ 	fi; \
+ 	touch "$$stamp"
+ 	$(RM) $@
+-	$(Q) $(DTRACE) -G -C $(INCFLAGS) -s $(srcdir)/probes.d -o $@ $(DTRACE_DEPENDENT_OBJS)
++	$(Q) $(DTRACE) -xnolibs -G -C $(INCFLAGS) -s $(srcdir)/probes.d -o $@ $(DTRACE_DEPENDENT_OBJS)
+ 
+ # DTrace static library hacks described here:
+ # http://mail.opensolaris.org/pipermail/dtrace-discuss/2005-August/000207.html
+--- configure.in.orig	2014-10-01 13:46:05.488459511 +0000
++++ configure.in	2014-10-01 13:45:56.345459984 +0000
+@@ -570,7 +570,7 @@
+ [AC_CACHE_CHECK(whether dtrace USDT is available, rb_cv_dtrace_available,
+ [
+     echo "provider conftest{ probe fire(); };" > conftest_provider.d
+-    if $DTRACE -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null; then
++    if $DTRACE -xnolibs -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null; then
+       # DTrace is available on the system
+       rb_cv_dtrace_available=yes
+     else
+@@ -591,13 +591,13 @@
+       probe fire();
+     };
+ _PROBES
+-    $DTRACE -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null &&
++    $DTRACE -xnolibs -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null &&
+     cat >conftest.c <<_CONF &&
+     @%:@include "conftest_provider.h"
+     int main(void){ CONFTEST_FIRE(); return 0; }
+ _CONF
+     $CC $CFLAGS $CPPFLAGS -c -o conftest.o conftest.c &&
+-    $DTRACE -G -s conftest_provider.d conftest.o 2>/dev/null
++    $DTRACE -xnolibs -G -s conftest_provider.d conftest.o 2>/dev/null
+   }; then
+     rb_cv_prog_dtrace_g=yes
+   else
+@@ -1087,10 +1087,10 @@
+   ],
+ [	LIBS="-lm $LIBS"])
+ 
+-AC_CHECK_LIB(crypt, crypt)      # glibc (GNU/Linux, GNU/Hurd, GNU/kFreeBSD)
+-AC_CHECK_LIB(dl, dlopen)	# Dynamic linking for SunOS/Solaris and SYSV
+-AC_CHECK_LIB(dld, shl_load)	# Dynamic linking for HP-UX
+-AC_CHECK_LIB(socket, shutdown)  # SunOS/Solaris
++AC_SEARCH_LIBS(crypt, crypt)      # glibc (GNU/Linux, GNU/Hurd, GNU/kFreeBSD)
++AC_SEARCH_LIBS(dlopen, dl)	# Dynamic linking for SunOS/Solaris and SYSV
++AC_SEARCH_LIBS(shl_load, dld)	# Dynamic linking for HP-UX
++AC_SEARCH_LIBS(shutdown, socket)  # SunOS/Solaris
+ 
+ dnl Checks for header files.
+ AC_HEADER_DIRENT
+@@ -1998,7 +1998,7 @@
+ if test x"$ac_cv_func_clock_gettime" != xyes; then
+     # glibc 2.17 moves clock_* functions from librt to the main C library.
+     # http://sourceware.org/ml/libc-announce/2012/msg00001.html
+-    AC_CHECK_LIB(rt, clock_gettime)
++    AC_SEARCH_LIBS(clock_gettime, rt)
+     if test x"$ac_cv_lib_rt_clock_gettime" = xyes; then
+ 	AC_DEFINE(HAVE_CLOCK_GETTIME, 1)
+     fi
+@@ -2460,7 +2460,7 @@
+ fi
+ 
+ if test x"$enable_pthread" = xyes; then
+-    for pthread_lib in thr pthread pthreads c c_r root; do
++    for pthread_lib in pthread thr pthreads c c_r root; do
+ 	AC_CHECK_LIB($pthread_lib, pthread_kill,
+ 		     rb_with_pthread=yes, rb_with_pthread=no)
+ 	if test "$rb_with_pthread" = "yes"; then break; fi
+@@ -2474,6 +2474,7 @@
+ 	[c],    [],
+ 	[root], [],
+ 	[c_r],  [MAINLIBS="-pthread $MAINLIBS"],
++	[pthread],  [MAINLIBS="-pthread $MAINLIBS"],
+ 	        [AS_CASE(["$target_os"],
+ 		    [openbsd*|mirbsd*], [LIBS="-pthread $LIBS"],
+ 		    [LIBS="-l$pthread_lib $LIBS"])])
+@@ -2735,7 +2736,6 @@
+ 			: ${LDSHARED='$(CC) -shared'}
+ 			if test "$rb_cv_binary_elf" = yes; then
+ 			    LDFLAGS="$LDFLAGS -rdynamic"
+-			    DLDFLAGS="$DLDFLAGS "'-Wl,-soname,$@'
+ 			else
+ 			  test "$GCC" = yes && test "$rb_cv_prog_gnu_ld" = yes || LDSHARED='$(LD) -Bshareable'
+ 			fi
+@@ -3203,6 +3203,7 @@
+     [freebsd*|dragonfly*], [
+ 	SOLIBS='$(LIBS)'
+ 	LIBRUBY_SO='lib$(RUBY_SO_NAME).so.$(MAJOR)$(MINOR)'
++	LIBRUBY_DLDFLAGS='-Wl,-soname,$(LIBRUBY_SO)'
+ 	if test "$rb_cv_binary_elf" != "yes" ; then
+ 	    LIBRUBY_SO="$LIBRUBY_SO.\$(TEENY)"
+ 	    LIBRUBY_ALIASES=''
+--- lib/mkmf.rb.orig	2013-06-26 07:03:38.000000000 -0700
++++ lib/mkmf.rb	2013-07-03 17:43:05.000000000 -0700
+@@ -226,7 +226,7 @@
+   end
+   $extmk ||= false
+   if not $extmk and File.exist?(($hdrdir = RbConfig::CONFIG["rubyhdrdir"]) + "/ruby/ruby.h")
+-    $topdir = $hdrdir
++    $topdir = $hdrdir + "/" + "#{CONFIG['arch']}/ruby/"
+     $top_srcdir = $hdrdir
+     $arch_hdrdir = RbConfig::CONFIG["rubyarchhdrdir"]
+   elsif File.exist?(($hdrdir = ($top_srcdir ||= topdir) + "/include")  + "/ruby.h")
+--- tool/mkconfig.rb.orig	2013-05-27 03:20:03.501815638 +0000
++++ tool/mkconfig.rb	2013-05-27 03:20:31.093814303 +0000
+@@ -173,7 +173,8 @@
+ end
+ vars["prefix"] = ""
+ vars["exec_prefix"] = ""
+-prefix = vars.expand(vars["rubyarchdir"])
++major, minor, *rest = RUBY_VERSION.split('.')
++prefix = "/lib/ruby/#{major}.#{minor}/#{arch}"
+ print "  TOPDIR = File.dirname(__FILE__).chomp!(#{prefix.dump})\n"
+ print "  DESTDIR = ", (drive ? "TOPDIR && TOPDIR[/\\A[a-z]:/i] || " : ""), "'' unless defined? DESTDIR\n"
+ print <<'ARCH' if universal
+--- tool/rbinstall.rb.orig	2013-11-09 16:37:46.000000000 +0000
++++ tool/rbinstall.rb	2014-02-15 19:19:08.049165962 +0000
+@@ -318,6 +318,7 @@
+ libdir = CONFIG[CONFIG.fetch("libdirname", "libdir"), true]
+ rubyhdrdir = CONFIG["rubyhdrdir", true]
+ archhdrdir = CONFIG["rubyarchhdrdir"] || (rubyhdrdir + "/" + CONFIG['arch'])
++libdatadir = CONFIG["prefix", true] + "/" + "libdata"
+ rubylibdir = CONFIG["rubylibdir", true]
+ archlibdir = CONFIG["rubyarchdir", true]
+ sitelibdir = CONFIG["sitelibdir"]
+@@ -373,7 +374,7 @@
+ install?(:local, :arch, :data) do
+   pc = CONFIG["ruby_pc"]
+   if pc and File.file?(pc) and File.size?(pc)
+-    prepare "pkgconfig data", pkgconfigdir = File.join(libdir, "pkgconfig")
++    prepare "pkgconfig data", pkgconfigdir = File.join(libdatadir, "pkgconfig")
+     install pc, pkgconfigdir, :mode => $data_mode
+   end
+ end
+@@ -710,61 +711,6 @@
+ end
+ # :startdoc:
+ 
+-install?(:ext, :comm, :gem) do
+-  $:.unshift(File.join(srcdir, "lib"))
+-  require("rubygems.rb")
+-  gem_dir = Gem.default_dir
+-  directories = Gem.ensure_gem_subdirectories(gem_dir, :mode => $dir_mode)
+-  prepare "default gems", gem_dir, directories
+-
+-  spec_dir = File.join(gem_dir, directories.grep(/^spec/)[0])
+-  default_spec_dir = "#{spec_dir}/default"
+-  makedirs(default_spec_dir)
+-
+-  gems = {}
+-  File.foreach(File.join(srcdir, "defs/default_gems")) do |line|
+-    line.chomp!
+-    line.sub!(/\s*#.*/, '')
+-    next if line.empty?
+-    words = []
+-    line.scan(/\G\s*([^\[\]\s]+|\[([^\[\]]*)\])/) do
+-      words << ($2 ? $2.split : $1)
+-    end
+-    name, base_dir, src, execs = *words
+-    next unless name and base_dir and src
+-
+-    src       = File.join(srcdir, src)
+-    base_dir  = File.join(srcdir, base_dir)
+-    specgen   = RbInstall::Specs::Generator.new(name, base_dir, src, execs || [])
+-    gems[name] ||= specgen
+-  end
+-
+-  Dir.glob(srcdir+"/{lib,ext}/**/*.gemspec").each do |src|
+-    specgen   = RbInstall::Specs::Reader.new(src)
+-    gems[specgen.gemspec.name] ||= specgen
+-  end
+-
+-  gems.sort.each do |name, specgen|
+-    gemspec   = specgen.gemspec
+-    base_dir  = specgen.src.sub(/\A#{Regexp.escape(srcdir)}\//, "")
+-    full_name = "#{gemspec.name}-#{gemspec.version}"
+-
+-    puts "#{" "*30}#{gemspec.name} #{gemspec.version}"
+-    gemspec_path = File.join(default_spec_dir, "#{full_name}.gemspec")
+-    open_for_install(gemspec_path, $data_mode) do
+-      specgen.spec_source
+-    end
+-
+-    unless gemspec.executables.empty? then
+-      bin_dir = File.join(gem_dir, 'gems', full_name, 'bin')
+-      makedirs(bin_dir)
+-
+-      execs = gemspec.executables.map {|exec| File.join(srcdir, 'bin', exec)}
+-      install(execs, bin_dir, :mode => $prog_mode)
+-    end
+-  end
+-end
+-
+ parse_args()
+ 
+ include FileUtils
