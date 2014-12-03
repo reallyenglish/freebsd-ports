@@ -16,7 +16,10 @@ RUN_DEPENDS+=	${LOCALBASE}/libexec/nagios/utils.sh:${PORTSDIR}/net-mgmt/nagios-p
 
 NO_BUILD=	Yes
 
-USES=	tar:tgz
+USES=	tar:tgz shebangfix
+
+SHEBANG_FILES=	src/check_raid_amrstat/check_raid_amrstat \
+				src/check_mpt/check_mpt
 
 .include <bsd.port.pre.mk>
 
