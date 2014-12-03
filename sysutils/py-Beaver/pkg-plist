@@ -98,8 +98,8 @@ bin/beaver
 %%PYTHON_SITELIBDIR%%/beaver/__init__.pyo
 %%PYTHON_SITELIBDIR%%/beaver/__init__.pyc
 %%PYTHON_SITELIBDIR%%/beaver/__init__.py
-@dirrmtry %%PYTHON_SITELIBDIR%%/beaver/worker
-@dirrmtry %%PYTHON_SITELIBDIR%%/beaver/transports
-@dirrmtry %%PYTHON_SITELIBDIR%%/beaver/tests
-@dirrmtry %%PYTHON_SITELIBDIR%%/beaver/dispatcher
-@dirrmtry %%PYTHON_SITELIBDIR%%/beaver
+@dir %%PYTHON_SITELIBDIR%%/beaver/worker
+@dir %%PYTHON_SITELIBDIR%%/beaver/transports
+@dir %%PYTHON_SITELIBDIR%%/beaver/tests
+@dir %%PYTHON_SITELIBDIR%%/beaver/dispatcher
+@dir %%PYTHON_SITELIBDIR%%/beaver
