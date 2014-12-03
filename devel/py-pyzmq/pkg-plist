@@ -158,13 +158,13 @@
 %%PYTHON_SITELIBDIR%%/zmq/web/zmqweb.py
 %%PYTHON_SITELIBDIR%%/zmq/web/zmqweb.pyc
 %%PYTHON_SITELIBDIR%%/zmq/web/zmqweb.pyo
-@dir %%PYTHON_SITELIBDIR%%/zmq/core
-@dir %%PYTHON_SITELIBDIR%%/zmq/devices
-@dir %%PYTHON_SITELIBDIR%%/zmq/eventloop/platform
-@dir %%PYTHON_SITELIBDIR%%/zmq/eventloop
-@dir %%PYTHON_SITELIBDIR%%/zmq/log
-@dir %%PYTHON_SITELIBDIR%%/zmq/ssh
-@dir %%PYTHON_SITELIBDIR%%/zmq/tests
-@dir %%PYTHON_SITELIBDIR%%/zmq/utils
-@dir %%PYTHON_SITELIBDIR%%/zmq/web
-@dir %%PYTHON_SITELIBDIR%%/zmq
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/core
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/devices
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/eventloop/platform
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/eventloop
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/log
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/ssh
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/tests
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/utils
+@dirrm %%PYTHON_SITELIBDIR%%/zmq/web
+@dirrm %%PYTHON_SITELIBDIR%%/zmq
