@@ -5,6 +5,7 @@ export CONFIGURE_OPTS="--with-iconv-dir=%%PREFIX%%"
 export CC=%%CC%%
 export RUBY_BUILD_MIRROR_URL="file://%%DISTDIR%%"
 export RUBY_CONFIGURE_OPTS="--disable-install-rdoc"
+export RUBY_CFLAGS="%%CFLAGS%%"
 eval "$(rbenv init -)"
 if [ -f %%WRKDIR%%/extra-patches ]; then
     cat %%WRKDIR%%/extra-patches | rbenv install --verbose --patch $1

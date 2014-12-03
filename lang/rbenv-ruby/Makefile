@@ -7,7 +7,7 @@ PORTVERSION=	${RUBY_VERSION}.${RUBY_PATCHLEVEL}
 .else
 PORTVERSION=	${RUBY_VERSION}
 .endif
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang
 MASTER_SITES?=	${MASTER_SITE_RUBY:S/$/:ruby/} \
 	${RUBYGEM_MASTER_SITES:S/$/:rubygem/}
@@ -60,7 +60,9 @@ RBCONFIG?=	rbenv_root/versions/${MY_RUBY_VERSION_WITH_PATCHLEVEL}/lib/ruby/${MY_
 do-build:
 	${MKDIR} ${WRKSRC}
 	${CP} ${FILESDIR}/install.sh ${WRKSRC}/install.sh
-	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' -e 's|%%DISTDIR%%|${DISTDIR}|' -e 's|%%WRKDIR%%|${WRKDIR}|' -e 's|%%CC%%|${CC}|' ${WRKSRC}/install.sh
+	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' -e 's|%%DISTDIR%%|${DISTDIR}|' \
+		-e 's|%%WRKDIR%%|${WRKDIR}|' -e 's|%%CC%%|${CC}|' \
+		-e 's|%%CFLAGS%%|${CFLAGS}|' ${WRKSRC}/install.sh
 
 do-install:
 	# copy an extra patche if exists, which is picked up by install.sh.
