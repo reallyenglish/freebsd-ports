@@ -1159,6 +1159,7 @@
     SUBDIR += py-charade
     SUBDIR += py-chardet
     SUBDIR += py-cloud_sptheme
+    SUBDIR += py-conf_d
     SUBDIR += py-creole
     SUBDIR += py-docutils
     SUBDIR += py-dsv
