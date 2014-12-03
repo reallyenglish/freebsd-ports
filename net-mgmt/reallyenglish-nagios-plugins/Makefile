@@ -15,7 +15,6 @@ RUN_DEPENDS+=	${LOCALBASE}/libexec/nagios/utils.sh:${PORTSDIR}/net-mgmt/nagios-p
 	cciss_vol_status:${PORTSDIR}/sysutils/cciss_vol_status
 
 NO_BUILD=	Yes
-MAKE_ARGS=	DESTDIR=${PREFIX}
 
 USES=	tar:tgz
 
@@ -23,6 +22,9 @@ USES=	tar:tgz
 
 # XXX this should be fixed in the upstream
 pre-install:
-	${INSTALL} -d ${PREFIX}/libexec/nagios
+	${INSTALL} -d ${STAGEDIR}${PREFIX}/libexec/nagios
+
+do-install:
+	${MAKE} -C ${WRKSRC} install DESTDIR=${STAGEDIR}${PREFIX}
 
 .include <bsd.port.post.mk>
