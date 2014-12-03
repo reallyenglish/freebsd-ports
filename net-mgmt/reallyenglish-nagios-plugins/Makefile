@@ -5,7 +5,6 @@ PORTVERSION=	1.1
 PORTREVISION=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://journal.reallyenglish.com/
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	Nagios plugins at reallyenglish
@@ -18,6 +17,8 @@ RUN_DEPENDS+=	${LOCALBASE}/libexec/nagios/utils.sh:${PORTSDIR}/net-mgmt/nagios-p
 
 NO_BUILD=	Yes
 MAKE_ARGS=	DESTDIR=${PREFIX}
+
+USES=	tar:tgz
 
 .include <bsd.port.pre.mk>
 
