@@ -270,6 +270,7 @@
     SUBDIR += rancid
     SUBDIR += rancid3
     SUBDIR += rate
+    SUBDIR += reallyenglish-nagios-plugins
     SUBDIR += rcpd
     SUBDIR += remarp
     SUBDIR += rotorouter
