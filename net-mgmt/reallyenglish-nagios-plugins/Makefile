@@ -10,7 +10,7 @@ MAINTAINER=	tomoyukis@reallyenglish.com
 COMMENT=	Nagios plugins at reallyenglish
 
 RUN_DEPENDS+=	${LOCALBASE}/libexec/nagios/utils.sh:${PORTSDIR}/net-mgmt/nagios-plugins \
-	${SITE_PERL}/Nagios/Plugin.pm:${PORTSDIR}/net-mgmt/p5-Nagios-Plugin \
+	p5-Nagios-Plugin>=0:${PORTSDIR}/net-mgmt/p5-Nagios-Plugin \
 	megarc:${PORTSDIR}/sysutils/megarc \
 	amrstat:${PORTSDIR}/sysutils/amrstat \
 	cciss_vol_status:${PORTSDIR}/sysutils/cciss_vol_status
