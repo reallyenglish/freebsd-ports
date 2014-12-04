@@ -1173,6 +1173,7 @@
     SUBDIR += py-genshi
     SUBDIR += py-genshi-devel
     SUBDIR += py-gettext
+    SUBDIR += py-glob2
     SUBDIR += py-html2text
     SUBDIR += py-hyperestraier-python
     SUBDIR += py-jaxml
