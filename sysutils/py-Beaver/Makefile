@@ -19,9 +19,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}conf_d>=0.0.4:${PORTSDIR}/textproc/py-conf_d
 	${PYTHON_PKGNAMEPREFIX}daemon>=0:${PORTSDIR}/devel/py-daemon \
 	${PYTHON_PKGNAMEPREFIX}sqlite3>=0:${PORTSDIR}/databases/py-sqlite3
 
-USE_PYTHON=	2.6+
-USE_PYDISTUTILS=	yes
-#PYDISTUTILS_AUTOPLIST=	yes
+USES=	python:2.6+
+USE_PYTHON=	distutils autoplist
 SUB_LIST+=	PYTHON_CMD=${PYTHON_CMD}
 USE_RC_SUBR=	beaver
 
@@ -42,7 +41,7 @@ RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pika>=0:${PORTSDIR}/devel/py-pika
 .endif
 
 .if ${PORT_OPTIONS:MZEROMQ}
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pyzmq>=0:${PORTSDIR}/devel/py-pyzmq
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pyzmq>=0:${PORTSDIR}/net/py-pyzmq
 .endif
 
 .if ${PORT_OPTIONS:MREDIS}
