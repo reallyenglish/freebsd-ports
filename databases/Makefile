@@ -171,7 +171,6 @@
     SUBDIR += mdbtools
     SUBDIR += mdcached
     SUBDIR += memcached
-    SUBDIR += memcachedb
     SUBDIR += memcacheq
     SUBDIR += metakit
     SUBDIR += monetdb
@@ -397,6 +396,7 @@
     SUBDIR += p5-Dancer-Plugin-Database-Core
     SUBDIR += p5-Dancer-Plugin-Redis
     SUBDIR += p5-Dancer-Session-Memcached
+    SUBDIR += p5-Dancer2-Plugin-Database
     SUBDIR += p5-Dancer2-Plugin-DBIC
     SUBDIR += p5-Data-Page
     SUBDIR += p5-Data-Pageset
@@ -536,8 +536,10 @@
     SUBDIR += pgadmin3
     SUBDIR += pgagent
     SUBDIR += pgbadger
+    SUBDIR += pgbarman
     SUBDIR += pgbouncer
     SUBDIR += pgdbf
+    SUBDIR += pgespresso
     SUBDIR += pgfouine
     SUBDIR += pglesslog
     SUBDIR += pgloader
