@@ -120,6 +120,7 @@
     SUBDIR += quasi88
     SUBDIR += raine
     SUBDIR += rtc
+    SUBDIR += rubygem-fission
     SUBDIR += sim6811
     SUBDIR += simh
     SUBDIR += skyeye
@@ -153,7 +154,6 @@
     SUBDIR += vxtools
     SUBDIR += wine
     SUBDIR += wine-devel
-    SUBDIR += wine-doors
     SUBDIR += wine-compholio
     SUBDIR += wine-gecko
     SUBDIR += wine-gecko-devel

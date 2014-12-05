@@ -1,3 +1,5 @@
+%%DEFAULT_VIMRC%%@sample %%ETCDIR%%/gvimrc.sample
+%%DEFAULT_VIMRC%%@sample %%ETCDIR%%/vimrc.sample
 %%GUI%%bin/eview
 bin/evim
 @comment bin/ex

@@ -311,7 +311,6 @@
     SUBDIR += victorops-nagios
     SUBDIR += vidalia
     SUBDIR += virt-viewer
-    SUBDIR += virtinst
     SUBDIR += wdiag
     SUBDIR += weathermap
     SUBDIR += weplab
