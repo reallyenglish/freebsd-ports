@@ -3,7 +3,7 @@
 
 PORTNAME=	pgpool-II
 PORTVERSION=	3.1.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	LOCAL/kuriyama \
 		http://www.pgpool.net/mediawiki/images/
