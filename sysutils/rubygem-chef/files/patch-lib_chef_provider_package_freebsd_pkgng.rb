@@ -1,6 +1,14 @@
---- lib/chef/provider/package/freebsd/pkgng.rb.orig	2014-12-05 08:39:33 UTC
+--- lib/chef/provider/package/freebsd/pkgng.rb.orig	2014-12-15 06:02:56 UTC
 +++ lib/chef/provider/package/freebsd/pkgng.rb
-@@ -52,7 +52,13 @@ class Chef
+@@ -45,14 +45,20 @@ class Chef
+ 
+           def current_installed_version
+             pkg_info = shell_out!("pkg info \"#{@new_resource.package_name}\"", :env => nil, :returns => [0,70])
+-            pkg_info.stdout[/^#{Regexp.escape(@new_resource.package_name)}-(.+)/, 1]
++            pkg_info.stdout[/^Version +: (.+)$/, 1]
+           end
+ 
+           def candidate_version
              @new_resource.source ? file_candidate_version : repo_candidate_version
            end
  
