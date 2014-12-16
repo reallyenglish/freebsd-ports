@@ -205,8 +205,8 @@
     SUBDIR += gsed
     SUBDIR += gtk-doc
     SUBDIR += gtkspell
-    SUBDIR += gtkspell3
     SUBDIR += gtkspell-reference
+    SUBDIR += gtkspell3
     SUBDIR += gu-aspell
     SUBDIR += gutenmark
     SUBDIR += gv-aspell
@@ -1398,6 +1398,7 @@
     SUBDIR += s5
     SUBDIR += sablotron
     SUBDIR += sagasu
+    SUBDIR += sansi
     SUBDIR += sarep
     SUBDIR += sary
     SUBDIR += sassc
@@ -1503,6 +1504,7 @@
     SUBDIR += txt2html
     SUBDIR += txt2man
     SUBDIR += txt2tags
+    SUBDIR += uchardet
     SUBDIR += uim
     SUBDIR += uim-el
     SUBDIR += uim-gtk
@@ -1536,8 +1538,6 @@
     SUBDIR += wv
     SUBDIR += wv2
     SUBDIR += xalan-j
-    SUBDIR += xerces-c2
-    SUBDIR += xerces-c2-devel
     SUBDIR += xerces-c3
     SUBDIR += xerces-j
     SUBDIR += xfce4-dict-plugin
@@ -1555,9 +1555,9 @@
     SUBDIR += xml-i18n-tools
     SUBDIR += xml-lite.el
     SUBDIR += xml-parse.el
-    SUBDIR += xml_ez_out
     SUBDIR += xml2
     SUBDIR += xml2rfc
+    SUBDIR += xml_ez_out
     SUBDIR += xmlada
     SUBDIR += xmlcatmgr
     SUBDIR += xmlcharent
