@@ -7,7 +7,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://repo.varnish-cache.org/source/
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	The Varnish high-performance HTTP accelerator
+COMMENT=	Varnish high-performance HTTP accelerator
 
 LICENSE=	BSD2CLAUSE
 
