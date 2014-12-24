@@ -1,13 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	varnish
-PORTVERSION=	3.0.5
-PORTREVISION=	3
+PORTVERSION=	4.0.2
+#PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	http://repo.varnish-cache.org/source/
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	The Varnish high-performance HTTP accelerator
+COMMENT=	Varnish high-performance HTTP accelerator
 
 LICENSE=	BSD2CLAUSE
 
@@ -50,22 +50,13 @@ post-build:
 	#
 
 post-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/varnish
-	${INSTALL_SCRIPT} ${WRKSRC}/lib/libvmod_std/vmod.py ${STAGEDIR}${PREFIX}/share/varnish
-.for f in cache.h heritage.h steps.h common.h acct_fields.h locks.h body_status.h
-	${INSTALL_DATA} ${WRKSRC}/bin/varnishd/${f} ${STAGEDIR}${PREFIX}/include/varnish
-.endfor
-.for f in vct.h vmod_abi.h vre.h vrt.h vqueue.h vsb.h libvarnish.h miniobj.h vas.h vav.h http_headers.h vcl_returns.h
-	${INSTALL_DATA} ${WRKSRC}/include/${f} ${STAGEDIR}${PREFIX}/include/varnish
-.endfor
-	@${RM} -f ${STAGEDIR}${PREFIX}/lib/libvarnishapi.*a ${STAGEDIR}${PREFIX}/lib/varnish/lib*a ${STAGEDIR}${PREFIX}/lib/varnish/vmods/lib*a
-	@${MV} ${STAGEDIR}${ETCDIR}/default.vcl ${STAGEDIR}${ETCDIR}/default.vcl.sample
+	${INSTALL} -d ${STAGEDIR}${ETCDIR}
+	${MV} ${STAGEDIR}${PORTDOCS}/${DOCSDIR}/example.vcl ${STAGEDIR}${ETCDIR}/example.vcl.sample
+	${MV} ${STAGEDIR}${PORTDOCS}/${DOCSDIR}/builtin.vcl ${STAGEDIR}${ETCDIR}/builtin.vcl.sample
+	${RM} -r ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "i386"
-EXTRA_PATCHES+=	${FILESDIR}/bug-1201.patch
-.endif
 .if ${ARCH} == "arm"
 BROKEN=		Does not configure on arm
 .endif
