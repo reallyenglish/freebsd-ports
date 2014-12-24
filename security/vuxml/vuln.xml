@@ -57,15 +57,174 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="c3d43001-8064-11e4-801f-0022156e8794">
+    <topic>mutt -- denial of service via crafted mail message</topic>
+    <affects>
+      <package>
+	<name>mutt</name>
+	<range><ge>1.5.22</ge><lt>1.5.23_7</lt></range>
+      </package>
+      <package>
+	<name>ja-mutt</name>
+	<range><ge>1.5.22</ge><lt>1.5.23_7</lt></range>
+      </package>
+      <package>
+	<name>zh-mutt</name>
+	<range><ge>1.5.22</ge><lt>1.5.23_7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NVD reports:</p>
+	<blockquote cite="https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-9116">
+	  <p>The write_one_header function in mutt 1.5.23 does not
+	  properly handle newline characters at the beginning of a
+	  header, which allows remote attackers to cause a denial of
+	  service (crash) via a header with an empty body, which
+	  triggers a heap-based buffer overflow in the mutt_substrdup
+	  function.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <bid>71334</bid>
+      <cvename>CVE-2014-9116</cvename>
+      <url>https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=771125</url>
+      <url>http://dev.mutt.org/trac/ticket/3716</url>
+    </references>
+    <dates>
+      <discovery>2014-11-26</discovery>
+      <entry>2014-12-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4033d826-87dd-11e4-9079-3c970e169bc2">
+    <topic>ntp -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>ntp</name>
+	<name>ntp-devel</name>
+	<range><lt>4.2.8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>CERT reports:</p>
+	<blockquote cite="http://www.kb.cert.org/vuls/id/852879">
+	  <p>The Network Time Protocol (NTP) provides networked
+	    systems with a way to synchronize time for various
+	    services and applications. ntpd version 4.2.7 and
+	    pervious versions allow attackers to overflow several
+	    buffers in a way that may allow malicious code to
+	    be executed. ntp-keygen prior to version 4.2.7p230
+	    also uses a non-cryptographic random number generator
+	    when generating symmetric keys.</p>
+	  <p>The buffer overflow vulnerabilities in ntpd may
+	    allow a remote unauthenticated attacker to execute
+	    arbitrary malicious code with the privilege level
+	    of the ntpd process. The weak default key and
+	    non-cryptographic random number generator in
+	    ntp-keygen may allow an attacker to gain
+	    information regarding the integrity checking
+	    and authentication encryption schemes.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-9293</cvename>
+      <cvename>CVE-2014-9294</cvename>
+      <cvename>CVE-2014-9295</cvename>
+      <cvename>CVE-2014-9296</cvename>
+      <url>http://www.kb.cert.org/vuls/id/852879</url>
+    </references>
+    <dates>
+      <discovery>2014-12-19</discovery>
+      <entry>2014-12-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1d567278-87a5-11e4-879c-000c292ee6b8">
+    <topic>git -- Arbitrary command execution on case-insensitive filesystems</topic>
+    <affects>
+      <package>
+	<name>git</name>
+	<range><lt>2.2.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Git Project reports:</p>
+	<blockquote cite="http://article.gmane.org/gmane.linux.kernel/1853266">
+	  <p>When using a case-insensitive filesystem an attacker can
+	    craft a malicious Git tree that will cause Git to overwrite
+	    its own .git/config file when cloning or checking out a
+	    repository, leading to arbitrary command execution in the
+	    client machine.  If you are a hosting service whose users
+	    may fetch from your service to Windows or Mac OS X machines,
+	    you are strongly encouraged to update to protect such users
+	    who use existing versions of Git.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-9390</cvename>
+      <url>https://github.com/blog/1938-git-client-vulnerability-announced</url>
+      <url>http://article.gmane.org/gmane.linux.kernel/1853266</url>
+    </references>
+    <dates>
+      <discovery>2014-12-19</discovery>
+      <entry>2014-12-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0c5cf7c4-856e-11e4-a089-60a44c524f57">
+    <topic>otrs -- Incomplete Access Control</topic>
+    <affects>
+      <package>
+	<name>otrs</name>
+	<range><gt>3.2.*</gt><lt>3.2.17</lt></range>
+	<range><gt>3.3.*</gt><lt>3.3.11</lt></range>
+	<range><gt>4.0.*</gt><lt>4.0.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OTRS project reports:</p>
+	<blockquote cite="http://www.otrs.com/security-advisory-2014-06-incomplete-access-control/">
+	  <p>An attacker with valid OTRS credentials could access and manipulate ticket data
+	     of other users via the GenericInterface, if a ticket webservice is configured
+	     and not additionally secured.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.otrs.com/security-advisory-2014-06-incomplete-access-control/</url>
+      <cvename>CVE-2014-9324</cvename>
+    </references>
+    <dates>
+      <discovery>2014-12-16</discovery>
+      <entry>2014-12-16</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="f5561ade-846c-11e4-b7a7-20cf30e32f6d">
     <topic>subversion -- DoS vulnerabilities</topic>
     <affects>
+      <package>
+	<name>mod_dav_svn</name>
+	<range><ge>1.8.0</ge><lt>1.8.11</lt></range>
+      </package>
+      <package>
+	<name>subversion16</name>
+	<range><ge>1.0.0</ge><lt>1.7.19</lt></range>
+      </package>
       <package>
 	<name>subversion17</name>
 	<range><ge>1.0.0</ge><lt>1.7.19</lt></range>
       </package>
       <package>
 	<name>subversion</name>
+	<range><ge>1.0.0</ge><lt>1.7.19</lt></range>
 	<range><ge>1.8.0</ge><lt>1.8.11</lt></range>
       </package>
     </affects>
@@ -255,7 +414,7 @@ Notes:
     <affects>
       <package>
 	<name>xorg-server</name>
-	<range><lt>1.12.4_10</lt></range>
+	<range><lt>1.12.4_10,1</lt></range>
       </package>
     </affects>
     <description>
@@ -2712,11 +2871,16 @@ Notes:
     <topic>subversion -- several vulnerabilities</topic>
     <affects>
       <package>
+	<name>subversion16</name>
+	<range><ge>1.0.0</ge><lt>1.7.18</lt></range>
+      </package>
+      <package>
 	<name>subversion17</name>
-	<range><ge>1.7.0</ge><lt>1.7.18</lt></range>
+	<range><ge>1.0.0</ge><lt>1.7.18</lt></range>
       </package>
       <package>
 	<name>subversion</name>
+	<range><ge>1.0.0</ge><lt>1.7.18</lt></range>
 	<range><ge>1.8.0</ge><lt>1.8.10</lt></range>
       </package>
     </affects>
@@ -6341,10 +6505,6 @@ Notes:
 	<name>subversion17</name>
 	<range><ge>1.3.0</ge><lt>1.7.16</lt></range>
       </package>
-      <package>
-	<name>subversion18</name>
-	<range><ge>1.8.0</ge><lt>1.8.8</lt></range>
-      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -8191,9 +8351,8 @@ JavaScript code would be executed.</p>
     <affects>
       <package>
 	<name>subversion</name>
+	<range><ge>1.4.0</ge><lt>1.7.14</lt></range>
 	<range><ge>1.8.0</ge><lt>1.8.5</lt></range>
-	<range><ge>1.7.0</ge><lt>1.7.14</lt></range>
-	<range><ge>1.6.0</ge><lt>1.6.24</lt></range>
       </package>
     </affects>
     <description>
@@ -13337,7 +13496,7 @@ affected..</p>
       <package>
 	<name>subversion</name>
 	<range><ge>1.7.0</ge><lt>1.7.9</lt></range>
-	<range><ge>1.6.0</ge><lt>1.6.21</lt></range>
+	<range><ge>1.0.0</ge><lt>1.6.21</lt></range>
       </package>
     </affects>
     <description>

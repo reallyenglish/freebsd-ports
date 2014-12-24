@@ -2,6 +2,7 @@
 
 PORTNAME=	asterisk
 PORTVERSION=	11.15.0
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://downloads.asterisk.org/pub/telephony/asterisk/ \
 		http://downloads.asterisk.org/pub/telephony/asterisk/old-releases/
@@ -54,12 +55,12 @@ OPTIONS_DEFAULT_amd64=	DAHDI
 OPTIONS_DEFAULT_sparc64=	DAHDI
 
 EXCHANGE_DESC?=	Exchange calendar support
-NEWG711_DESC?=	New G711 Codec
+NEWG711_DESC?=	New G711 codec
 SRTP_DESC?=	SecureRTP support
 OOH323_DESC?=	ooh323 support
 DAHDI_DESC?=	DAHDI support
 XMPP_DESC?=	XMPP/GTALK support
-UUID_DESC?=	libuuid support(required for ICE and TURN in RTP)
+UUID_DESC?=	libuuid support (required for ICE and TURN in RTP)
 
 OPTIONS_SUB=	yes
 OOH323_LIB_DEPENDS=	libpt_r.so:${PORTSDIR}/devel/pwlib \
