@@ -1,0 +1,5 @@
+@comment $FreeBSD$
+bin/check_postgres
+man/man1/check_postgres.1p.gz
+%%SITE_PERL%%/mach/auto/check_postgres/.packlist
+@dirrmtry %%SITE_PERL%%/mach/auto/check_postgres
