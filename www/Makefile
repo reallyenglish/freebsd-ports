@@ -479,6 +479,7 @@
     SUBDIR += mod_ntlm2
     SUBDIR += mod_perl2
     SUBDIR += mod_php5
+    SUBDIR += mod_php53
     SUBDIR += mod_php55
     SUBDIR += mod_php56
     SUBDIR += mod_proctitle
