@@ -7,7 +7,7 @@ PORTREVISION=	9
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://stian.cubic.org/ocp/ \
-		CRITICAL
+		LOCAL/ehaupt
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	The legendary Open Cubic Player
@@ -61,7 +61,7 @@ OPTIONS_DEFAULT=ADPLUG FLAC MIDI X11 SDL
 .include <bsd.port.options.mk>
 
 .if exists(${TIMIDITY_CFG}) || ${PORT_OPTIONS:MMIDI}
-RUN_DEPENDS+=	${TIMIDITY_CFG}:${PORTSDIR}/audio/eawpats
+RUN_DEPENDS+=	eawpats>0:${PORTSDIR}/audio/eawpats
 .endif
 
 .if ${PORT_OPTIONS:MX11}

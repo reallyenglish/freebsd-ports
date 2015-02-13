@@ -3,7 +3,7 @@
 
 PORTNAME=	vtk
 PORTVERSION=	6.1.0
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	math graphics
 MASTER_SITES=	http://www.vtk.org/files/release/${VTK_SHORT_VER}/
 PKGNAMESUFFIX=	6
@@ -13,8 +13,6 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	The Visualization Toolkit
 
 LICENSE=	BSD3CLAUSE
-
-BROKEN=		Fails to build
 
 LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
     		libpng.so:${PORTSDIR}/graphics/png \

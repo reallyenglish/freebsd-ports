@@ -289,7 +289,7 @@ libogg_DETECT=		${libogg${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 libogg_PORT=		${PORTSDIR}/audio/linux${LINUX_DIST_SUFFIX}-libogg
 
 libpciaccess_c6_FILE=		${LINUXBASE}/usr/lib/libpciaccess.so.0.11.1
-libpciaccess_DETECT=		${libogg${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
+libpciaccess_DETECT=		${libpciaccess${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 libpciaccess_PORT=		${PORTSDIR}/devel/linux${LINUX_DIST_SUFFIX}-libpciaccess
 
 libsigcpp20_f10_FILE=	${LINUXBASE}/usr/lib/libsigc-2.0.so.0
@@ -418,7 +418,7 @@ sdl12_PORT=			${PORTSDIR}/devel/linux${LINUX_DIST_SUFFIX}-sdl12
 sdl12_DEPENDS=		xorglibs
 
 sdlimage_f10_FILE=	${LINUXBASE}/usr/lib/libSDL_image-1.2.so.0.1.5
-sdlimage_c6_FILE=	${LINUXBASE}/usr/lib/libSDL_image-1.2.so.0.8.2
+sdlimage_c6_FILE=	${LINUXBASE}/usr/lib/libSDL_image-1.2.so.0.8.4
 sdlimage_DETECT=	${sdlimage${LINUX_DIST_SUFFIX:S/-/_/}_FILE}
 sdlimage_PORT=		${PORTSDIR}/graphics/linux${LINUX_DIST_SUFFIX}-sdl_image
 sdlimage_DEPENDS=	jpeg png sdl12 tiff

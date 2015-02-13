@@ -56,7 +56,6 @@
     SUBDIR += barbecue
     SUBDIR += barcode
     SUBDIR += batik
-    SUBDIR += bbrb
     SUBDIR += blender
     SUBDIR += blender-doc
     SUBDIR += bmeps
@@ -96,7 +95,6 @@
     SUBDIR += commons-utilities
     SUBDIR += compupic
     SUBDIR += converseen
-    SUBDIR += corona
     SUBDIR += cosmoplayer
     SUBDIR += crw
     SUBDIR += cthumb
@@ -136,8 +134,6 @@
     SUBDIR += edje_viewer
     SUBDIR += electrix
     SUBDIR += enblend
-    SUBDIR += ender
-    SUBDIR += enesim
     SUBDIR += entangle
     SUBDIR += eog
     SUBDIR += eog-plugins
@@ -148,7 +144,6 @@
     SUBDIR += epix
     SUBDIR += eps2png
     SUBDIR += epstool
-    SUBDIR += etch
     SUBDIR += eterm-bg
     SUBDIR += evas_generic_loaders
     SUBDIR += evas_generic_loaders-gst
@@ -184,7 +179,6 @@
     SUBDIR += fpc-graph
     SUBDIR += fpc-hermes
     SUBDIR += fpc-imagemagick
-    SUBDIR += fpc-imlib
     SUBDIR += fpc-libgd
     SUBDIR += fpc-libpng
     SUBDIR += fpc-ncurses
@@ -324,7 +318,6 @@
     SUBDIR += gtk-update-icon-cache
     SUBDIR += gtkam
     SUBDIR += gtkdps
-    SUBDIR += gtkgraph
     SUBDIR += gts
     SUBDIR += guilib
     SUBDIR += gwenview-kde4
@@ -355,13 +348,11 @@
     SUBDIR += iiview
     SUBDIR += ilmbase
     SUBDIR += imageindex
-    SUBDIR += imagesort
     SUBDIR += imageviewer
     SUBDIR += imageworsener
     SUBDIR += imc
     SUBDIR += imgtops
     SUBDIR += imgv
-    SUBDIR += imlib
     SUBDIR += imlib2
     SUBDIR += imlib2_loaders
     SUBDIR += import-pictures
@@ -407,11 +398,13 @@
     SUBDIR += kipi-plugin-calendar
     SUBDIR += kipi-plugin-debianscreenshots
     SUBDIR += kipi-plugin-dngconverter
+    SUBDIR += kipi-plugin-dropbox
     SUBDIR += kipi-plugin-expoblending
     SUBDIR += kipi-plugin-facebook
     SUBDIR += kipi-plugin-flashexport
     SUBDIR += kipi-plugin-flickrexport
     SUBDIR += kipi-plugin-galleryexport
+    SUBDIR += kipi-plugin-googledrive
     SUBDIR += kipi-plugin-gpssync
     SUBDIR += kipi-plugin-htmlexport
     SUBDIR += kipi-plugin-imageshackexport
@@ -471,6 +464,7 @@
     SUBDIR += libart_lgpl
     SUBDIR += libaux
     SUBDIR += libboard
+    SUBDIR += libbpg
     SUBDIR += libcaca
     SUBDIR += libcdr01
     SUBDIR += libchamplain
@@ -512,7 +506,6 @@
     SUBDIR += libmorph
     SUBDIR += libopenraw
     SUBDIR += libosmesa
-    SUBDIR += libpano12
     SUBDIR += libpano13
     SUBDIR += libpcd
     SUBDIR += libpgf
@@ -520,6 +513,7 @@
     SUBDIR += libpuzzle
     SUBDIR += libqrencode
     SUBDIR += librasterlite
+    SUBDIR += librasterlite2
     SUBDIR += libraw
     SUBDIR += libreatlas
     SUBDIR += librsvg2
@@ -765,7 +759,6 @@
     SUBDIR += php56-gd
     SUBDIR += phplot
     SUBDIR += picpuz
-    SUBDIR += picturebook
     SUBDIR += picviz
     SUBDIR += piddle
     SUBDIR += pinpoint
@@ -792,7 +785,6 @@
     SUBDIR += poppler-qt4
     SUBDIR += poppler-qt5
     SUBDIR += poppler-utils
-    SUBDIR += pornview
     SUBDIR += potrace
     SUBDIR += povray-meta
     SUBDIR += povray36
@@ -954,6 +946,7 @@
     SUBDIR += sdl_gfx
     SUBDIR += sdl_image
     SUBDIR += sdl_ttf
+    SUBDIR += sdump
     SUBDIR += seam-carving-gui
     SUBDIR += seejpeg
     SUBDIR += seom
@@ -963,7 +956,6 @@
     SUBDIR += sharpconstruct
     SUBDIR += shiva-collections
     SUBDIR += shotwell
-    SUBDIR += show
     SUBDIR += showimage
     SUBDIR += silgraphite
     SUBDIR += simage
@@ -1019,6 +1011,7 @@
     SUBDIR += visprint
     SUBDIR += volpack
     SUBDIR += vp
+    SUBDIR += waffle
     SUBDIR += webp
     SUBDIR += whirlgif
     SUBDIR += white_dune
@@ -1058,9 +1051,11 @@
     SUBDIR += yed
     SUBDIR += yukon
     SUBDIR += zathura
+    SUBDIR += zathura-cb
     SUBDIR += zathura-djvu
     SUBDIR += zathura-pdf-mupdf
     SUBDIR += zathura-pdf-poppler
+    SUBDIR += zathura-ps
     SUBDIR += zbar
     SUBDIR += zgv
     SUBDIR += zimg

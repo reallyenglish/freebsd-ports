@@ -3,7 +3,7 @@
 
 PORTNAME=	aster
 DISTVERSION=	${ASTER_DISTVERSION}
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	french cad
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -31,7 +31,7 @@ LICENSE=	GPLv2
 #
 #-----------------------------------------------------------------------
 
-BUILD_DEPENDS+=	${LOCALBASE}/aster/ASTK/ASTK_SERV:${PORTSDIR}/cad/astk-serveur	\
+BUILD_DEPENDS+=	astk-serveur>0:${PORTSDIR}/cad/astk-serveur	\
 		${SHELL_INSTALL_ASTER}:${PORTSDIR}/shells/${SHIADEP}		\
 		${LOCALBASE}/lib/libscotch.a:${PORTSDIR}/cad/scotch		\
 		python:${PORTSDIR}/lang/python					\
@@ -39,12 +39,19 @@ BUILD_DEPENDS+=	${LOCALBASE}/aster/ASTK/ASTK_SERV:${PORTSDIR}/cad/astk-serveur	\
 LIB_DEPENDS+=	libhdf5.so:${PORTSDIR}/science/hdf5				\
 		libmed.so:${PORTSDIR}/french/med				\
 		libmetis.so.0:${PORTSDIR}/math/metis-edf
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/Gnuplot:${PORTSDIR}/math/py-gnuplot	\
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}gnuplot>0:${PORTSDIR}/math/py-gnuplot	\
 		${LOCALBASE}/bin/onmetis:${PORTSDIR}/math/metis-edf		\
 		${SHELL_INSTALL_ASTER}:${PORTSDIR}/shells/${SHIADEP}		\
-		${LOCALBASE}/aster/ASTK/ASTK_SERV:${PORTSDIR}/cad/astk-serveur
+		astk-serveur>0:${PORTSDIR}/cad/astk-serveur
 
 USES=		bison fortran tk python:2
+
+.if defined(WITH_ATLAS)
+USES+=		blaslapack:atlas
+.else
+USES+=		blaslapack:netlib
+.endif
+
 HAS_CONFIGURE=	yes
 MAKE_ENV=	INCLUDES="${LOCALBASE}/include ${LOCALBASE}/include/metis"
 REINPLACE_ARGS=	-i ""
@@ -72,27 +79,14 @@ FLAGARCH=	-DP_LINUX -DLINUX
 FLAGARCH=	-DLINUX64
 .endif
 
-# Avoid renaming .f into .F
-#F90FLAGS=	-x f77-cpp-input ${FFLAGS}
-
-.if exists(${LOCALBASE}/lib/libatlas.so) && !defined(WITH_BLAS)
-WITH_ATLAS=	yes
-.endif
-.if defined(WITH_ATLAS)
-LIB_DEPENDS+=	libatlas.so:${PORTSDIR}/math/atlas
-.else
-LIB_DEPENDS+=	libblas.so:${PORTSDIR}/math/blas
-LIB_DEPENDS+=	liblapack.so:${PORTSDIR}/math/lapack
-.endif
-
 .if !defined(WITHOUT_ASTK_CLI)
-RUN_DEPENDS+=	${ASTKDIR}:${PORTSDIR}/cad/astk-client
+RUN_DEPENDS+=	astk-client>0:${PORTSDIR}/cad/astk-client
 PLIST_SUB+=	ASTK_CLIENT=""  ASTKDIR=${ASTKDIR}
 .else
 PLIST_SUB+=	ASTK_CLIENT="@comment " ASTKDIR=""
 .endif
 .if !defined(WITHOUT_EFICAS)
-RUN_DEPENDS+=	${LOCALBASE}/apps/eficas:${PORTSDIR}/french/eficas
+RUN_DEPENDS+=	fr-eficas>0:${PORTSDIR}/french/eficas
 PLIST_SUB+=	EFICAS=""
 .else
 PLIST_SUB+=	EFICAS="@comment "
@@ -187,15 +181,7 @@ v_ifdef=	${OPSYS:tu}
 SHELL_INSTALL_ASTER=	${LOCALBASE}/bin/${SHIA}
 tcl_dir=	${LOCALBASE}
 hdf_dir=	${LOCALBASE}
-.if defined(WITH_ATLAS)
-lib_blas=	ptf77blas
-lib_atlas=	atlas
-lib_math=	"-L${LOCALBASE}/lib -lptf77blas -latlas"
-.else
-lib_blas=	blas
-lib_atlas=	# empty
-lib_math=	"-L${LOCALBASE}/lib -lblas -llapack"
-.endif
+lib_math=	"-L${LOCALBASE}/lib ${BLASLIB} ${LAPACKLIB} ${ATLASLIB}"
 
 LASTKDIR?=	${PORTNAME}/ASTK/ASTK_CLIENT
 ASTKDIR=	${LOCALBASE}/${LASTKDIR}
@@ -278,9 +264,9 @@ pre-configure:
 	${ECHO_CMD} "HOME_MED='${LOCALBASE}'"			>> ${WRKSRC}/setup.cfg
 	${ECHO_CMD} "HOME_TCL_TK='${tcl_dir}'"			>> ${WRKSRC}/setup.cfg
 .if defined(WITH_ATLAS)
-	${ECHO_CMD} "ATLASLIB='${lib_atlas}'"			>> ${WRKSRC}/setup.cfg
+	${ECHO_CMD} "ATLASLIB='${_ATLASLIB}'"			>> ${WRKSRC}/setup.cfg
 .endif
-	${ECHO_CMD} "BLASLIB='${lib_blas}'"			>> ${WRKSRC}/setup.cfg
+	${ECHO_CMD} "BLASLIB='${_BLASLIB}'"			>> ${WRKSRC}/setup.cfg
 	${ECHO_CMD} "LAPACKLIB='lapack'"			>> ${WRKSRC}/setup.cfg
 	${ECHO_CMD} "GZIP='/usr/bin/gzip'"			>> ${WRKSRC}/setup.cfg
 	${ECHO_CMD} "SHELL_EXECUTION='${SHELL_INSTALL_ASTER}'"	>> ${WRKSRC}/setup.cfg

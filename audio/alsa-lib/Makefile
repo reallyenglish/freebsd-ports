@@ -7,7 +7,7 @@ CATEGORIES=	audio
 MASTER_SITES=	ALSA/lib \
 		GENTOO/distfiles
 
-MAINTAINER=	jbeich@vfemail.net
+MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	ALSA compatibility library
 
 LICENSE=	LGPL21 # or any later version
@@ -23,7 +23,7 @@ OPTIONS_DEFINE=	PYTHON
 OPTIONS_SUB=	yes
 
 PYTHON_CONFIGURE_ENABLE=python
-PYTHON_USE=	PYTHON=2
+PYTHON_USES=	python:2
 
 post-patch:	.SILENT
 	${REINPLACE_CMD} -e '/LIBS/ { s/-ldl//g; s/-lrt//g; }' \

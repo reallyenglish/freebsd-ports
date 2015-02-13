@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ruby-build
-PORTVERSION=	20140509.1
-PORTREVISION=	4
+PORTVERSION=	20150116
 CATEGORIES=	devel ruby
 MASTER_SITES=	GH
 
@@ -14,7 +13,7 @@ LICENSE_NAME=	Sam Stephenson
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=${_LICENSE_PERMS_DEFAULT}
 
-RUN_DEPENDS=	autoconf:${PORTSDIR}/devel/autoconf \
+RUN_DEPENDS=	autoconf>0:${PORTSDIR}/devel/autoconf \
 		curl:${PORTSDIR}/ftp/curl \
 		gmake:${PORTSDIR}/devel/gmake
 
@@ -32,7 +31,7 @@ RUN_DEPENDS+=	rbenv:${PORTSDIR}/devel/rbenv
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sstephenson
-GH_COMMIT=	9aece39
+GH_COMMIT=	e12b960
 GH_TAGNAME=	v${PORTVERSION}
 
 NO_BUILD=	yes

@@ -289,6 +289,7 @@
     SUBDIR += p5-CGP-CLI
     SUBDIR += p5-Clamd
     SUBDIR += p5-Dancer-Plugin-Email
+    SUBDIR += p5-Dancer2-Plugin-Email
     SUBDIR += p5-Data-Validate-Email
     SUBDIR += p5-Email-Abstract
     SUBDIR += p5-Email-Address
@@ -432,6 +433,7 @@
     SUBDIR += pear-Horde_Kolab_Storage
     SUBDIR += pear-Horde_ListHeaders
     SUBDIR += pear-Horde_Mail
+    SUBDIR += pear-Horde_Mail_Autoconfig
     SUBDIR += pear-Horde_Mapi
     SUBDIR += pear-Horde_Mime
     SUBDIR += pear-Horde_Mime_Viewer
@@ -485,7 +487,6 @@
     SUBDIR += postfix-policyd-weight
     SUBDIR += postfix-postfwd
     SUBDIR += postfix-tls
-    SUBDIR += postfix210
     SUBDIR += postfixadmin
     SUBDIR += postgrey
     SUBDIR += postsrsd
