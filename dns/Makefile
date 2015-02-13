@@ -71,6 +71,8 @@
     SUBDIR += ldapdns
     SUBDIR += ldns
     SUBDIR += ldnsm
+    SUBDIR += libasr
+    SUBDIR += libasr-devel
     SUBDIR += libbind
     SUBDIR += libdjbdns
     SUBDIR += libidn
@@ -139,6 +141,7 @@
     SUBDIR += p5-pgeodns
     SUBDIR += pdnsd
     SUBDIR += pear-File_DNS
+    SUBDIR += pear-Horde_Idna
     SUBDIR += pear-Net_DNS
     SUBDIR += pear-Net_DNS2
     SUBDIR += powerdns
@@ -176,6 +179,7 @@
     SUBDIR += vizone
     SUBDIR += walker
     SUBDIR += wdns
+    SUBDIR += wrapsrv
     SUBDIR += yadifa
     SUBDIR += zkt
     SUBDIR += zonecheck

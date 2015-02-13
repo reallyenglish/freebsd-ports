@@ -33,18 +33,16 @@ BUILD_DEPENDS=	${LOCALBASE}/include/GL/glu.h:${PORTSDIR}/graphics/libGLU
 LIB_DEPENDS=	libsigc-2.0.so:${PORTSDIR}/devel/libsigc++20 \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libvorbisfile.so:${PORTSDIR}/audio/libvorbis \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libassimp.so:${PORTSDIR}/multimedia/assimp
 
 GH_ACCOUNT=	pioneerspacesim
 GH_PROJECT=	${PORTNAME}
-GH_TAGNAME=	20141128
+GH_TAGNAME=	20150201
 
 WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_TAGNAME}
 
-USES=		gmake pkgconfig
-USE_AUTOTOOLS=	aclocal autoconf automake
-AUTOMAKE_ARGS=	--add-missing
+USES=		autoreconf gmake pkgconfig
 USE_GL=		gl
 USE_SDL=	image2 sdl2
 
@@ -54,7 +52,7 @@ CONFIGURE_ARGS=	--with-version="${GH_TAGNAME}"
 EXTRACT_AFTER_ARGS=	--exclude .gitignore
 
 PORTDATA=	data
-PORTDOCS=	AUTHORS.txt Changelog.txt Modelviewer.txt Quickstart.txt README.txt
+PORTDOCS=	AUTHORS.txt Changelog.txt Modelviewer.txt Quickstart.txt README.md
 
 PLIST_FILES=	bin/${PORTNAME} \
 		share/pixmaps/${PORTNAME}.png
@@ -92,9 +90,6 @@ post-patch: .SILENT
 		${WRKSRC}/configure.ac
 	${REINPLACE_CMD} -e 's/modelviewer/${PORTNAME} -modelviewer/' \
 		${WRKSRC}/Modelviewer.txt
-# Use "unsigned int" type for std::max matching function
-	${REINPLACE_CMD} -e 's/int m_atlasVIncrement/unsigned &/' \
-		${WRKSRC}/src/text/TextureFont.h
 .if !${PORT_OPTIONS:MMODELCOMPILER}
 	${REINPLACE_CMD} -e 's/pioneer modelcompiler/pioneer/' \
 		${WRKSRC}/src/Makefile.am

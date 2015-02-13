@@ -22,6 +22,7 @@
     SUBDIR += arirang
     SUBDIR += arm
     SUBDIR += arpCounterattack
+    SUBDIR += asignify
     SUBDIR += authforce
     SUBDIR += autossh
     SUBDIR += avcheck
@@ -162,6 +163,7 @@
     SUBDIR += gpass
     SUBDIR += gpgdir
     SUBDIR += gpgme
+    SUBDIR += gputty
     SUBDIR += gringotts
     SUBDIR += gsasl
     SUBDIR += gsfv
@@ -176,6 +178,7 @@
     SUBDIR += hmap
     SUBDIR += honggfuzz
     SUBDIR += hotssh
+    SUBDIR += hpenc
     SUBDIR += hs-Crypto
     SUBDIR += hs-DRBG
     SUBDIR += hs-HsOpenSSL
@@ -255,6 +258,7 @@
     SUBDIR += krb5-112
     SUBDIR += krb5-appl
     SUBDIR += kripp
+    SUBDIR += kstart
     SUBDIR += kwalletmanager
     SUBDIR += l0pht-watch
     SUBDIR += l0phtcrack
@@ -295,6 +299,7 @@
     SUBDIR += libtomcrypt
     SUBDIR += libwhisker
     SUBDIR += libyubikey
+    SUBDIR += libzrtpcppcore
     SUBDIR += linux-c6-cyrus-sasl2
     SUBDIR += linux-c6-gnutls
     SUBDIR += linux-c6-libgcrypt
@@ -375,8 +380,6 @@
     SUBDIR += openscep
     SUBDIR += openssh-askpass
     SUBDIR += openssh-portable
-    SUBDIR += openssh-portable-base
-    SUBDIR += openssh-portable66
     SUBDIR += openssl
     SUBDIR += openssl_tpm_engine
     SUBDIR += openvas-client
@@ -409,6 +412,7 @@
     SUBDIR += p5-Authen-DecHpwd
     SUBDIR += p5-Authen-Htpasswd
     SUBDIR += p5-Authen-Krb5
+    SUBDIR += p5-Authen-Krb5-Simple
     SUBDIR += p5-Authen-Libwrap
     SUBDIR += p5-Authen-NTLM
     SUBDIR += p5-Authen-OATH
@@ -423,6 +427,7 @@
     SUBDIR += p5-Authen-Simple-DBI
     SUBDIR += p5-Authen-Simple-DBM
     SUBDIR += p5-Authen-Simple-HTTP
+    SUBDIR += p5-Authen-Simple-Kerberos
     SUBDIR += p5-Authen-Simple-LDAP
     SUBDIR += p5-Authen-Simple-Net
     SUBDIR += p5-Authen-Simple-PAM
@@ -518,6 +523,7 @@
     SUBDIR += p5-Crypt-Shark
     SUBDIR += p5-Crypt-Simple
     SUBDIR += p5-Crypt-SmbHash
+    SUBDIR += p5-Crypt-Sodium
     SUBDIR += p5-Crypt-Solitaire
     SUBDIR += p5-Crypt-TEA
     SUBDIR += p5-Crypt-T_e_a
@@ -536,6 +542,7 @@
     SUBDIR += p5-Dancer-Plugin-Auth-Extensible-Provider-Usergroup
     SUBDIR += p5-Dancer-Plugin-Passphrase
     SUBDIR += p5-Dancer2-Plugin-Auth-Extensible
+    SUBDIR += p5-Dancer2-Plugin-Auth-Extensible-Provider-Usergroup
     SUBDIR += p5-Dancer2-Plugin-Passphrase
     SUBDIR += p5-Data-Entropy
     SUBDIR += p5-Data-Password
@@ -550,6 +557,7 @@
     SUBDIR += p5-Digest-EMAC
     SUBDIR += p5-Digest-Elf
     SUBDIR += p5-Digest-FNV
+    SUBDIR += p5-Digest-GOST
     SUBDIR += p5-Digest-HMAC
     SUBDIR += p5-Digest-Hashcash
     SUBDIR += p5-Digest-Haval256
@@ -583,6 +591,7 @@
     SUBDIR += p5-GSSAPI
     SUBDIR += p5-GnuPG
     SUBDIR += p5-GnuPG-Interface
+    SUBDIR += p5-Heimdal-Kadm5
     SUBDIR += p5-HTML-Email-Obfuscate
     SUBDIR += p5-IO-Async-SSL
     SUBDIR += p5-IO-Socket-SSL
@@ -725,6 +734,7 @@
     SUBDIR += pinentry-curses
     SUBDIR += pinentry-gtk2
     SUBDIR += pinentry-qt4
+    SUBDIR += pinentry-tty
     SUBDIR += pkcrack
     SUBDIR += pkcs11-dump
     SUBDIR += pkcs11-gateway
@@ -781,6 +791,7 @@
     SUBDIR += py-kerberos
     SUBDIR += py-keyczar
     SUBDIR += py-keyring
+    SUBDIR += py-libnacl
     SUBDIR += py-m2crypto
     SUBDIR += py-mcrypt
     SUBDIR += py-mhash
@@ -790,6 +801,7 @@
     SUBDIR += py-openssl
     SUBDIR += py-paramiko
     SUBDIR += py-passlib
+    SUBDIR += py-pbkdf2
     SUBDIR += py-plaso
     SUBDIR += py-plone.app.openid
     SUBDIR += py-plone.keyring
@@ -836,9 +848,6 @@
     SUBDIR += py-zope.security
     SUBDIR += py-zope.securitypolicy
     SUBDIR += py-zope.session
-    SUBDIR += qca-cyrus-sasl
-    SUBDIR += qca-gnupg
-    SUBDIR += qca-ossl
     SUBDIR += qtkeychain
     SUBDIR += quantis
     SUBDIR += quantis-kmod
@@ -949,6 +958,7 @@
     SUBDIR += snortsam
     SUBDIR += snortsnarf
     SUBDIR += softhsm
+    SUBDIR += softhsm2
     SUBDIR += spass
     SUBDIR += spike-proxy
     SUBDIR += spybye

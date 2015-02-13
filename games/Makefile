@@ -187,6 +187,7 @@
     SUBDIR += dcross
     SUBDIR += defendguin
     SUBDIR += diameter
+    SUBDIR += diaspora
     SUBDIR += digger-vgl
     SUBDIR += dmjava
     SUBDIR += dodgindiamond2
@@ -390,7 +391,6 @@
     SUBDIR += help_hannahs_horse
     SUBDIR += heretic
     SUBDIR += heroes
-    SUBDIR += hex
     SUBDIR += hex-a-hop
     SUBDIR += hexalate
     SUBDIR += hexglass
@@ -446,6 +446,7 @@
     SUBDIR += kapman
     SUBDIR += kardsgt
     SUBDIR += kartofel
+    SUBDIR += katawa-shoujo
     SUBDIR += katomic
     SUBDIR += kblackbox
     SUBDIR += kblocks
@@ -591,6 +592,7 @@
     SUBDIR += mindguard
     SUBDIR += minecraft-client
     SUBDIR += minecraft-server
+    SUBDIR += minerbold
     SUBDIR += minetest
     SUBDIR += minetest_game
     SUBDIR += mirrormagic
@@ -870,8 +872,6 @@
     SUBDIR += seahaven
     SUBDIR += searchandrescue
     SUBDIR += searchandrescue-data
-    SUBDIR += secretmaryochronicles
-    SUBDIR += secretmaryochronicles-music
     SUBDIR += secrettower
     SUBDIR += senken
     SUBDIR += sets
@@ -1006,13 +1006,13 @@
     SUBDIR += vamos
     SUBDIR += vavoom
     SUBDIR += vavoom-extras
-    SUBDIR += vdrift-data
     SUBDIR += vectoroids
     SUBDIR += vegastrike
     SUBDIR += vegastrike-data
     SUBDIR += violetland
     SUBDIR += viruskiller
     SUBDIR += vitetris
+    SUBDIR += vms-empire
     SUBDIR += vodovod
     SUBDIR += volleyball
     SUBDIR += vor
@@ -1033,7 +1033,6 @@
     SUBDIR += wmpuzzle
     SUBDIR += wmqstat
     SUBDIR += wmquake
-    SUBDIR += vms-empire
     SUBDIR += wmshuffle
     SUBDIR += wmtictactoe
     SUBDIR += wolfpack
@@ -1091,6 +1090,7 @@
     SUBDIR += xjumpx
     SUBDIR += xkoules
     SUBDIR += xlaby
+    SUBDIR += xlennart
     SUBDIR += xlife
     SUBDIR += xlogical
     SUBDIR += xmahjongg

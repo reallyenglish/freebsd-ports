@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-PORTVERSION=	1.7.32
+PORTVERSION=	1.7.35
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	LOCAL/dbn/repos/wine/${DIST_SUBDIR}/${PORTVERSION}
@@ -23,7 +23,8 @@ OPTIONS_DEFINE=	GECKO MONO
 GECKO_DESC=     Bundle Gecko MSI package for Wine
 MONO_DESC=      Bundle Mono MSI package for Wine
 
-CONFLICTS_INSTALL?=	i386-wine-[0-9]* wine-[0-9]* wine-devel-[0-9]*
+CONFLICTS_INSTALL?=     wine-[0-9]* wine-compholio-[0-9]* wine-devel-[0-9]* \
+                        i386-wine-[0-9]* i386-wine-compholio-[0-9]*
 
 EXTRACT_AFTER_ARGS=	-C / --exclude +COMPACT_MANIFEST --exclude +MANIFEST \
 				--exclude +MTREE_DIRS --exclude share/licenses/'*' \
@@ -63,7 +64,7 @@ PLIST_SUB+=	OSREL${osrel}-COMPHOLIO="@comment "
 .endif
 .endfor
 
-.if ${OPSYS} != FreeBSD || (!(${OSVERSION} >= 804000 && ${OSVERSION} < 900000) && !(${OSVERSION} >= 901000 && ${OSVERSION} < 1000000) && !(${OSVERSION} >= 1000510 && ${OSVERSION} < 1100000) && !(${OSVERSION} >= 1100040 && ${OSVERSION} < 1200000))
+.if ${OPSYS} != FreeBSD || (!(${OSVERSION} >= 804000 && ${OSVERSION} < 900000) && !(${OSVERSION} >= 901000 && ${OSVERSION} < 1000000) && !(${OSVERSION} >= 1000510 && ${OSVERSION} < 1100000) && !(${OSVERSION} >= 1100048 && ${OSVERSION} < 1200000))
 IGNORE=		binaries compiled for FreeBSD 8.4+, 9.1+, 10.0+ and -current only
 DISTFILES=
 .endif
@@ -83,11 +84,11 @@ port-update:
 	${RM} -f ${SLAVEDIR}/distinfo ${SLAVEDIR}/distinfo~ ${SLAVEDIR}/pkg-plist.*
 .for osrel in 8 9 10 11
 .for suffix in -devel -compholio
-	${MAKE} fetch OSREL=${osrel} PKGNAMESUFFIX=${suffix}
-	${MAKE} makesum OSREL=${osrel} PKGNAMESUFFIX=${suffix}
+	${MAKE} fetch OSREL=${osrel} OSVERSION=${osrel}99999 UNAME_r=${osrel} PKGNAMESUFFIX=${suffix}
+	${MAKE} makesum OSREL=${osrel} OSVERSION=${osrel}99999 UNAME_r=${osrel} PKGNAMESUFFIX=${suffix}
 	${CAT} ${SLAVEDIR}/distinfo >> ${SLAVEDIR}/distinfo~
 	${RM} ${SLAVEDIR}/distinfo
-	${MAKE} pkg-plist.${osrel}${suffix:U} PLIST=pkg-plist.${osrel}${suffix:U} OSREL=${osrel} PKGNAMESUFFIX=${suffix}
+	${MAKE} pkg-plist.${osrel}${suffix:tu} PLIST=pkg-plist.${osrel}${suffix:tu} OSREL=${osrel} OSVERSION=${osrel}99999 UNAME_r=${osrel} PKGNAMESUFFIX=${suffix}
 .endfor
 .endfor
 	${MV} ${SLAVEDIR}/distinfo~ ${SLAVEDIR}/distinfo

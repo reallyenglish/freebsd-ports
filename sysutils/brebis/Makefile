@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	brebis
-PORTVERSION=	0.9
+PORTVERSION=	0.10
 CATEGORIES=	sysutils archivers
-MASTER_SITES=	http://brebisproject.org/attachments/download/18/ \
+MASTER_SITES=	http://brebisproject.org/attachments/download/19/ \
 		LOCAL/martymac
 
 MAINTAINER=	martymac@FreeBSD.org
