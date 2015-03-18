@@ -49,6 +49,7 @@
     SUBDIR += devmon
     SUBDIR += devmon-templates
     SUBDIR += dhcdrop
+    SUBDIR += dhcp_probe
     SUBDIR += disco
     SUBDIR += docsis
     SUBDIR += driftnet
@@ -274,6 +275,7 @@
     SUBDIR += reallyenglish-nagios-plugins
     SUBDIR += rcpd
     SUBDIR += remarp
+    SUBDIR += riemann
     SUBDIR += rotorouter
     SUBDIR += routers2
     SUBDIR += routers2-extensions

@@ -51,6 +51,7 @@
     SUBDIR += avfs
     SUBDIR += azure-agent
     SUBDIR += b43-fwcutter
+    SUBDIR += backupchecker
     SUBDIR += backuppc
     SUBDIR += backuppc-devel
     SUBDIR += bacula-bat
@@ -84,7 +85,6 @@
     SUBDIR += boxbackup
     SUBDIR += boxbackup-devel
     SUBDIR += brasero
-    SUBDIR += brebis
     SUBDIR += bsd-splash-changer
     SUBDIR += bsdadminscripts
     SUBDIR += bsdconfig
@@ -758,6 +758,7 @@
     SUBDIR += py-ranger
     SUBDIR += py-salt
     SUBDIR += py-salt-api
+    SUBDIR += py-shutilwhich
     SUBDIR += py-stdiff
     SUBDIR += py-supervisor
     SUBDIR += py-zdaemon
@@ -804,9 +805,7 @@
     SUBDIR += rsyncmanager
     SUBDIR += rsyncrypto
     SUBDIR += rsyslog7
-    SUBDIR += rsyslog7-devel
     SUBDIR += rsyslog8
-    SUBDIR += rsyslog8-devel
     SUBDIR += rtty
     SUBDIR += ruby-quota
     SUBDIR += rubygem-SyslogLogger
@@ -834,6 +833,7 @@
     SUBDIR += rubygem-hammer_cli
     SUBDIR += rubygem-hammer_cli_foreman
     SUBDIR += rubygem-hammer_cli_foreman_bootdisk
+    SUBDIR += rubygem-hammer_cli_foreman_salt
     SUBDIR += rubygem-hammer_cli_foreman_ssh
     SUBDIR += rubygem-hiera
     SUBDIR += rubygem-librarian-puppet
@@ -862,6 +862,7 @@
     SUBDIR += rundeck
     SUBDIR += runit
     SUBDIR += runwhen
+    SUBDIR += s6
     SUBDIR += safe-rm
     SUBDIR += safecat
     SUBDIR += samefile
@@ -977,6 +978,9 @@
     SUBDIR += tw_cli
     SUBDIR += tzdialog
     SUBDIR += u-boot-beaglebone
+    SUBDIR += u-boot-cubox-hummingboard
+    SUBDIR += u-boot-duovero
+    SUBDIR += u-boot-pandaboard
     SUBDIR += u-boot-rpi
     SUBDIR += u-boot-wandboard
     SUBDIR += ua
@@ -1020,6 +1024,7 @@
     SUBDIR += virtualmin
     SUBDIR += vlogger
     SUBDIR += vmdktool
+    SUBDIR += vmtouch
     SUBDIR += vobcopy
     SUBDIR += volman
     SUBDIR += vordog

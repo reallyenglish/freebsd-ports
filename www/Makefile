@@ -235,6 +235,7 @@
     SUBDIR += gtkhtml4
     SUBDIR += guile-www
     SUBDIR += gurlchecker
+    SUBDIR += h2o
     SUBDIR += habari
     SUBDIR += hastymail
     SUBDIR += hastymail2
@@ -396,7 +397,6 @@
     SUBDIR += mathjax
     SUBDIR += mathopd
     SUBDIR += mediawiki119
-    SUBDIR += mediawiki122
     SUBDIR += mediawiki123
     SUBDIR += mediawiki124
     SUBDIR += mergelog
@@ -443,7 +443,6 @@
     SUBDIR += mod_chroot
     SUBDIR += mod_clamav
     SUBDIR += mod_cloudflare
-    SUBDIR += mod_cplusplus
     SUBDIR += mod_cvs2
     SUBDIR += mod_dav_svn
     SUBDIR += mod_dnssd
@@ -539,6 +538,7 @@
     SUBDIR += nginx-devel
     SUBDIR += nibbleblog
     SUBDIR += node
+    SUBDIR += node010
     SUBDIR += node-devel
     SUBDIR += nostromo
     SUBDIR += npapi-vlc
@@ -605,6 +605,7 @@
     SUBDIR += p5-Blog-Spam
     SUBDIR += p5-Browser-Open
     SUBDIR += p5-Business-PayPal
+    SUBDIR += p5-CGI
     SUBDIR += p5-CGI-Ajax
     SUBDIR += p5-CGI-Application
     SUBDIR += p5-CGI-Application-Dispatch
@@ -651,6 +652,7 @@
     SUBDIR += p5-CGI-Expand
     SUBDIR += p5-CGI-ExtDirect
     SUBDIR += p5-CGI-FCKeditor
+    SUBDIR += p5-CGI-Fast
     SUBDIR += p5-CGI-FastTemplate
     SUBDIR += p5-CGI-FormBuilder
     SUBDIR += p5-CGI-Framework
@@ -822,6 +824,8 @@
     SUBDIR += p5-Dancer-Template-Xslate
     SUBDIR += p5-Dancer2
     SUBDIR += p5-Dancer2-Plugin-Ajax
+    SUBDIR += p5-Dancer2-Plugin-Deferred
+    SUBDIR += p5-Dancer2-Plugin-Path-Class
     SUBDIR += p5-Data-TreeDumper-Renderer-DHTML
     SUBDIR += p5-Data-Validate-URI
     SUBDIR += p5-Emplacken
@@ -1132,6 +1136,7 @@
     SUBDIR += p5-PocketIO
     SUBDIR += p5-Pod-Site
     SUBDIR += p5-PodToHTML
+    SUBDIR += p5-Protocol-HTTP2
     SUBDIR += p5-Protocol-SocketIO
     SUBDIR += p5-Protocol-WebSocket
     SUBDIR += p5-Protocol-XMLRPC
@@ -1213,6 +1218,7 @@
     SUBDIR += p5-URI-Sequin
     SUBDIR += p5-URI-Title
     SUBDIR += p5-URI-ToDisk
+    SUBDIR += p5-URL-Encode
     SUBDIR += p5-URL-Encode-XS
     SUBDIR += p5-VUser-Google-ProvisioningAPI
     SUBDIR += p5-W3C-LinkChecker
@@ -1460,6 +1466,7 @@
     SUBDIR += py-albatross
     SUBDIR += py-amf
     SUBDIR += py-apachelog
+    SUBDIR += py-autobahn
     SUBDIR += py-beaker
     SUBDIR += py-beautifulsoup
     SUBDIR += py-beautifulsoup32
@@ -1526,7 +1533,6 @@
     SUBDIR += py-django-threaded-multihost
     SUBDIR += py-django-tinymce
     SUBDIR += py-django14
-    SUBDIR += py-django15
     SUBDIR += py-django16
     SUBDIR += py-django_compressor
     SUBDIR += py-djangotoolbox
@@ -1699,6 +1705,7 @@
     SUBDIR += py-tgwebservices
     SUBDIR += py-tmdb3
     SUBDIR += py-tornado
+    SUBDIR += py-trello
     SUBDIR += py-turbogears
     SUBDIR += py-turbogears2
     SUBDIR += py-tvdb_api
@@ -1720,6 +1727,7 @@
     SUBDIR += py-webware-component
     SUBDIR += py-werkzeug
     SUBDIR += py-wikitools
+    SUBDIR += py-wsaccel
     SUBDIR += py-ws4py
     SUBDIR += py-wsgiauth
     SUBDIR += py-wsgidav
@@ -1825,6 +1833,7 @@
     SUBDIR += rubygem-html2haml
     SUBDIR += rubygem-http
     SUBDIR += rubygem-http-cookie
+    SUBDIR += rubygem-http-form_data
     SUBDIR += rubygem-http_router
     SUBDIR += rubygem-httparty
     SUBDIR += rubygem-httpclient
@@ -1972,7 +1981,6 @@
     SUBDIR += spreadlogd
     SUBDIR += sqstat
     SUBDIR += squid
-    SUBDIR += squid33
     SUBDIR += squid_radius_auth
     SUBDIR += squidclamav
     SUBDIR += squidguard
@@ -1989,6 +1997,7 @@
     SUBDIR += swiggle
     SUBDIR += swish++
     SUBDIR += swish-e
+    SUBDIR += sws
     SUBDIR += syndigator
     SUBDIR += tclhttpd
     SUBDIR += tclwebtest
@@ -2006,6 +2015,7 @@
     SUBDIR += tickr
     SUBDIR += tidy
     SUBDIR += tidy-devel
+    SUBDIR += tidy-html5
     SUBDIR += tidy-lib
     SUBDIR += tikiwiki
     SUBDIR += tinymce
@@ -2129,6 +2139,7 @@
     SUBDIR += uzbl
     SUBDIR += validator
     SUBDIR += varnish
+    SUBDIR += varnish4
     SUBDIR += varnish-libvmod-header
     SUBDIR += varnish-nagios
     SUBDIR += vdr-plugin-live
