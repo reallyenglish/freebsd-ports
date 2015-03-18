@@ -13,6 +13,7 @@
     SUBDIR += climm
     SUBDIR += coccinella
     SUBDIR += convey
+    SUBDIR += corebird
     SUBDIR += echat
     SUBDIR += ejabberd
     SUBDIR += ekiga
@@ -58,6 +59,7 @@
     SUBDIR += libnice-gst010
     SUBDIR += libnice-gst1
     SUBDIR += libpurple
+    SUBDIR += libstrophe
     SUBDIR += libtelepathy
     SUBDIR += libyahoo2
     SUBDIR += licq
@@ -114,6 +116,7 @@
     SUBDIR += plasma-applet-ktp
     SUBDIR += poezio
     SUBDIR += pork
+    SUBDIR += profanity
     SUBDIR += prosody
     SUBDIR += proxy65
     SUBDIR += psi
@@ -126,6 +129,7 @@
     SUBDIR += py-punjab
     SUBDIR += py-pyxmpp
     SUBDIR += py-skype4py
+    SUBDIR += py-slackclient
     SUBDIR += py-sleekxmpp
     SUBDIR += py-twistedWords
     SUBDIR += py-xmpppy
@@ -148,6 +152,7 @@
     SUBDIR += skype-devel
     SUBDIR += skype4
     SUBDIR += telegram
+    SUBDIR += telegram-purple
     SUBDIR += telepathy-butterfly
     SUBDIR += telepathy-farsight
     SUBDIR += telepathy-farstream

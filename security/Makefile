@@ -423,6 +423,8 @@
     SUBDIR += p5-Authen-Radius
     SUBDIR += p5-Authen-SASL
     SUBDIR += p5-Authen-SASL-Cyrus
+    SUBDIR += p5-Authen-SASL-SASLprep
+    SUBDIR += p5-Authen-SCRAM
     SUBDIR += p5-Authen-Simple
     SUBDIR += p5-Authen-Simple-DBI
     SUBDIR += p5-Authen-Simple-DBM
@@ -491,6 +493,8 @@
     SUBDIR += p5-Crypt-OpenSSL-Bignum
     SUBDIR += p5-Crypt-OpenSSL-CA
     SUBDIR += p5-Crypt-OpenSSL-DSA
+    SUBDIR += p5-Crypt-OpenSSL-EC
+    SUBDIR += p5-Crypt-OpenSSL-ECDSA
     SUBDIR += p5-Crypt-OpenSSL-RSA
     SUBDIR += p5-Crypt-OpenSSL-Random
     SUBDIR += p5-Crypt-OpenSSL-X509
@@ -591,8 +595,8 @@
     SUBDIR += p5-GSSAPI
     SUBDIR += p5-GnuPG
     SUBDIR += p5-GnuPG-Interface
-    SUBDIR += p5-Heimdal-Kadm5
     SUBDIR += p5-HTML-Email-Obfuscate
+    SUBDIR += p5-Heimdal-Kadm5
     SUBDIR += p5-IO-Async-SSL
     SUBDIR += p5-IO-Socket-SSL
     SUBDIR += p5-MD5
@@ -617,6 +621,7 @@
     SUBDIR += p5-OpenCA-PKCS7
     SUBDIR += p5-OpenCA-REQ
     SUBDIR += p5-OpenCA-X509
+    SUBDIR += p5-PBKDF2-Tiny
     SUBDIR += p5-PGP
     SUBDIR += p5-PGP-Sign
     SUBDIR += p5-POE-Component-SSLify
@@ -877,9 +882,11 @@
     SUBDIR += rdigest
     SUBDIR += regripper
     SUBDIR += regripperplugins
+    SUBDIR += reop
     SUBDIR += retranslator
     SUBDIR += revealrk
     SUBDIR += revelation
+    SUBDIR += rhash
     SUBDIR += rifiuti2
     SUBDIR += rkhunter
     SUBDIR += rndpassw
@@ -915,6 +922,7 @@
     SUBDIR += rubygem-recog
     SUBDIR += rubygem-roauth
     SUBDIR += rubygem-ruby-hmac
+    SUBDIR += rubygem-scrypt
     SUBDIR += rubygem-six
     SUBDIR += rubygem-sshkit
     SUBDIR += rubygem-twitter_oauth

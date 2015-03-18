@@ -80,6 +80,7 @@
     SUBDIR += cvsmail
     SUBDIR += cyrus-imapd23
     SUBDIR += cyrus-imapd24
+    SUBDIR += cyrus-imapd25
     SUBDIR += cyrus2courier
     SUBDIR += cyrus2dovecot
     SUBDIR += davmail
@@ -159,6 +160,7 @@
     SUBDIR += gotmail
     SUBDIR += grepmail
     SUBDIR += greyfix
+    SUBDIR += greylite
     SUBDIR += gubby
     SUBDIR += hashcash
     SUBDIR += hbiff
@@ -486,7 +488,6 @@
     SUBDIR += postfix-policyd-spf-python
     SUBDIR += postfix-policyd-weight
     SUBDIR += postfix-postfwd
-    SUBDIR += postfix-tls
     SUBDIR += postfixadmin
     SUBDIR += postgrey
     SUBDIR += postsrsd
