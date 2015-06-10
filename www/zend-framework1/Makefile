@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ZendFramework
-PORTVERSION=	1.12.7
-PORTREVISION=	1
+PORTVERSION=	1.11.6
 CATEGORIES=	www
 MASTER_SITES=	https://packages.zendframework.com/releases/${DISTNAME}/
 PKGNAMESUFFIX=	1
@@ -104,7 +103,6 @@ do-install:
 
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/manual
-	@cd ${WRKSRC} && ${COPYTREE_SHARE} "INSTALL.md README.md" ${STAGEDIR}${DOCSDIR}
 	@cd ${WRKSRC}/documentation/manual/core/en && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/manual
 .endif
