@@ -579,6 +579,7 @@
     SUBDIR += nibbleblog
     SUBDIR += node
     SUBDIR += node-devel
+    SUBDIR += node012
     SUBDIR += node04
     SUBDIR += node06
     SUBDIR += nostromo
@@ -586,6 +587,7 @@
     SUBDIR += npapi-xine
     SUBDIR += npc
     SUBDIR += npm
+    SUBDIR += npm2
     SUBDIR += nscache
     SUBDIR += nspluginwrapper
     SUBDIR += nspluginwrapper-devel
