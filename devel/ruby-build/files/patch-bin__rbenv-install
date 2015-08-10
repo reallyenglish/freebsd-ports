@@ -1,7 +1,7 @@
---- bin/rbenv-install.orig	2014-05-09 03:51:19 UTC
+--- bin/rbenv-install.orig	2015-08-03 12:55:42 UTC
 +++ bin/rbenv-install
-@@ -33,6 +33,10 @@ if [ -z "$RBENV_ROOT" ]; then
-   RBENV_ROOT="${HOME}/.rbenv"
+@@ -42,6 +42,10 @@ if [ "$1" = "--complete" ]; then
+   exec ruby-build --definitions
  fi
  
 +if [ `uname -s` = "FreeBSD" ]; then

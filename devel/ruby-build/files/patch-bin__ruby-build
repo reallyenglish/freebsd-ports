@@ -1,21 +1,21 @@
---- bin/ruby-build.orig	2014-05-09 03:51:19 UTC
+--- bin/ruby-build.orig	2015-08-03 12:55:42 UTC
 +++ bin/ruby-build
-@@ -181,6 +181,13 @@ compute_md5() {
+@@ -237,6 +237,13 @@ compute_md5() {
  }
  
  verify_checksum() {
-+  # disable verify_checksum because:
-+  # - recent tinderbox does not allow fetching remote file during build
-+  # - DISTDIR must be used as mirror
-+  # - DISTDIR does not contain checksum file
-+  # - checksum is verified by the ports framework
-+  return 0
++# disable verify_checksum because:
++# - recent tinderbox does not allow fetching remote file during build
++# - DISTDIR must be used as mirror
++# - DISTDIR does not contain checksum file
++# - checksum is verified by the ports framework
++return 0
 +
-   # If there's no MD5 support, return success
-   [ -n "$HAS_MD5_SUPPORT" ] || return 0
- 
-@@ -256,11 +263,21 @@ fetch_tarball() {
-   local tar_args="xzvf"
+   # If there's no SHA2 support, return success
+   [ -n "$HAS_SHA2_SUPPORT" ] || return 0
+   local checksum_command="compute_sha2"
+@@ -331,11 +338,21 @@ fetch_tarball() {
+   local tar_args="xzf"
    local package_filename="${package_name}.tar.gz"
  
 +  # XXX a terrible hack to fix suffix
@@ -36,7 +36,7 @@
    if ! reuse_existing_tarball "$package_filename" "$checksum"; then
      local tarball_filename=$(basename $package_url)
      echo "Downloading ${tarball_filename}..." >&2
-@@ -688,7 +705,8 @@ gccs_in_path() {
+@@ -781,7 +798,8 @@ gccs_in_path() {
  
    shopt -s nullglob
    for path in "${paths[@]}"; do
