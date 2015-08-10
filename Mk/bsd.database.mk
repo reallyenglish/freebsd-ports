@@ -7,7 +7,7 @@ Database_Post_Include=		bsd.database.mk
 Database_Include_MAINTAINER=	ports@FreeBSD.org
 
 # This file contains some routines to interact with different databases, such
-# as MySQL, PostgreSQL, and Berkley DB.  To include this file, define macro
+# as MySQL and Berkley DB.  To include this file, define macro
 # USE_[DATABASE], for example USE_MYSQL.  Defining macro like
 # USE_[DATABASE]_VER or WANT_[DATABASE]_VER will include this file as well.
 #
@@ -31,8 +31,6 @@ Database_Include_MAINTAINER=	ports@FreeBSD.org
 #			- User defined variable to set MySQL version.
 # MYSQL_VER
 #			- Detected MySQL version.
-##
-# USE_PGSQL		- Do not use this-- instead use USES=pgsql
 ##
 # USE_BDB	- Add Berkeley DB library dependency.
 #			  If no version is given (by the maintainer via the port or
@@ -97,10 +95,6 @@ Database_Include_MAINTAINER=	ports@FreeBSD.org
 
 .if defined(DEFAULT_MYSQL_VER)
 WARNING+=	"DEFAULT_MYSQL_VER is defined, consider using DEFAULT_VERSIONS=mysql=${DEFAULT_MYSQL_VER} instead"
-.endif
-
-.if defined(DEFAULT_PGSQL_VER)
-WARNING+=	"DEFAULT_PGSQL_VER is defined, consider using DEFAULT_VERSIONS=pgsql=${DEFAULT_PGSQL_VER} instead"
 .endif
 
 .if defined(USE_MYSQL)

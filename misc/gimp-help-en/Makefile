@@ -8,8 +8,7 @@ CATEGORIES?=	misc graphics
 MASTER_SITES=	ftp://ftp.gimp.org/pub/%SUBDIR%/ \
 		http://gimp.mirrors.hoobly.com/%SUBDIR%/ \
 		http://ftp.gwdg.de/pub/misc/grafik/gimp/%SUBDIR%/ \
-		http://www.mirrorservice.org/sites/ftp.gimp.org/pub/%SUBDIR%/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,graphics/%SUBDIR%,}
+		http://www.mirrorservice.org/sites/ftp.gimp.org/pub/%SUBDIR%/
 MASTER_SITE_SUBDIR=	gimp/help
 PKGNAMEPREFIX?=	${DOCLANG}-
 PKGNAMESUFFIX=	-html
@@ -36,7 +35,6 @@ DATADIR=	${PREFIX}/share/gimp
 
 SHEBANG_FILES=	tools/xml2po.py
 python_OLD_CMD=	/usr/bin/env python
-python_CMD=	${PYTHON_CMD}
 
 post-patch:
 # Install to the same directory as when configuring --with-gimp

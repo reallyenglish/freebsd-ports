@@ -2,15 +2,17 @@
 # $FreeBSD$
 
 PORTNAME=	mpv
-PORTVERSION=	0.8.2
+PORTVERSION=	0.9.2
+DISTVERSIONPREFIX=	v
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
-MASTER_SITES=	GH:0 GHC:0 http://ftp.waf.io/pub/release/:1 \
+MASTER_SITES=	http://ftp.waf.io/pub/release/:1 \
 		http://www.freehackers.org/~tnagy/release/:1
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:0 waf-${WAF_VERSION}:1
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} waf-${WAF_VERSION}:1
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	cpm@fbsd.es
 COMMENT=	Free and open-source general-purpose video player
 
 LICENSE=	GPLv2
@@ -23,17 +25,15 @@ BUILD_DEPENDS=	rst2man:${PORTSDIR}/textproc/py-docutils
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mpv-player
-GH_TAGNAME=	v${PORTVERSION}
-GH_COMMIT=	7fe9126
 
-WAF_VERSION=	1.8.6
+WAF_VERSION=	1.8.9
 
-USES=		compiler:c11 desktop-file-utils iconv pkgconfig python:build
+USES=		compiler:c11 desktop-file-utils iconv pkgconfig python:build waf
 USE_XORG=	x11 xv xxf86vm
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 
-CPPFLAGS+=	-I.. -I${LOCALBASE}/include
+CPPFLAGS+=	-I.. -I${LOCALBASE}/include/ffmpeg -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
@@ -42,11 +42,10 @@ CONFIGURE_ARGS=	--prefix=${PREFIX} \
 		--disable-debug-build \
 		--disable-optimize \
 		--enable-libmpv-shared \
-		--disable-mpg123 \
 		--disable-alsa \
 		--disable-pdf
 
-OPTIONS_DEFINE=		BS2B DOCS ENCA LADSPA LCMS2 LIBGUESS LIRC LUAJIT ZSH
+OPTIONS_DEFINE=		BS2B DOCS ENCA LADSPA LCMS2 LIBGUESS LUAJIT ZSH
 OPTIONS_GROUP=		IN VO AO
 OPTIONS_GROUP_IN=	CDIO LIBBLURAY V4L YTDL SMB
 OPTIONS_GROUP_VO=	CACA OPENGL VAAPI VDPAU XINERAMA
@@ -68,7 +67,8 @@ BS2B_CONFIGURE_ENABLE=		libbs2b
 ENCA_LIB_DEPENDS=		libenca.so:${PORTSDIR}/converters/enca
 ENCA_CONFIGURE_ENABLE=		enca
 
-LADSPA_LIB_DEPENDS=		ladspa/amp.so:${PORTSDIR}/audio/ladspa
+LADSPA_BUILD_DEPENDS=		${LOCALBASE}/lib/ladspa/amp.so:${PORTSDIR}/audio/ladspa
+LADSPA_RUN_DEPENDS=		${LOCALBASE}/lib/ladspa/amp.so:${PORTSDIR}/audio/ladspa
 LADSPA_CONFIGURE_ENABLE=	ladspa
 
 LCMS2_LIB_DEPENDS=		liblcms2.so:${PORTSDIR}/graphics/lcms2
@@ -76,9 +76,6 @@ LCMS2_CONFIGURE_ENABLE=		lcms2
 
 LIBGUESS_LIB_DEPENDS=		libguess.so:${PORTSDIR}/textproc/libguess
 LIBGUESS_CONFIGURE_ENABLE=	libguess
-
-LIRC_LIB_DEPENDS=		liblirc_client.so:${PORTSDIR}/comms/lirc
-LIRC_CONFIGURE_ENABLE=		lirc
 
 LUAJIT_LIB_DEPENDS=		libluajit-5.1.so:${PORTSDIR}/lang/luajit
 LUAJIT_USES_OFF=		lua
@@ -99,7 +96,7 @@ V4L_BUILD_DEPENDS=		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedi
 V4L_LIB_DEPENDS=		libv4l2.so:${PORTSDIR}/multimedia/libv4l
 V4L_CONFIGURE_ENABLE=		tv-v4l2
 
-YTDL_RUN_DEPENDS=		youtube-dl:${PORTSDIR}/www/youtube_dl
+YTDL_BUILD_DEPENDS=		${LOCALBASE}/bin/youtube-dl:${PORTSDIR}/www/youtube_dl
 
 SMB_LIB_DEPENDS=		libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
 SMB_CONFIGURE_ENABLE=		libsmbclient
@@ -107,8 +104,7 @@ SMB_CONFIGURE_ENABLE=		libsmbclient
 CACA_LIB_DEPENDS=		libcaca.so:${PORTSDIR}/graphics/libcaca
 CACA_CONFIGURE_ENABLE=		caca
 
-OPENGL_USE=			XORG=glproto
-OPENGL_LIB_DEPENDS=		libGL.so:${PORTSDIR}/graphics/libGL
+OPENGL_USE=			GL=gl
 OPENGL_CONFIGURE_ENABLE=	gl
 
 VAAPI_LIB_DEPENDS=		libva.so:${PORTSDIR}/multimedia/libva
@@ -128,6 +124,21 @@ PULSEAUDIO_CONFIGURE_ENABLE=	pulse
 
 .include <bsd.port.options.mk>
 
+# Fix crash on i386
+.if ${ARCH} == "i386"
+CFLAGS:=	${CFLAGS:N-O*} -O0
+.endif
+
+show-info:
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "====================================================================="
+	@${ECHO_MSG} "Only for i386"
+	@${ECHO_MSG} "Make sure you have multimedia/libass build with the ASM option OFF"
+	@${ECHO_MSG} "====================================================================="
+	@${ECHO_MSG} ""
+
+pre-everything::show-info
+
 post-extract:
 	${CP} ${DISTDIR}/waf-${WAF_VERSION} ${WRKSRC}/waf
 	@${CHMOD} +x ${WRKSRC}/waf
@@ -137,18 +148,6 @@ post-patch:
 		${WRKSRC}/wscript_build.py
 	@${FIND} ${WRKSRC}/DOCS/man -name '*.rst' | ${XARGS} ${REINPLACE_CMD} \
 		-e 's|/usr/local|${PREFIX}|g'
-
-do-configure:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
-		waf configure ${_MAKE_JOBS} ${CONFIGURE_ARGS}
-
-do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
-		waf build ${_MAKE_JOBS}
-
-do-install:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
-		waf install --destdir=${STAGEDIR}
 
 post-stage:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/mpv

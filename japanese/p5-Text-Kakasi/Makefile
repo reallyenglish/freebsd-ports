@@ -7,7 +7,7 @@ PORTREVISION=	3
 CATEGORIES=	japanese textproc perl5
 MASTER_SITES=	CPAN
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Kakasi library module for Perl5
 
 LIB_DEPENDS=	libkakasi.so:${PORTSDIR}/japanese/kakasi
@@ -23,8 +23,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' ${WRKSRC}/Makefile.PL
 
 post-install:
-	${CHMOD} u+w ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Text/Kakasi/Kakasi.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Text/Kakasi/Kakasi.so
-	${CHMOD} u-w ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Text/Kakasi/Kakasi.so
 
 .include <bsd.port.post.mk>

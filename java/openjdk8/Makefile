@@ -25,9 +25,11 @@ LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib \
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
 		dejavu>0:${PORTSDIR}/x11-fonts/dejavu
 
-USES=		compiler:features dos2unix gmake iconv pkgconfig shebangfix
+USES=		compiler:features dos2unix gmake iconv pkgconfig \
+		shebangfix
 USE_AUTOTOOLS=	autoconf
 USE_XORG=	x11 xext xi xrender xt xtst
+GNU_CONFIGURE=	yes
 
 .if !exists(/usr/bin/unzip)
 BUILD_DEPENDS+=	${UNZIP_CMD}:${PORTSDIR}/archivers/unzip
@@ -91,8 +93,8 @@ NO_CCACHE=		yes
 NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	8
-JDK_UPDATE_VERSION=	40
-JDK_BUILD_NUMBER=	25
+JDK_UPDATE_VERSION=	51
+JDK_BUILD_NUMBER=	16
 DIST_BUILD_NUMBER=	132
 JTREG_VERSION=		4.1
 JTREG_BUILD_NUMBER=	b08
@@ -115,6 +117,7 @@ CONFIGURE_ARGS+=	--disable-ccache \
 			--with-giflib=system \
 			--with-jobs=${MAKE_JOBS_NUMBER} \
 			--with-milestone=fcs \
+			--with-package-path=${LOCALBASE} \
 			--with-zlib=system
 CONFIGURE_SCRIPT=	../../configure
 CONFIGURE_WRKSRC=	${WRKSRC}/common/autoconf
@@ -181,6 +184,11 @@ BOOTSTRAPJDKDIR?=	${LOCALBASE}/openjdk7
 BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/openjdk7
 .endif
 
+# PR193009: work around the rtld bug
+.if ${OSVERSION} < 1001511
+CONFIGURE_ARGS+=	--enable-static-libjli
+.endif
+
 .if ${COMPILER_TYPE} == clang
 .if ${COMPILER_VERSION} >= 35
 MAKE_ENV+=	COMPILER_WARNINGS_FATAL=false
@@ -189,6 +197,11 @@ MAKE_ENV+=	USE_CLANG=true
 .if ${COMPILER_FEATURES:Mlibc++}
 CONFIGURE_ENV=	LIBCXX="-lc++"
 .endif
+.endif
+
+# GCC is broken with PCH: https://lists.freebsd.org/pipermail/svn-src-all/2015-March/101722.html
+.if ${COMPILER_TYPE} == gcc
+MAKE_ARGS+=	USE_PRECOMPILED_HEADER=0
 .endif
 
 .if empty(ICONV_LIB)
@@ -207,6 +220,9 @@ post-extract:
 	    ${WRKSRC}/nashorn/test/script/jfx/kaleidoscope/golden/bsd.png
 	@${CP} ${FILESDIR}/nashorn-test-script-jfx-spread-golden-bsd.png \
 	    ${WRKSRC}/nashorn/test/script/jfx/spread/golden/bsd.png
+.if ${PORT_OPTIONS:MTEST}
+	@${LN} -sf ${WRKDIR}/jtreg/linux/bin ${WRKDIR}/jtreg/
+.endif
 
 post-patch:
 	@${FIND} ${WRKSRC} -name '*.orig' -delete
@@ -223,7 +239,7 @@ post-patch:
 	    ${WRKSRC}/jdk/src/share/classes/com/sun/java/swing/plaf/gtk/Metacity.java \
 	    ${WRKSRC}/jdk/src/share/classes/sun/print/PSPrinterJob.java \
 	    ${WRKSRC}/jdk/src/solaris/classes/sun/nio/fs/BsdFileSystemProvider.java
-	@${REINPLACE_CMD} -e 's|/usr/local/java/classes|${LOCALBASE}/share/java/classes|' \
+	@${REINPLACE_CMD} -e 's|/usr/local/share/java/classes|${LOCALBASE}/share/java/classes|' \
 	    ${WRKSRC}/jdk/src/bsd/doc/man/*.1
 	@${REINPLACE_CMD} -e 's|%%ICONV_CPPFLAGS%%|${ICONV_CPPFLAGS}|' \
 	    -e 's|%%ICONV_LDFLAGS%%|${ICONV_LDFLAGS}|' \
@@ -231,6 +247,9 @@ post-patch:
 	    ${WRKSRC}/jdk/make/lib/CoreLibraries.gmk \
 	    ${WRKSRC}/jdk/make/lib/ServiceabilityLibraries.gmk
 	@${CHMOD} 755 ${WRKSRC}/configure
+
+run-autotools-autoconf:
+	@cd ${CONFIGURE_WRKSRC} && ${SETENV} ${AUTOTOOLS_ENV} bash autogen.sh
 
 post-build:
 .if !defined(BUILD_JRE)

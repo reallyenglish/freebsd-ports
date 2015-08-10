@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Mojo-Pg
-PORTVERSION=	1.14
+PORTVERSION=	2.07
 CATEGORIES=	databases www perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:SRI
@@ -17,7 +17,16 @@ BUILD_DEPENDS=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg \
 		p5-Mojolicious>=6.0:${PORTSDIR}/www/p5-Mojolicious
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+OPTIONS_DEFINE=	EXAMPLES
+
+NO_ARCH=	yes
 USES=		perl5
 USE_PERL5=	configure
+
+PORTEXAMPLES=	*
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 
 .include <bsd.port.mk>

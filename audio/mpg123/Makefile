@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mpg123
-PORTVERSION=	1.21.0
+PORTVERSION=	1.22.2
 PORTREVISION=	1
 CATEGORIES=	audio ipv6
 MASTER_SITES=	SF \
@@ -23,7 +23,6 @@ CONFIGURE_ARGS=	--with-optimization=0 \
 		--with-audio=oss \
 		--with-default-audio=oss \
 		--with-module-suffix=.so
-CONFIGURE_ENV=	CONFIG_SHELL=${SH}
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 

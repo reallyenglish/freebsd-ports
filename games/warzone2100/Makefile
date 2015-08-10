@@ -12,8 +12,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
-		unzip:${PORTSDIR}/archivers/unzip \
-		${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
+		unzip:${PORTSDIR}/archivers/unzip
 LIB_DEPENDS=	libphysfs.so:${PORTSDIR}/devel/physfs \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libvorbis.so:${PORTSDIR}/audio/libvorbis \
@@ -22,7 +21,7 @@ LIB_DEPENDS=	libphysfs.so:${PORTSDIR}/devel/physfs \
 		libfribidi.so:${PORTSDIR}/converters/fribidi \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
-RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu
+RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu
 
 USES=		tar:xz bison gmake openal:al pkgconfig compiler:c++11-lang # actually, old gcc fails on unknown -W flag
 GNU_CONFIGURE=	yes

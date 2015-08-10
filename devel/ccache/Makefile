@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ccache
-PORTVERSION=	3.2.1
+PORTVERSION=	3.2.2
 PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	http://www.samba.org/ftp/ccache/ \
@@ -22,6 +22,7 @@ SUB_FILES=	${HOWTO} world-ccache pkg-message ccache-update-links.sh
 PORTDOCS=	ccache-howto-freebsd.txt MANUAL.html
 
 OPTIONS_DEFINE=	CLANGLINK LLVMLINK STATIC DOCS TINDERBOX
+OPTIONS_DEFAULT=CLANGLINK LLVMLINK
 
 CLANGLINK_DESC=	Create clang compiler links if clang is installed
 LLVMLINK_DESC=	Create llvm compiler links if llvm is installed
@@ -47,11 +48,11 @@ PLIST_SUB+=	CCLINKDIR="${CCLINKDIR}"
 CCACHE_COMPILERS+=	icc icpc
 .endif
 
-GNU_COMPILERS+=		34 42 43 44 45 46 47 48 49 5
+GNU_COMPILERS+=		34 42 43 44 45 46 47 48 49 5 6
 CCACHE_COMPILERS+=	cc c++ CC gcc g++ ${GNU_COMPILERS:S|^|gcc|} ${GNU_COMPILERS:S|^|g++|}
 
 .if ${PORT_OPTIONS:MCLANGLINK}
-CLANG_COMPILERS+=	31 32 33 34 35 -devel
+CLANG_COMPILERS+=	31 32 33 34 35 36 -devel
 CCACHE_COMPILERS+=	clang clang++ ${CLANG_COMPILERS:S|^|clang|} ${CLANG_COMPILERS:S|^|clang++|}
 .endif
 
@@ -91,11 +92,6 @@ do-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/MANUAL.html ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKDIR}/${HOWTO} ${STAGEDIR}${DOCSDIR}
-.endif
-
-post-install:
-.if ${PORT_OPTIONS:MCLANGLINK}
-	@${CAT} ${FILESDIR}/pkg-message-clang >> ${PKGMESSAGE}
 .endif
 
 .include <bsd.port.post.mk>

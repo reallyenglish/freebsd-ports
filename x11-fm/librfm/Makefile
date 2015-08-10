@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	librfm
-PORTVERSION=	5.2.10
-PORTREVISION=	1
+PORTVERSION=	5.3.14.6
 CATEGORIES=	x11-fm
-MASTER_SITES=	SF/xffm/librfm/
+MASTER_SITES=	SF/xffm/${PORTVERSION}
 DISTNAME=	${PORTNAME}5-${PORTVERSION}
 
 MAINTAINER=	rodrigo@FreeBSD.org
@@ -26,7 +25,7 @@ MAKE_JOB_UNSAFE=yes
 INSTALLS_ICONS=	yes
 USES=		gmake libtool:keepla pkgconfig tar:bzip2 gettext
 GNU_CONFIGURE=	yes
-USE_GNOME=	gtk20
+USE_GNOME=	gtk20 intltool
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 

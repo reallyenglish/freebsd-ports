@@ -2,26 +2,27 @@
 # $FreeBSD$
 
 PORTNAME=	libressl
-PORTVERSION=	2.1.4
+PORTVERSION=	2.2.2
 CATEGORIES=	security devel
-MASTER_SITES=	${MASTER_SITE_OPENBSD}
-MASTER_SITE_SUBDIR=	LibreSSL
+MASTER_SITES=	OPENBSD/LibreSSL
 
 MAINTAINER=	vsevolod@FreeBSD.org
 COMMENT=	Free version of the SSL/TLS protocol forked from OpenSSL
 
 LICENSE=	BSD4CLAUSE
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 CPE_VENDOR=	openbsd
 
-CONFLICTS?=	openssl-*
+CONFLICTS?=	openssl-[0-9]*
 
 GNU_CONFIGURE=	yes
-USES=	libtool pkgconfig pathfix cpe
+USES=		cpe libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 INSTALL_TARGET=	install-strip
 
-test: build
+regression-test: build
 	cd ${WRKSRC} && ${MAKE} check
 
 .include <bsd.port.mk>

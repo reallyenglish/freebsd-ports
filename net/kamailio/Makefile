@@ -3,7 +3,7 @@
 #
 
 PORTNAME=	kamailio
-PORTVERSION=	4.2.3
+PORTVERSION=	4.2.4
 PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.kamailio.org/pub/kamailio/${PORTVERSION}/src/
@@ -13,6 +13,7 @@ MAINTAINER=	pi@FreeBSD.org
 COMMENT=	Very fast and configurable open source SIP proxy
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libxml2.so:${PORTSDIR}/textproc/libxml2 \
@@ -21,7 +22,8 @@ RUN_DEPENDS=	${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 
 USES=		gmake shebangfix readline
 USE_LDCONFIG=	yes
-SHEBANG_FILES=	utils/kamctl/kamctl utils/kamctl/kamdbctl
+SHEBANG_FILES=	utils/kamctl/dbtextdb/dbtextdb.py \
+		utils/kamctl/kamctl utils/kamctl/kamdbctl
 CFLAGS+=	-Wall
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

@@ -4,7 +4,7 @@
 
 PORTNAME=	hal
 DISTVERSION=	0.5.14
-PORTREVISION=	28
+PORTREVISION=	29
 CATEGORIES=	sysutils
 MASTER_SITES=	http://hal.freedesktop.org/releases/
 
@@ -72,12 +72,6 @@ FIXED_MOUNTPOINTS_EXTRA_PATCHES=	${FILESDIR}/extra-patch-tools_hal-storage-mount
 
 .if (${ARCH}=="i386" || ${ARCH}=="amd64" || ${ARCH}=="ia64")
 RUN_DEPENDS+=	dmidecode:${PORTSDIR}/sysutils/dmidecode
-.endif
-
-.if ${OSVERSION} >= 800063
-PLIST_SUB+=	USB2=""
-.else
-PLIST_SUB+=	USB2="@comment "
 .endif
 
 post-patch:

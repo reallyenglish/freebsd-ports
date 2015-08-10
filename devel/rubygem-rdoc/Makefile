@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	rdoc
-PORTVERSION=	4.1.2
+PORTVERSION=	4.2.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -13,6 +13,8 @@ LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	rubygem-json>=1.4:${PORTSDIR}/devel/rubygem-json
 RUN_DEPENDS=	rubygem-json>=1.4:${PORTSDIR}/devel/rubygem-json
+
+NO_ARCH=	yes
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes

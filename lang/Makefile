@@ -7,6 +7,7 @@
     SUBDIR += abcl
     SUBDIR += adacontrol
     SUBDIR += afnix
+    SUBDIR += alchemist.el
     SUBDIR += algol68g
     SUBDIR += alisp
     SUBDIR += angelscript
@@ -22,15 +23,16 @@
     SUBDIR += bigloo
     SUBDIR += bsh
     SUBDIR += bwbasic
+    SUBDIR += c
     SUBDIR += ccl
     SUBDIR += cdent
     SUBDIR += cduce
     SUBDIR += ceylon
     SUBDIR += cfortran
+    SUBDIR += chibi-scheme
     SUBDIR += chicken
     SUBDIR += cint
     SUBDIR += cjs
-    SUBDIR += clang-cheri
     SUBDIR += clang-devel
     SUBDIR += clang33
     SUBDIR += clang34
@@ -38,6 +40,7 @@
     SUBDIR += clang36
     SUBDIR += clojure
     SUBDIR += clojure-mode.el
+    SUBDIR += cloudabi-clang
     SUBDIR += cmucl
     SUBDIR += cmucl-extra
     SUBDIR += cocor
@@ -52,6 +55,7 @@
     SUBDIR += ecl
     SUBDIR += elan
     SUBDIR += elixir
+    SUBDIR += elixir-mode.el
     SUBDIR += elk
     SUBDIR += emacs-lisp-intro
     SUBDIR += erlang
@@ -59,6 +63,7 @@
     SUBDIR += erlang-runtime15
     SUBDIR += erlang-runtime16
     SUBDIR += erlang-runtime17
+    SUBDIR += erlang-runtime18
     SUBDIR += erlang-wx
     SUBDIR += execline
     SUBDIR += expect
@@ -83,17 +88,17 @@
     SUBDIR += gcc-ecj45
     SUBDIR += gcc46
     SUBDIR += gcc47
-    SUBDIR += gcc47-aux
     SUBDIR += gcc48
     SUBDIR += gcc49
     SUBDIR += gcc5
     SUBDIR += gcc5-aux
+    SUBDIR += gcc5-devel
+    SUBDIR += gcc6-devel
     SUBDIR += gcl
     SUBDIR += gforth
     SUBDIR += ghc
     SUBDIR += gjs
     SUBDIR += gnat_util
-    SUBDIR += gnatdroid-armv5
     SUBDIR += gnatdroid-armv7
     SUBDIR += gnatdroid-binutils
     SUBDIR += gnatdroid-sysroot
@@ -139,6 +144,7 @@
     SUBDIR += linux-f10-libg2c
     SUBDIR += linux-f10-tcl85
     SUBDIR += linux-j
+    SUBDIR += lua-ada
     SUBDIR += lua-mode.el
     SUBDIR += lua51
     SUBDIR += lua52
@@ -168,7 +174,7 @@
     SUBDIR += newlisp-devel
     SUBDIR += nhc98
     SUBDIR += nickle
-    SUBDIR += nimrod
+    SUBDIR += nim
     SUBDIR += nml
     SUBDIR += nqc
     SUBDIR += nwcc
@@ -205,6 +211,7 @@
     SUBDIR += p5-Switch
     SUBDIR += p5-Tcl
     SUBDIR += p5-Test-XPath
+    SUBDIR += p5-Try-Catch
     SUBDIR += p5-Try-Tiny
     SUBDIR += p5-Try-Tiny-Retry
     SUBDIR += p5-TryCatch
@@ -215,9 +222,11 @@
     SUBDIR += pbasic
     SUBDIR += pcc
     SUBDIR += pecl-perl
+    SUBDIR += perl5-devel
     SUBDIR += perl5.16
     SUBDIR += perl5.18
     SUBDIR += perl5.20
+    SUBDIR += perl5.22
     SUBDIR += petite-chez
     SUBDIR += pfe
     SUBDIR += phantomjs
@@ -226,8 +235,6 @@
     SUBDIR += php-mode.el
     SUBDIR += php5
     SUBDIR += php5-extensions
-    SUBDIR += php53
-    SUBDIR += php53-extensions
     SUBDIR += php55
     SUBDIR += php55-extensions
     SUBDIR += php56
@@ -242,7 +249,6 @@
     SUBDIR += py-mx-base
     SUBDIR += py-prolog
     SUBDIR += pypy
-    SUBDIR += pypy-devel
     SUBDIR += pypy3-devel
     SUBDIR += python
     SUBDIR += python-doc-html
@@ -276,6 +282,7 @@
     SUBDIR += ruby22
     SUBDIR += runawk
     SUBDIR += rust
+    SUBDIR += rust-nightly
     SUBDIR += s9fes
     SUBDIR += sagittarius-scheme
     SUBDIR += sather-specification
@@ -299,6 +306,7 @@
     SUBDIR += smalltalk
     SUBDIR += smlnj
     SUBDIR += snobol4
+    SUBDIR += spark
     SUBDIR += spidermonkey17
     SUBDIR += spidermonkey170
     SUBDIR += spidermonkey185
@@ -310,6 +318,7 @@
     SUBDIR += starlogo
     SUBDIR += stldoc
     SUBDIR += swi-pl
+    SUBDIR += tcbasic
     SUBDIR += tcc
     SUBDIR += tcl-manual
     SUBDIR += tcl-wrapper

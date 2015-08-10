@@ -2,7 +2,7 @@
 
 PORTNAME=	wx
 PORTVERSION=	3.0.2
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	SF/wxwindows/${PORTVERSION}
 PKGNAMESUFFIX=	30-gtk2
@@ -12,12 +12,11 @@ MAINTAINER=	portmaster@bsdforge.com
 COMMENT=	The wxWidgets GUI toolkit with GTK+ bindings
 
 LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png\
-		libjpeg.so:${PORTSDIR}/graphics/jpeg\
 		libtiff.so:${PORTSDIR}/graphics/tiff\
 		libexpat.so:${PORTSDIR}/textproc/expat2\
 		libwebkitgtk-1.0.so:${PORTSDIR}/www/webkit-gtk2
 
-USES+=		compiler:c++11-lib iconv gmake pkgconfig tar:bzip2
+USES+=		compiler:c++11-lib gmake iconv jpeg pkgconfig tar:bzip2
 USE_XORG=	x11 sm xxf86vm xinerama
 USE_GL=		glu
 USE_GNOME=	gtk20
@@ -39,6 +38,7 @@ CONFIGURE_ARGS=	--with-libpng=sys\
 CONFIGURE_ENV=	X11BASE="${LOCALBASE}" \
 		ac_cv_header_sys_inotify_h=no
 CPPFLAGS+=	-I${LOCALBASE}/include
+CXXFLAGS+=	-std=c++11
 LIBS+=		-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	GSTREAMER MSPACK NLS

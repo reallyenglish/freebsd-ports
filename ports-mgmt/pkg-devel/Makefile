@@ -1,14 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	pkg
-DISTVERSION=	1.4.99.13
+DISTVERSION=	1.5.99.6
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	\
 		http://files.etoilebsd.net/pkg/ \
-		http://highsecure.ru/distfiles/ \
-		http://mirror.shatow.net/freebsd/${PORTNAME}/ \
-		http://pkg.semmy.ru/
+		http://mirror.shatow.net/freebsd/${PORTNAME}/
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	pkg@FreeBSD.org
@@ -16,9 +14,6 @@ COMMENT=	Package manager
 
 LICENSE=	BSD2CLAUSE
 
-# Disable CCACHE support because of the chicken/egg problem pkg should always
-# With no dependency at all
-NO_CCACHE=	yes
 WITH_DEBUG=	yes
 CFLAGS+=	-O0 -g -Wno-error
 USE_LDCONFIG=	yes

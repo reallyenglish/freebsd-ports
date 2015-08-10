@@ -3,7 +3,7 @@
 
 PORTNAME=	sary
 PORTVERSION=	1.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc ruby
 MASTER_SITES=	http://sary.sourceforge.net/
 PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
@@ -32,6 +32,7 @@ DOCS_JA=	${RUBY_RD_FILES:M*.ja.rd} \
 OPTIONS_DEFINE=	DOCS
 
 post-install:
+	${STRIP_CMD} ${STAGEDIR}${RUBY_SITEARCHLIBDIR:C/^${LOCALBASE}/${PREFIX}/}/sary.so
 	${INSTALL_SCRIPT} ${WRKSRC}/rsary.rb ${STAGEDIR}${PREFIX}/bin/
 	${MKDIR}  ${STAGEDIR}${RUBY_MODDOCDIR}/ja
 .for f in ${DOCS_EN}
@@ -41,4 +42,10 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${RUBY_MODDOCDIR}/ja/
 .endfor
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${RUBY_VER} >= 2.2
+BROKEN=		Does not build
+.endif
+
+.include <bsd.port.post.mk>

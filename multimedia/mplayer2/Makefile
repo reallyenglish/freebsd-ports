@@ -2,11 +2,11 @@
 
 PORTNAME=	mplayer2
 PORTVERSION=	${MPLAYER2_PORT_VERSION}
-PORTREVISION=	11
+PORTREVISION=	13
 CATEGORIES=	multimedia audio
 MASTER_SITES=	LOCAL/gblach/
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	cpm@fbsd.es
 COMMENT=	Advanced general-purpose video player
 
 LICENSE=	GPLv2
@@ -19,15 +19,11 @@ BUILD_DEPENDS=	ffmpeg:${PORTSDIR}/multimedia/ffmpeg \
 		rst2man:${PORTSDIR}/textproc/py-docutils
 RUN_DEPENDS=	ffmpeg:${PORTSDIR}/multimedia/ffmpeg
 
-USES=		gmake iconv ncurses pkgconfig tar:xz
+USES=		cpe gmake iconv ncurses pkgconfig tar:xz
 HAS_CONFIGURE=	yes
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}" \
-		TMPDIR="${WRKSRC}"
+CONFIGURE_ENV=	TMPDIR="${WRKSRC}"
 CONFIGURE_ARGS=	--cc=${CC} \
-		--extra-cflags='-I${LOCALBASE}/include/portaudio2' \
-		--extra-libs='-lavresample' \
-		--extra-ldflags='-L${LOCALBASE}/lib/portaudio2' \
+		--extra-libs='-lavresample ${PORTAUDIOLIB}' \
 		--mandir=${PREFIX}/man \
 		--enable-libavresample \
 		--disable-alsa \
@@ -75,10 +71,6 @@ CONFLICTS=	mplayer-1.*
 
 .if ${ARCH} == "sparc64"
 BROKEN=		Does not compile on sparc64
-.endif
-
-.if ${OSVERSION} < 803000
-CONFIGURE_ARGS+=	--disable-ssse3
 .endif
 
 WITH_CDROM_DEVICE?=	/dev/cd0
@@ -147,7 +139,8 @@ CONFIGURE_ARGS+=	--disable-pulse
 .endif
 
 .if ${PORT_OPTIONS:MPORTAUDIO}
-LIB_DEPENDS+=		libportaudio.so.2:${PORTSDIR}/audio/portaudio2
+LIB_DEPENDS+=		libportaudio.so:${PORTSDIR}/audio/portaudio
+PORTAUDIOLIB=		-lportaudio
 .else
 CONFIGURE_ARGS+=	--disable-portaudio
 .endif

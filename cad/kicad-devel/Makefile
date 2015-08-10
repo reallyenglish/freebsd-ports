@@ -3,10 +3,9 @@
 
 PORTNAME=	kicad
 DISTVERSION=	r${BZR_SRC_REV}
-PORTREVISION=	0
+#PORTREVISION=	1
 CATEGORIES=	cad
-MASTER_SITES=	${MASTER_SITE_LOCAL}
-MASTER_SITE_SUBDIR=	mr
+MASTER_SITES=	LOCAL/mr
 PKGNAMESUFFIX=	-devel
 DIST_SUBDIR=		${PORTNAME}
 
@@ -23,6 +22,7 @@ CONFLICTS=	kicad-2014*
 DOCVERSION=	1.1
 LIBVERSION=	1.0
 
+CXXFLAGS+=	-std=c++11
 USE_GL=		glew glu
 USE_WX=		3.0
 WX_COMPS=	wx
@@ -158,23 +158,6 @@ PLIST_DIR_LIST=		lib/kicad
 PLIST_SHAREDDIR_LIST=	share/mimelnk/application \
 			share/mimelnk
 
-build-plist:
-	${RM} -f ${PLIST}
-	cd ${STAGEDIR}${PREFIX} && \
-		(ls ${PLIST_FILE_LIST}; ${FIND} ${PLIST_DIR_LIST} -type f) | \
-		${SORT} >> ${PLIST}
-	${FIND} ${STAGEDIR}${DATADIR} ${DOCSDIR} -type f | \
-		${SED} -e 's|${STAGEDIR}${DATADIR}|%%DATADIR%%|' \
-		-e 's|${STAGEDIR}${DOCSDIR}|%%DOCSDIR%%|' | ${SORT} >> ${PLIST}
-	cd ${STAGEDIR}${PREFIX} && \
-		${FIND} ${PLIST_DIR_LIST} -type d | \
-		${SORT} -r | ${SED} -e 's|^|@dirrm |' >> ${PLIST}
-.for subdir in ${PLIST_SHAREDDIR_LIST}
-	@${ECHO_CMD} '@unexec ${RMDIR} %D/${subdir} 2> /dev/null || true' >> ${PLIST}
-.endfor
-	${FIND} ${STAGEDIR}${DATADIR} ${STAGEDIR}${DOCSDIR} -type d | ${SORT} -r | \
-		${SED} -e 's|${STAGEDIR}${DATADIR}|%%DATADIR%%|' \
-			-e 's|${STAGEDIR}${DOCSDIR}|%%DOCSDIR%%|' \
-			-e 's|^|@dirrm |' >> ${PLIST}
+BROKEN_FreeBSD_8=	does not build: absence of strtoll(3)
 
 .include <bsd.port.mk>

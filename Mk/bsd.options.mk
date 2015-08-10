@@ -35,6 +35,7 @@
 #
 # OPTIONS_EXCLUDE		- List of options unsupported (useful for slave ports)
 # OPTIONS_EXCLUDE_${ARCH}	- List of options unsupported on a given ${ARCH}
+# OPTIONS_EXCLUDE_${OPSYS}	- List of options unsupported on a given ${OPSYS}
 # OPTIONS_SLAVE			- This is designed for slave ports, it removes an
 #				  option from the options list inherited from the
 #				  master port and it always adds it to PORT_OPTIONS
@@ -104,12 +105,13 @@
 #
 # For each of:
 # ALL_TARGET CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS CONFLICTS_BUILD
-# CONFLICTS_INSTALL CPPFLAGS CXXFLAGS DISTFILES EXTRA_PATCHES
-# INSTALL_TARGET LDFLAGS LIBS MAKE_ARGS MAKE_ENV PATCHFILES PATCH_SITES
-# PLIST_DIRS PLIST_DIRSTRY PLIST_FILES PLIST_SUB INFO USES, defining ${opt}_${variable} will
-# add its content to the actual variable when the option is enabled.  Defining
-# ${opt}_${variable}_OFF will add its content to the actual variable when the
-# option is disabled.
+# CONFLICTS_INSTALL CPPFLAGS CXXFLAGS DISTFILES EXTRA_PATCHES GH_ACCOUNT
+# GH_PROJECT GH_TAGNAME INFO INSTALL_TARGET LDFLAGS LIBS MAKE_ARGS MAKE_ENV
+# PATCHFILES PATCH_SITES PLIST_DIRS PLIST_DIRSTRY PLIST_FILES PLIST_SUB
+# PORTDOCS SUB_FILES SUB_LIST USES,
+# defining ${opt}_${variable} will add its content to the actual variable when
+# the option is enabled.  Defining ${opt}_${variable}_OFF will add its content
+# to the actual variable when the option is disabled.
 #
 # For each of the depends target PKG FETCH EXTRACT PATCH BUILD LIB RUN,
 # defining ${opt}_${deptype}_DEPENDS will add its content to the actual
@@ -130,10 +132,12 @@ OPTIONS_FILE?=	${PORT_DBDIR}/${OPTIONS_NAME}/options
 
 _OPTIONS_FLAGS=	ALL_TARGET CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS \
 		CONFLICTS_BUILD CONFLICTS_INSTALL CPPFLAGS CXXFLAGS DISTFILES \
-		EXTRA_PATCHES INSTALL_TARGET LDFLAGS LIBS MAKE_ARGS MAKE_ENV \
-		PATCHFILES PATCH_SITES PLIST_DIRS PLIST_DIRSTRY PLIST_FILES \
-		PLIST_SUB USES INFO
+		EXTRA_PATCHES GH_ACCOUNT GH_PROJECT GH_TAGNAME INFO \
+		INSTALL_TARGET LDFLAGS LIBS MAKE_ARGS MAKE_ENV PATCHFILES \
+		PATCH_SITES PLIST_DIRS PLIST_DIRSTRY PLIST_FILES PLIST_SUB \
+		PORTDOCS SUB_FILES SUB_LIST USES
 _OPTIONS_DEPENDS=	PKG FETCH EXTRACT PATCH BUILD LIB RUN
+_OPTIONS_TARGETS=	fetch extract patch configure build install package stage
 
 # Set the default values for the global options, as defined by portmgr
 .if !defined(NOPORTDOCS)
@@ -171,7 +175,8 @@ OPTIONS_DEFINE+=	${opt}
 OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 
 # Remove options the port maintainer doesn't want
-.for opt in ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} ${OPTIONS_SLAVE}
+.for opt in ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} ${OPTIONS_SLAVE} \
+	${OPTIONS_EXCLUDE_${OPSYS}}
 OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:N${opt}}
 OPTIONS_DEFINE:=	${OPTIONS_DEFINE:N${opt}}
 PORT_OPTIONS:=		${PORT_OPTIONS:N${opt}}
@@ -278,12 +283,12 @@ NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 # XXX once WITH_DEBUG is not magic any more, do remove the :NDEBUG from here.
 .for opt in ${ALL_OPTIONS:NDEBUG}
 .if defined(WITH_${opt})
-OPTIONS_WARNINGS+= "WITH_${opt}"
+OPTIONS_WARNINGS+=	"WITH_${opt}"
 OPTIONS_WARNINGS_SET+=	${opt}
 PORT_OPTIONS+=	${opt}
 .endif
 .if defined(WITHOUT_${opt})
-OPTIONS_WARNINGS+= "WITHOUT_${opt}"
+OPTIONS_WARNINGS+=	"WITHOUT_${opt}"
 OPTIONS_WARNINGS_UNSET+=	${opt}
 PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 .endif
@@ -408,6 +413,12 @@ WITH_DEBUG=	yes
 ALL_OPTIONS=	${OPTIONS_DEFINE}
 .endif
 
+.for target in ${_OPTIONS_TARGETS}
+.for prepost in pre post
+_OPTIONS_${prepost}_${target}?=
+.endfor
+.endfor
+
 .for opt in ${COMPLETE_OPTIONS_LIST} ${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE}
 # PLIST_SUB
 PLIST_SUB?=
@@ -461,6 +472,11 @@ ${flags}+=	${${opt}_${flags}}
 ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
 .      endif
 .    endfor
+.    for target in ${_OPTIONS_TARGETS}
+.      for prepost in pre post
+_OPTIONS_${prepost}_${target}+=	${prepost}-${target}-${opt}-on
+.      endfor
+.    endfor
 .  else
 .    if defined(${opt}_USE_OFF)
 .      for option in ${${opt}_USE_OFF}
@@ -492,6 +508,11 @@ ${flags}+=	${${opt}_${flags}_OFF}
 .      if defined(${opt}_${deptype}_DEPENDS_OFF)
 ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS_OFF}
 .      endif
+.    endfor
+.    for target in ${_OPTIONS_TARGETS}
+.      for prepost in pre post
+_OPTIONS_${prepost}_${target}+=	${prepost}-${target}-${opt}-off
+.      endfor
 .    endfor
 .  endif
 .endfor

@@ -161,9 +161,9 @@ icu_LIB_DEPENDS=		libicui18n.so:${PORTSDIR}/devel/icu
 icu_MOZ_OPTIONS=		--with-system-icu --with-intl-api
 
 -jpeg_BUILD_DEPENDS=yasm:${PORTSDIR}/devel/yasm
-# XXX depends on ports/180159 or package flavor support
-#jpeg_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/libjpeg-turbo
-jpeg_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+# XXX JCS_EXTENSIONS API is currently disabled by r371283
+# XXX Remove files/patch-ijg-libjpeg once -turbo is default
+jpeg_USES=		jpeg
 jpeg_MOZ_OPTIONS=	--with-system-jpeg=${LOCALBASE}
 
 nspr_LIB_DEPENDS=	libnspr4.so:${PORTSDIR}/devel/nspr
@@ -217,6 +217,7 @@ ${use:S/-/_WITHOUT_/}=	${TRUE}
 BUILD_DEPENDS+=	${${dep}_BUILD_DEPENDS}
 LIB_DEPENDS+=	${${dep}_LIB_DEPENDS}
 RUN_DEPENDS+=	${${dep}_RUN_DEPENDS}
+USES+=		${${dep}_USES}
 MOZ_OPTIONS+=	${${dep}_MOZ_OPTIONS}
 .else
 BUILD_DEPENDS+=	${-${dep}_BUILD_DEPENDS}
@@ -406,6 +407,9 @@ MOZ_OPTIONS+=	--enable-strip --enable-install-strip
 # _MAKE_JOBS is only available after bsd.port.post.mk, thus cannot be
 # used in .mozconfig. And client.mk automatically uses -jN where N
 # is what multiprocessing.cpu_count() returns.
+.if defined(DISABLE_MAKE_JOBS) || defined(MAKE_JOBS_UNSAFE)
+MAKE_JOBS_NUMBER=	1
+.endif
 .if defined(MAKE_JOBS_NUMBER)
 MOZ_MAKE_FLAGS+=-j${MAKE_JOBS_NUMBER}
 .endif
@@ -444,7 +448,6 @@ LIBS+=		-lcxxrt
 . endif
 .elif ${ARCH:Mpowerpc*}
 USES:=		compiler:gcc-c++11-lib ${USES:Ncompiler*c++11*}
-CFLAGS+=	-D__STDC_CONSTANT_MACROS
 . if ${ARCH} == "powerpc64"
 MOZ_EXPORT+=	UNAME_m="${ARCH}"
 CFLAGS+=	-mminimal-toc
@@ -523,8 +526,8 @@ gecko-post-patch:
 			${MOZSRC}/configure \
 			${WRKSRC}/configure; do \
 		if [ -f $$f ] ; then \
-			${REINPLACE_CMD} -Ee 's|-lc_r|${PTHREAD_LIBS}|g ; \
-				s|-l?pthread|${PTHREAD_LIBS}|g ; \
+			${REINPLACE_CMD} -Ee 's|-lc_r|-pthread|g ; \
+				s|-l?pthread|-pthread|g ; \
 				s|echo aout|echo elf|g ; \
 				s|/usr/X11R6|${LOCALBASE}|g' \
 				$$f; \

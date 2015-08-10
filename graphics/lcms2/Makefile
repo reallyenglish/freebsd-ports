@@ -2,11 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	lcms2
-PORTVERSION=	2.6
-PORTREVISION=	3
+PORTVERSION=	2.7
 CATEGORIES=	graphics
-MASTER_SITES=	SF/lcms/lcms/${PORTVERSION} \
-		http://www.littlecms.com/
+MASTER_SITES=	SF/lcms/lcms/${PORTVERSION}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Accurate, fast, and small-footprint color management engine
@@ -30,7 +28,7 @@ PORTDOCS=	*
 
 JPEGICC_CONFIGURE_OFF=	--without-jpeg
 JPEGICC_CONFIGURE_ON=	--with-jpeg=${LOCALBASE}
-JPEGICC_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
+JPEGICC_USES=		jpeg
 TIFFICC_CONFIGURE_OFF=	--without-tiff
 TIFFICC_CONFIGURE_ON=	--with-tiff=${LOCALBASE}
 TIFFICC_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff

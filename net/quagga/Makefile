@@ -3,7 +3,7 @@
 
 PORTNAME=	quagga
 PORTVERSION=	0.99.24.1
-PORTREVISION=	0
+PORTREVISION=	2
 CATEGORIES=	net ipv6
 MASTER_SITES=	SAVANNAH
 
@@ -19,7 +19,7 @@ CONFLICTS=	openbgpd-[0-9]* openospfd-[0-9]* zebra-0* quagga-re-[0-9]*
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-exampledir=${PREFIX}/share/examples/quagga
 INSTALL_TARGET=	install-strip
-USES=		gmake libtool makeinfo perl5 readline compiler:c11 tar:xz autoreconf
+USES=		gmake libtool makeinfo perl5 readline compiler:c11 tar:xz autoreconf cpe
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 
@@ -102,6 +102,6 @@ pre-everything::
 post-install:
 	${MKDIR} ${STAGEDIR}${LOCALSTATE_DIR} ${STAGEDIR}${SYSCONF_DIR} \
 		${STAGEDIR}${EXAMPLESDIR}
-	@${MV} ${STAGEDIR}${ETCDIR}/* ${STAGEDIR}${EXAMPLESDIR}
+	@${MV} ${STAGEDIR}${SYSCONF_DIR}/* ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>

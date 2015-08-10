@@ -8,7 +8,7 @@ CATEGORIES=	sysutils perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Perl interface to Gamin (File Access Monitor implementation)
 
 USES=		fam perl5
@@ -23,8 +23,6 @@ pre-configure:
 	${MV} ${WRKSRC}/monitor ${WRKSRC}/gamin-monitor
 
 post-install:
-	${CHMOD} u+w ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sys/Gamin/Gamin.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sys/Gamin/Gamin.so
-	${CHMOD} u-w ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sys/Gamin/Gamin.so
 
 .include <bsd.port.mk>

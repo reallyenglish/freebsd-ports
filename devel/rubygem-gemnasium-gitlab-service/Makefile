@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gemnasium-gitlab-service
-PORTVERSION=	0.2.4
+PORTVERSION=	0.2.6
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -13,8 +13,8 @@ LICENSE=	MIT
 
 RUN_DEPENDS=	rubygem-rugged>=0.21:${PORTSDIR}/devel/rubygem-rugged
 
+NO_ARCH=	yes
 USE_RUBY=	yes
-USE_RAKE=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
 

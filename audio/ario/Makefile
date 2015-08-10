@@ -7,7 +7,7 @@ PORTREVISION=	10
 CATEGORIES=	audio
 MASTER_SITES=	SF/ario-player/ario-player/${PORTVERSION}
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ario is a GTK2 client for MPD
 
 LICENSE=	GPLv2
@@ -27,7 +27,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 USES=		gmake libtool pkgconfig
 USE_LDCONFIG=	yes
-USE_GNOME=	gtk20
+USE_GNOME=	gtk20 intltool
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 

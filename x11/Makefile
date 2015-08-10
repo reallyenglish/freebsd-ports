@@ -46,7 +46,7 @@
     SUBDIR += dgs
     SUBDIR += dmenu
     SUBDIR += dmxproto
-    SUBDIR += docker
+    SUBDIR += docker-tray
     SUBDIR += dri2proto
     SUBDIR += dri3proto
     SUBDIR += dxpc
@@ -71,7 +71,6 @@
     SUBDIR += gdkxft
     SUBDIR += gdm
     SUBDIR += glproto
-    SUBDIR += gmessage
     SUBDIR += gmrun
     SUBDIR += gnome-clipboard-daemon
     SUBDIR += gnome-desktop
@@ -161,6 +160,7 @@
     SUBDIR += libdnd
     SUBDIR += libexo
     SUBDIR += libfm
+    SUBDIR += libfm-extra
     SUBDIR += libgnome
     SUBDIR += libgnome-reference
     SUBDIR += libgnomekbd
@@ -185,6 +185,7 @@
     SUBDIR += lsw
     SUBDIR += luit
     SUBDIR += lumina
+    SUBDIR += lumina-i18n
     SUBDIR += lupe
     SUBDIR += lxde-meta
     SUBDIR += lxmenu-data
@@ -194,7 +195,6 @@
     SUBDIR += mate-applets
     SUBDIR += mate-base
     SUBDIR += mate-desktop
-    SUBDIR += mate-dialogs
     SUBDIR += mate-menus
     SUBDIR += mate-panel
     SUBDIR += mate-screensaver
@@ -223,6 +223,8 @@
     SUBDIR += p5-X11-IdleTime
     SUBDIR += p5-X11-Protocol
     SUBDIR += p5-X11-Resolution
+    SUBDIR += p5-X11-XCB
+    SUBDIR += p5-X11-Xlib
     SUBDIR += p5-XTerm-Conf
     SUBDIR += pixman
     SUBDIR += plasma-scriptengine-python
@@ -284,6 +286,7 @@
     SUBDIR += thingylaunch
     SUBDIR += tilda
     SUBDIR += tint
+    SUBDIR += tint-devel
     SUBDIR += tkXwin
     SUBDIR += trapproto
     SUBDIR += trayer

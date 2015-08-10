@@ -22,12 +22,9 @@ RUN_DEPENDS=	rubygem-addressable>=2.3:${PORTSDIR}/www/rubygem-addressable \
 		rubygem-naught>=1.0:${PORTSDIR}/devel/rubygem-naught \
 		rubygem-simple_oauth>=0.3.0:${PORTSDIR}/net/rubygem-simple_oauth
 
+NO_ARCH=	yes
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
-
-post-patch:
-# adjust gemspec for "http ~> 0.6.0"
-	@${REINPLACE_CMD} -e '77 s|"~>"|">="|' ${WRKSRC}/${GEM_NAME}.gemspec
 
 .include <bsd.port.mk>
