@@ -1,7 +1,7 @@
 # Created by: Mitsuru Y <mitsuruy@reallyenglish.com>
 # $FreeBSD$
 
-PORTNAME=	rbenv-ruby
+PORTNAME=	rbenv-ruby${RUBY_VERSION:S/.//g}p${RUBY_PATCHLEVEL}
 .if defined(RUBY_PATCHLEVEL)
 PORTVERSION=	${RUBY_VERSION}.${RUBY_PATCHLEVEL}
 .else
@@ -17,13 +17,15 @@ DISTFILES?=	ruby-${MY_RUBY_VERSION_WITH_PATCHLEVEL}${EXTRACT_SUFX}:ruby \
 MAINTAINER=	mitsuruy@reallyenglish.com
 COMMENT?=	Object-oriented interpreted scripting language
 
-BUILD_DEPENDS=	curl:${PORTSDIR}/ftp/curl
+BUILD_DEPENDS=	curl:${PORTSDIR}/ftp/curl \
+		autoconf:${PORTSDIR}/devel/autoconf
 RUN_DEPENDS=	ruby-build:${PORTSDIR}/devel/ruby-build
 
 LATEST_LINK=	${PKGNAME}
 RUBYGEM_MASTER_SITES=	${MASTER_SITE_RUBYGEMS:S/\/gems\//\/rubygems\//}
 
 RUBY_VERSION?=	1.8.7
+RUBY_PATCHLEVEL?=	357
 RUBYGEM_VERSION?=	1.6.2
 DISTINFO_FILE=		${.CURDIR}/distinfo
 
