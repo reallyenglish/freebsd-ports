@@ -3,7 +3,7 @@
 
 PORTNAME=	graphviz
 PORTVERSION=	2.38.0
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/
 
@@ -11,14 +11,13 @@ MAINTAINER=	dinoex@FreeBSD.org
 COMMENT=	Graph Visualization Software from AT&T and Bell Labs
 
 LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libgd.so:${PORTSDIR}/${GD_PORT}
 
-USES=		gmake bison libtool:keepla pkgconfig pathfix shebangfix
+USES=		bison cpe gmake jpeg libtool:keepla pkgconfig pathfix shebangfix
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -91,7 +90,7 @@ GNOMEUI_USE=	GNOME=libgnomeui
 SMYRNA_USE=	GNOME=libglade2 GL=glut
 GVEDIT_USE=	qt4=qmake_build,moc_build,rcc_build,uic_build \
 		qt4=linguist_build,corelib,gui
-GHOSTSCRIPT_USE=GHOSTSCRIPT=yes
+GHOSTSCRIPT_USES=ghostscript
 PERL_USES=	perl5
 PHP_USE=	PHP=yes PHP_BUILD=yes
 PYTHON_USES=	python:2.7,build
@@ -148,8 +147,7 @@ TK_CPPFLAGS=		-I${TK_INCLUDEDIR}
 TK_CONFIGURE_ON=	--with-wish=${WISH}
 TK_CONFIGURE_ENV=	TKCONFIG="${TK_LIBDIR}/tkConfig.sh"
 GUILE_CONFIGURE_ENABLE=		guile
-NVTHREADS_CFLAGS+=	${PTHREAD_CFLAGS}
-NVTHREADS_LDFLAGS+=	${PTHREAD_LIBS}
+NVTHREADS_LDFLAGS=	-lpthread
 
 .include <bsd.port.options.mk>
 

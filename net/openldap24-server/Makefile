@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=		openldap
-DISTVERSION=		2.4.40
+DISTVERSION=		2.4.41
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
@@ -58,13 +58,13 @@ WANT_OPENLDAP_VER?=	24
 BROKEN=			incompatible OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
 
-PORTREVISION_CLIENT=	1
-PORTREVISION_SERVER=	3
+PORTREVISION_CLIENT=	0
+PORTREVISION_SERVER=	0
 OPENLDAP_SHLIB_MAJOR=	2
-OPENLDAP_SHLIB_MINOR=	10.3
+OPENLDAP_SHLIB_MINOR=	10.4
 OPENLDAP_MAJOR=		${DISTVERSION:R}
 
-OPTIONS_DEFINE=		FETCH GSSAPI
+OPTIONS_DEFINE=		DEBUG FETCH GSSAPI
 
 FETCH_DESC=		Enable fetch(3) support
 GSSAPI_DESC=		With GSSAPI support (implies SASL support)
@@ -77,6 +77,7 @@ OPTIONS_DEFINE+=	DEREF DYNGROUP DYNLIST MEMBEROF PPOLICY PROXYCACHE
 OPTIONS_DEFINE+=	REFINT RETCODE RWM SEQMOD SSSVLV SYNCPROV TRANSLUCENT
 OPTIONS_DEFINE+=	UNIQUE VALSORT SMBPWD SHA2 DYNAMIC_BACKENDS SASL
 OPTIONS_DEFINE+=	LMPASSWD
+OPTIONS_DEFINE+=	OUTLOOK
 
 OPTIONS_DEFAULT=	MDB SYNCPROV DYNAMIC_BACKENDS
 
@@ -120,6 +121,7 @@ SMBPWD_DESC=		With Samba Password hashes overlay
 SHA2_DESC=		With SHA2 Password hashes overlay
 LMPASSWD_DESC=		With LM hash password support (DEPRECATED)
 DYNAMIC_BACKENDS_DESC=	Build dynamic backends
+OUTLOOK_DESC=		Force caseIgnoreOrderingMatch on name attribute (experimental)
 .endif
 
 .if defined(CLIENT_ONLY)
@@ -273,6 +275,12 @@ CONFIGURE_ARGS+=	--enable-constraint=${OVERLAY_ENABLE}
 .if ${PORT_OPTIONS:MDDS}
 CONFIGURE_ARGS+=	--enable-dds=${OVERLAY_ENABLE}
 .endif
+
+.if ${PORT_OPTIONS:MDEBUG}
+CONFIGURE_ARGS+=	--enable-debug=yes
+.endif
+
+MAKE_ENV+=		STRIP=${STRIP}
 
 .if ${PORT_OPTIONS:MDEREF}
 CONFIGURE_ARGS+=	--enable-deref=${OVERLAY_ENABLE}
@@ -473,6 +481,13 @@ LIB_DEPENDS+=		libslp.so:${PORTSDIR}/net/openslp
 CONFIGURE_ARGS+=	--enable-wrappers
 .endif
 
+# Force using caseIgnoreOrderingMatch on 'name' attribute.
+# This may be a violation of RFC 4519 2.18 definition.
+# See http://www.openldap.org/lists/openldap-technical/201211/msg00175.html
+.if ${PORT_OPTIONS:MOUTLOOK}
+EXTRA_PATCHES+=		${FILESDIR}/extrapatch-outlook-servers__slapd__schema_prep.c
+.endif
+
 # end of client/server specific configuration
 .endif
 
@@ -545,6 +560,10 @@ post-install:
 		${MKDIR} ${STAGEDIR}${DOCSDIR}/$${dir}; \
 		${INSTALL_DATA} ${WRKSRC}/doc/$${dir}/* ${STAGEDIR}${DOCSDIR}/$${dir}; \
 	done
+	@for prog in ldapcompare ldapdelete ldapexop ldapmodify ldapmodrdn ldappasswd ldapsearch ldapurl ldapwhoami; do\
+		${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/$${prog}; \
+	done
+
 	@for library in lber ldap ldap_r; do \
 		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib$${library}-${OPENLDAP_MAJOR}.so.${OPENLDAP_SHLIB_MAJOR}; \
 	done

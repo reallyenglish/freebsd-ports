@@ -1,8 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	fossil
-PORTVERSION=	1.32
+PORTVERSION=	1.33
 PORTEPOCH=	2
+PORTREVISION=	1
 CATEGORIES=	devel www
 MASTER_SITES=	http://www.fossil-scm.org/download/
 DISTVERSIONPREFIX=	src-
@@ -19,7 +20,7 @@ CONFIGURE_ARGS=	--prefix=${PREFIX}
 
 USE_OPENSSL=	yes
 USE_RC_SUBR=	fossil
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+MAKE_JOBS_UNSAFE=yes
 
 CONFIGURE_ARGS=	--disable-lineedit
 

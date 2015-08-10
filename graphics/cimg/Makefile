@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cimg
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.2
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 MASTER_SITES=	SF/${PORTNAME}		\
@@ -39,8 +39,8 @@ USES+=		blaslapack
 WRKSRC=		${WRKDIR}/${DISTNAME:C/_/-/}
 BUILD_WRKSRC=	${WRKSRC}/examples
 MAKE_ENV=	X11PATH=${LOCALBASE} LOCALBASE=${LOCALBASE}
-CPPFLAGS+=	${CFLAGS} ${PTHREAD_CFLAGS}
-LDFLAGS+=	${PTHREAD_LIBS}
+CPPFLAGS+=	${CFLAGS}
+LDFLAGS+=	-lpthread
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
@@ -53,7 +53,6 @@ LIB_DEPENDS+=	libboard.so:${PORTSDIR}/graphics/libboard
 
 . if !defined(WITH_DEBUG)
 LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png		\
-		libjpeg.so:${PORTSDIR}/graphics/jpeg		\
 		libtiff.so:${PORTSDIR}/graphics/tiff		\
 		libIlmImf.so:${PORTSDIR}/graphics/OpenEXR	\
 		libgimp-2.0.so:${PORTSDIR}/graphics/gimp-app	\
@@ -61,6 +60,7 @@ LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png		\
 		libopencv_legacy.so:${PORTSDIR}/graphics/opencv	\
 		libopencv_core.so:${PORTSDIR}/graphics/opencv-core\
 		libGraphicsMagick.so:${PORTSDIR}/graphics/GraphicsMagick
+USES+=		jpeg
 ALL_TARGET=	Mlinux
 . else
 ALL_TARGET=	dlinux
@@ -122,8 +122,7 @@ pre-configure:
 		-e 's|CIMG_XSHM_LDFLAGS = #|CIMG_XSHM_LDFLAGS =|'		\
 		${BUILD_WRKSRC}/Makefile
 . endif
-	${REINPLACE_CMD} -e 's|-pedantic|${CFLAGS}|'			\
-		-e 's|-lpthread|${PTHREAD_LIBS}|' ${BUILD_WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's|-pedantic|${CFLAGS}|' ${BUILD_WRKSRC}/Makefile
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/CImg.h ${STAGEDIR}${PREFIX}/include

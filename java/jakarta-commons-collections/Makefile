@@ -4,8 +4,7 @@
 PORTNAME=	commons-collections
 PORTVERSION=	3.2.1
 CATEGORIES=	java devel
-MASTER_SITES=	${MASTER_SITE_APACHE_COMMONS_SOURCE}
-MASTER_SITE_SUBDIR=	${PORTNAME:S,commons-,,}
+MASTER_SITES=	APACHE_COMMONS_SOURCE
 PKGNAMEPREFIX=	jakarta-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
@@ -13,6 +12,7 @@ MAINTAINER=	makc@FreeBSD.org
 COMMENT=	Classes that extend/augment the Java Collections Framework
 
 USE_JAVA=	yes
+JAVA_VERSION=	1.6 1.7
 USE_ANT=	yes
 
 ALL_TARGET=	jar

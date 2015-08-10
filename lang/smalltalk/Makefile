@@ -3,7 +3,7 @@
 
 PORTNAME=	smalltalk
 PORTVERSION=	3.2.5
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	lang
 MASTER_SITES=	GNU
 
@@ -33,6 +33,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_prog_EMACS=no ac_cv_prog_AWK=gawk
 CONFIGURE_ARGS=	--enable-generational-gc=no \
 		--enable-gtk=no \
+		--localstatedir="${PREFIX}/var" \
 		--with-emacs=no \
 		--with-gmp=no
 USE_LDCONFIG=	yes

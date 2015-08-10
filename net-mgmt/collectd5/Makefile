@@ -3,6 +3,7 @@
 
 PORTNAME=	collectd
 PORTVERSION=	5.4.2
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://collectd.org/files/
 PKGNAMESUFFIX=	5
@@ -17,7 +18,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/share/aclocal/glib-2.0.m4:${PORTSDIR}/devel/glib20
 LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
 
-USES=		autoreconf gmake libtool pkgconfig tar:bzip2
+USES=		autoreconf gmake libtool pkgconfig shebangfix tar:bzip2
 GNU_CONFIGURE=	yes
 
 OPTIONS_DEFINE=		CGI DEBUG GCRYPT VIRT
@@ -25,7 +26,8 @@ OPTIONS_GROUP=		INPUT OUTPUT
 OPTIONS_GROUP_OUTPUT=	RRDTOOL NOTIFYEMAIL NOTIFYDESKTOP RIEMANN
 OPTIONS_GROUP_INPUT=	CURL DBI JSON MEMCACHEC MODBUS MONGODB MYSQL \
 			NUTUPS PERL PGSQL PING PYTHON RABBITMQ REDIS \
-			ROUTEROS SIGROK SNMP STATGRAB TOKYOTYRANT XML XMMS
+			ROUTEROS SIGROK SNMP STATGRAB TOKYOTYRANT VARNISH \
+			XML XMMS
 
 CGI_DESC=		Install collection.cgi (requires rrdtool)
 CURL_DESC=		Enable curl-based plugins (apache, nginx, etc)
@@ -53,6 +55,7 @@ SIGROK_DESC=		Enable sigrok plugin
 SNMP_DESC=		Enable SNMP plugin
 STATGRAB_DESC=		Enable statgrab-based plugins (disk, interface, etc)
 TOKYOTYRANT_DESC=	Enable tokyotyrant plugin
+VARNISH_DESC=		Enable varnish 3.x cache statistics
 VIRT_DESC=		Enable libvirt plugin (requires XML)
 XML_DESC=		Enable XML plugins
 XMMS_DESC=		Enable xmms plugin
@@ -86,7 +89,6 @@ CONFIGURE_ARGS=	--localstatedir=/var \
 		--without-libowcapi \
 		--without-libperfstat \
 		--without-libsensors \
-		--without-libvarnish \
 		--without-lvm \
 		--without-mic \
 		--without-oracle
@@ -141,7 +143,7 @@ CONFIGURE_ARGS+=	\
 
 .if ${PORT_OPTIONS:MCGI}
 RUN_DEPENDS+=	p5-URI>=0:${PORTSDIR}/net/p5-URI \
-		p5-CGI.pm>=0:${PORTSDIR}/www/p5-CGI.pm \
+		p5-CGI>=0:${PORTSDIR}/www/p5-CGI \
 		p5-Data-Dumper>=0:${PORTSDIR}/devel/p5-Data-Dumper \
 		p5-HTML-Parser>=0:${PORTSDIR}/www/p5-HTML-Parser
 PLIST_SUB+=	CGI=""
@@ -430,6 +432,15 @@ CONFIGURE_ARGS+=--without-libtokyotyrant --disable-tokyotyrant
 PLIST_SUB+=	TOKYOTYRANT="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MVARNISH}
+LIB_DEPENDS+=	libvarnishapi.so:${PORTSDIR}/www/varnish
+CONFIGURE_ARGS+=--with-libvarnish=${LOCALBASE} --enable-varnish
+PLIST_SUB+=	VARNISH=""
+.else
+CONFIGURE_ARGS+=--without-libvarnish
+PLIST_SUB+=	VARNISH="@comment "
+.endif
+
 .if ${PORT_OPTIONS:MVIRT}
 .if empty(PORT_OPTIONS:MXML)
 IGNORE=		VIRT requires XML. Either select XML or deselect VIRT.
@@ -458,6 +469,7 @@ PLIST_SUB+=	XMMS="@comment "
 .endif
 
 INSTALL_TARGET=install-strip
+SHEBANG_FILES=	contrib/collection.cgi
 
 post-patch:
 	@${REINPLACE_CMD} 's/-Werror//' \

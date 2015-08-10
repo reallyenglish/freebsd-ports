@@ -6,6 +6,8 @@
     SUBDIR += 2bsd-diff
     SUBDIR += R-cran-R2HTML
     SUBDIR += R-cran-XML
+    SUBDIR += R-cran-pystr
+    SUBDIR += R-cran-stringi
     SUBDIR += R-cran-stringr
     SUBDIR += R-cran-xtable
     SUBDIR += ack
@@ -29,6 +31,7 @@
     SUBDIR += archmage
     SUBDIR += artha
     SUBDIR += asciidoc
+    SUBDIR += asciinema
     SUBDIR += asm-xml
     SUBDIR += asm2html
     SUBDIR += aspell
@@ -79,6 +82,7 @@
     SUBDIR += colordiff
     SUBDIR += confetti
     SUBDIR += confget
+    SUBDIR += consul-template
     SUBDIR += crimson
     SUBDIR += cs-aspell
     SUBDIR += cs-mythes
@@ -143,7 +147,12 @@
     SUBDIR += elasticsearch-plugin-head
     SUBDIR += elasticsearch-plugin-hq
     SUBDIR += elasticsearch-plugin-marvel
+    SUBDIR += elasticsearch-plugin-sql
     SUBDIR += elasticsearch-river-rabbitmq
+    SUBDIR += elixir-earmark
+    SUBDIR += elixir-ex_doc
+    SUBDIR += elixir-funnel
+    SUBDIR += elixir-sweet_xml
     SUBDIR += emacs-wiki
     SUBDIR += en-aspell
     SUBDIR += en-hunspell
@@ -151,6 +160,8 @@
     SUBDIR += enchant
     SUBDIR += eo-aspell
     SUBDIR += eqe
+    SUBDIR += erlang-edown
+    SUBDIR += erlang-yamerl
     SUBDIR += es-aspell
     SUBDIR += es-hunspell
     SUBDIR += es-hyphen
@@ -158,7 +169,6 @@
     SUBDIR += estraier
     SUBDIR += et-aspell
     SUBDIR += exempi
-    SUBDIR += exmpp
     SUBDIR += expat2
     SUBDIR += exslt
     SUBDIR += extract_url
@@ -184,7 +194,6 @@
     SUBDIR += ga-aspell
     SUBDIR += gastex
     SUBDIR += gd-aspell
-    SUBDIR += gdict
     SUBDIR += gdome2
     SUBDIR += gl-aspell
     SUBDIR += gladtex
@@ -215,7 +224,6 @@
     SUBDIR += gv-aspell
     SUBDIR += heirloom-doctools
     SUBDIR += hevea
-    SUBDIR += hgrep
     SUBDIR += hhm
     SUBDIR += hi-aspell
     SUBDIR += highlight
@@ -271,6 +279,7 @@
     SUBDIR += htdig
     SUBDIR += html
     SUBDIR += html-pretty
+    SUBDIR += html-xml-utils
     SUBDIR += html2fo
     SUBDIR += html2tex
     SUBDIR += html2text
@@ -326,7 +335,8 @@
     SUBDIR += jshon
     SUBDIR += kdiff3
     SUBDIR += kenlm
-    SUBDIR += kibana
+    SUBDIR += kibana3
+    SUBDIR += kibana4
     SUBDIR += kmfl-european-latin
     SUBDIR += kmfl-khmer
     SUBDIR += kmfl-sil-ezra
@@ -389,6 +399,7 @@
     SUBDIR += libwpd
     SUBDIR += libwpd010
     SUBDIR += libwps
+    SUBDIR += libwps02
     SUBDIR += libwps03
     SUBDIR += libxdiff
     SUBDIR += libxml++26
@@ -457,7 +468,6 @@
     SUBDIR += nl-hunspell
     SUBDIR += nl-hyphen
     SUBDIR += nl-mythes
-    SUBDIR += nltk
     SUBDIR += nn-aspell
     SUBDIR += no-hunspell
     SUBDIR += nunnimcax
@@ -626,6 +636,7 @@
     SUBDIR += p5-PDF-Create
     SUBDIR += p5-PDF-FromHTML
     SUBDIR += p5-PDF-Table
+    SUBDIR += p5-PDF-WebKit
     SUBDIR += p5-PDF-Writer
     SUBDIR += p5-POD2-Base
     SUBDIR += p5-POE-Filter-XML
@@ -644,6 +655,7 @@
     SUBDIR += p5-Parse-Syslog
     SUBDIR += p5-Perl-Critic
     SUBDIR += p5-Perl-Critic-Bangs
+    SUBDIR += p5-Perl-Lint
     SUBDIR += p5-Perl-MinimumVersion
     SUBDIR += p5-PerlPoint-Converters
     SUBDIR += p5-PerlPoint-Package
@@ -695,6 +707,7 @@
     SUBDIR += p5-Regexp-Common-net-CIDR
     SUBDIR += p5-Regexp-Common-profanity_us
     SUBDIR += p5-Regexp-Copy
+    SUBDIR += p5-Regexp-Debugger
     SUBDIR += p5-Regexp-DefaultFlags
     SUBDIR += p5-Regexp-IPv6
     SUBDIR += p5-Regexp-Log
@@ -747,6 +760,7 @@
     SUBDIR += p5-String-Tokenizer
     SUBDIR += p5-String-Truncate
     SUBDIR += p5-String-Urandom
+    SUBDIR += p5-String-Util
     SUBDIR += p5-Syntax-Highlight-Engine-Kate
     SUBDIR += p5-Syntax-Highlight-Perl-Improved
     SUBDIR += p5-TOML
@@ -859,6 +873,7 @@
     SUBDIR += p5-Text-Reform
     SUBDIR += p5-Text-Report
     SUBDIR += p5-Text-Repository
+    SUBDIR += p5-Text-Roman
     SUBDIR += p5-Text-Sass
     SUBDIR += p5-Text-Shellwords
     SUBDIR += p5-Text-Similarity
@@ -998,6 +1013,7 @@
     SUBDIR += p5-XML-Parsepp
     SUBDIR += p5-XML-Parser
     SUBDIR += p5-XML-Parser-EasyTree
+    SUBDIR += p5-XML-Parser-Lite
     SUBDIR += p5-XML-Parser-Lite-Tree
     SUBDIR += p5-XML-Parser-Style-EasyTree
     SUBDIR += p5-XML-Parser-Style-Elemental
@@ -1126,15 +1142,6 @@
     SUBDIR += php5-xmlreader
     SUBDIR += php5-xmlwriter
     SUBDIR += php5-xsl
-    SUBDIR += php53-ctype
-    SUBDIR += php53-dom
-    SUBDIR += php53-pspell
-    SUBDIR += php53-simplexml
-    SUBDIR += php53-wddx
-    SUBDIR += php53-xml
-    SUBDIR += php53-xmlreader
-    SUBDIR += php53-xmlwriter
-    SUBDIR += php53-xsl
     SUBDIR += php55-ctype
     SUBDIR += php55-dom
     SUBDIR += php55-pspell
@@ -1169,13 +1176,14 @@
     SUBDIR += py-MarkupSafe
     SUBDIR += py-Tempita
     SUBDIR += py-acora
-    SUBDIR += py-asciinema
+    SUBDIR += py-alabaster
     SUBDIR += py-asv
     SUBDIR += py-bugzillatools
     SUBDIR += py-chardet
     SUBDIR += py-cloud_sptheme
     SUBDIR += py-conf_d
     SUBDIR += py-creole
+    SUBDIR += py-diff-match-patch
     SUBDIR += py-docutils
     SUBDIR += py-dsv
     SUBDIR += py-elasticsearch-py
@@ -1189,6 +1197,7 @@
     SUBDIR += py-genshi-devel
     SUBDIR += py-gettext
     SUBDIR += py-glob2
+    SUBDIR += py-hexdump
     SUBDIR += py-html2text
     SUBDIR += py-hyperestraier-python
     SUBDIR += py-jaxml
@@ -1201,6 +1210,7 @@
     SUBDIR += py-markdown
     SUBDIR += py-markdown2
     SUBDIR += py-mistune
+    SUBDIR += py-nltk
     SUBDIR += py-openpyxl
     SUBDIR += py-openpyxl1
     SUBDIR += py-paragrep
@@ -1214,6 +1224,7 @@
     SUBDIR += py-pyscss
     SUBDIR += py-pysrt
     SUBDIR += py-pystache
+    SUBDIR += py-pystemmer
     SUBDIR += py-python-augeas
     SUBDIR += py-pytidylib
     SUBDIR += py-pyx12
@@ -1228,13 +1239,14 @@
     SUBDIR += py-rstyoutube
     SUBDIR += py-rxp
     SUBDIR += py-sgrep
+    SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-sphinx-intl
     SUBDIR += py-sphinx_rtd_theme
     SUBDIR += py-sphinxcontrib-adadomain
     SUBDIR += py-sphinxcontrib-bitbucket
     SUBDIR += py-sphinxcontrib-httpdomain
-    SUBDIR += py-stripogram
     SUBDIR += py-syck
     SUBDIR += py-texttable
     SUBDIR += py-tinycss
@@ -1246,6 +1258,7 @@
     SUBDIR += py-whoosh
     SUBDIR += py-wicked
     SUBDIR += py-wordnet
+    SUBDIR += py-wstools
     SUBDIR += py-wtforms
     SUBDIR += py-xlrd
     SUBDIR += py-xlutils
@@ -1263,7 +1276,6 @@
     SUBDIR += py2html
     SUBDIR += py3-libxml2
     SUBDIR += pychm
-    SUBDIR += pystemmer
     SUBDIR += qprint
     SUBDIR += qstardict
     SUBDIR += qt4-xml
@@ -1322,14 +1334,17 @@
     SUBDIR += rubygem-albino
     SUBDIR += rubygem-amatch
     SUBDIR += rubygem-asciidoctor
-    SUBDIR += rubygem-augeas
     SUBDIR += rubygem-autoprefixer-rails
     SUBDIR += rubygem-charlock_holmes
     SUBDIR += rubygem-coderay
     SUBDIR += rubygem-colorator
     SUBDIR += rubygem-colored
     SUBDIR += rubygem-compass
+    SUBDIR += rubygem-compass-core
+    SUBDIR += rubygem-compass-import-once
     SUBDIR += rubygem-compass-rails
+    SUBDIR += rubygem-creole
+    SUBDIR += rubygem-css_parser
     SUBDIR += rubygem-cssmin
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-diffy
@@ -1352,9 +1367,12 @@
     SUBDIR += rubygem-gitlab-linguist
     SUBDIR += rubygem-heredoc_unindent
     SUBDIR += rubygem-hikidoc
+    SUBDIR += rubygem-html-pipeline
+    SUBDIR += rubygem-html-pipeline-gitlab
     SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-ini
     SUBDIR += rubygem-itextomml
+    SUBDIR += rubygem-jekyll-assets
     SUBDIR += rubygem-jekyll-gist
     SUBDIR += rubygem-jekyll-paginate
     SUBDIR += rubygem-jekyll-sass-converter
@@ -1370,12 +1388,15 @@
     SUBDIR += rubygem-markaby
     SUBDIR += rubygem-multi_xml
     SUBDIR += rubygem-nokogiri
+    SUBDIR += rubygem-nokogiri-diff
     SUBDIR += rubygem-nokogiri14
     SUBDIR += rubygem-nokogumbo
     SUBDIR += rubygem-opml
     SUBDIR += rubygem-org-ruby
     SUBDIR += rubygem-parslet
     SUBDIR += rubygem-phone
+    SUBDIR += rubygem-rails-dom-testing
+    SUBDIR += rubygem-rails-html-sanitizer
     SUBDIR += rubygem-rak
     SUBDIR += rubygem-rchardet
     SUBDIR += rubygem-rdiscount
@@ -1386,11 +1407,15 @@
     SUBDIR += rubygem-rmmseg-cpp
     SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rttool
+    SUBDIR += rubygem-ruby-augeas
+    SUBDIR += rubygem-ruby-xslt
     SUBDIR += rubygem-rubypants
+    SUBDIR += rubygem-rugments
     SUBDIR += rubygem-sanitize
     SUBDIR += rubygem-sass
     SUBDIR += rubygem-sass-rails
     SUBDIR += rubygem-sass-rails4
+    SUBDIR += rubygem-sass-rails5
     SUBDIR += rubygem-sass32
     SUBDIR += rubygem-sax-machine
     SUBDIR += rubygem-simplecov-html
@@ -1401,11 +1426,12 @@
     SUBDIR += rubygem-terminal-table
     SUBDIR += rubygem-text
     SUBDIR += rubygem-tidy
+    SUBDIR += rubygem-twitter-text
     SUBDIR += rubygem-unf
     SUBDIR += rubygem-unf_ext
     SUBDIR += rubygem-version_sorter
+    SUBDIR += rubygem-wikicloth
     SUBDIR += rubygem-xml-simple
-    SUBDIR += rubygem-xslt
     SUBDIR += rubygem-ya2yaml
     SUBDIR += rubygem-yard
     SUBDIR += rubygem-yard-chef
@@ -1465,6 +1491,7 @@
     SUBDIR += spellutils
     SUBDIR += sphinxsearch
     SUBDIR += sphinxsearch-devel
+    SUBDIR += spiff
     SUBDIR += sq-hunspell
     SUBDIR += sr-aspell
     SUBDIR += sr-hunspell
@@ -1519,6 +1546,7 @@
     SUBDIR += translate-toolkit
     SUBDIR += ts-hunspell
     SUBDIR += tth
+    SUBDIR += turboxsl
     SUBDIR += txt2html
     SUBDIR += txt2man
     SUBDIR += txt2tags

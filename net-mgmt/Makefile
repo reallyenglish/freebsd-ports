@@ -65,8 +65,6 @@
     SUBDIR += flowviewer
     SUBDIR += fprobe
     SUBDIR += glpi-plugins-fusioninventory-server
-    SUBDIR += glpi-plugins-tracker-agent
-    SUBDIR += glpi-plugins-tracker-server
     SUBDIR += grepcidr
     SUBDIR += grepip
     SUBDIR += gsnmp
@@ -95,6 +93,7 @@
     SUBDIR += kismet
     SUBDIR += lanmap
     SUBDIR += lg
+    SUBDIR += librenms
     SUBDIR += libsmi
     SUBDIR += lldpd
     SUBDIR += mbrowse
@@ -174,7 +173,9 @@
     SUBDIR += nsca
     SUBDIR += nsca-client
     SUBDIR += nsca-ng
+    SUBDIR += nsca-ng10
     SUBDIR += nsca-ng-client
+    SUBDIR += nsca-ng-client10
     SUBDIR += nsca27
     SUBDIR += nsca27-client
     SUBDIR += nstreams
@@ -248,13 +249,13 @@
     SUBDIR += percona-monitoring-plugins
     SUBDIR += pftabled
     SUBDIR += php5-snmp
-    SUBDIR += php53-snmp
     SUBDIR += php55-snmp
     SUBDIR += php56-snmp
     SUBDIR += phpip
     SUBDIR += phpipam
     SUBDIR += phpweathermap
     SUBDIR += pixilate
+    SUBDIR += pktstat
     SUBDIR += pmacct
     SUBDIR += pnp
     SUBDIR += pnp-icinga

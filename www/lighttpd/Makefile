@@ -7,7 +7,7 @@ PORTREVISION=	5
 CATEGORIES?=	www
 MASTER_SITES?=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
-MAINTAINER?=	mat@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	Secure, fast, compliant, and flexible Web Server
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
@@ -18,10 +18,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre
 
 GNU_CONFIGURE=	yes
-USES=		gmake libtool pkgconfig tar:xz
+USES=		autoreconf gmake libtool pkgconfig tar:xz
 
-USE_AUTOTOOLS=	autoconf autoheader aclocal automake
-AUTOMAKE_ARGS=	-a -c -f
+.if !defined(_BUILDING_LIGHTTPD_MODULE)
+USES+=	cpe
+.endif
+
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd
 INSTALL_TARGET=	install-strip
 

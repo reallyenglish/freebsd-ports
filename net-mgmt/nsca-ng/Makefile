@@ -1,56 +1,64 @@
-# Created by: Tomoyuki Sakurai <tomoyukis@reallyenglish.com>
+# Created by: Alexander Sulfrian <alexander@sulfrian.net>
 # $FreeBSD$
 
 PORTNAME=	nsca-ng
-PORTVERSION=	1.0
-#PORTREVISION=	0
+PORTVERSION=	1.2
 CATEGORIES=	net-mgmt
-MASTER_SITES=	http://www.nsca-ng.org/download/
+MASTER_SITES=	https://www.nsca-ng.org/download/ http://www.nsca-ng.org/download/
 
-MAINTAINER=	tomoyukis@reallyenglish.com
-COMMENT=	NSCA alternative
+MAINTAINER=	alexander@sulfrian.net
+COMMENT=	Nagios Service Check Acceptor
 
-LIB_DEPENDS=	confuse:${PORTSDIR}/devel/libconfuse \
-				ev:${PORTSDIR}/devel/libev
+LICENSE=	BSD2CLAUSE
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-HAS_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--mandir=${LOCALBASE}/man \
-					--with-confuse=${LOCALBASE} \
-					--with-ev=${LOCALBASE} \
-					--with-openssl=${OPENSSLBASE}
+LIB_DEPENDS=	libev.so:${PORTSDIR}/devel/libev
+
+.if !defined(PKGNAMESUFFIX)
+LIB_DEPENDS+=	libconfuse.so:${PORTSDIR}/devel/libconfuse
+.endif
+
+CONFLICTS?=	nsca-2.* nsca27-2.*
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--localstatedir=/var/spool/nagios
 USE_OPENSSL=	yes
-USE_OPENSSL_PORT=	yes
-MANCOMPRESSED=	no
 
-# TODO
-# - DOCS
-.if defined(_BUILDING_NSCA_CLIENT)
-CONFLICTS=	nsca-client-[0-9]*
-CONFIGURE_ARGS+=	--disable-server --enable-client
-MAN5+=	send_nsca.cfg.5
-MAN8+=	send_nsca.8
-NSCA_NG_CONF=	send_nsca.cfg
-PLIST_SUB+=	SERVER="@comment "
-PLIST_SUB+=	CLIENT=""
-.else
-CONFIGURE_ARGS+=	--enable-server --disable-client
+.if !defined(PKGNAMESUFFIX)
 USE_RC_SUBR=	nsca-ng
-MAN5+=	nsca-ng.cfg.5
-MAN8+=	nsca-ng.8
-NSCA_NG_CONF=	nsca-ng.cfg
-PLIST_SUB+=	CLIENT="@comment "
-PLIST_SUB+=	SERVER=""
+CONFIGURE_ARGS+=	--enable-server
+.endif
+
+PORTDOCS=		NEWS COPYING README PROTOCOL TODO
+
+.include <bsd.port.options.mk>
+
+.if ${OSVERSION} < 1000000
+WITH_OPENSSL_PORT=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 .endif
 
 post-install:
-.for M in ${MAN5}
-	${INSTALL_MAN} ${WRKSRC}/man/${M:S/.5$//}.man ${STAGEDIR}${MANPREFIX}/man/man5/${M}
-.endfor
-.for M in ${MAN8}
-	${INSTALL_MAN} ${WRKSRC}/man/${M:S/.8$//}.man ${STAGEDIR}${MANPREFIX}/man/man8/${M}
-.endfor
-.for F in ${NSCA_NG_CONF}
-	${INSTALL_DATA} ${WRKSRC}/etc/${F} ${STAGEDIR}${PREFIX}/etc/${F}-dist
-.endfor
+.if defined(PKGNAMESUFFIX)
+	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/nagios/
+	${LN} -s ${PREFIX}/sbin/send_nsca ${STAGEDIR}${PREFIX}/libexec/nagios/send_nsca
+
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	cd ${WRKSRC}/contrib && ${INSTALL_DATA} ${PORTEXAMPLES} \
+		${STAGEDIR}${EXAMPLESDIR}
+
+	cd ${STAGEDIR}${PREFIX}/etc && ${MV} send_nsca.cfg send_nsca.cfg.sample
+	# remove files not used here
+	cd ${STAGEDIR}${PREFIX} && ${RM} man/man8/nsca-ng.8 man/man5/nsca-ng.cfg.5
+.else
+	cd ${STAGEDIR}${PREFIX}/etc && ${MV} nsca-ng.cfg nsca-ng.cfg.sample
+	# remove files not used here
+	cd ${STAGEDIR}${PREFIX} && ${RM} etc/send_nsca.cfg man/man5/send_nsca.cfg.5 \
+		man/man8/send_nsca.8 sbin/send_nsca
+.endif
+
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

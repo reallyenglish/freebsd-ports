@@ -6,8 +6,7 @@ PORTVERSION=	${SNAPSHOT}
 PORTREVISION=	${MAIN_PR}
 CATEGORIES=	lang
 MASTER_SITES=	http://downloads.dragonlace.net/src/:boot \
-		LOCAL/marino:boot ${MASTER_SITE_GCC}
-MASTER_SITE_SUBDIR=	${MS_SUBDIR}
+		LOCAL/marino:boot GCC/${MS_SUBDIR}
 DISTFILES=	${IDENTIFICATION}.tar.bz2
 
 MAINTAINER=	marino@FreeBSD.org
@@ -27,9 +26,11 @@ BLD_TARGET=		${GARCH}-aux-${OPSYS:tl}${OSREL}
 FULL_GNATGCC=		NOT_SET
 OS_LABEL4VERS=		[${OPSYS}${GARCH:M*64:S/amd_//:S/x86_//}]
 NO_MTREE=		yes
+CPPFLAGS+=		-I${LOCALBASE}/include
+LDFLAGS+=		-L${LOCALBASE}/lib
 
 OPTIONS_GROUP=		Standard Bootstrap
-OPTIONS_GROUP_Standard=	FORT OBJC NLS TESTSUITE STATIC
+OPTIONS_GROUP_Standard=	FORT OBJC NLS TESTSUITE ALLSTAGES STATIC
 OPTIONS_GROUP_Bootstrap=BOOTSTRAP
 OPTIONS_DEFAULT=	FORT OBJC
 NO_OPTIONS_SORT=	yes
@@ -37,6 +38,7 @@ NO_OPTIONS_SORT=	yes
 FORT_DESC=		Fortran language support
 OBJC_DESC=		Objective-C language support
 TESTSUITE_DESC=		Activate test support
+ALLSTAGES_DESC=		Build compiler with itself (twice, brings in libcc1)
 STATIC_DESC=		Link compilers and drivers statically
 BOOTSTRAP_DESC=		Create bootstrap compiler (overrides other options)
 
@@ -48,6 +50,7 @@ BOOTSTRAP_DESC=		Create bootstrap compiler (overrides other options)
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} == FreeBSD
+ONLY_FOR_ARCHS=		amd64 i386
 MODERN_BINUTILS=	yes
 .  if ${OSVERSION} < 900000
 BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.84.tar.bz2
@@ -56,7 +59,8 @@ BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.freebsd.100B.tar.bz2
 .  endif
 .endif
 .if ${OPSYS} == DragonFly
-BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.dragonfly.36A.tar.bz2
+ONLY_FOR_ARCHS=		x86_64
+BOOTSTRAP_COMPILER=	ada-bootstrap.${GARCH}.dragonfly.41.tar.bz2
 .endif
 
 .if defined(MODERN_BINUTILS)
@@ -75,6 +79,7 @@ BUILDDIR=		${WRKDIR}/build
 NEWBSDIR=		${WRKDIR}/newbs/bootstrap
 CFG_SCRIPT=		${WRKSRC}/configure
 REVFILE=		${WRKSRC}/gcc/REVISION
+PHASEFILE=		${WRKSRC}/gcc/DEV-PHASE
 BOOTSTRAP_PREFIX=	${WRKDIR}/bootstrap
 PKG_PREFIX=		${PREFIX}/${PORTNAME}
 MANPREFIX=		${PREFIX}/${PORTNAME}/share
@@ -107,10 +112,9 @@ DISTFILES+=	${BOOTSTRAP_COMPILER}:boot
 .if defined(PLUS_BOOTSTRAPS)
 DISTFILES=	\
    ${IDENTIFICATION}.tar.bz2 \
-   ada-bootstrap.i386.dragonfly.36A.tar.bz2:boot \
    ada-bootstrap.i386.freebsd.84.tar.bz2:boot \
    ada-bootstrap.i386.freebsd.100B.tar.bz2:boot \
-   ada-bootstrap.x86_64.dragonfly.36A.tar.bz2:boot \
+   ada-bootstrap.x86_64.dragonfly.41.tar.bz2:boot \
    ada-bootstrap.x86_64.freebsd.84.tar.bz2:boot \
    ada-bootstrap.x86_64.freebsd.100B.tar.bz2:boot
 .endif
@@ -135,7 +139,7 @@ APPLY_DIFFS+=	gcc-testsuite
 .endif
 
 .if ${PORT_OPTIONS:MNLS} && !${PORT_OPTIONS:MBOOTSTRAP}
-USES+=		gettext-tools
+USES+=		gettext
 EXTRA_CONFIG+=	--enable-nls
 .else
 EXTRA_CONFIG+=	--disable-nls
@@ -149,16 +153,27 @@ EXTRA_CONFIG+=		--with-stage1-ldflags=-static
 EXTRA_CONFIG+=		--disable-shared --disable-lto
 EXTRA_CONFIG+=		--with-boot-ldflags=-static
 .else
-# For some reason, libcc1.a can't be build with bootstrap (only) in poudriere
-#EXTRA_CONFIG+=		--disable-bootstrap
+.  if !${PORT_OPTIONS:MALLSTAGES}
+#  For reasons unknown, build fails at libcc1 when the compiler is not
+#  not bootstrapping.  It appears to be an upstream error.  LibCC1 is used
+#  for gdb 7.9 exclusively, so it's not really needed.  Let's disable it
+#  by default, but let people that want it suffer a 3-stage build.
+EXTRA_CONFIG+=		--disable-bootstrap --disable-libcc1
+.  endif
+USES+=			iconv
 .endif
 
 # Establish Ada-aware compiler for use
 ADA_CONFIGURE_ENV+=	CC=${FULL_GNATGCC}
 ADA_CONFIGURE_ENV+=	CXX=${FULL_GNATGXX}
+ADA_CONFIGURE_ENV+=	CFLAGS="${CFLAGS}"
+ADA_CONFIGURE_ENV+=	CPPFLAGS="${CPPFLAGS}"
+ADA_CONFIGURE_ENV+=	CXXFLAGS="${CXXFLAGS}"
+ADA_CONFIGURE_ENV+=	LDFLAGS="${LDFLAGS}"
+ADA_CONFIGURE_ENV+=	build_configargs="CPPFLAGS=\"${CPPFLAGS}\""
+ADA_CONFIGURE_ENV+=	host_configargs="CPPFLAGS=\"${CPPFLAGS}\""
 ADA_CONFIGURE_ENV+=	PATH=${FULL_PATH}
 ADA_MAKE_ENV+=		PATH=${FULL_PATH}
-ADA_MAKE_ENV+=		LD_LIBRARY_PATH=${BUILDDIR}/gcc
 
 # The standard configuration options
 ADA_CONFIG_ARGS=	--enable-languages=${LANGS:Q}
@@ -180,6 +195,7 @@ ADA_CONFIG_ARGS+=	${EXTRA_CONFIG}
 post-extract:
 	# Personalize GNAT for each different machine
 	@${ECHO} "-=> GNAT AUX ${OS_LABEL4VERS}" > ${REVFILE}
+	@${ECHO} ${PHASE} > ${PHASEFILE}
 
 	# Apply required composite diff files
 .for suffix in ${APPLY_DIFFS}
@@ -239,22 +255,22 @@ test-ada:
 test-cxx:
 	# libstdc++ testsuite will break every time, for TRUE to continue
 	cd ${BUILDDIR} && ${SETENV} ${ADA_MAKE_ENV} \
-		${MAKE_CMD} -sk check-c++ || true
+		${MAKE_CMD} -j${MAKE_JOBS_NUMBER} -sk check-c++ || true
 
 test-c:
 	cd ${BUILDDIR} && ${SETENV} ${ADA_MAKE_ENV} \
-		${MAKE_CMD} -sk check-c
+		${MAKE_CMD} -j${MAKE_JOBS_NUMBER} -sk check-c
 
 test-fortran:
 .  if ${PORT_OPTIONS:MFORT}
 	cd ${BUILDDIR} && ${SETENV} ${ADA_MAKE_ENV} \
-		${MAKE_CMD} -sk check-fortran
+		${MAKE_CMD} -j${MAKE_JOBS_NUMBER} -sk check-fortran
 .  endif
 
 test-objc:
 .  if ${PORT_OPTIONS:MOBJC}
 	cd ${BUILDDIR} && ${SETENV} ${ADA_MAKE_ENV} \
-		${MAKE_CMD} -sk check-objc
+		${MAKE_CMD} -j${MAKE_JOBS_NUMBER} -sk check-objc
 .  endif
 .endif
 
@@ -264,6 +280,7 @@ do-install:
 	${MV} ${STAGEDIR}${PKG_PREFIX}/share ${WRKDIR}/moved_share
 #	Don't activate until this port builds gnatdroid
 #	Otherwise it will conflict with lang/gcc-aux
+#	Add "share" after {PORTNAME} on 3rd line of post-stage target
 #	${MKDIR} ${STAGEDIR}${PREFIX}/share/dejagnu/baseboards \
 #		${STAGEDIR}${PREFIX}/share/dejagnu/config
 #	${INSTALL_DATA} ${FILESDIR}/android.exp \
@@ -274,7 +291,7 @@ do-install:
 post-stage:
 	(cd ${STAGEDIR}${PKG_PREFIX}; ${FIND} * -type d -empty | \
 		${SORT} -dr | ${XARGS} ${RMDIR})
-	(cd ${STAGEDIR}${PREFIX}; ${FIND} ${PORTNAME} share \
+	(cd ${STAGEDIR}${PREFIX}; ${FIND} ${PORTNAME} \
 		\( -type f -or -type l \) | ${SORT} | ${SED} \
 		-e 's/\/man\/man[1578]\/.*[1578]$$/&.gz/' >> ${TMPPLIST})
 .if ${PORT_OPTIONS:MBOOTSTRAP}

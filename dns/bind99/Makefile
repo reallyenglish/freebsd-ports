@@ -1,8 +1,9 @@
 # $FreeBSD$
+# pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
 PORTVERSION=	${ISCVERSION:S/-P/P/}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
 PKGNAMESUFFIX=	99
@@ -14,7 +15,7 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	ISCL
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.9.7
+ISCVERSION=	9.9.7-P2
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -42,7 +43,7 @@ SUB_FILES=	pkg-message
 
 OPTIONS_DEFAULT=	IPV6 SSL THREADS SIGCHASE IDN GSSAPI_NONE RRL
 OPTIONS_DEFINE=		SSL IDN REPLACE_BASE LARGE_FILE FIXED_RRSET SIGCHASE \
-			IPV6 THREADS FILTER_AAAA GOST PYTHON \
+			IPV6 THREADS FILTER_AAAA GOST PYTHON START_LATE MINCACHE \
 			LINKS RPZ_NSIP RPZ_NSDNAME RRL DOCS RPZ_PATCH NEWSTATS
 OPTIONS_GROUP=		DLZ
 OPTIONS_GROUP_DLZ=	DLZ_POSTGRESQL DLZ_MYSQL DLZ_BDB \
@@ -58,8 +59,10 @@ LARGE_FILE_DESC=	64-bit file support
 FIXED_RRSET_DESC=	Enable fixed rrset ordering
 SIGCHASE_DESC=		dig/host/nslookup will do DNSSEC validation
 FILTER_AAAA_DESC=	Enable filtering of AAAA records
-GOST_DESC=		Enable GOST ciphers, needs SSL (see help)
+GOST_DESC=		Enable GOST ciphers, needs SSL (see help on 8 and 9)
 PYTHON_DESC=		Build with Python utilities
+START_LATE_DESC=	Start BIND late in the boot process
+MINCACHE_DESC=		Use the mincachettl patch
 
 LINKS_DESC=		Create conf file symlinks in ${PREFIX}
 NEWSTATS_DESC=		Enable alternate xml statistics channel format
@@ -78,6 +81,7 @@ GSSAPI_BASE_DESC=	${GSSAPI_DESC} (Heimdal in base)
 GSSAPI_HEIMDAL_DESC=	${GSSAPI_DESC} (security/heimdal)
 GSSAPI_MIT_DESC=	${GSSAPI_DESC} (security/krb5)
 GSSAPI_NONE_DESC=	No ${GSSAPI_DESC}
+MINCACHE_EXTRA_PATCHES=	${FILESDIR}/extrapatch-bind-min-override-ttl
 
 SSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
 SSL_USE=		openssl=yes
@@ -130,6 +134,11 @@ DLZ_FILESYSTEM_CONFIGURE_ON=	--with-dlz-filesystem=yes
 
 DLZ_STUB_CONFIGURE_ON=	--with-dlz-stub=yes
 
+START_LATE_SUB_LIST=	NAMED_REQUIRE="SERVERS cleanvar" \
+			NAMED_BEFORE="LOGIN"
+START_LATE_SUB_LIST_OFF=NAMED_REQUIRE="NETWORKING ldconfig syslogd" \
+			NAMED_BEFORE="SERVERS"
+
 GSSAPI_BASE_USES=	gssapi
 GSSAPI_BASE_CONFIGURE_ON= \
 	--with-gssapi=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
@@ -157,7 +166,7 @@ CONFIGURE_ARGS+=	--disable-threads
 IGNORE=		REPLACE_BASE is no longer supported
 .endif # REPLACE_BASE
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
+.if ${OPSYS} == DragonFly || (${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100)
 PKGINSTALL=	${NONEXISTENT}
 PLIST_SUB+=	NOBASE="" BASE="@comment "
 SUB_LIST+=	NOBASE="" BASE="@comment "
@@ -199,7 +208,8 @@ post-install:
 		${WRKSRC}/HISTORY ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 .endif
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100
+.if ${OPSYS} == DragonFly || (${OPSYS} == FreeBSD && ${OSVERSION} >= 1000100)
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mtree
 	${MKDIR} ${STAGEDIR}${ETCDIR}
 .for i in dynamic master slave working
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/$i
@@ -209,6 +219,8 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/empty.db ${STAGEDIR}${ETCDIR}/master
 	${INSTALL_DATA} ${FILESDIR}/localhost-forward.db ${STAGEDIR}${ETCDIR}/master
 	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/master
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree
+	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree
 .endif
 	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
 		${STAGEDIR}${ETCDIR}/rndc.conf.sample

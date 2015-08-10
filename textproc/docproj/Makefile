@@ -28,9 +28,8 @@ RUN_DEPENDS=	links:${PORTSDIR}/www/links1 \
 		p5-XML-Parser>=2.41:${PORTSDIR}/textproc/p5-XML-Parser \
 		zip:${PORTSDIR}/archivers/zip
 
-USES=		perl5
+USES=		ghostscript:run perl5
 USE_PERL5=	run
-USE_GHOSTSCRIPT_RUN=	yes
 DEPENDS_ARGS+=	BATCH=yes
 NO_BUILD=	yes
 
@@ -55,10 +54,10 @@ DBLATEX_RUN_DEPENDS=	dblatex:${PORTSDIR}/textproc/dblatex \
 			${FONTS}
 DBLATEX_USE=		TEX=xetex
 
-FONTS=	${LOCALBASE}/lib/X11/fonts/GentiumPlus/GentiumPlus-R.ttf:${PORTSDIR}/x11-fonts/gentium-plus \
-	${LOCALBASE}/lib/X11/fonts/Droid/DroidSans.ttf:${PORTSDIR}/x11-fonts/droid-fonts-ttf \
-	${LOCALBASE}/lib/X11/fonts/Lohit/Lohit-Bengali.ttf:${PORTSDIR}/x11-fonts/lohit \
-	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSansMono.ttf:${PORTSDIR}/x11-fonts/dejavu
+FONTS=	${LOCALBASE}/share/fonts/GentiumPlus/GentiumPlus-R.ttf:${PORTSDIR}/x11-fonts/gentium-plus \
+	${LOCALBASE}/share/fonts/Droid/DroidSans.ttf:${PORTSDIR}/x11-fonts/droid-fonts-ttf \
+	${LOCALBASE}/share/fonts/Lohit/Lohit-Bengali.ttf:${PORTSDIR}/x11-fonts/lohit \
+	${LOCALBASE}/share/fonts/dejavu/DejaVuSansMono.ttf:${PORTSDIR}/x11-fonts/dejavu
 FONTS_CJK=${LOCALBASE}/share/fonts/TrueType/gkai00mp.ttf:${PORTSDIR}/chinese/arphicttf \
 	${LOCALBASE}/share/fonts/OTF/ipam.otf:${PORTSDIR}/japanese/font-ipa
 
@@ -72,7 +71,7 @@ RUN_DEPENDS+=	${FONTS_CJK}
 .endif
 
 .if !${PORT_OPTIONS:MX11}
-DEPENDS_ARGS+=	WITHOUT_X11=${WITHOUT_X11}
+DEPENDS_ARGS+=	OPTIONS_UNSET_FORCE+=X11
 .endif
 
 # generate MINIMALDOCPORTS for src/release/Makefile.inc.docports.

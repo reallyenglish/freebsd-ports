@@ -2,7 +2,7 @@
 
 .include "${.CURDIR}/Makefile.common"
 
-PORTREVISION=	0
+PORTREVISION=	1
 
 COMMENT=	Full integrated office productivity suite
 
@@ -28,7 +28,6 @@ LIB_DEPENDS=	libapr-1.so:${PORTSDIR}/devel/apr1 \
 		libcairo.so:${PORTSDIR}/graphics/cairo \
 		libGLEW.so:${PORTSDIR}/graphics/glew \
 		libgraphite2.so:${PORTSDIR}/graphics/graphite2 \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		liblcms2.so:${PORTSDIR}/graphics/lcms2 \
 		libcdr-0.1.so:${PORTSDIR}/graphics/libcdr01 \
 		libetonyek-0.1.so:${PORTSDIR}/graphics/libetonyek01 \
@@ -62,12 +61,12 @@ LIB_DEPENDS=	libapr-1.so:${PORTSDIR}/devel/apr1 \
 		librdf.so:${PORTSDIR}/textproc/redland \
 		libserf-1.so:${PORTSDIR}/www/serf
 
-RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/Caladea/Caladea-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-caladea-ttf \
-		${LOCALBASE}/lib/X11/fonts/Carlito/Carlito-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-carlito-ttf \
-		${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu \
-		${LOCALBASE}/lib/X11/fonts/GentiumBasic/GenBasI.ttf:${PORTSDIR}/x11-fonts/gentium-basic \
-		${LOCALBASE}/lib/X11/fonts/Liberation/LiberationMono-Bold.ttf:${PORTSDIR}/x11-fonts/liberation-fonts-ttf \
-		${LOCALBASE}/lib/X11/fonts/LinLibertineG/LinLibertine_DR_G.ttf:${PORTSDIR}/x11-fonts/linuxlibertine-g
+RUN_DEPENDS=	${LOCALBASE}/share/fonts/Caladea/Caladea-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-caladea-ttf \
+		${LOCALBASE}/share/fonts/Carlito/Carlito-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-carlito-ttf \
+		${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu \
+		${LOCALBASE}/share/fonts/GentiumBasic/GenBasI.ttf:${PORTSDIR}/x11-fonts/gentium-basic \
+		${LOCALBASE}/share/fonts/Liberation/LiberationMono-Bold.ttf:${PORTSDIR}/x11-fonts/liberation-fonts-ttf \
+		${LOCALBASE}/share/fonts/LinLibertineG/LinLibertine_DR_G.ttf:${PORTSDIR}/x11-fonts/linuxlibertine-g
 
 _MAKE_JOBS=	#
 
@@ -78,7 +77,7 @@ USE_OPENLDAP=	yes
 USE_PERL5=	build
 USE_QT4=	# empty but required
 USE_XORG=	xaw xrandr
-USES=		bison compiler:c++11-lang gmake perl5 pkgconfig python shared-mime-info tar:xz
+USES=		bison compiler:c++11-lang cpe gmake jpeg perl5 pkgconfig python shared-mime-info tar:xz
 WANT_GNOME=	yes
 
 DISTFILES+=	${PORTNAME}-${LOVERSION}${EXTRACT_SUFX}
@@ -250,7 +249,8 @@ JAVA_CONFIGURE_ON=	--enable-ext-wiki-publisher \
 			--enable-report-builder \
 			--with-ant-home=${LOCALBASE}/share/java/apache-ant \
 			--with-jdk-home="${JAVA_HOME}" \
-			--with-junit=${JAVAJARDIR}/junit.jar
+			--with-junit=${JAVAJARDIR}/junit.jar \
+			--with-hamcrest=${JAVAJARDIR}/hamcrest.jar
 JAVA_CONFIGURE_OFF=	--without-java
 JAVA_BUILD=	yes
 JAVA_USE=	JAVA=yes

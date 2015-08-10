@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libvirt
-PORTVERSION=	1.2.13
+PORTVERSION=	1.2.16
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/ \
 		ftp://libvirt.org/libvirt/
@@ -42,7 +42,6 @@ NLS_CONFIGURE_ENABLE=	nls
 NLS_CONFIGURE_ON=	--with-libintl-prefix=${LOCALBASE}
 
 SASL_CONFIGURE_WITH=	sasl
-SASL_BUILD_DEPENDS=	sasl:${PORTSDIR}/security/cyrus-sasl2
 SASL_LIB_DEPENDS=	libsasl2.so:${PORTSDIR}/security/cyrus-sasl2
 
 VARDIR=		/var
@@ -74,7 +73,7 @@ CPE_VENDOR=	redhat
 USE_PERL5=	build
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-SHLIB_VER=	0.1002.13
+SHLIB_VER=	0.1002.${PORTVERSION:E}
 PLIST_SUB=	PORTVERSION="-${PORTVERSION}" \
 		SHLIB_VER=${SHLIB_VER}
 PORTDOCS=	*

@@ -56,6 +56,7 @@
     SUBDIR += claws-mail-gdata
     SUBDIR += claws-mail-libravatar
     SUBDIR += claws-mail-mailmbox
+    SUBDIR += claws-mail-managesieve
     SUBDIR += claws-mail-newmail
     SUBDIR += claws-mail-notification
     SUBDIR += claws-mail-pdf_viewer
@@ -109,6 +110,7 @@
     SUBDIR += elm
     SUBDIR += elmo
     SUBDIR += elmo-devel
+    SUBDIR += emailrelay
     SUBDIR += emil
     SUBDIR += enma
     SUBDIR += eps
@@ -211,11 +213,10 @@
     SUBDIR += lmtp2nntp
     SUBDIR += lookout
     SUBDIR += lurker
-    SUBDIR += mail-notification
     SUBDIR += mail2sms
     SUBDIR += mailagent
-    SUBDIR += maildirsync
     SUBDIR += maildrop
+    SUBDIR += mailest
     SUBDIR += mailfmt
     SUBDIR += mailfront
     SUBDIR += mailgraph
@@ -458,7 +459,6 @@
     SUBDIR += pfqueue
     SUBDIR += pgpsendmail
     SUBDIR += php5-imap
-    SUBDIR += php53-imap
     SUBDIR += php55-imap
     SUBDIR += php56-imap
     SUBDIR += phplist
@@ -502,6 +502,7 @@
     SUBDIR += py-apolicy
     SUBDIR += py-authres
     SUBDIR += py-cyruslib
+    SUBDIR += py-dkimpy
     SUBDIR += py-libgmail
     SUBDIR += py-milter
     SUBDIR += py-ppolicy
@@ -513,7 +514,6 @@
     SUBDIR += pymsgauth
     SUBDIR += pysieved
     SUBDIR += pyzor
-    SUBDIR += qar-bufo
     SUBDIR += qconfirm
     SUBDIR += qgmailnotifier
     SUBDIR += qmail
@@ -543,6 +543,7 @@
     SUBDIR += queue-fix
     SUBDIR += queue-repair
     SUBDIR += rainloop
+    SUBDIR += rainloop-community
     SUBDIR += raysfilter
     SUBDIR += razor-agents
     SUBDIR += rbl-milter
@@ -581,8 +582,8 @@
     SUBDIR += rubygem-mail25
     SUBDIR += rubygem-mailfactory
     SUBDIR += rubygem-pony
-    SUBDIR += rubygem-qmail
     SUBDIR += rubygem-rmail
+    SUBDIR += rubygem-ruby-qmail
     SUBDIR += rubygem-tmail
     SUBDIR += rubygem-vmail
     SUBDIR += sa-stats
@@ -599,6 +600,7 @@
     SUBDIR += simscan
     SUBDIR += slapd-cyrus
     SUBDIR += sma
+    SUBDIR += smfsav
     SUBDIR += smtp-cli
     SUBDIR += smtp-gated
     SUBDIR += smtpfeed

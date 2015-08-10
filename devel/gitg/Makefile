@@ -2,11 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	gitg
-PORTVERSION=	3.14.1
+PORTVERSION=	3.16.1
+PORTREVISION=	1
 CATEGORIES=	devel deskutils gnome
 MASTER_SITES=	GNOME
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	GTK-based git repository viewer
 
 LICENSE=	GPLv2

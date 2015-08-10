@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	corebird
-PORTVERSION=	0.9
+PORTVERSION=	1.0
 CATEGORIES=	net-im
-MASTER_SITES=	GH GHC
 
 MAINTAINER=	cpm@fbsd.es
 COMMENT=	GTK3 Twitter client written in Vala
@@ -20,9 +19,6 @@ LIB_DEPENDS=	libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
 		libgee-0.8.so:${PORTSDIR}/devel/libgee
 
 GH_ACCOUNT=	baedert
-GH_PROJECT=	${PORTNAME}
-GH_TAGNAME=	${GH_COMMIT}
-GH_COMMIT=	3399924
 
 USE_GITHUB=	yes
 USES=		autoreconf gettext gmake libtool pkgconfig

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	libreoffice
-PORTVERSION=	4.3.6
+PORTVERSION=	4.3.7
 RCVER=		2
 #PRERELEASE=	yes
 LOVERSION=	${PORTVERSION}.${RCVER}
@@ -17,7 +17,7 @@ MASTER_SITES?=	http://dev-builds.libreoffice.org/pre-releases/${MASTER_SITE_SUBD
 MASTER_SITES?=	http://download.documentfoundation.org/libreoffice/${MASTER_SITE_SUBDIR}/
 .endif
 
-ONLY_FOR_ARCH=	i386 amd64
+ONLY_FOR_ARCHS=	i386 amd64
 
 # for dynamic plist generation
 PLISTD?=	${WRKDIR}/plist_dirs

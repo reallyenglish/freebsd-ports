@@ -34,7 +34,6 @@ DOCS_DESC=	Install additional documentation
 OPTIONS_DEFAULT=	EXAMPLES DOCS
 .include <bsd.port.options.mk>
 
-NEED_ROOT=	yes
 USES=		shebangfix pgsql:9.0+ python \
 		twisted:run,conch,mail,names,runner,web,words
 USE_PYTHON=	autoplist distutils
@@ -43,7 +42,6 @@ SUB_FILES=	pkg-message
 SUB_LIST+=	USER=${USERS}
 
 python_OLD_CMD=	/usr/bin/env python
-python_CMD=	${PYTHON_CMD}
 
 SHEBANG_FILES=	bin/calendarserver_* \
 		bin/icalendar_split \

@@ -1,5 +1,4 @@
-@comment $FreeBSD$
-%%SERVER%%etc/nsca-ng.cfg-dist
-%%SERVER%%sbin/nsca-ng
-%%CLIENT%%etc/send_nsca.cfg-dist
-%%CLIENT%%sbin/send_nsca
+@sample(,,0750) etc/nsca-ng.cfg.sample
+man/man5/nsca-ng.cfg.5.gz
+man/man8/nsca-ng.8.gz
+sbin/nsca-ng

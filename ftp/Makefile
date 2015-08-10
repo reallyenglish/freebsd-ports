@@ -46,7 +46,6 @@
     SUBDIR += llnlxftp
     SUBDIR += mirror
     SUBDIR += multiget
-    SUBDIR += ncftp1
     SUBDIR += ncftp3
     SUBDIR += ncftpd
     SUBDIR += net2ftp
@@ -66,8 +65,6 @@
     SUBDIR += pftpd
     SUBDIR += php5-curl
     SUBDIR += php5-ftp
-    SUBDIR += php53-curl
-    SUBDIR += php53-ftp
     SUBDIR += php55-curl
     SUBDIR += php55-ftp
     SUBDIR += php56-curl

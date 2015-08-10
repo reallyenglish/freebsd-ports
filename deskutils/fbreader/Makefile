@@ -3,6 +3,8 @@
 
 PORTNAME=	fbreader
 PORTVERSION=	0.99.6
+DISTVERSIONSUFFIX=	-freebsdport
+PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	fluffy@FreeBSD.org
@@ -22,8 +24,6 @@ OPTIONS_SUB=		yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	geometer
 GH_PROJECT=	FBReader
-GH_COMMIT=	7abc80d
-GH_TAGNAME=	${PORTVERSION}-freebsdport
 
 
 .if defined(WITH_DEBUG)
@@ -53,7 +53,7 @@ MAKE_ENV+=	TARGET_ARCH=desktop TARGET_STATUS=${STATUS} \
 MAKE_ARGS+=	MAKE=${MAKE_CMD} LIBDIR=${PREFIX}/lib
 
 post-patch:
-	@${REINPLACE_CMD} -e '/^CFLAGS/s,-pipe.*$$,${CFLAGS} -DDO_ICONV_CAST -DLIBICONV_PLUG,' \
+	@${REINPLACE_CMD} -e '/^CFLAGS/s,-pipe.*$$,${CFLAGS} -DLIBICONV_PLUG,' \
 		-e '/^CC/d;/^LD/d;/QTINCLUDE/s,-I.*$$,-I${QT_INCDIR},' \
 		${WRKSRC}/makefiles/arch/desktop.mk
 	@${REINPLACE_CMD} -e 's,-O3,,;s,-ldl,${ICONV_LIB},' \

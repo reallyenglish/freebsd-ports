@@ -2,6 +2,7 @@
 
 PORTNAME=	shairplay
 PORTVERSION=	0.9.0.20140422
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	mickael.maillot@gmail.com
@@ -14,8 +15,7 @@ LIB_DEPENDS=	libao.so:${PORTSDIR}/audio/libao
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	juhovh
-GH_COMMIT=	64d59e3
-GH_TAGNAME=	${GH_COMMIT}
+GH_TAGNAME=	64d59e3
 
 USES=		autoreconf gmake libtool pkgconfig
 GNU_CONFIGURE=	yes

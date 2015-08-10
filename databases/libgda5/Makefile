@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	libgda
-PORTVERSION?=	5.2.2
-PORTREVISION?=	1
+PORTVERSION?=	5.2.4
+PORTREVISION?=	0
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX?=	5
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt \
 		libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib
 
 USES+=		gettext gmake libtool pathfix pkgconfig
-USE_GNOME=	gnomeprefix glib20 libxslt intlhack referencehack
+USE_GNOME=	glib20 libxslt intlhack referencehack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
@@ -107,12 +107,21 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|<db\.h>|<db${BDB_VER}/db.h>|' \
 	    	${WRKSRC}/providers/bdb/gda-bdb-provider.c \
 		${WRKSRC}/providers/bdb/gda-bdb-test.c
+.if ${LIBGDA5_SLAVE} == jdbc
+	@${REINPLACE_CMD} -e 's|lib/amd64|lib/${ARCH}|g' \
+		${WRKSRC}/getsp.java
+.endif
 .if ${LIBGDA5_SLAVE}!="no"
 	@${FIND} ${WRKSRC} -name Makefile.in -exec ${REINPLACE_CMD} \
 		-e 's|$$(top_builddir)/libgda/libgda-5.0.la|-lgda-5.0|g' \
 		-e 's|../libgda/libgda-5.0.la|-lgda-5.0|g' \
 		{} \;
 .endif
+
+.if ${LIBGDA5_SLAVE} == jdbc
+pre-configure:
+	@cd ${WRKSRC} && ${LOCALBASE}/bin/javac getsp.java
+.endif	
 
 pre-build:
 .if ${LIBGDA5_SLAVE}==postgresql

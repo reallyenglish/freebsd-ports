@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	40.0.2214.115
+PORTVERSION=	44.0.2403.125
 CATEGORIES=	www
 MASTER_SITES=	http://commondatastorage.googleapis.com/chromium-browser-official/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} # default, but needed to get distinfo correct if TEST is on
 
 MAINTAINER=	chromium@FreeBSD.org
 COMMENT=	Google web browser based on WebKit
@@ -13,14 +13,16 @@ COMMENT=	Google web browser based on WebKit
 LICENSE=	BSD3CLAUSE LGPL21 MPL
 LICENSE_COMB=	multi
 
-CFLAGS+=	-isystem${LOCALBASE}/include
+CFLAGS+=	-isystem${LOCALBASE}/include -I${PREFIX}/include/atk-1.0
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/gperf:${PORTSDIR}/devel/gperf \
 		bash:${PORTSDIR}/shells/bash \
 		yasm:${PORTSDIR}/devel/yasm \
 		flock:${PORTSDIR}/sysutils/flock \
 		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat \
-		${LOCALBASE}/share/usbids/usb.ids:${PORTSDIR}/misc/usbids
+		${LOCALBASE}/share/usbids/usb.ids:${PORTSDIR}/misc/usbids \
+		${PYTHON_PKGNAMEPREFIX}Jinja2>0:${PORTSDIR}/devel/py-Jinja2 \
+		${PYTHON_PKGNAMEPREFIX}ply>0:${PORTSDIR}/devel/py-ply
 
 LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libdbus-1.so:${PORTSDIR}/devel/dbus \
@@ -38,7 +40,6 @@ LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libpci.so:${PORTSDIR}/devel/libpci \
 		libdrm.so:${PORTSDIR}/graphics/libdrm \
 		libicuuc.so:${PORTSDIR}/devel/icu \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libjsoncpp.so:${PORTSDIR}/devel/jsoncpp \
 		libnspr4.so:${PORTSDIR}/devel/nspr \
 		libpng.so:${PORTSDIR}/graphics/png \
@@ -54,13 +55,13 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/a
 		xdg-open:${PORTSDIR}/devel/xdg-utils
 
 ONLY_FOR_ARCHS=	i386 amd64
-USES=		bison compiler:c++11-lib cpe desktop-file-utils pkgconfig \
+USES=		bison compiler:c++11-lib cpe desktop-file-utils jpeg pkgconfig \
 		perl5 shebangfix ninja tar:xz python:2,build execinfo
 CPE_VENDOR=	google
 CPE_PRODUCT=	chrome
 USE_PERL5=	build
 USE_XORG=	scrnsaverproto x11 xproto xscrnsaver xtst
-USE_GNOME=	glib20 gtk20 dconf libxslt
+USE_GNOME=	atk glib20 gtk20 dconf libxslt
 SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper
 ALL_TARGET=	chrome
 INSTALLS_ICONS=	yes
@@ -72,6 +73,7 @@ GYP_DEFINES+=	\
 		linux_breakpad=0 \
 		linux_use_heapchecker=0 \
 		linux_strip_binary=1 \
+		use_aura=1 \
 		test_isolation_mode=noop \
 		disable_nacl=1 \
 		enable_extensions=1 \
@@ -110,7 +112,8 @@ GYP_DEFINES+=	\
 		use_system_snappy=1 \
 		use_system_speex=1 \
 		use_system_xdg_utils=1 \
-		use_system_yasm=1
+		use_system_yasm=1 \
+		v8_use_external_startup_data=0
 # allow removal of third_party/adobe
 GYP_DEFINES+=	flapper_version_h_file='${WRKSRC}/flapper_version.h'
 
@@ -178,7 +181,6 @@ ALL_TARGET+=	${TEST_TARGETS}
 
 DEBUG_MAKE_ENV=	V=1
 .if ${PORT_OPTIONS:MDEBUG}
-BROKEN=		Produces empty binary
 BUILDTYPE=	Debug
 .else
 BUILDTYPE=	Release
@@ -259,6 +261,7 @@ pre-configure:
 		'net/third_party/mozilla_security_manager' \
 		'net/third_party/nss' \
 		'third_party/WebKit' \
+		'third_party/analytics' \
 		'third_party/angle' \
 		'third_party/angle/src/third_party' \
 		'third_party/blanketjs' \
@@ -268,7 +271,7 @@ pre-configure:
 		'third_party/cld' \
 		'third_party/cros_system_api' \
 		'third_party/dom_distiller_js' \
-		'third_party/dom_distiller_js/package/proto_gen/third_party/dom_distiller_js' \
+		'third_party/dom_distiller_js/dist/proto_gen/third_party/dom_distiller_js' \
 		'third_party/ffmpeg' \
 		'third_party/gardiner_mod' \
 		'third_party/fips181' \
@@ -276,7 +279,7 @@ pre-configure:
 		'third_party/google_input_tools' \
 		'third_party/google_input_tools/third_party/closure_library' \
 		'third_party/google_input_tools/third_party/closure_library/third_party/closure' \
-		'third_party/hunspell' \
+		'third_party/hunspell_new' \
 		'third_party/iccjpeg' \
 		'third_party/icu/icu.isolate' \
 		'third_party/jinja2' \
@@ -289,7 +292,6 @@ pre-configure:
 		'third_party/libsrtp' \
 		'third_party/libvpx' \
 		'third_party/libvpx/source/libvpx/third_party/x86inc' \
-		'third_party/libwebm' \
 		'third_party/libxml/chromium' \
 		'third_party/libXNVCtrl' \
 		'third_party/libyuv' \
@@ -297,6 +299,7 @@ pre-configure:
 		'third_party/lzma_sdk' \
 		'third_party/markupsafe' \
 		'third_party/mesa' \
+		'third_party/mojo' \
 		'third_party/modp_b64' \
 		'third_party/mt19937ar' \
 		'third_party/npapi' \
@@ -324,6 +327,7 @@ pre-configure:
 		'third_party/trace-viewer/third_party/tvcm/third_party' \
 		'third_party/undoview' \
 		'third_party/usrsctp' \
+		'third_party/web-animations-js' \
 		'third_party/webdriver' \
 		'third_party/webrtc' \
 		'third_party/widevine' \
@@ -365,10 +369,6 @@ do-install:
 		${STAGEDIR}${DATADIR}
 .endfor
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chrome \
-		${STAGEDIR}${DATADIR}
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libffmpegsumo.so \
-		${STAGEDIR}${DATADIR}
-	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libpdf.so \
 		${STAGEDIR}${DATADIR}
 	cd ${WRKSRC}/out/${BUILDTYPE} && \
 		${COPYTREE_SHARE} "locales resources" ${STAGEDIR}${DATADIR}
