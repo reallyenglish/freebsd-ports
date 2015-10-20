@@ -1,35 +1,37 @@
-# New ports collection makefile for:	pgpool
-# Date created:				2005-10-19
-# Whom:					Choe, Cheng-Dae <whitekid@gmail.com>
-#
+# Created by: Choe, Cheng-Dae <whitekid@gmail.com>
 # $FreeBSD$
-#
 
 PORTNAME=	pgpool
-PORTVERSION=	3.4.1
-PORTREVISION=	1
+PORTVERSION=	3.4.3
 CATEGORIES=	databases
-MASTER_SITES=	http://pgfoundry.org/frs/download.php/1446/
+MASTER_SITES=	http://www.pgpool.net/mediawiki/images/
+DISTNAME=	${PORTNAME}-II-${DISTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	A connection pool server for PostgreSQL
+MAINTAINER=	ports@toco-domains.de
+COMMENT=	Connection pool server for PostgreSQL
 
-USE_GMAKE=	yes
+LICENSE=	MIT
+
+LIB_DEPENDS=	pq:${PORTSDIR}/databases/postgresql93-client
+DATADIR=	${PREFIX}/share/${PORTNAME}-II
+
+USES=		gmake
+USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=	yes
+USE_LDCONFIG=	yes
 
 USE_RC_SUBR=	pgpool
 CONFLICTS=	pgpool-II-*
 
-PORTDOCS=	README AUTHORS COPYING ChangeLog INSTALL NEWS TODO README.euc_jp
+PORTDOCS=	AUTHORS ChangeLog NEWS TODO
 
 MAN8=		pgpool.8
+OPTIONS_DEFINE=	DOCS
 
 post-install:
-.if !defined(NOPORTDOCS)
-	@${MKDIR} ${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
-	${INSTALL_MAN} ${WRKSRC}/$f ${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/$f ${STAGEDIR}${DOCSDIR}
 .endfor
-.endif
 
 .include <bsd.port.mk>
