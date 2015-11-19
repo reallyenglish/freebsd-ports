@@ -1,0 +1,57 @@
+# Created by: Jin-Sih Lin <linpct@gmail.com>
+# $FreeBSD$
+
+PORTNAME=	node
+PORTVERSION=	4.2.2
+DISTVERSIONPREFIX=	v
+CATEGORIES=	www
+MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
+
+MAINTAINER=	linpct@gmail.com
+COMMENT=	V8 JavaScript for client and server
+
+LICENSE=	MIT
+
+OPTIONS_DEFINE=	DOCS
+
+LIB_DEPENDS=	execinfo:${PORTSDIR}/devel/libexecinfo
+
+HAS_CONFIGURE=	yes
+USE_LDCONFIG=	yes
+USE_PYTHON=	2.7
+USE_GMAKE=	yes
+
+CONFLICTS_INSTALL=	node-0.[02-9][0-9]* node-devel-0.[0-9]* node010-[0-9]* node012-[0-9]* iojs-[0-9]*
+
+LATEST_LINK=	node4
+
+MAN1=		node.1
+
+ONLY_FOR_ARCHS=	i386 amd64
+CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} --without-npm --shared-zlib
+PREFIX_RELDEST=	${PREFIX:S,^${DESTDIR},,}
+REINPLACE_ARGS=	-i ''
+MAKE_ENV+=	CC.host=${CC} CXX.host=${CXX} LINK.host=${CXX} LINK.target=${CXX}
+
+.include <bsd.port.pre.mk>
+
+MAKE_ARGS+=	strictaliasing=off
+USE_GCC=	4.8+
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
+		${WRKSRC}/deps/v8/tools/gyp/v8.gyp
+	@${REINPLACE_CMD} -e 's|/usr/bin/env python|${PYTHON_CMD}|' \
+		${WRKSRC}/configure
+	@${REINPLACE_CMD} -e "s|python -c|${PYTHON_CMD} -c|" \
+		${WRKSRC}/deps/v8/build/toolchain.gypi
+	@${REINPLACE_CMD} -e "s|'python',|'${PYTHON_CMD}',|" \
+		${WRKSRC}/tools/icu/icu-generic.gyp \
+		${WRKSRC}/deps/v8/build/shim_headers.gypi \
+		${WRKSRC}/deps/v8/tools/gyp/v8.gyp \
+		${WRKSRC}/deps/v8/src/d8.gyp
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/node
+
+.include <bsd.port.post.mk>

@@ -2,11 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	gcc
-PORTVERSION=	4.8.0.20130210
+PORTVERSION=	4.8.5
 CATEGORIES=	lang java
 MASTER_SITES=	${MASTER_SITE_GCC}
-MASTER_SITE_SUBDIR=	snapshots/${VERSIONSTRING}
-DISTNAME=	gcc-${VERSIONSTRING}
+MASTER_SITE_SUBDIR=	releases/gcc-${VERSIONSTRING}
+DISTFILES=	gcc-${VERSIONSTRING}${EXTRACT_SUFX}
+
 
 MAINTAINER=	gerald@FreeBSD.org
 COMMENT=	GNU Compiler Collection 4.8
@@ -23,7 +24,7 @@ BUILD_DEPENDS+=	runtest:${PORTSDIR}/misc/dejagnu
 
 # VERSIONSTRING relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.
-VERSIONSTRING=	${PORTVERSION:C/([0-9]+\.[0-9]+).*\.([0-9]+)/\1-\2/}
+VERSIONSTRING=	${PORTVERSION}
 GCC_VERSION=	${PORTVERSION:C/(.+)\.[0-9]{8}/\1/}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 LATEST_LINK=	gcc${SUFFIX}${PKGNAMESUFFIX}
@@ -64,6 +65,7 @@ LIBEXEC=	${PREFIX}/libexec/gcc${SUFFIX}
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS+=--disable-nls \
+		--enable-gnu-indirect-function \
 		--libdir=${TARGLIB} \
 		--libexecdir=${LIBEXEC} \
 		--program-suffix=${SUFFIX} \
@@ -127,13 +129,8 @@ MAN1+=		aot-compile${SUFFIX}.1 \
 		jcf-dump${SUFFIX}.1 \
 		jv-convert${SUFFIX}.1 \
 		rebuild-gcj-db${SUFFIX}.1
-MAN3=		ffi${SUFFIX}.3 \
-		ffi_call${SUFFIX}.3 \
-		ffi_prep_cif${SUFFIX}.3 \
-		ffi_prep_cif_var${SUFFIX}.3
 INFO+=		gcc${SUFFIX}/cp-tools \
-		gcc${SUFFIX}/gcj \
-		gcc${SUFFIX}/libffi
+		gcc${SUFFIX}/gcj
 PLIST_SUB+=	JAVA=""
 .else
 CONFIGURE_ARGS+=--disable-libgcj
