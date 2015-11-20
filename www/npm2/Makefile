@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	npm
-PORTVERSION=	2.12.1
+PORTVERSION=	2.14.7
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/sunpoet
 
@@ -11,13 +11,15 @@ COMMENT=	Node package manager
 
 LICENSE=	MIT
 
-OPTIONS_DEFINE=	NODE NODE_DEVEL NODE012
-OPTIONS_DEFAULT=NODE012
+OPTIONS_DEFINE=	NODE NODE_DEVEL NODE012 NODE4
+OPTIONS_DEFAULT=NODE4
 NODE_DESC=	Use www/node as backend
 NODE_DEVEL_DESC=Use www/node-devel as backend
 NODE012_DESC=	Use www/node012 as backend
+NODE4_DESC=	Use www/node4 as backend
 
 MAKE_ARGS=	npm_config_prefix=${STAGEDIR}${PREFIX}
+MANPREFIX=	${PREFIX}/lib/node_modules/npm
 NO_ARCH=	yes
 NO_BUILD=	yes
 REINPLACE_ARGS=	-i ''
@@ -33,23 +35,23 @@ MAN1=		npm.1 npm-README.1 npm-access.1 npm-adduser.1 npm-bin.1 npm-bugs.1 \
 		npm-dedupe.1 npm-deprecate.1 npm-dist-tag.1 npm-docs.1 npm-edit.1 \
 		npm-explore.1 npm-help-search.1 npm-help.1 npm-init.1 \
 		npm-install.1 npm-link.1 npm-logout.1 npm-ls.1 npm-outdated.1 \
-		npm-owner.1 npm-pack.1 npm-prefix.1 npm-prune.1 npm-publish.1 \
+		npm-owner.1 npm-pack.1 npm-ping.1 npm-prefix.1 npm-prune.1 npm-publish.1 \
 		npm-rebuild.1 npm-repo.1 npm-restart.1 npm-rm.1 npm-root.1 \
 		npm-run-script.1 npm-search.1 npm-shrinkwrap.1 npm-star.1 \
-		npm-stars.1 npm-start.1 npm-stop.1 npm-tag.1 npm-test.1 \
+		npm-stars.1 npm-start.1 npm-stop.1 npm-tag.1 npm-team.1 npm-test.1 \
 		npm-uninstall.1 npm-unpublish.1 npm-update.1 npm-version.1 \
 		npm-view.1 npm-whoami.1
 MAN3=		npm.3 npm-bin.3 npm-bugs.3 npm-cache.3 npm-commands.3 npm-config.3 \
 		npm-deprecate.3 npm-docs.3 npm-edit.3 npm-explore.3 \
 		npm-help-search.3 npm-init.3 npm-install.3 npm-link.3 npm-load.3 \
-		npm-ls.3 npm-outdated.3 npm-owner.3 npm-pack.3 npm-prefix.3 \
+		npm-ls.3 npm-outdated.3 npm-owner.3 npm-pack.3 npm-ping.3 npm-prefix.3 \
 		npm-prune.3 npm-publish.3 npm-rebuild.3 npm-repo.3 npm-restart.3 \
 		npm-root.3 npm-run-script.3 npm-search.3 npm-shrinkwrap.3 \
 		npm-start.3 npm-stop.3 npm-tag.3 npm-test.3 npm-uninstall.3 \
 		npm-unpublish.3 npm-update.3 npm-version.3 npm-view.3 npm-whoami.3
 MAN5=		npm-folders.5 npm-global.5 npm-json.5 npmrc.5 package.json.5
 MAN7=		npm-coding-style.7 npm-config.7 npm-developers.7 npm-disputes.7 \
-		npm-faq.7 npm-index.7 npm-registry.7 npm-scope.7 npm-scripts.7 \
+		npm-faq.7 npm-index.7 npm-orgs.7 npm-registry.7 npm-scope.7 npm-scripts.7 \
 		removing-npm.7 semver.7
 
 MANPREFIX=	${PREFIX}/lib/node_modules/npm
@@ -62,8 +64,10 @@ RUN_DEPENDS+=	node-devel>=0.8.0:${PORTSDIR}/www/node-devel
 RUN_DEPENDS+=	node>=0.8.0:${PORTSDIR}/www/node
 .elsif ${PORT_OPTIONS:MNODE012}
 RUN_DEPENDS+=	node>=0.12.7:${PORTSDIR}/www/node012
+.elsif ${PORT_OPTIONS:MNODE4}
+RUN_DEPENDS+=	node>=4:${PORTSDIR}/www/node4
 .else
-RUN_DEPENDS+=	node>=0.12.7:${PORTSDIR}/www/node012
+RUN_DEPENDS+=	node>=4:${PORTSDIR}/www/node4
 .endif
 
 .if ${ARCH} == "i386"
