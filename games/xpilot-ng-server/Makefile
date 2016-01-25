@@ -11,7 +11,7 @@ PKGNAMESUFFIX?=	-server
 MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	Enhanced version of XPilot (server program)
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
@@ -22,8 +22,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include -Wno-return-type
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS=	--program-prefix=""
-
-UNIQUENAME=	${PORTNAME}${PKGNAMESUFFIX}
 
 PKGFILESUFFIX=	${PKGNAMESUFFIX:S/-/./}
 DESCR=		${PKGDIR}/pkg-descr${PKGFILESUFFIX}

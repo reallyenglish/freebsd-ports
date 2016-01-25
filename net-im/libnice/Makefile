@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libnice
-PORTVERSION=	0.1.8
+PORTVERSION=	0.1.13
 CATEGORIES=	net-im devel
 MASTER_SITES=	http://nice.freedesktop.org/releases/
 
@@ -45,4 +45,3 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-Werror||g' ${WRKSRC}/configure
 
 .include <bsd.port.mk>
-

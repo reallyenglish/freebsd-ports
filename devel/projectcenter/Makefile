@@ -10,14 +10,13 @@ DISTNAME=	ProjectCenter-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Development environment for GNUstep
 
-LICENSE=	GPLv2 # or later (comment in code; COPYING says GPLv3)
+LICENSE=	GPLv2+ # comment in code; COPYING says GPLv3
 
 USES=		gnustep
 USE_GNUSTEP=	back build
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}
 
 PLIST_SUB+=	FRAMEVERSION=${PORTVERSION}
-MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
 post-install:
 	${STRIP_CMD} \

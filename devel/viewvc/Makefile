@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	viewvc
-PORTVERSION=	1.1.23
+PORTVERSION=	1.1.24
 PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	http://www.viewvc.org/ \
@@ -62,9 +62,9 @@ post-patch:
 	${REINPLACE_CMD} -e 's/conf.dist/conf.sample/g' \
 		${WRKSRC}/viewvc-install \
 		${WRKSRC}/bin/standalone.py
-# to much files, use own shebangfix	
+# to much files, use own shebangfix
 	${FIND} ${WRKSRC} -type f | ${GREP} -v -e 'png' -e 'images' \
-		| xargs ${REINPLACE_CMD} -i '' \
+		| ${XARGS} ${SED} -i '' \
 		-e '1s|^\#![[:space:]]*/usr/bin/env python|\#!${PYTHON_CMD}|' \
 		-e '1s|^\#![[:space:]]*/usr/bin/python|\#!${PYTHON_CMD}|'
 

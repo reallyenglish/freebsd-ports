@@ -1,7 +1,6 @@
 # Created by: John Merryweather Cooper et al
 # $FreeBSD$
 
-PORTREVISION=	0
 CATEGORIES=	databases lang
 PKGNAMESUFFIX=	-oracle
 

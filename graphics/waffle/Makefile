@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	waffle
-PORTVERSION=	1.5.1
+PORTVERSION=	1.5.2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.waffle-gl.org/files/release/waffle-${PORTVERSION}/
 
@@ -11,29 +11,19 @@ COMMENT=	Library that allows to defer selection of an OpenGL API until runtime
 
 LICENSE=	BSD2CLAUSE
 
-USES=		cmake:outsource compiler:c11 ninja pkgconfig tar:xz
+USES=		cmake:outsource compiler:c11 localbase ninja pkgconfig tar:xz
+USE_GL=		egl gl
 USE_LDCONFIG=	yes
+USE_XORG=	x11 xcb
 
 DOCSDIR=	${PREFIX}/share/doc/waffle1
 
-OPTIONS_DEFINE=	DOCS
-
-USE_XORG=	x11 xcb
-USE_GL=		gl egl
-CFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
-
-CMAKE_ARGS+=	-Dwaffle_has_glx=ON
-#CMAKE_ARGS+=	-Dwaffle_has_x11_egl=ON
+CMAKE_ARGS+=	-Dwaffle_has_glx=ON \
+		-Dwaffle_has_x11_egl=ON
 #CMAKE_ARGS+=	-Dwaffle_has_gbm=ON # FIXME: Required udev
 
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
-.include <bsd.port.options.mk>
-
-.if ! ${PORT_OPTIONS:MDOCS}
-post-install:
-	${RM} -rf ${STAGEDIR}${DOCSDIR}
-.endif
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	festival
-PORTVERSION=	2.1
-PORTREVISION=	1
+PORTVERSION=	2.4
 CATEGORIES=	audio accessibility
 MASTER_SITES=	FESTIVAL
 DISTFILES=	${DISTNAME}-release.tar.gz 	\
@@ -30,7 +29,7 @@ OPTIONS_DEFAULT=NAS ESD
 ESD_DESC=	${ESOUND_DESC}
 
 DIST_SUBDIR=	festival
- 
+
 CXXFLAGS+=	-DFTLIBDIR=${LOCALBASE}/share/festival/lib
 CONFIGURE_WRKSRC=	${WRKDIR}/festival
 USES=		gmake
@@ -41,19 +40,10 @@ MAKE_ARGS+=	CC="${CC}" GCC="${CC}" \
 		EST_HOME=${SPEECHTOOLS}
 WRKSRC=		${WRKDIR}
 
-SPT_PATCHES=	base__class_EST__TVector.cc	\
-		base__class_inst__tmpl_vector__dmatrix__t.cc	\
-		base__class_inst__tmpl_vector__dvector__t.cc	\
-		base__class_inst__tmpl_vector__fmatrix__t.cc	\
-		config_compilers_gcc__defaults.mak	\
-		include_EST__Ngrammar.h	\
-		include_EST__SCFG.h	\
-		include_EST__String.h	\
-		include_EST__error.h	\
-		include_ling__class_EST__FeatureFunctionPackage.h	\
-		include_unix_EST__socket__unix.h	\
-		stats_dynamic__program.cc	\
-		utils_EST__ServiceTable.cc
+SPT_PATCHES=	include_ling__class_EST__FeatureFunctionPackage.h	\
+		include_unix_EST__socket__unix.h
+
+BROKEN_powerpc64=	Does not build
 
 do-build:
 .for d in speech_tools festival
@@ -75,18 +65,12 @@ post-patch::
 	${REINPLACE_CMD} -e 's,/usr/X11R6,${LOCALBASE},g'	\
 		${WRKSRC}/*/config/systems/default.mak
 
-.include <bsd.port.options.mk>
-
 .for m in nas esd
-.	if ${PORT_OPTIONS:M${m:tu}}
-LIB_DEPENDS+=	lib${m:nas=audio}.so:${PORTSDIR}/audio/${m:esd=esound}
-post-patch::
+${m:tu}_LIB_DEPENDS=	lib${m:nas=audio}.so:${PORTSDIR}/audio/${m:esd=esound}
+post-patch-${m:tu}-on:
 	${REINPLACE_CMD} -e 's,# INCLUDE_MODULES += ${m:tu}_AUDIO,INCLUDE_MODULES += ${m:tu}_AUDIO,' \
 		${WRKDIR}/*/config/config.in
-CONFIGURE_ARGS+=--enable-$m
-.	else
-CONFIGURE_ARGS+=--disable-$m
-.	endif
+${m:tu}_CONFIGURE_ENABLE=${m}
 .endfor
 
 do-configure:

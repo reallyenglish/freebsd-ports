@@ -5,10 +5,13 @@ PORTNAME=	hlfl
 PORTVERSION=	0.60.1
 PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	ftp://ftp.hlfl.org/pub/hlfl/
+MASTER_SITES=	ftp://ftp.cusae.com/pub/hlfl/
 
-MAINTAINER=	alaunay@hlfl.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	High Level Firewall Language
+
+LICENSE=	GPLv2+
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--datadir=${LOCALBASE}/share/doc

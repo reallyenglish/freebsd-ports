@@ -2,7 +2,7 @@ bin/qpsmtpd
 bin/qpsmtpd-async
 bin/qpsmtpd-forkserver
 bin/qpsmtpd-prefork
-man/man1/qpsmtpd-async.1.gz
+%%PERL5_MAN1%%/qpsmtpd-async.1.gz
 %%DATADIR%%/plugins/async/dns_whitelist_soft
 %%DATADIR%%/plugins/async/dnsbl
 %%DATADIR%%/plugins/async/earlytalker
@@ -99,7 +99,6 @@ man/man1/qpsmtpd-async.1.gz
 %%PERL5_MAN3%%/UPGRADING.3.gz
 %%PORTDOCS%%%%DOCSDIR%%/README
 %%PORTDOCS%%%%DOCSDIR%%/README.plugins
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/IP
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/badhelo
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/badmailfrom
@@ -122,8 +121,6 @@ man/man1/qpsmtpd-async.1.gz
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/smtpauth-checkpassword
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tls_before_auth
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/tls_ciphers
-%%PORTEXAMPLES%%@dirrmtry %%EXAMPLESDIR%%
-%%PORTEXAMPLES%%@dirrmtry %%EXAMPLESDIR%%/dkim
 %%SITE_PERL%%/Apache/Qpsmtpd.pm
 %%SITE_PERL%%/Danga/Client.pm
 %%SITE_PERL%%/Danga/TimeoutSocket.pm
@@ -148,12 +145,3 @@ man/man1/qpsmtpd-async.1.gz
 %%SITE_PERL%%/Qpsmtpd/Transaction.pm
 %%SITE_PERL%%/Qpsmtpd/Utils.pm
 %%SITE_PERL%%/UPGRADING.pod
-@dirrmtry %%DATADIR%%
-@dirrmtry %%DATADIR%%/plugins
-@dirrmtry %%DATADIR%%/plugins/async
-@dirrmtry %%DATADIR%%/plugins/async/queue
-@dirrmtry %%DATADIR%%/plugins/auth
-@dirrmtry %%DATADIR%%/plugins/ident
-@dirrmtry %%DATADIR%%/plugins/logging
-@dirrmtry %%DATADIR%%/plugins/queue
-@dirrmtry %%DATADIR%%/plugins/virus

@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	GeoIP
-PORTVERSION=	1.6.5
+PORTVERSION=	1.6.9
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
 CATEGORIES=	net geography
 
 MAINTAINER=	adamw@FreeBSD.org
@@ -33,6 +32,7 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libGeoIP.so.*
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:C|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 

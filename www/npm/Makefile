@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	npm
-PORTVERSION=	2.13.2
-PORTREVISION=	1
+PORTVERSION=	2.14.7
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/sunpoet
 
@@ -12,35 +12,40 @@ COMMENT=	Node package manager
 
 LICENSE=	MIT
 
+RUN_DEPENDS=	gmake:${PORTSDIR}/devel/gmake
+
 OPTIONS_SINGLE=	BACKEND
-OPTIONS_SINGLE_BACKEND=	IOJS NODE NODE_DEVEL NODE010
+OPTIONS_SINGLE_BACKEND=	NODE NODE_DEVEL NODE010 NODE012 NODE4
 OPTIONS_DEFAULT=NODE
-IOJS_DESC=	Use www/iojs as backend
 NODE_DESC=	Use www/node as backend
 NODE_DEVEL_DESC=Use www/node-devel as backend
 NODE010_DESC=	Use www/node010 as backend
+NODE012_DESC=	Use www/node012 as backend
+NODE4_DESC=	Use www/node4 as backend
 
 MAKE_ARGS=	npm_config_prefix=${STAGEDIR}${PREFIX}
+MANPREFIX=	${PREFIX}/lib/node_modules/npm
 NO_ARCH=	yes
 NO_BUILD=	yes
 REINPLACE_ARGS=	-i ''
+USES=		cpe python:2 shebangfix tar:xz
+
+CPE_VENDOR=	npmjs
+CPE_PRODUCT=	node_packaged_modules
+
 SHEBANG_FILES=	lib/utils/completion.sh \
+		node_modules/node-gyp/test/docker.sh \
 		node_modules/request/node_modules/node-uuid/benchmark/bench.sh \
 		scripts/clean-old.sh \
 		scripts/release.sh \
 		scripts/relocate.sh \
 		test/update-test.sh
-USES=		cpe python:2 shebangfix tar:xz
 
-MANPREFIX=	${PREFIX}/lib/node_modules/npm
-
-CPE_VENDOR=	npmjs
-CPE_PRODUCT=	node_packaged_modules
-
-IOJS_RUN_DEPENDS=	iojs>=1.0.0:${PORTSDIR}/www/iojs
 NODE_DEVEL_RUN_DEPENDS=	node-devel>=0.8.0:${PORTSDIR}/www/node-devel
 NODE_RUN_DEPENDS=	node>=0.8.0:${PORTSDIR}/www/node
 NODE010_RUN_DEPENDS=	node010>=0.8.0:${PORTSDIR}/www/node010
+NODE012_RUN_DEPENDS=	node012>=0.8.0:${PORTSDIR}/www/node012
+NODE4_RUN_DEPENDS=	node4>=0.8.0:${PORTSDIR}/www/node4
 
 .include <bsd.port.pre.mk>
 

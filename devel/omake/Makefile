@@ -10,6 +10,8 @@ MASTER_SITES=	http://main.metaprl.org/download/omake/
 MAINTAINER=	bf@FreeBSD.org
 COMMENT=	Flexible build system
 
+BROKEN=		unfetchable
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION:C|-.*||}
 USE_OCAML=	yes
 NO_OCAML_RUNDEPENDS=yes
@@ -22,10 +24,6 @@ INFO=		omake-doc
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "powerpc"
-BROKEN=		Does not build on powerpc
-.endif
 
 post-patch:
 #
@@ -62,9 +60,9 @@ post-install:
 		${STAGEDIR}${PREFIX}/${INFO_PATH})
 	@(cd ${WRKSRC}/doc/info && ${INSTALL_DATA} omake-doc.info-* \
 		${STAGEDIR}${PREFIX}/${INFO_PATH})
-.if ${PORT_OPTIONS:MDOCS}
+
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@(cd ${WRKSRC}/doc/html && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
-.endif
 
 .include <bsd.port.post.mk>

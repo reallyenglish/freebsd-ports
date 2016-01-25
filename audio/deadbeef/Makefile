@@ -3,7 +3,7 @@
 
 PORTNAME=	deadbeef
 PORTVERSION=	0.6.2
-PORTREVISION=	4
+PORTREVISION=	8
 CATEGORIES=	audio
 MASTER_SITES=	SF/${PORTNAME}/
 
@@ -17,7 +17,7 @@ GNU_CONFIGURE=	yes
 USES=		desktop-file-utils execinfo gettext gmake iconv libtool \
 		pkgconfig shebangfix tar:bzip2
 USE_LDCONFIG=	yes
-CONFIGURE_ARGS=	--disable-alsa --disable-nullout --disable-gtk3
+CONFIGURE_ARGS=	--disable-alsa --disable-nullout --disable-static
 CPPFLAGS+=	-I../dumb/dumb-kode54/include -I../../plugins/libmp4ff \
 		-I../../plugins/gme/game-music-emu-0.6pre \
 		-I${LOCALBASE}/include
@@ -32,13 +32,13 @@ OPTIONS_DEFINE=	MAD PULSEAUDIO GUI VFS LASTFM ART SUPEREQ SID FFAP VTX \
 		MUSEPACK WILDMIDI TTA DCA AAC MMS SHN AO SHELLEXEC NLS M3U \
 		PSF ADPLUG DSP MONO2STEREO CONVERTER VFS_ZIP ALAC PLTBROWSER \
 		WMA
-OPTIONS_DEFAULT=	MAD GUI VFS LASTFM ART SUPEREQ SID FFAP VTX HOSTKEYS \
+OPTIONS_DEFAULT=	MAD GTK2 VFS LASTFM ART SUPEREQ SID FFAP VTX HOSTKEYS \
 		OGG FLAC SNDFILE WAVPACK CDDA GME DUMB NOTIFY MUSEPACK \
 		WILDMIDI TTA DCA AAC MMS SHN AO SHELLEXEC M3U PSF ADPLUG DSP \
 		MONO2STEREO CONVERTER VFS_ZIP HOTKEYS ALAC PLTBROWSER WMA
 
 PULSEAUDIO_DESC=	PulseAudio output plugin (unsupported)
-GUI_DESC=		Standard GTK+2 user interface plugin
+GUI_DESC=		Standard GUI plugin
 VFS_DESC=		HTTP streaming VFS plugin
 LASTFM_DESC=		Last.fm/Libre.fm scrobbler plugin
 ART_DESC=		Cover artwork loader plugin
@@ -63,7 +63,10 @@ CONVERTER_DESC=		Plugin for converting files from/to any formats
 VFS_ZIP_DESC=		Play files directly from ZIP archives
 PLTBROWSER_DESC=	Playlist browser GUI plugin
 
-OPTIONS_SUB=	yes
+OPTIONS_SUB=		yes
+OPTIONS_RADIO+=		GUI
+OPTIONS_RADIO_GUI=	GTK2 GTK3
+GUI_IMPLIES=		CONVERTER
 
 MAD_LIB_DEPENDS=	libmad.so:${PORTSDIR}/audio/libmad
 MAD_CONFIGURE_OFF=	--disable-mad
@@ -71,8 +74,21 @@ MAD_CONFIGURE_OFF=	--disable-mad
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 PULSEAUDIO_CONFIGURE_OFF=	--disable-pulse
 
-GUI_USE=	gnome=gtk20,glib20
-GUI_CONFIGURE_OFF=	--disable-gtkui --disable-gtk3
+GTK2_USE=		gnome=gtk20,glib20
+GTK2_CONFIGURE_OFF=	--disable-gtk2
+GTK2_CONFIGURE_ON=	--enable-gtk2
+GTK2_VARS=		GTK_VER=2
+GTK2_IMPLIES=		GUI
+
+GTK3_USE=		gnome=gtk30
+GTK3_CONFIGURE_OFF=	--disable-gtk3
+GTK3_CONFIGURE_ON=	--enable-gtk3
+GTK3_VARS=		GTK_VER=3
+GTK3_IMPLIES=		GUI
+
+PLIST_SUB+=		GTK_VER=${GTK_VER}
+
+GUI_CONFIGURE_OFF=	--disable-gtk2 --disable-gtk3
 
 VFS_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 VFS_CONFIGURE_OFF=	--disable-vfs-curl
@@ -84,6 +100,7 @@ ART_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 			libImlib2.so:${PORTSDIR}/graphics/imlib2
 ART_USES=		jpeg
 ART_CONFIGURE_OFF=	--disable-artwork --disable-artwork-imlib2
+ART_IMPLIES=		VFS
 
 SUPEREQ_CONFIGURE_OFF=	--disable-supereq
 
@@ -170,12 +187,8 @@ WMA_CONFIGURE_OFF=		--disable-wma
 
 .include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MART} && ! ${PORT_OPTIONS:MVFS}
-BROKEN=		VFS plugin required for album art loader, please rerun 'make config' and either disable ART or enable VFS
-.endif
-
-.if ${PORT_OPTIONS:MCONVERTER} && ! ${PORT_OPTIONS:MGUI}
-BROKEN=		CONVERTER plugin required for gui, please rerun 'make config' and either disable CONVERTER or enable GUI
+.if !${PORT_OPTIONS:MGTK2} && !${PORT_OPTIONS:MGTK3}
+PORT_OPTIONS:=          ${PORT_OPTIONS:NGUI}
 .endif
 
 post-patch:
@@ -191,6 +204,10 @@ post-patch:
 		-e 's,libavcodec ,libavcodec0 ,g' \
 		-e 's,libavutil ,libavutil0 ,g' \
 		-e 's,libavformat ,libavformat0 ,g' \
+		-e '/HAVE_OGG" = "yes"/ {n; n; /HAVE_VORBISPLUGIN=yes/d;}' \
 		${WRKSRC}/configure
+# Fix build with libzip-1.0
+	@${REINPLACE_CMD} 's,zip_file_t,zip_file_DB,g' \
+		${WRKSRC}/plugins/vfs_zip/vfs_zip.c
 
 .include <bsd.port.mk>

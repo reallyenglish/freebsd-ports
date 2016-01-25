@@ -3,7 +3,7 @@
 
 PORTNAME=	harbour
 PORTVERSION=	3.0.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	lang
 MASTER_SITES=	SF/${PORTNAME}-project/source/${PORTVERSION}
 
@@ -22,7 +22,11 @@ NOT_FOR_ARCHS_REASON=	does not compile on sparc64: assertion failed
 
 PORTDOCS=	*.txt *.hbd NEWS INSTALL TODO COPYING ChangeLog
 
-USES=		bison gmake
+USES=		bison gmake shebangfix
+SHEBANG_FILES=	bin/hb3rdpat.hbs
+SHEBANG_LANG=	hbrun
+hbrun_OLD_CMD=	/usr/bin/hbrun
+hbrun_CMD=	${PREFIX}/bin/hbrun
 USE_OPENSSL=	yes
 USE_LDCONFIG=	${LOCALBASE}/lib/harbour
 
@@ -46,6 +50,7 @@ HB_WITH_X11=	no
 
 HB_ARCH=	bsd
 HB_GT_LIB=	gtsln
+HB_COMPILER=	clang
 
 HB_INSTALL_PREFIX=	${STAGEDIR}/${LOCALBASE}
 HB_INSTALL_BIN=	${STAGEDIR}${LOCALBASE}/bin
@@ -81,13 +86,10 @@ MAKE_ENV=	HB_ARCHITECTURE=${HB_ARCH} \
 		HB_USER_CFLAGS=${HB_USER_CFLAGS} \
 		HB_USER_LDFLAGS=${HB_USER_LDFLAGS}
 
-.include <bsd.port.pre.mk>
+PGSQL_USES=	pgsql
+FIREBIRD_USES=	firebird
 
-.if ${OSVERSION} < 900033
-HB_COMPILER=	gcc
-.else
-HB_COMPILER=	clang
-.endif
+.include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MDOCS}
 MAKE_ENV+=	HB_INSTALL_DOC=${HB_INSTALL_DOC}
@@ -96,7 +98,6 @@ MAKE_ENV+=	HB_INSTALL_DOC=no
 .endif
 
 .if ${PORT_OPTIONS:MFIREBIRD}
-USE_FIREBIRD=	yes
 MAKE_ENV+=	HB_WITH_FIREBIRD=nolocal
 .else
 MAKE_ENV+=	HB_WITH_FIREBIRD=no
@@ -119,16 +120,13 @@ MAKE_ENV+=	HB_WITH_MYSQL=no
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USES+=		pgsql
 MAKE_ENV+=	HB_WITH_PGSQL=nolocal
 .else
 MAKE_ENV+=	HB_WITH_PGSQL=no
 .endif
 
 post-patch:
-.if ${OSVERSION} > 900007
 	${REINPLACE_CMD} \
 		-e 's|utmp.h|utmpx.h|g' ${WRKSRC}/src/rtl/gtcrs/gtcrs.h
-.endif
 
 .include <bsd.port.post.mk>

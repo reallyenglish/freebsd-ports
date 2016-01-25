@@ -11,7 +11,7 @@ MASTER_SITES=	http://www.gpsdrive.de/packages/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GPS navigation system
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
@@ -36,13 +36,10 @@ OPTIONS_SUB=	yes
 NLS_USES=	gettext
 NLS_USES_OFF=	gettext-tools
 
-.include <bsd.port.options.mk>
-
 post-patch:
 	@${REINPLACE_CMD} 's/test "$$CC" = "gcc"/false/' ${WRKSRC}/configure
-.if empty(PORT_OPTIONS:MNLS)
+post-patch-NLS-off:
 	@${REINPLACE_CMD} 's|SUBDIRS = src po man|SUBDIRS = src man|' \
 		${WRKSRC}/Makefile.in
-.endif
 
 .include <bsd.port.mk>

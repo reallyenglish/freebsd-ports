@@ -13,7 +13,7 @@ RUN_DEPENDS=	mime-support>0:${PORTSDIR}/misc/mime-support
 
 USE_GNOME=	gtk20
 USES=		cpe desktop-file-utils execinfo pathfix shebangfix
-SHEBANG_FILES=	tools/*.pl tools/tb2claws-mail
+SHEBANG_FILES=	tools/*.pl tools/*.py tools/tb2claws-mail
 INSTALLS_ICONS=	yes
 
 OPTIONS_DEFINE=	COMPFACE DEBUG DOCS ENCHANT IPV6 JPILOT LDAP \
@@ -65,20 +65,20 @@ post-patch:
 		${WRKSRC}/src/Makefile.in
 
 post-install:
-	(cd ${WRKSRC} && ${INSTALL_DATA} NEWS README TODO ${STAGEDIR}${DOCSDIR})
-	${INSTALL_DATA} ${WRKSRC}/tools/README ${STAGEDIR}${DOCSDIR}/README.tools
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	(cd ${WRKSRC}/tools && \
 		${INSTALL_SCRIPT} OOo2claws-mail.pl acroread2claws-mail.pl \
 		calypso_convert.pl convert_mbox.pl eud2gc.py filter_conv.pl \
-		filter_conv_new.pl fix_date.sh freshmeat_search.pl \
-		gif2xface.pl google_msgid.pl google_search.pl \
-		kmail-mailbox2claws-mail.pl kmail2claws-mail.pl \
+		filter_conv_new.pl fix_date.sh gif2xface.pl google_msgid.pl \
+		google_search.pl kmail-mailbox2claws-mail.pl kmail2claws-mail.pl \
 		kmail2claws-mail_v2.pl multiwebsearch.conf multiwebsearch.pl \
 		nautilus2claws-mail.sh outlook2claws-mail.pl tb2claws-mail \
 		tbird2claws.py textviewer.pl textviewer.sh \
 		thunderbird-filters-convertor.pl uudec uuooffice vcard2xml.py \
 		${STAGEDIR}${DATADIR})
-	${INSTALL_DATA} ${WRKSRC}/claws-mail.desktop ${STAGEDIR}${DESKTOPDIR}
+
+post-install-DOCS-on:
+	(cd ${WRKSRC} && ${INSTALL_DATA} NEWS README TODO ${STAGEDIR}${DOCSDIR})
+	${INSTALL_DATA} ${WRKSRC}/tools/README ${STAGEDIR}${DOCSDIR}/README.tools
 
 .include <bsd.port.mk>

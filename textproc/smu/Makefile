@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	smu
-PORTVERSION=	1.3
+PORTVERSION=	1.4
+DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	textproc
-MASTER_SITES=	http://s01.de/~tox/files/smu/ \
-		http://mirror.4bit.ws/
 
 MAINTAINER=	rodrigo@FreeBSD.org
 COMMENT=	Simple interpreter for a simplified markdown dialect
@@ -13,13 +13,16 @@ COMMENT=	Simple interpreter for a simplified markdown dialect
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_GITHUB=	yes
+GH_ACCOUNT=	Gottox
+
 PLIST_FILES=	bin/smu man/man1/smu.1.gz
 
-post-patch:
-	@${REINPLACE_CMD} -e 's|cc|${CC}|g' ${WRKSRC}/config.mk
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/smu ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/smu.1 ${STAGEDIR}${MANPREFIX}/man/man1
+USES=		uidfix
+MAKEFILE=	/usr/share/mk/bsd.prog.mk
+MAKE_ENV=	PROG="${PORTNAME}" \
+		BINDIR="${PREFIX}/bin" \
+		MANDIR="${MANPREFIX}/man/man"
+CFLAGS+=	-DVERSION=${PORTVERSION}
 
 .include <bsd.port.mk>

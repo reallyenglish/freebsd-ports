@@ -2,7 +2,7 @@
 
 PORTNAME=	kde-workspace
 PORTVERSION=	${KDE4_WORKSPACE_VERSION}
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	x11 kde
 MASTER_SITES=	KDE/${KDE4_BRANCH}/${KDE4_VERSION}/src
 DIST_SUBDIR=	KDE/${PORTVERSION}
@@ -44,13 +44,14 @@ USE_GL=		glu
 USE_GNOME=	glib20
 USE_KDE4=	kactivities kdelibs kdeprefix nepomuk-core oxygen \
 		pimlibs akonadi automoc4 ontologies qimageblitz soprano strigi
-USES=		cmake:outsource compiler:c++11-lib gettext gmake iconv jpeg \
-		pkgconfig tar:xz
+USES=		cmake:outsource compiler:c++11-lib gettext gmake jpeg \
+		pkgconfig shebangfix tar:xz
 USE_QT4=	corelib dbus declarative designer_build gui network \
 		opengl phonon qtestlib script sql webkit xml \
 		moc_build qmake_build rcc_build uic_build
 USE_XORG=	kbproto x11 xau xcomposite xcursor xdamage xdmcp xfixes \
 		xft xi xinerama xkbfile xrandr xrender xres xscrnsaver xtst
+SHEBANG_FILES=	kwin/clients/oxygen/data/update_oxygen.pl
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DCMAKE_REQUIRED_FLAGS:STRING="-L${LOCALBASE}/lib" \
@@ -103,8 +104,6 @@ WALLPAPERS_DESC=	Install official KDE wallpapers
 WALLPAPERS_RUN_DEPENDS=	${KDE4_PREFIX}/share/wallpapers/Horos/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers \
 			${KDE4_PREFIX}/share/wallpapers/stripes-freebsd-blue/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers-freebsd
 
-.include <bsd.port.options.mk>
-
 .if !exists(/usr/lib/libutempter.so)
 LIB_DEPENDS+=	libutempter.so:${PORTSDIR}/sysutils/libutempter
 .endif
@@ -128,9 +127,12 @@ pre-configure:
 
 post-install:
 	${LN} -sf ${PREFIX}/bin/startkde ${STAGEDIR}${PREFIX}/bin/startkde4
-.if ! ${PORT_OPTIONS:MGSTREAMER}
+
+post-install-GSTREAMER-on:
+	@${HEAD} -1 ${PKGMESSAGE} >> ${PKGMESSAGE}
+
+post-install-GSTREAMER-off:
 	@${CAT} ${FILESDIR}/pkg-message.gstreamer >> ${PKGMESSAGE}
-.endif
 	@${HEAD} -1 ${PKGMESSAGE} >> ${PKGMESSAGE}
 
 .include <bsd.port.mk>

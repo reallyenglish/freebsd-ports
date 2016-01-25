@@ -98,6 +98,7 @@
     SUBDIR += mupen64plus-video-glide64mk2
     SUBDIR += mupen64plus-video-rice
     SUBDIR += mupen64plus-video-z64
+    SUBDIR += nestopia
     SUBDIR += nonpareil
     SUBDIR += o2em
     SUBDIR += ods2reader
@@ -111,7 +112,6 @@
     SUBDIR += pearpc
     SUBDIR += pipelight
     SUBDIR += ppsspp
-    SUBDIR += ppsspp-devel
     SUBDIR += py-gns3-converter
     SUBDIR += q4wine
     SUBDIR += qemu
@@ -155,6 +155,7 @@
     SUBDIR += vmips
     SUBDIR += vmsbackup
     SUBDIR += vmw
+    SUBDIR += vpcs
     SUBDIR += vxtools
     SUBDIR += wine
     SUBDIR += wine-devel

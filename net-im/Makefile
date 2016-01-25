@@ -29,6 +29,7 @@
     SUBDIR += gale
     SUBDIR += gloox
     SUBDIR += hotot
+    SUBDIR += hs-haskell-xmpp
     SUBDIR += icb
     SUBDIR += icmpchat
     SUBDIR += icqlib
@@ -114,6 +115,7 @@
     SUBDIR += pidgin-rhythmbox
     SUBDIR += pidgin-sipe
     SUBDIR += pidgin-skype
+    SUBDIR += pidgin-skypeweb
     SUBDIR += pidgin-twitter
     SUBDIR += plasma-applet-ktp
     SUBDIR += poezio
@@ -143,6 +145,7 @@
     SUBDIR += qwit-devel
     SUBDIR += qxmpp
     SUBDIR += ramblercontacts
+    SUBDIR += ricochet
     SUBDIR += rubygem-earthquake
     SUBDIR += rubygem-hipchat
     SUBDIR += rubygem-lita
@@ -154,6 +157,7 @@
     SUBDIR += skype
     SUBDIR += skype-devel
     SUBDIR += skype4
+    SUBDIR += teamwords
     SUBDIR += telegram
     SUBDIR += telegram-purple
     SUBDIR += telepathy-butterfly

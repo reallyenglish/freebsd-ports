@@ -4,7 +4,7 @@
 PORTNAME=	spatialite
 PORTVERSION=	4.3.0
 CATEGORIES=	databases geography
-MASTER_SITES=	http://www.gaia-gis.it/gaia-sins/
+MASTER_SITES=	http://www.gaia-gis.it/gaia-sins/libspatialite-sources/
 DISTNAME=	lib${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	coder@tuxfamily.org
@@ -37,7 +37,5 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|-ldl| |' ${WRKSRC}/src/Makefile.am
 	@${REINPLACE_CMD} -e 's|-ldl| |' ${WRKSRC}/src/Makefile.in
 	@${REINPLACE_CMD} -e 's|-ldl| |' ${WRKSRC}/configure
-
-BROKEN_powerpc=		Does not compile on powerpc: invokes i386 assembler
 
 .include <bsd.port.mk>

@@ -10,7 +10,9 @@ MASTER_SITES=	http://adgali.apiou.org/download/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Open source game library useful for 2D game development
 
-LICENSE=	GPLv2 # or later
+BROKEN=		unfetchable
+
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \

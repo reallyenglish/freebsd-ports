@@ -25,7 +25,8 @@ RUN_DEPENDS=	p5-Unix-Syslog>=0:${PORTSDIR}/sysutils/p5-Unix-Syslog \
 
 USES=		perl5 shebangfix tar:xz
 USE_PERL5=	run
-SHEBANG_FILES=	amavisd-agent amavisd-nanny amavisd-release p0f-analyzer.pl
+SHEBANG_FILES=	amavisd-agent amavisd-nanny amavisd-release p0f-analyzer.pl \
+		amavisd-snmp-subagent amavisd
 
 NO_BUILD=	yes
 
@@ -74,7 +75,7 @@ P7ZIP_DESC=		P7ZIP support with archivers/p7zip
 MSWORD_DESC=		Ms Word support with textproc/ripole
 TNEF_DESC=		Add external tnef decoder converters/tnef
 
-SUB_FILES=	pkg-install pkg-deinstall pkg-message
+SUB_FILES=	pkg-deinstall pkg-message
 
 SUB_LIST+=	AMAVISUSER=${AMAVISUSER} \
 		AMAVISGROUP=${AMAVISGROUP} \
@@ -83,7 +84,11 @@ SUB_LIST+=	AMAVISUSER=${AMAVISUSER} \
 		DAEMON="${DAEMON}" \
 		PERL=${PERL}
 
-PLIST_SUB+=	AMAVIS_NOP0F=${AMAVIS_NOP0F}
+PLIST_SUB+=	AMAVISUSER=${AMAVISUSER} \
+		AMAVISGROUP=${AMAVISGROUP} \
+		AMAVISDIR=${AMAVISDIR} \
+		AMAVISQUARANTINE=${AMAVISQUARANTINE} \
+		AMAVIS_NOP0F=${AMAVIS_NOP0F}
 
 .include <bsd.port.options.mk>
 
@@ -230,32 +235,35 @@ post-patch:
 	@${REINPLACE_CMD} "s|/var/amavis/db|${AMAVISDIR}/db|" ${WRKSRC}/amavisd-agent
 	@${REINPLACE_CMD} "s|/var/amavis/db|${AMAVISDIR}/db|" ${WRKSRC}/amavisd-nanny
 	@${REINPLACE_CMD} -e "s|/var/amavis/db|${AMAVISDIR}/db|" \
-			-e "s|/usr/bin/perl|${PERL}|" ${WRKSRC}/amavisd-snmp-subagent
+			 ${WRKSRC}/amavisd-snmp-subagent
 	@${REINPLACE_CMD} "s|/var/amavis/amavisd.sock|${AMAVISDIR}/amavisd.sock|" \
 			${WRKSRC}/amavisd-release
 	@${REINPLACE_CMD} -e "s|/etc/amavisd.conf|${PREFIX}/etc/amavisd.conf|" \
-				-e "s|/usr/bin/perl|${PERL}|" \
 				-e "s|/var/amavis|${AMAVISDIR}|g" \
 				-e 's|$$localhost_name = .localhost.;|$$localhost_name = $$myhostname;|' \
 			${WRKSRC}/amavisd
 
 do-install:
-.if ${PORT_OPTIONS:MP0F}
-	${INSTALL_SCRIPT} ${WRKSRC}/p0f-analyzer.pl ${STAGEDIR}${PREFIX}/sbin
-.endif
 .for i in amavisd amavisd-agent amavisd-nanny amavisd-release amavisd-snmp-subagent
 	${INSTALL_SCRIPT} ${WRKSRC}/${i} ${STAGEDIR}${PREFIX}/sbin
 .endfor
 	${INSTALL_SCRIPT} ${WRKSRC}/amavisd.conf ${STAGEDIR}${PREFIX}/etc/amavisd.conf.sample
 	${INSTALL_SCRIPT} ${WRKSRC}/amavisd.conf-default ${STAGEDIR}${PREFIX}/etc/amavisd.conf-default
 	${INSTALL_SCRIPT} ${WRKSRC}/amavisd-custom.conf ${STAGEDIR}${PREFIX}/etc/amavisd-custom.conf.sample
-.if ${PORT_OPTIONS:MDOCS}
+	${LN} -s ${PREFIX}/sbin/amavisd-release ${STAGEDIR}${PREFIX}/sbin/amavisd-requeue
+	${MKDIR} ${STAGEDIR}${AMAVISDIR}/var
+	${MKDIR} ${STAGEDIR}${AMAVISDIR}/tmp
+	${MKDIR} ${STAGEDIR}${AMAVISDIR}/db
+	${MKDIR} ${STAGEDIR}${AMAVISQUARANTINE}
+
+do-install-P0F-on:
+	${INSTALL_SCRIPT} ${WRKSRC}/p0f-analyzer.pl ${STAGEDIR}${PREFIX}/sbin
+
+do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/images
 .for i in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
 .endfor
 	@${CP} -pr ${WRKSRC}/README_FILES/images/ ${STAGEDIR}${DOCSDIR}/images
-.endif
-	${LN} -s ${PREFIX}/sbin/amavisd-release ${STAGEDIR}${PREFIX}/sbin/amavisd-requeue
 
 .include <bsd.port.post.mk>

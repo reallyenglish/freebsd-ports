@@ -12,13 +12,12 @@ PKGNAMESUFFIX=	-gui
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Three-dimensional fractal creator (X11 GUI)
 
-LICENSE=	GPLv2 # (or later)
+BROKEN=		unfetchable
+LICENSE=	GPLv2+
 
 LIB_DEPENDS=	libfltk.so:${PORTSDIR}/x11-toolkits/fltk
 
 OPTIONS_DEFINE=	OPTIMIZED_CFLAGS DOCS
-
-UNIQUENAME=	${PORTNAME}${PKGNAMESUFFIX}
 
 USE_XORG=	xext
 USE_GL=		gl glut
@@ -29,7 +28,7 @@ CONFIGURE_ARGS=	--datadir=${PREFIX}/share/doc
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-DOCSDIR=	${PREFIX}/share/doc/${UNIQUENAME}
+DOCSDIR=	${PREFIX}/share/doc/${PKGBASE}
 
 PORTDOCS=	*
 PLIST_FILES=	bin/quat
@@ -51,7 +50,7 @@ post-patch:
 		${WRKSRC}/gui/Makefile.in
 	@${REINPLACE_CMD} -e \
 		's|<FL/fl_file_chooser.H>|<FL/Fl_File_Chooser.H>| ; \
-		 s|/doc/quat/|/doc/${UNIQUENAME}/|' \
+		 s|/doc/quat/|/doc/${PKGBASE}/|' \
 		${WRKSRC}/gui/MainWindow.cxx
 # disable data file installation since distfile does not do
 # The Right Thing(TM)
@@ -60,7 +59,7 @@ post-patch:
 		 s|^(SUBDIRS.*)doc|\1|' \
 		${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e \
-		's|@PACKAGE@|${UNIQUENAME}|' \
+		's|@PACKAGE@|${PKGBASE}|' \
 		${WRKSRC}/doc/Makefile.in
 
 post-install:

@@ -72,7 +72,6 @@
     SUBDIR += hs-OpenGLRaw
     SUBDIR += hs-gtk
     SUBDIR += hs-gtk2hs
-    SUBDIR += hs-gtkglext
     SUBDIR += hs-gtksourceview2
     SUBDIR += hs-pango
     SUBDIR += hs-vte
@@ -118,6 +117,9 @@
     SUBDIR += movingmotif
     SUBDIR += mowitz
     SUBDIR += mygui
+    SUBDIR += mygui-dummy
+    SUBDIR += mygui-ogre
+    SUBDIR += mygui-opengl
     SUBDIR += neXtaw
     SUBDIR += nucleo
     SUBDIR += ocaml-lablgtk2
@@ -192,6 +194,8 @@
     SUBDIR += py-kivy
     SUBDIR += py-kiwi
     SUBDIR += py-qt4-gui
+    SUBDIR += py-qt5-gui
+    SUBDIR += py-qt5-widgets
     SUBDIR += py-sexy
     SUBDIR += py-tkinter
     SUBDIR += py-tktreectrl
@@ -202,9 +206,13 @@
     SUBDIR += py-wxPython-common
     SUBDIR += py-wxPython28
     SUBDIR += py-wxPython28-common
-    SUBDIR += py-wxPython28-unicode
     SUBDIR += py-wxPython30
     SUBDIR += py-xlib
+    SUBDIR += py32-tkinter
+    SUBDIR += py33-tkinter
+    SUBDIR += py34-tkinter
+    SUBDIR += py35-tkinter
+    SUBDIR += pypy-tkinter
     SUBDIR += qt4-declarative
     SUBDIR += qt4-gui
     SUBDIR += qt4pas
@@ -227,6 +235,7 @@
     SUBDIR += rubygem-pango
     SUBDIR += rubygem-poppler
     SUBDIR += rubygem-vte
+    SUBDIR += rubygem-vte3
     SUBDIR += scintilla
     SUBDIR += sdl_pango
     SUBDIR += shared-desktop-ontologies
@@ -261,8 +270,6 @@
     SUBDIR += wxgtk28-common
     SUBDIR += wxgtk28-contrib
     SUBDIR += wxgtk28-contrib-common
-    SUBDIR += wxgtk28-unicode
-    SUBDIR += wxgtk28-unicode-contrib
     SUBDIR += wxgtk30
     SUBDIR += xbae
     SUBDIR += xforms

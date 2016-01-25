@@ -3,17 +3,18 @@
 
 PORTNAME=	tntnet
 PORTVERSION=	2.2.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www devel
 MASTER_SITES=	http://www.tntnet.org/download/
 
-MAINTAINER=	nox@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Webapplicationserver for C++
 
 LIB_DEPENDS=	libcxxtools.so:${PORTSDIR}/devel/cxxtools
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 
-USES=		cpe iconv libtool pathfix pkgconfig
+USES=		cpe iconv libtool pathfix pkgconfig shebangfix
+SHEBANG_FILES=	tntnet-conf2xml.pl
 USE_CSTD=	gnu89
 PATCH_STRIP=	-p1
 GNU_CONFIGURE=	yes

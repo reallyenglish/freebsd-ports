@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	musicpd
-PORTVERSION=	0.18.23
+PORTVERSION=	0.19.10
 CATEGORIES=	audio ipv6
 MASTER_SITES=	http://www.musicpd.org/download/mpd/${PORTVERSION:R}/
 DISTNAME=	mpd-${PORTVERSION}
@@ -15,13 +15,18 @@ USES=		gmake pkgconfig compiler:c++11-lib tar:xz
 GNU_CONFIGURE=	yes
 USE_GNOME=	glib20
 
+LIB_DEPENDS=	libboost_iostreams.so:${PORTSDIR}/devel/boost-libs \
+		libicudata.so:${PORTSDIR}/devel/icu
+
 USE_RC_SUBR=	${PORTNAME}
 CONFIGURE_ARGS+=--disable-alsa --disable-systemd-daemon --disable-roar
 CFLAGS+=	-I${PREFIX}/include
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -L${LOCALBASE}/lib/sidplay/builders
 
-PORTDOCS=	AUTHORS README COPYING NEWS UPGRADING
+BROKEN_powerpc64=	Does not build on powerpc64
+
+PORTDOCS=	AUTHORS README COPYING NEWS
 
 SUB_FILES=	pkg-message
 

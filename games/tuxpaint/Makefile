@@ -10,7 +10,7 @@ MASTER_SITES=	SF
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Drawing program designed for young children
 
-LICENSE=	GPLv2 # (or later)
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/docs/COPYING.txt
 
 LIB_DEPENDS=	libfribidi.so:${PORTSDIR}/converters/fribidi \
@@ -44,12 +44,6 @@ PORTDOCS=	*
 PORTDATA=	*
 
 OPTIONS_DEFINE=	DOCS
-
-.include <bsd.port.options.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} <= 901000
-CFLAGS+=	-Dfmemopen_alternative
-.endif
 
 post-extract:
 	@${CHMOD} -R a+rX ${WRKSRC}

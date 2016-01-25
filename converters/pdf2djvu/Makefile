@@ -3,6 +3,7 @@
 
 PORTNAME=	pdf2djvu
 PORTVERSION=	0.7.21
+PORTREVISION=	1
 CATEGORIES=	converters
 MASTER_SITES=	https://bitbucket.org/jwilk/pdf2djvu/downloads/
 
@@ -19,12 +20,6 @@ GNU_CONFIGURE=	yes
 USES=		compiler:c++11-lang gmake pkgconfig tar:xz
 
 PLIST_FILES=	bin/pdf2djvu man/man1/pdf2djvu.1.gz
-
-.include <bsd.port.options.mk>
-
-.if ${OSVERSION} < 900014
-FAVORITE_COMPILER=      gcc
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin

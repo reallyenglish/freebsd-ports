@@ -1,11 +1,10 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
 # $FreeBSD$
-#    $MCom: ports/multimedia/gstreamer1-plugins-good/Makefile,v 1.4 2013/01/15 21:43:45 kwm Exp $
 
 PORTREVISION=	0
 CATEGORIES=	multimedia
 
-COMMENT=	Good gstreamer-plugins
+COMMENT=	GStreamer-plugins good-quality plug-ins
 
 GST_PLUGIN=	good
 GST_PLUGIN_SUFFIX=	-good

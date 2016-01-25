@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitg
-PORTVERSION=	3.16.1
-PORTREVISION=	1
+PORTVERSION=	3.18.0
 CATEGORIES=	devel deskutils gnome
 MASTER_SITES=	GNOME
 
@@ -12,6 +11,8 @@ COMMENT=	GTK-based git repository viewer
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN=		fails to build
 
 LIB_DEPENDS=	libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib \
 		libgee-0.8.so:${PORTSDIR}/devel/libgee \
@@ -25,7 +26,7 @@ RUN_DEPENDS=	gsettings-desktop-schemas>=0:${PORTSDIR}/devel/gsettings-desktop-sc
 
 CONFLICTS=	gitg0-[0-9]*
 
-USES=		desktop-file-utils gmake libtool pathfix pkgconfig tar:xz
+USES=		compiler:c11 desktop-file-utils gmake libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-silent-rules \
 		--disable-maintainer-mode \

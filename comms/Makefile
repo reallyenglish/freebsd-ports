@@ -10,7 +10,6 @@
     SUBDIR += aprsd
     SUBDIR += atslog
     SUBDIR += bfhist
-    SUBDIR += bforce
     SUBDIR += bforce-kst
     SUBDIR += birda
     SUBDIR += bluegps
@@ -46,6 +45,7 @@
     SUBDIR += fllog
     SUBDIR += flrig
     SUBDIR += flwrap
+    SUBDIR += freedv
     SUBDIR += gammu
     SUBDIR += ge-x2212
     SUBDIR += geoid
@@ -55,7 +55,6 @@
     SUBDIR += gnokii
     SUBDIR += gnuradio
     SUBDIR += gpredict
-    SUBDIR += gpsk31
     SUBDIR += gqrx
     SUBDIR += gr-osmosdr
     SUBDIR += grig
@@ -63,6 +62,7 @@
     SUBDIR += gsmlib
     SUBDIR += gstreamer1-plugins-spandsp
     SUBDIR += gtkmmorse
+    SUBDIR += hackrf
     SUBDIR += hamfax
     SUBDIR += hamlib
     SUBDIR += hcidump
@@ -78,7 +78,9 @@
     SUBDIR += kermit
     SUBDIR += klog
     SUBDIR += kremotecontrol
+    SUBDIR += kvasd
     SUBDIR += libconcord
+    SUBDIR += libfap
     SUBDIR += libfec
     SUBDIR += libimobiledevice
     SUBDIR += libirman
@@ -129,13 +131,14 @@
     SUBDIR += pr
     SUBDIR += predict
     SUBDIR += py-bulksms
+    SUBDIR += py-gammu
     SUBDIR += py-libconcord
     SUBDIR += py-libimobiledevice
     SUBDIR += py-lirc
+    SUBDIR += py-qt5-serialport
     SUBDIR += py-serial
     SUBDIR += pyla
     SUBDIR += qico
-    SUBDIR += qpage
     SUBDIR += qrq
     SUBDIR += qsstv
     SUBDIR += qt5-serialport
@@ -177,6 +180,7 @@
     SUBDIR += viewfax
     SUBDIR += vrflash
     SUBDIR += wsjt
+    SUBDIR += wsjtx
     SUBDIR += wspr
     SUBDIR += wwl
     SUBDIR += wy60
@@ -191,7 +195,6 @@
     SUBDIR += yagiuda
     SUBDIR += yaps
     SUBDIR += yfklog
-    SUBDIR += zmtx-zmrx
     SUBDIR += zssh
 
 .include <bsd.port.subdir.mk>

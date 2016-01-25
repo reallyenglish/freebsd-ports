@@ -2,14 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	plplot
-PORTVERSION=	5.11.0
+PORTVERSION=	5.11.1
+PORTREVISION=	1
 CATEGORIES=	math science
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20Source
 
 MAINTAINER=	woodsb02@gmail.com
 COMMENT=	Scientific plotting package
 
-LICENSE=	LGPL21 # (or later)
+LICENSE=	LGPL21+
 
 BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		${FREEFONT_DIR}/FreeMono.ttf:${PORTSDIR}/x11-fonts/freefont-ttf

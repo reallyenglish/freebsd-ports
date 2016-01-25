@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	racket
-PORTVERSION=	6.1.1
+PORTVERSION=	6.2
 CATEGORIES=	lang scheme
 MASTER_SITES=	http://mirror.racket-lang.org/installers/${PORTVERSION}/ \
 		http://www.cs.utah.edu/plt/installers/${PORTVERSION}/ \
@@ -35,10 +35,9 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 
 WRKSRC=		${WRKDIR}/racket-${PORTVERSION}/src
-USES=		iconv jpeg libtool tar:tgz
+USES=		iconv jpeg libtool sqlite tar:tgz
 USE_LDCONFIG=	yes
 USE_GNOME=	pango
-USE_SQLITE=	3
 
 ONLY_FOR_ARCHS=	i386 amd64
 

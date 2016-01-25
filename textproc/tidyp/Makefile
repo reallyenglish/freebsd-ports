@@ -5,7 +5,7 @@ PORTNAME=	tidyp
 PORTVERSION=	1.04
 PORTREVISION=	2
 CATEGORIES=	textproc www
-MASTER_SITES=	http://cloud.github.com/downloads/petdance/tidyp/ \
+MASTER_SITES=	GHC \
 		LOCAL/sunpoet
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -16,6 +16,9 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 USES=		libtool
+
+GH_ACCOUNT=	petdance
+USE_GITHUB=	yes
 
 OPTIONS_DEFINE=	ACCESS DEBUG
 ACCESS_DESC=	Accessibility checks

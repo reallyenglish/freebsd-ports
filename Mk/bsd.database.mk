@@ -47,7 +47,7 @@ Database_Include_MAINTAINER=	ports@FreeBSD.org
 #			  build this port with (overrides WITH_BDB_VER).
 # WITH_BDB_VER
 #			- User defined global variable to set Berkeley DB version.
-# <UNIQUENAME>_WITH_BDB_VER
+# <BDB_UNIQUENAME>_WITH_BDB_VER
 #			- User defined port specific variable to set Berkeley DB
 #			  version.
 # WITH_BDB_HIGHEST
@@ -101,12 +101,12 @@ WARNING+=	"DEFAULT_MYSQL_VER is defined, consider using DEFAULT_VERSIONS=mysql=$
 DEFAULT_MYSQL_VER?=	${MYSQL_DEFAULT:S/.//}
 # MySQL client version currently supported.
 MYSQL51_LIBVER=		16
-MYSQL53m_LIBVER=	16
 MYSQL55_LIBVER=		18
 MYSQL55m_LIBVER=	18
 MYSQL55p_LIBVER=	18
 MYSQL56_LIBVER=		18
 MYSQL56p_LIBVER=	18
+MYSQL57_LIBVER=		20
 MYSQL100m_LIBVER=	18
 
 # Setting/finding MySQL version we want.
@@ -145,25 +145,16 @@ IGNORE=		cannot install: MySQL versions mismatch: mysql${_MYSQL_VER}-client is i
 .endif
 .endif
 
-.if (${MYSQL_VER} == "53m")
-_MYSQL_CLIENT=	databases/mariadb-client
-_MYSQL_SERVER=	databases/mariadb-server
-.elif (${MYSQL_VER} == "55m")
-_MYSQL_CLIENT=	databases/mariadb55-client
-_MYSQL_SERVER=	databases/mariadb55-server
-.elif (${MYSQL_VER} == "100m")
-_MYSQL_CLIENT=  databases/mariadb100-client
-_MYSQL_SERVER=  databases/mariadb100-server
-.elif (${MYSQL_VER} == "55p")
-_MYSQL_CLIENT=	databases/percona55-client
-_MYSQL_SERVER=	databases/percona55-server
-.elif (${MYSQL_VER} == "56p")
-_MYSQL_CLIENT=	databases/percona56-client
-_MYSQL_SERVER=	databases/percona56-server
+.if (${MYSQL_VER:C/[0-9]*//} == "m")
+_MYSQL_FLAVOUR=	mariadb
+.elif (${MYSQL_VER:C/[0-9]*//} == "p")
+_MYSQL_FLAVOUR=	percona
 .else
-_MYSQL_CLIENT=	databases/mysql${MYSQL_VER}-client
-_MYSQL_SERVER=	databases/mysql${MYSQL_VER}-server
+_MYSQL_FLAVOUR=	mysql
 .endif
+
+_MYSQL_CLIENT=	databases/${_MYSQL_FLAVOUR}${MYSQL_VER:C/[mp]//}-client
+_MYSQL_SERVER=	databases/${_MYSQL_FLAVOUR}${MYSQL_VER:C/[mp]//}-server
 
 # And now we are checking if we can use it
 .if defined(MYSQL${MYSQL_VER}_LIBVER)
@@ -191,6 +182,8 @@ IGNORE=		cannot install: unknown MySQL version: ${MYSQL_VER}
 # TODO: avoid malformed conditional with invalid USE_BDB/WITH_BDB_VER
 # check if + works properly from test builds 01h12m23s
 
+BDB_UNIQUENAME?=	${PKGNAMEPREFIX}${PORTNAME}
+
 _USE_BDB_save:=${USE_BDB}
 _WITH_BDB_VER_save:=${WITH_BDB_VER}
 
@@ -211,9 +204,9 @@ db5_FIND=	${LOCALBASE}/include/db5/db.h
 db6_FIND=	${LOCALBASE}/include/db6/db.h
 
 # Override the global WITH_BDB_VER with the
-# port specific <UNIQUENAME>_WITH_BDB_VER
-.if defined(${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER)
-WITH_BDB_VER=	${${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}
+# port specific <BDB_UNIQUENAME>_WITH_BDB_VER
+.if defined(${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER)
+WITH_BDB_VER=	${${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}
 .endif
 
 # Override USE_BDB with global WITH_BDB_VER
@@ -340,7 +333,7 @@ BDB_VER=	${_BDB_VER}
 
 debug-bdb:
 	@${ECHO_CMD} "--INPUTS----------------------------------------------------"
-	@${ECHO_CMD} "${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER: ${${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}"
+	@${ECHO_CMD} "${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER: ${${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER}"
 	@${ECHO_CMD} "WITH_BDB_VER: ${_WITH_BDB_VER_save}"
 	@${ECHO_CMD} "WANT_BDB_VER: ${WANT_BDB_VER}"
 	@${ECHO_CMD} "BDB_BUILD_DEPENDS: ${BDB_BUILD_DEPENDS}"
@@ -374,7 +367,7 @@ BAD_VAR+=	${var},
 .  endif
 . endfor
 . if defined(BAD_VAR)
-_IGNORE_MSG=	Obsolete variable(s) ${BAD_VAR} use WITH_BDB_VER or ${UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER to select Berkeley DB version
+_IGNORE_MSG=	Obsolete variable(s) ${BAD_VAR} use WITH_BDB_VER or ${BDB_UNIQUENAME:tu:S,-,_,}_WITH_BDB_VER to select Berkeley DB version
 .  if defined(IGNORE)
 IGNORE+= ${_IGNORE_MSG}
 .  else

@@ -30,16 +30,17 @@ RUN_DEPENDS=	${LOCALBASE}/lib/libplibsl.a:${PORTSDIR}/x11-toolkits/plib \
 
 USE_XORG=	ice sm x11 xext xft xi xinerama xt xmu
 USE_GL=		gl glu glut
-USE_SQLITE=	3
 USE_QT5=	core buildtools qmake widgets
 
-USES=		alias cpe dos2unix cmake compiler jpeg openal:al,alut tar:bzip2
+USES=		alias cpe dos2unix cmake compiler jpeg openal:al,alut sqlite \
+		tar:bzip2
 DOS2UNIX_REGEX=	.*\.(c|h|cxx|cpp|hxx|hpp)
 CMAKE_ARGS+=	-DENABLE_JS_SERVER:BOOL=ON \
 		-DSYSTEM_SQLITE:BOOL=ON \
 		-DFG_DATA_DIR:PATH=${LOCALBASE}/share/${PORTNAME} \
 		-DCMAKE_INSTALL_MANDIR:PATH=${MANPREFIX}/man \
 		-DFGCOM_DATA_PATH:PATH=${DATADIR}
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	DBUS
 OPTIONS_DEFAULT=	DBUS

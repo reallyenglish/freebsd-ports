@@ -13,7 +13,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Cleaned up copy of the GPL'ed Quake 1 source code
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
@@ -22,7 +22,6 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		bison compiler:nestedfct gmake libtool tar:bzip2
 USE_LDCONFIG=	yes
-WANT_SDL=	yes
 
 CONFIGURE_ARGS+=--with-global-cfg=${PREFIX}/etc/quakeforge.conf \
 		--with-sharepath=${DATADIR} \

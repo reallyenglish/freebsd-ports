@@ -8,7 +8,7 @@ CATEGORIES=	comms audio hamradio
 MASTER_SITES=	http://www.sdr-j.tk/ \
 		LOCAL/nox/
 
-MAINTAINER=	nox@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	SDR tools for RTL2832-based USB sticks
 
 LICENSE=	GPLv2
@@ -27,8 +27,6 @@ PLIST_FILES+=	bin/swreceiver bin/spectrum-viewer-${PORTVERSION} \
 		bin/mini-receiver bin/fmreceiver-${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS
-
-.include <bsd.port.pre.mk>
 
 do-configure:
 	cd ${WRKSRC}/make-x64/swreceiver && ${SETENV} ${MAKE_ENV} \
@@ -58,9 +56,9 @@ do-install:
 		${STAGEDIR}${PREFIX}/bin/spectrum-viewer-${PORTVERSION}
 	${INSTALL} ${WRKSRC}/make-x64/fmreceiver/fmreceiver \
 		${STAGEDIR}${PREFIX}/bin/fmreceiver-${PORTVERSION}
-.if ${PORT_OPTIONS:MDOCS}
+
+do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/* ${STAGEDIR}${DOCSDIR}
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

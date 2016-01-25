@@ -9,17 +9,17 @@ MASTER_SITES=	https://s3.amazonaws.com/cfengine.package-repos/tarballs/
 
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
+#		skreuzer@FreeBSD.org is also committer for this port
 COMMENT=	Systems administration tool for networks
 CPE_VENDOR=	gnu
 
 .if !defined(MASTERDIR)
 PKGNAMESUFFIX=	34
-LATEST_LINK=	cfengine34
 .endif
 
 FETCH_BEFORE_ARGS=	-o ${DISTDIR}/${DISTFILES}
 
-CONFLICTS=	cfengine-2* cfengine-3.[235]* cfengine-devel-*
+CONFLICTS=	cfengine-2* cfengine-3.[235-9]* cfengine-devel-*
 
 USE_RC_SUBR=	cf-execd cf-serverd
 

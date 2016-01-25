@@ -12,7 +12,9 @@ DISTNAME=	miniCHESS-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Window Maker chess dockapp game
 
-LICENSE=	GPLv2 # (or later)
+BROKEN=		unfetchable
+
+LICENSE=	GPLv2+
 
 RUN_DEPENDS=	${LOCALBASE}/bin/gnuchess:${PORTSDIR}/games/gnuchess
 

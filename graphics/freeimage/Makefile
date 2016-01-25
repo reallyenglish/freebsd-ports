@@ -3,6 +3,10 @@
 
 PORTNAME=	freeimage
 PORTVERSION=	3.16.0
+PORTREVISION=	1
+# Version 3.17.0 is available, but does not build on i386 (and probably
+# other 32-bit arches) without some not-quite-trivial patching.  If one
+# decides to update the port, please make sure 32-bit builds are tested!
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/Source%20Distribution/${PORTVERSION}
 DISTNAME=	FreeImage${PORTVERSION:S/.//g}
@@ -11,12 +15,15 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple C/C++ bitmap graphics library
 
 USES=		dos2unix gmake zip
-DOS2UNIX_FILES=	Source/LibOpenJPEG/opj_malloc.h
+DOS2UNIX_FILES=	Source/LibOpenJPEG/opj_malloc.h \
+		Source/LibRawLite/dcraw/dcraw.c \
+		Source/LibRawLite/internal/dcraw_common.cpp
 USE_LDCONFIG=	yes
 WRKSRC=		${WRKDIR}/FreeImage
 MAKE_ARGS=	CC="${CC}" CPP="${CPP}" CXX="${CXX}"
 
 CFLAGS+=	-fexceptions -fvisibility=hidden
+CFLAGS_aarch64=	-fPIC
 CFLAGS_amd64=	-fPIC
 
 PLIST_FILES=	include/FreeImage.h \
@@ -32,7 +39,7 @@ PLIST_FILES=	include/FreeImage.h \
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == amd64
+.if ${ARCH} == amd64 || ${ARCH} == powerpc
 USES+=		compiler:c++0x
 .endif
 

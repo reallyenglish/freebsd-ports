@@ -15,7 +15,6 @@ LLVM_SUFFIX=	${PORTVERSION:C/([0-9]\.[0-9]).*/\1/:S/.//g:C/r.//}
 LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
-UNIQUENAME=	${PORTNAME}${LLVM_SUFFIX}
 
 WRKSRC=		${WRKDIR}/llvm-${DISTVERSION}.src
 
@@ -139,12 +138,12 @@ NOT_FOR_ARCH=	ia64
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 900000
-BROKEN=	GCC failing on 8.x
-.endif
-
 .if ${PORT_OPTIONS:MCMAKE} && ${COMPILER_TYPE} != clang
 BROKEN=	CMake support only works with clang
+.endif
+
+.if ${ARCH} == "aarch64"
+BROKEN=		Does not compile on aarch64
 .endif
 
 .if ${ARCH} == "amd64"

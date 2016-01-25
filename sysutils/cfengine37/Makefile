@@ -2,14 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	cfengine
-PORTVERSION=	3.7.0
+PORTVERSION=	3.7.2
 CATEGORIES=	sysutils
 MASTER_SITES=	https://s3.amazonaws.com/cfengine-package-repos/tarballs/
-DISTNAME=	cfengine-3.7.0-2
-WRKSRC=		${WRKDIR}/cfengine-3.7.0
 
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
+#		skreuzer@FreeBSD.org is also committer for this port
 COMMENT=	Systems administration tool for networks
 
 LICENSE=	GPLv3
@@ -18,12 +17,11 @@ CPE_VENDOR=	gnu
 
 .if !defined(MASTERDIR)
 PKGNAMESUFFIX=	37
-LATEST_LINK=	cfengine37
 .endif
 
 FETCH_BEFORE_ARGS=	-o ${DISTDIR}/${DISTFILES}
 
-CONFLICTS=	cfengine-[234]*
+CONFLICTS=	cfengine-[2-689]*
 
 USE_RC_SUBR=	cf-execd cf-serverd cf-monitord
 
@@ -31,7 +29,8 @@ MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
-USES=		autoreconf cpe gmake libtool
+USES=		autoreconf cpe gmake libtool shebangfix
+SHEBANG_FILES=	examples/remake_outputs.pl
 CFLAGS+=	-Wno-return-type
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

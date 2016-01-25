@@ -10,12 +10,10 @@ DISTNAME=	GRubik
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Virtual 3D Rubiks cube for GNUstep
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 
 USES=		tar:tgz gnustep
 USE_GNUSTEP=	back build
-
-MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
 post-patch:
 	${RM} -rf ${WRKSRC}/GRubik.app/ix86

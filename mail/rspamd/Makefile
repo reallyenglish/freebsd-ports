@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	rspamd
-PORTVERSION=	0.9.9
+PORTVERSION=	1.1.1
 CATEGORIES=	mail
 MASTER_SITES=	http://rspamd.com/downloads/
 
@@ -13,15 +13,17 @@ LICENSE=	BSD2CLAUSE
 LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre \
 		libgmime-2.4.so:${PORTSDIR}/mail/gmime24 \
 		libevent.so:${PORTSDIR}/devel/libevent2 \
-		libluajit-5.1.so:${PORTSDIR}/lang/luajit \
-		libhiredis.so:${PORTSDIR}/databases/hiredis
+		libluajit-5.1.so:${PORTSDIR}/lang/luajit
+
+CONFLICTS_INSTALL=	rspamd
 
 OPTIONS_DEFINE=	GPERF REDIRECTOR
-GPERF_DESC=		google perf-tools profiling
+GPERF_DESC=		Google perf-tools profiling
 REDIRECTOR_DESC=	Install HTTP redirector
 
 USE_RC_SUBR=	rspamd
 
+SUB_FILES=	pkg-message rspamd.newsyslog.conf.sample
 PLIST_SUB+=	ETCDIR=etc/rspamd \
 		RSPAMDVERSION=${PORTVERSION}
 CMAKE_ARGS+=	-DCONFDIR=${PREFIX}/etc/rspamd \
@@ -36,13 +38,12 @@ CMAKE_ARGS+=	-DCONFDIR=${PREFIX}/etc/rspamd \
 		-DNO_SHARED=ON
 
 USES=		cmake:outsource gettext iconv pkgconfig tar:xz perl5 \
-		compiler:c11
+		compiler:c11 sqlite
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 
 USE_GNOME=	glib20
 USE_OPENSSL=	yes
-USE_SQLITE=	yes
 
 .include <bsd.port.options.mk>
 
@@ -52,7 +53,7 @@ USE_SQLITE=	yes
 .endif
 
 .if ${PORT_OPTIONS:MREDIRECTOR}
- USES+=		perl5
+ USE_PERL5+=	run
  CMAKE_ARGS+=	-DENABLE_REDIRECTOR=ON
  PLIST_SUB+=	REDIRECTOR=""
  USE_RC_SUBR+=	rspamd_redirector
@@ -77,5 +78,14 @@ post-stage:
 		${STAGEDIR}/var/log/rspamd \
 		${STAGEDIR}/var/db/rspamd \
 		${STAGEDIR}/var/run/rspamd
+	# Linux specific
+	${RM} ${STAGEDIR}/${ETCDIR}/rspamd.systemd.conf
+	# No need, since rspamd.conf.sample is a same
+	${RM} ${STAGEDIR}/${ETCDIR}/rspamd.sysvinit.conf
+	${INSTALL_DATA} ${WRKDIR}/rspamd.newsyslog.conf.sample ${STAGEDIR}${ETCDIR}
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	${LN} -s ${ETCDIR}/rspamd.newsyslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
 
 .include <bsd.port.mk>

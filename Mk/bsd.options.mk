@@ -68,6 +68,13 @@
 # WITHOUT			- Unset options from the command line
 #
 #
+# These variables are strictly informational (read-only).  They indicate the
+# current state of the selected options; they are space-delimited lists.
+#
+# SELECTED_OPTIONS		- list of options set "on"
+# DESELECTED_OPTIONS		- list of options set "off"
+#
+#
 # The following knobs are there to simplify the handling of OPTIONS in simple
 # cases :
 #
@@ -96,6 +103,13 @@
 # ${opt}_QMAKE_OFF		When option is disabled, it will add its content to
 #				the QMAKE_ARGS.
 #
+# ${opt}_IMPLIES		When opt is enabled, options named in IMPLIES will
+#				get enabled too.
+# ${opt}_PREVENTS		When opt is enabled, if any options in PREVENTS are
+#				also enabled, it will produce an error.
+# ${opt}_PREVENTS_MSG		Provides a message explaining why the options
+#				cannot be selected together.
+#
 # ${opt}_USE=	FOO=bar		When option is enabled, it will  enable
 #				USE_FOO+= bar
 #				If you need more than one option, you can do
@@ -103,12 +117,22 @@
 # ${opt}_USE_OFF=	FOO=bar	When option is disabled, it will enable
 #				USE_FOO+= bar
 #
+# ${opt}_VARS=	FOO=bar		When option is enabled, it will set
+#				FOO= bar
+# ${opt}_VARS=	FOO+=bar	When option is enabled, it will append
+#				FOO+= bar
+# ${opt}_VARS_OFF=    FOO=bar	When option is disabled, it will set
+#				FOO= bar
+# ${opt}_VARS_OFF=    FOO+=bar	When option is disabled, it will append
+#				FOO+= bar
+#
 # For each of:
-# ALL_TARGET CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS CONFLICTS_BUILD
-# CONFLICTS_INSTALL CPPFLAGS CXXFLAGS DISTFILES EXTRA_PATCHES GH_ACCOUNT
-# GH_PROJECT GH_TAGNAME INFO INSTALL_TARGET LDFLAGS LIBS MAKE_ARGS MAKE_ENV
-# PATCHFILES PATCH_SITES PLIST_DIRS PLIST_DIRSTRY PLIST_FILES PLIST_SUB
-# PORTDOCS SUB_FILES SUB_LIST USES,
+# ALL_TARGET BROKEN CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS CONFLICTS_BUILD
+# CONFLICTS_INSTALL CPPFLAGS CXXFLAGS DESKTOP_ENTRIES DISTFILES EXTRA_PATCHES
+# EXTRACT_ONLY GH_ACCOUNT GH_PROJECT GH_TAGNAME IGNORE INFO INSTALL_TARGET
+# LDFLAGS LIBS MAKE_ARGS MAKE_ENV PATCHFILES PATCH_SITES PLIST_DIRS
+# PLIST_DIRSTRY PLIST_FILES PLIST_SUB PORTDOCS PORTEXAMPLES SUB_FILES SUB_LIST
+# TEST_TARGET USES,
 # defining ${opt}_${variable} will add its content to the actual variable when
 # the option is enabled.  Defining ${opt}_${variable}_OFF will add its content
 # to the actual variable when the option is disabled.
@@ -127,17 +151,27 @@
 OPTIONSMKINCLUDED=	bsd.options.mk
 
 OPTIONS_NAME?=	${PKGORIGIN:S/\//_/}
-OPTIONSFILE?=	${PORT_DBDIR}/${UNIQUENAME}/options
 OPTIONS_FILE?=	${PORT_DBDIR}/${OPTIONS_NAME}/options
 
-_OPTIONS_FLAGS=	ALL_TARGET CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS \
-		CONFLICTS_BUILD CONFLICTS_INSTALL CPPFLAGS CXXFLAGS DISTFILES \
-		EXTRA_PATCHES GH_ACCOUNT GH_PROJECT GH_TAGNAME INFO \
-		INSTALL_TARGET LDFLAGS LIBS MAKE_ARGS MAKE_ENV PATCHFILES \
-		PATCH_SITES PLIST_DIRS PLIST_DIRSTRY PLIST_FILES PLIST_SUB \
-		PORTDOCS SUB_FILES SUB_LIST USES
+_OPTIONS_FLAGS=	ALL_TARGET BROKEN CATEGORIES CFLAGS CONFIGURE_ENV CONFLICTS \
+		CONFLICTS_BUILD CONFLICTS_INSTALL CPPFLAGS CXXFLAGS \
+		DESKTOP_ENTRIES DISTFILES EXTRA_PATCHES EXTRACT_ONLY \
+		GH_ACCOUNT GH_PROJECT GH_TAGNAME IGNORE INFO INSTALL_TARGET \
+		LDFLAGS LIBS MAKE_ARGS MAKE_ENV PATCHFILES PATCH_SITES \
+		PLIST_DIRS PLIST_DIRSTRY PLIST_FILES PLIST_SUB PORTDOCS \
+		PORTEXAMPLES SUB_FILES SUB_LIST TEST_TARGET USES
 _OPTIONS_DEPENDS=	PKG FETCH EXTRACT PATCH BUILD LIB RUN
-_OPTIONS_TARGETS=	fetch extract patch configure build install package stage
+
+# The format here is target_family:priority:target-type
+_OPTIONS_TARGETS=	fetch:300:pre fetch:500:do fetch:700:post \
+			extract:300:pre extract:500:do extract:700:post \
+			patch:300:pre patch:500:do patch:700:post \
+			configure:300:pre configure:500:do configure:700:post \
+			build:300:pre build:500:do build:700:post \
+			install:300:pre install:500:do install:700:post  \
+			test:300:pre test:500:do test:700:post  \
+			package:300:pre package:500:do package:700:post \
+			stage:800:post
 
 # Set the default values for the global options, as defined by portmgr
 .if !defined(NOPORTDOCS)
@@ -162,6 +196,10 @@ WITHOUT+=			EXAMPLES
 OPTIONS_WARNINGS_UNSET+=	EXAMPLES
 .endif
 
+.if defined(DEVELOPER)
+PORT_OPTIONS+=	TEST
+.endif
+
 PORT_OPTIONS+=	IPV6
 
 # Add per arch options
@@ -174,9 +212,11 @@ OPTIONS_DEFINE+=	${opt}
 # Add per arch defaults
 OPTIONS_DEFAULT+=	${OPTIONS_DEFAULT_${ARCH}}
 
+_ALL_EXCLUDE=	${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} \
+		${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${OPSYS}}
+
 # Remove options the port maintainer doesn't want
-.for opt in ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE} ${OPTIONS_SLAVE} \
-	${OPTIONS_EXCLUDE_${OPSYS}}
+.for opt in ${_ALL_EXCLUDE:O:u}
 OPTIONS_DEFAULT:=	${OPTIONS_DEFAULT:N${opt}}
 OPTIONS_DEFINE:=	${OPTIONS_DEFINE:N${opt}}
 PORT_OPTIONS:=		${PORT_OPTIONS:N${opt}}
@@ -235,22 +275,6 @@ PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .  endfor
 
-# XXX To remove once UNIQUENAME will be removed
-## Set the options specified per-port (set by user in make.conf)
-.  for opt in ${${UNIQUENAME}_SET}
-.    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
-PORT_OPTIONS+=	${opt}
-NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.    endif
-.  endfor
-
-## Unset the options excluded per-port (set by user in make.conf)
-.  for opt in ${${UNIQUENAME}_UNSET}
-PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
-NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.  endfor
-# XXX To remove once UNIQUENAME will be removed
-
 ## Set the options specified per-port (set by user in make.conf)
 .  for opt in ${${OPTIONS_NAME}_SET}
 .    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
@@ -264,14 +288,6 @@ NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .  endfor
-
-# XXX to remove once UNIQUENAME is removed
-## options files (from dialog)
-.  if exists(${OPTIONSFILE}) && !make(rmconfig)
-.  include "${OPTIONSFILE}"
-.  endif
-.  sinclude "${OPTIONSFILE}.local"
-# XXX to remove once UNIQUENAME is removed
 
 ## options files (from dialog)
 .  if exists(${OPTIONS_FILE}) && !make(rmconfig)
@@ -291,6 +307,14 @@ PORT_OPTIONS+=	${opt}
 OPTIONS_WARNINGS+=	"WITHOUT_${opt}"
 OPTIONS_WARNINGS_UNSET+=	${opt}
 PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
+.endif
+.endfor
+
+_OPTIONS_UNIQUENAME=	${PKGNAMEPREFIX}${PORTNAME}
+.for _k in SET UNSET SET_FORCE UNSET_FORCE
+.if defined(${_OPTIONS_UNIQUENAME}_${_k})
+WARNING+=	"You are using ${_OPTIONS_UNIQUENAME}_${_k} which is not supported any more, use:"
+WARNING+=	"${OPTIONS_NAME}_${_k}=	${${_OPTIONS_UNIQUENAME}_${_k}}"
 .endif
 .endfor
 
@@ -346,22 +370,6 @@ PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .  endfor
 
-# XXX To remove once UNIQUENAME will be removed
-## Set the options specified per-port (set by user in make.conf)
-.  for opt in ${${UNIQUENAME}_SET_FORCE}
-.    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
-PORT_OPTIONS+=	${opt}
-NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.    endif
-.  endfor
-
-## Unset the options excluded per-port (set by user in make.conf)
-.  for opt in ${${UNIQUENAME}_UNSET_FORCE}
-PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
-NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
-.  endfor
-# XXX To remove once UNIQUENAME will be removed
-
 ## Set the options specified per-port (set by user in make.conf)
 .  for opt in ${${OPTIONS_NAME}_SET_FORCE}
 .    if !empty(COMPLETE_OPTIONS_LIST:M${opt})
@@ -390,6 +398,41 @@ PORT_OPTIONS:=	${PORT_OPTIONS:N${opt}}
 NEW_OPTIONS:=	${NEW_OPTIONS:N${opt}}
 .endfor
 
+## Enable options implied by other options
+# _PREVENTS is handled in bsd.port.mk:pre-check-config
+## 1) Build dependency chain in A.B format:
+_DEPCHAIN=
+.for opt in ${COMPLETE_OPTIONS_LIST}
+.  for o in ${${opt}_IMPLIES}
+_DEPCHAIN+=	${opt}.$o
+.  endfor
+.endfor
+## 2) Check each dependency pair and if LHS is in PORT_OPTIONS then add RHS.
+##    All of RHS of "RHS.*" (i.e. indirect dependency) are also added for
+##    fast convergence.
+_PORT_OPTIONS:=	${PORT_OPTIONS}
+.for _count in _0 ${COMPLETE_OPTIONS_LIST}
+count=	${_count}
+### Check if all of the nested dependency are resolved already.
+.  if ${count} == _0 || ${_PORT_OPTIONS} != ${PORT_OPTIONS}
+PORT_OPTIONS:=	${_PORT_OPTIONS}
+.    for dc in ${_DEPCHAIN}
+.      for opt in ${_PORT_OPTIONS}
+_opt=${opt}
+### Add all of direct and indirect dependency only if
+### they are not in ${PORT_OPTIONS}.
+.        if !empty(_opt:M${dc:R})
+.          for d in ${dc:E} ${_DEPCHAIN:M${dc:E}.*:E}
+.            if empty(_PORT_OPTIONS:M$d)
+_PORT_OPTIONS+=	$d
+.            endif
+.          endfor
+.        endif
+.      endfor
+.    endfor
+.  endif
+.endfor
+
 # Finally, add options required by slave ports
 PORT_OPTIONS+=	${OPTIONS_SLAVE}
 
@@ -413,13 +456,11 @@ WITH_DEBUG=	yes
 ALL_OPTIONS=	${OPTIONS_DEFINE}
 .endif
 
-.for target in ${_OPTIONS_TARGETS}
-.for prepost in pre post
-_OPTIONS_${prepost}_${target}?=
-.endfor
+.for target in ${_OPTIONS_TARGETS:C/:.*//:u}
+_OPTIONS_${target}?=
 .endfor
 
-.for opt in ${COMPLETE_OPTIONS_LIST} ${OPTIONS_SLAVE} ${OPTIONS_EXCLUDE_${ARCH}} ${OPTIONS_EXCLUDE}
+.for opt in ${COMPLETE_OPTIONS_LIST} ${_ALL_EXCLUDE:O:u}
 # PLIST_SUB
 PLIST_SUB?=
 SUB_LIST?=
@@ -447,15 +488,21 @@ _u=		${option:C/=.*//g}
 USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
 .      endfor
 .    endif
-.    if defined(${opt}_CONFIGURE_ENABLE)
-.      for iopt in ${${opt}_CONFIGURE_ENABLE}
-CONFIGURE_ARGS+=	--enable-${iopt}
+.    if defined(${opt}_VARS)
+.      for var in ${${opt}_VARS:C/=.*//:O:u}
+_u=			${var}
+.        if ${_u:M*+}
+${_u:C/.$//:tu}+=	${${opt}_VARS:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
+.        else
+${_u:tu}=		${${opt}_VARS:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
+.        endif
 .      endfor
 .    endif
+.    if defined(${opt}_CONFIGURE_ENABLE)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--enable-/}
+.    endif
 .    if defined(${opt}_CONFIGURE_WITH)
-.      for iopt in ${${opt}_CONFIGURE_WITH}
-CONFIGURE_ARGS+=	--with-${iopt}
-.      endfor
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--with-/}
 .    endif
 .    for configure in CONFIGURE CMAKE QMAKE
 .      if defined(${opt}_${configure}_ON)
@@ -473,9 +520,10 @@ ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS}
 .      endif
 .    endfor
 .    for target in ${_OPTIONS_TARGETS}
-.      for prepost in pre post
-_OPTIONS_${prepost}_${target}+=	${prepost}-${target}-${opt}-on
-.      endfor
+_target=	${target:C/:.*//}
+_prio=		${target:C/.*:(.*):.*/\1/}
+_type=		${target:C/.*://}
+_OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}-on
 .    endfor
 .  else
 .    if defined(${opt}_USE_OFF)
@@ -484,15 +532,21 @@ _u=		${option:C/=.*//g}
 USE_${_u:tu}+=	${option:C/.*=//g:C/,/ /g}
 .      endfor
 .    endif
-.    if defined(${opt}_CONFIGURE_ENABLE)
-.      for iopt in ${${opt}_CONFIGURE_ENABLE}
-CONFIGURE_ARGS+=	--disable-${iopt:C/=.*//}
+.    if defined(${opt}_VARS_OFF)
+.      for var in ${${opt}_VARS_OFF:C/=.*//:O:u}
+_u=			${var}
+.        if ${_u:M*+}
+${_u:C/.$//:tu}+=	${${opt}_VARS_OFF:M${var}=*:C/[^+]*\+=//:C/^"(.*)"$$/\1/}
+.        else
+${_u:tu}=		${${opt}_VARS_OFF:M${var}=*:C/[^=]*=//:C/^"(.*)"$$/\1/}
+.        endif
 .      endfor
 .    endif
+.    if defined(${opt}_CONFIGURE_ENABLE)
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_ENABLE:S/^/--disable-/:C/=.*//}
+.    endif
 .    if defined(${opt}_CONFIGURE_WITH)
-.      for iopt in ${${opt}_CONFIGURE_WITH}
-CONFIGURE_ARGS+=	--without-${iopt:C/=.*//}
-.      endfor
+CONFIGURE_ARGS+=	${${opt}_CONFIGURE_WITH:S/^/--without-/:C/=.*//}
 .    endif
 .    for configure in CONFIGURE CMAKE QMAKE
 .      if defined(${opt}_${configure}_OFF)
@@ -510,11 +564,33 @@ ${deptype}_DEPENDS+=	${${opt}_${deptype}_DEPENDS_OFF}
 .      endif
 .    endfor
 .    for target in ${_OPTIONS_TARGETS}
-.      for prepost in pre post
-_OPTIONS_${prepost}_${target}+=	${prepost}-${target}-${opt}-off
-.      endfor
+_target=	${target:C/:.*//}
+_prio=		${target:C/.*:(.*):.*/\1/}
+_type=		${target:C/.*://}
+_OPTIONS_${_target}:=	${_OPTIONS_${_target}} ${_prio}:${_type}-${_target}-${opt}-off
 .    endfor
 .  endif
+.endfor
+
+.undef (SELECTED_OPTIONS)
+.undef (DESELECTED_OPTIONS)
+.for opt in ${ALL_OPTIONS}
+.  if ${PORT_OPTIONS:M${opt}}
+SELECTED_OPTIONS:=	${opt} ${SELECTED_OPTIONS}
+.  else
+DESELECTED_OPTIONS:=	${opt} ${DESELECTED_OPTIONS}
+.  endif
+.endfor
+.for otype in MULTI GROUP SINGLE RADIO
+.  for m in ${OPTIONS_${otype}}
+.    for opt in ${OPTIONS_${otype}_${m}}
+.      if ${PORT_OPTIONS:M${opt}}
+SELECTED_OPTIONS:=	${opt} ${SELECTED_OPTIONS}
+.      else
+DESELECTED_OPTIONS:=	${opt} ${DESELECTED_OPTIONS}
+.      endif
+.    endfor
+.  endfor
 .endfor
 
 .endif

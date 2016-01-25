@@ -1,7 +1,6 @@
 # Created by: Christopher Key <cjk32@cam.ac.uk>
 # $FreeBSD$
 
-PORTREVISION=	0
 CATEGORIES=	graphics lang
 PKGNAMESUFFIX=	-hermes
 

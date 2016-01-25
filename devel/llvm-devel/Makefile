@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	llvm
-PORTVERSION=	3.8.d20150720
-PORTREVISION=	4
+PORTVERSION=	${LLVM_MAJOR}.d${SNAPDATE}
 CATEGORIES=	devel lang
 PKGNAMESUFFIX=	-devel
 
@@ -14,7 +13,6 @@ LLVM_SUFFIX=	-devel
 LLVM_PREFIX=	${PREFIX}/llvm${LLVM_SUFFIX}
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${LLVM_SUFFIX}
 DATADIR=	${PREFIX}/share/${PORTNAME}${LLVM_SUFFIX}
-UNIQUENAME=	${PORTNAME}${LLVM_SUFFIX}
 
 USES=		cmake:outsource compiler:c++11-lib libedit ninja perl5
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
@@ -29,20 +27,18 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	llvm-mirror
 GH_TAGNAME=	${LLVM_COMMIT}
 
-LLVM_COMMIT=	4f50f9eba412b6c0d5e7a9616dfe7699a07cf17b
-CLANG_COMMIT=	dc9de2d1a510a8b7b95610d338e89f1f91d3ecdf
-LLD_COMMIT=	3002cb875e292930a1a8f375f00b36abd1a4a83a
-LLDB_COMMIT=	6160cbd3d3bcbbc409bf48a67ee097672256b03f
-OPENMP_COMMIT=	50be853810d64cf7ba61a0ee7281ce82672af972
+.include "Makefile.snapshot"
 
-OPTIONS_DEFINE=	CLANG DOCS LIT LLD LLDB
+OPTIONS_DEFINE=	CLANG DOCS EXTRAS GOLD LIT LLD LLDB
 OPTIONS_DEFINE_amd64=	OPENMP
-OPTIONS_DEFAULT=	CLANG LIT LLD LLDB
+OPTIONS_DEFAULT=	CLANG EXTRAS GOLD LIT LLD LLDB
 OPTIONS_DEFAULT_amd64=	OPENMP
 OPTIONS_SUB=	yes
 
 CLANG_DESC=	Build clang
-CLANG_EXTRA_PATCHES= ${PATCHDIR}/clang-patch-tools_clang_lib_Headers_CMakeLists.txt
+CLANG_EXTRA_PATCHES= \
+	${PATCHDIR}/clang-patch-fformat_extensions.diff \
+	${PATCHDIR}/clang-patch-tools_clang_lib_Headers_CMakeLists.txt
 CLANG_CONFLICTS_INSTALL=	clang-devel-3.[1234567]*
 CLANG_GH_PROJECT=	clang:clang
 CLANG_GH_TAGNAME=	${CLANG_COMMIT}:clang
@@ -53,6 +49,10 @@ DOCS_CMAKE_ON=		-DLLVM_ENABLE_SPHINX=ON \
 			-DSPHINX_WARNINGS_AS_ERRORS=OFF \
 			-DLLVM_BUILD_DOCS=ON
 DOCS_PLIST_FILES=	${MAN1SRCS:S|^|man/man1/|:S|.1$|${LLVM_SUFFIX}.1.gz|}
+EXTRAS_DESC=		Extra clang tools
+EXTRAS_IMPLIES=		CLANG
+EXTRAS_GH_PROJECT=	clang-tools-extra:extras
+EXTRAS_GH_TAGNAME=	${EXTRAS_COMMIT}:extras
 LIT_DESC=		Install lit and FileCheck test tools
 LLD_DESC=		Install lld, the LLVM linker
 LLD_GH_PROJECT=		lld:lld
@@ -65,13 +65,15 @@ OPENMP_DESC=		Install libomp, the LLVM OpenMP runtime library
 OPENMP_CONFLICTS_INSTALL=	libiomp5-devel-*
 OPENMP_GH_PROJECT=	openmp:openmp
 OPENMP_GH_TAGNAME=	${OPENMP_COMMIT}:openmp
+GOLD_DESC=		Build the LLVM Gold plugin for LTO
+GOLD_CMAKE_ON=		-DLLVM_BINUTILS_INCDIR=${LOCALBASE}/include
+GOLD_BUILD_DEPENDS=	ld.gold:${PORTSDIR}/devel/binutils
 
 OPTIONS_SUB=	yes
 
 DOCS_BUILD_DEPENDS=		sphinx-build:${PORTSDIR}/textproc/py-sphinx
 
-LLVM_RELEASE=	${PORTVERSION:C/\.r[0-9]*//}
-PLIST_SUB+=	LLVM_RELEASE=${LLVM_RELEASE}
+LLVM_RELEASE=	3.8.0
 
 COMMANDS=	bugpoint \
 		llc \
@@ -84,6 +86,7 @@ COMMANDS=	bugpoint \
 		llvm-diff \
 		llvm-dis \
 		llvm-dwarfdump \
+		llvm-dwp \
 		llvm-extract \
 		llvm-link \
 		llvm-mc \
@@ -95,11 +98,13 @@ COMMANDS=	bugpoint \
 		llvm-readobj \
 		llvm-rtdyld \
 		llvm-size \
+		llvm-split \
 		llvm-stress \
 		llvm-symbolizer \
 		llvm-tblgen \
 		macho-dump \
-		opt
+		opt \
+		sancov
 FIRST_COMMAND=	${COMMANDS:C/^/XXXX/1:MXXXX*:C/^XXXX//}
 
 STRIP_LIBS=	BugpointPasses.so \
@@ -107,18 +112,44 @@ STRIP_LIBS=	BugpointPasses.so \
 		${LIBNAME}.0 \
 		libLTO.so
 
+EXTRAS_COMMANDS= \
+		clang-apply-replacements \
+		clang-modernize \
+		clang-query \
+		clang-rename \
+		clang-tidy \
+		modularize
+EXTRAS_LIBS=	\
+		libclangApplyReplacements \
+		libclangQuery \
+		libclangRename \
+		libclangTidy \
+		libclangTidyGoogleModule \
+		libclangTidyLLVMModule \
+		libclangTidyMiscModule \
+		libclangTidyReadabilityModule \
+		libclangTidyUtils \
+		libmodernizeCore
+EXTRAS_PATTERN= ${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}
+
 .include <bsd.port.options.mk>
 
-# keep in sync with /usr/src/lib/clang/clang.build.mk
-CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/armv6hf/armv6/}-portbld-${OPSYS:tl}${OSREL}
-
 .if ${PORT_OPTIONS:MCLANG}
-COMMANDS+=	clang \
+COMMANDS+=	c-index-test \
+		clang \
 		clang++ \
 		clang-check \
 		clang-cpp \
-		clang-format
-MAN1SRCS+=	clang.1
+		clang-format \
+		scan-build \
+		scan-view
+MAN1SRCS+=	clang.1 \
+		scan-build.1
+CLANG_PATTERN=	(c-index-test|clang|scan-|Reporter.py|ScanView.py|scanview.css|sorttable.js|startfile.py|-analyzer)
+.endif
+
+.if ${PORT_OPTIONS:MEXTRAS}
+COMMANDS+=	${EXTRAS_COMMANDS}
 .endif
 
 .if ${PORT_OPTIONS:MLIT}
@@ -128,13 +159,14 @@ LIT_COMMANDS=	lit llvm-lit FileCheck
 .endif
 
 .if ${PORT_OPTIONS:MLLD}
-COMMANDS+=	lld
+COMMANDS+=	lld \
+		lld-link
 PORTDOCS+=	lld
 .endif
 
 .if ${PORT_OPTIONS:MLLDB}
-COMMANDS+=	argdumper \
-		lldb \
+COMMANDS+=	lldb \
+		lldb-argdumper \
 		lldb-mi \
 		lldb-server
 _USES_PYTHON=	python
@@ -160,19 +192,29 @@ NOT_FOR_ARCH=	ia64
 
 .include <bsd.port.pre.mk>
 
-.if ${COMPILER_TYPE} != clang
+.if ${OPSYS} == "FreeBSD" && ${COMPILER_TYPE} != clang
 # Evil hack around gcc48 not providing a usable c++11 environment on 9.x
+PLIST_SUB:=	${PLIST_SUB:NEXTRAS=*} EXTRAS="@comment "
 PLIST_SUB:=	${PLIST_SUB:NLLDB=*} LLDB="@comment "
+.endif
+
+.if ${PORT_OPTIONS:MLLDB} && ${PYTHON_REL} >= 3000
+BROKEN=	LLDB does not build with Python 3
 .endif
 
 post-extract-CLANG-on:
 	${MV} ${WRKSRC_clang} ${PATCH_WRKSRC}/tools/clang
 
+post-extract-EXTRAS-on:
+.if ${OPSYS} != "FreeBSD" || ${COMPILER_TYPE} == clang
+	${MV} ${WRKSRC_extras} ${PATCH_WRKSRC}/tools/clang/tools/extra
+.endif
+
 post-extract-LLD-on:
 	${MV} ${WRKSRC_lld} ${PATCH_WRKSRC}/tools/lld
 
 post-extract-LLDB-on:
-.if ${COMPILER_TYPE} == clang
+.if ${OPSYS} != "FreeBSD" || ${COMPILER_TYPE} == clang
 	${MV} ${WRKSRC_lldb} ${PATCH_WRKSRC}/tools/lldb
 .endif
 
@@ -205,11 +247,6 @@ post-install-DOCS-on:
 .endif
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/
-
-post-install-LLDB-on:
-.if ${COMPILER_TYPE} == clang
-	${RM} ${STAGEDIR}${LLVM_PREFIX}/lib/python*/site-packages/lib
-.endif
 
 post-install-CLANG-on:
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/clang \
@@ -251,7 +288,7 @@ build-plist:
 	${ECHO_CMD} %%LIT%%${LLVM_PREFIX:S|${PREFIX}/||}/bin/${command} >> ${PLIST}.tmp
 .endfor
 	${FIND} ${STAGEDIR}${LLVM_PREFIX} -type f -o -type l | \
-	    ${GREP} -v 'lit$$' | ${GREP} -v 'FileCheck$$' | \
+	    ${GREP} -v '[/-]lit$$' | ${GREP} -v 'FileCheck$$' | \
 	    ${GREP} -v man/man1 | ${SED} -e 's|${STAGEDIR}${PREFIX}/||' \
 	    -e 's|${PORTVERSION}|%%PORTVERSION%%|' \
 	    -e 's|release.cmake|%%CMAKE_BUILD_TYPE%%.cmake|' | \
@@ -259,7 +296,15 @@ build-plist:
 	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/lit${LLVM_SUFFIX} -type f | \
 	    ${SED} -e 's|${STAGEDIR}${PYTHON_SITELIBDIR}|%%LIT%%%%PYTHON_SITELIBDIR%%|' | \
 	    ${SORT} >> ${PLIST}.tmp
-	awk '{if ($$0 ~ /clang/ && $$0 !~ /omp.h/) {printf "%%%%CLANG%%%%"} if ($$0 ~ /lld/ && $$0 !~ /lldb/) {printf "%%%%LLD%%%%"} if ($$0 ~ /(argdumper|lldb)/) {printf "%%%%LLDB%%%%"} if ($$0 ~ /lib.*omp/) {printf "%%%%OPENMP%%%%"} print}' ${PLIST}.tmp >> ${PLIST}
+	awk '{ \
+	    if ($$0 ~ /${CLANG_PATTERN}/ && $$0 !~ /omp.h|${EXTRAS_PATTERN}/) {printf "%%%%CLANG%%%%"} \
+	    if ($$0 ~ /lld/ && $$0 !~ /lldb/) {printf "%%%%LLD%%%%"} \
+	    if ($$0 ~ /(${EXTRAS_PATTERN})/) {printf "%%%%EXTRAS%%%%"} \
+	    if ($$0 ~ /(argdumper|lldb|six.py)/) {printf "%%%%LLDB%%%%"} \
+	    if ($$0 ~ /lib.*omp/) {printf "%%%%OPENMP%%%%"} \
+	    if ($$0 ~ /LLVMgold/) {printf "%%%%GOLD%%%%"} \
+	    if ($$0 !~ /libclang_rt/) {print} \
+	}' ${PLIST}.tmp >> ${PLIST}
 	${RM} -f ${PLIST}.tmp
 
 check-commands:

@@ -19,6 +19,7 @@
     SUBDIR += awka
     SUBDIR += bas2tap
     SUBDIR += basic256
+    SUBDIR += beignet
     SUBDIR += bf2c
     SUBDIR += bigloo
     SUBDIR += bsh
@@ -26,7 +27,6 @@
     SUBDIR += c
     SUBDIR += ccl
     SUBDIR += cdent
-    SUBDIR += cduce
     SUBDIR += ceylon
     SUBDIR += cfortran
     SUBDIR += chibi-scheme
@@ -38,9 +38,11 @@
     SUBDIR += clang34
     SUBDIR += clang35
     SUBDIR += clang36
+    SUBDIR += clang37
     SUBDIR += clojure
     SUBDIR += clojure-mode.el
     SUBDIR += cloudabi-clang
+    SUBDIR += clover
     SUBDIR += cmucl
     SUBDIR += cmucl-extra
     SUBDIR += cocor
@@ -60,6 +62,7 @@
     SUBDIR += emacs-lisp-intro
     SUBDIR += erlang
     SUBDIR += erlang-java
+    SUBDIR += erlang-riak
     SUBDIR += erlang-runtime15
     SUBDIR += erlang-runtime16
     SUBDIR += erlang-runtime17
@@ -76,6 +79,10 @@
     SUBDIR += fpc-docs
     SUBDIR += fpc-lua
     SUBDIR += fpc-rexx
+    SUBDIR += fpc-rtl-console
+    SUBDIR += fpc-rtl-extra
+    SUBDIR += fpc-rtl-objpas
+    SUBDIR += fpc-rtl-unicode
     SUBDIR += fpc-tcl
     SUBDIR += fpc-units
     SUBDIR += fpc-utils
@@ -93,6 +100,7 @@
     SUBDIR += gcc5
     SUBDIR += gcc5-aux
     SUBDIR += gcc5-devel
+    SUBDIR += gcc6-aux
     SUBDIR += gcc6-devel
     SUBDIR += gcl
     SUBDIR += gforth
@@ -101,10 +109,14 @@
     SUBDIR += gnat_util
     SUBDIR += gnatdroid-armv7
     SUBDIR += gnatdroid-binutils
+    SUBDIR += gnatdroid-binutils-x86
     SUBDIR += gnatdroid-sysroot
+    SUBDIR += gnatdroid-sysroot-x86
+    SUBDIR += gnatdroid-x86
     SUBDIR += gnu-cobol
     SUBDIR += gnustep-base
     SUBDIR += go
+    SUBDIR += go14
     SUBDIR += gprolog
     SUBDIR += groovy
     SUBDIR += gscheme
@@ -114,7 +126,6 @@
     SUBDIR += hla
     SUBDIR += hope
     SUBDIR += hs-brainfuck
-    SUBDIR += hs-epic
     SUBDIR += hs-unlambda
     SUBDIR += huc
     SUBDIR += hugs
@@ -135,6 +146,7 @@
     SUBDIR += kturtle
     SUBDIR += lafontaine
     SUBDIR += lci
+    SUBDIR += lfe
     SUBDIR += libhx
     SUBDIR += libjit
     SUBDIR += libobjc2
@@ -223,7 +235,6 @@
     SUBDIR += pcc
     SUBDIR += pecl-perl
     SUBDIR += perl5-devel
-    SUBDIR += perl5.16
     SUBDIR += perl5.18
     SUBDIR += perl5.20
     SUBDIR += perl5.22
@@ -248,6 +259,7 @@
     SUBDIR += py-clojure
     SUBDIR += py-mx-base
     SUBDIR += py-prolog
+    SUBDIR += py-qt5-qml
     SUBDIR += pypy
     SUBDIR += pypy3-devel
     SUBDIR += python
@@ -263,9 +275,11 @@
     SUBDIR += python32
     SUBDIR += python33
     SUBDIR += python34
+    SUBDIR += python35
     SUBDIR += qore
     SUBDIR += qscheme
     SUBDIR += qt5-qml
+    SUBDIR += quack
     SUBDIR += racket
     SUBDIR += racket-minimal
     SUBDIR += ratfor
@@ -280,6 +294,7 @@
     SUBDIR += ruby20
     SUBDIR += ruby21
     SUBDIR += ruby22
+    SUBDIR += ruby23
     SUBDIR += runawk
     SUBDIR += rust
     SUBDIR += rust-nightly

@@ -2,15 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	smplayer
-DISTVERSION=	14.9.0
-PORTREVISION=	1
+DISTVERSION=	16.1.0
 CATEGORIES=	multimedia audio kde
 MASTER_SITES=	SF/${PORTNAME}/SMPlayer/${PORTVERSION}
 
 MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Complete front-end based on Qt4 for mplayer
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/Copying.txt
 
 RUN_DEPENDS=	mplayer:${PORTSDIR}/multimedia/mplayer \
@@ -29,12 +28,12 @@ CPE_VENDOR=	ricardo_villalba
 DOS2UNIX_REGEX=	.*.[^p][^n][^g]$
 INSTALLS_ICONS=	yes
 
-PORTDOCS=	Changelog Not_so_obvious_things.txt Readme.txt \
-		Release_notes.txt Watching_TV.txt
+PORTDOCS=	Changelog Not_so_obvious_things.txt Notes_about_mpv.txt \
+		Readme.txt Release_notes.txt Watching_TV.txt
 OPTIONS_DEFINE=	DOCS DEBUG
 
 # Do not use unstable versions
-PORTSCOUT=	site:http://sourceforge.net/projects/smplayer/files/SMPlayer/
+PORTSCOUT=	site:http://sourceforge.net/projects/smplayer/files/Unstable/releases/
 
 SUB_FILES=	pkg-message
 

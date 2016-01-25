@@ -4,6 +4,7 @@
 PORTNAME=	lamarc
 PORTVERSION=	2.1.8
 DISTVERSIONSUFFIX=	-src
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	biology
 MASTER_SITES=	http://evolution.genetics.washington.edu/lamarc/download/
@@ -27,6 +28,7 @@ PLIST_FILES=	bin/${PORTNAME}
 .if ${PORT_OPTIONS:MWXGTK}
 USE_WX=		2.8
 WX_CONF_ARGS=	absolute
+WX_UNICODE=	yes
 PLIST_FILES+=	bin/lam_conv
 .else
 CONFIGURE_ARGS+=	--disable-converter

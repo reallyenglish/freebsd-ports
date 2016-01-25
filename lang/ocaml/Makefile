@@ -3,7 +3,7 @@
 # for committer: bump PORTREVISION for math/facile whenever ocaml gets updated
 
 PORTNAME=	ocaml
-PORTVERSION=	4.02.1
+PORTVERSION=	4.02.3
 CATEGORIES=	lang
 MASTER_SITES=	http://caml.inria.fr/pub/distrib/${DISTNAME:R}/ GENTOO \
 		http://caml.inria.fr/pub/distrib/${DISTNAME:R}/:docs
@@ -23,6 +23,7 @@ BROKEN_mips64=	No ASM support
 BROKEN_mips=	No ASM support
 
 USES=		cpe gmake tar:xz
+USE_LDCONFIG=	yes
 CPE_VENDOR=	inria
 REINPLACE_ARGS=	-i ""
 HAS_CONFIGURE=	yes
@@ -38,7 +39,7 @@ CONFIGURE_ARGS=	-verbose -prefix "${PREFIX}" \
 		-aspp "${CC} -c" \
 		-partialld "${LD} -r"
 
-OPTIONS_DEFINE= X11 THREADS DOCS EXAMPLES
+OPTIONS_DEFINE=	X11 THREADS DOCS EXAMPLES
 OPTIONS_DEFAULT=X11 THREADS
 CMP_LIB_DESC=	Install compiler libraries
 PORTDOCS=	htmlman ${DOCSDISTNAME}-refman.ps.gz \
@@ -66,9 +67,9 @@ PLIST_SUB+=	DOC="@comment "
 .endif
 
 .if ${ARCH} == armv6
-CONFIGURE_ARGS+= -as "${AS} ${ASFLAGS} -meabi=5"
+CONFIGURE_ARGS+=	-as "${AS} ${ASFLAGS} -meabi=5"
 .else
-CONFIGURE_ARGS+= -as "${AS} ${ASFLAGS}"
+CONFIGURE_ARGS+=	-as "${AS} ${ASFLAGS}"
 .endif
 
 .if ${PORT_OPTIONS:MTHREADS}
@@ -95,7 +96,7 @@ CONFIGURE_ARGS+=-no-graph
 .include <bsd.port.pre.mk>
 .include "${FILESDIR}/manfiles"
 
-OCAML_ARCH= ${ARCH:S/x86_64/amd64/:S/powerpc/power/:S/armv6/arm/}
+OCAML_ARCH=	${ARCH:S/x86_64/amd64/:S/powerpc/power/:S/armv6/arm/}
 
 .if defined(NO_PROFILE) || ${OCAML_ARCH:Mpower} || ${OCAML_ARCH:Mamd64} \
 	|| ${OCAML_ARCH:Marm}

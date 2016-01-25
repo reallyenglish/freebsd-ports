@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fricas
-PORTVERSION=	1.2.6
+PORTVERSION=	1.2.7
 DISTVERSIONSUFFIX=	-full
 CATEGORIES=	math
 MASTER_SITES=	SF
@@ -17,6 +17,8 @@ BUILD_DEPENDS=	noweb:${PORTSDIR}/devel/noweb \
 		sbcl:${PORTSDIR}/lang/sbcl
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+BROKEN=		Does not compile with sbcl-1.3.1
 
 USE_XORG=	x11 ice sm xpm
 USES=		gettext iconv gmake tar:bzip2

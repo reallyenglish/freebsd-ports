@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=		tevent
-PORTVERSION=		0.9.24
+PORTVERSION=		0.9.26
 PORTREVISION=		0
 PORTEPOCH=		0
 CATEGORIES=		devel
@@ -24,12 +24,13 @@ PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
 CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
 			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
+			--disable-rpath \
 			--without-gettext
 
 OPTIONS_DEFINE=		MANPAGES
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
-BUILD_DEPENDS+=		talloc>=2.1.1:${PORTSDIR}/devel/talloc
+BUILD_DEPENDS+=		talloc>=2.1.5:${PORTSDIR}/devel/talloc
 RUN_DEPENDS:=		${BUILD_DEPENDS}
 
 .include <bsd.port.options.mk>

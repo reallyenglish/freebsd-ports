@@ -11,6 +11,7 @@ MAINTAINER=	David.K.Gerry@GMail.com
 COMMENT=	General-purpose console screen reader
 
 LICENSE=	LGPL20
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake
 GNU_CONFIGURE=	yes
@@ -22,24 +23,18 @@ NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-yasr__main.c
 
 PLIST_FILES=	bin/yasr \
 		man/man1/yasr.1.gz \
 		%%DATADIR%%/yasr.conf \
 		%%NLS%%share/locale/es/LC_MESSAGES/yasr.mo \
 		%%NLS%%share/locale/fr/LC_MESSAGES/yasr.mo
-PLIST_DIRS=	%%DATADIR%%
-
-.include <bsd.port.options.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} > 900007
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-yasr__main.c
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/bin/bash|/bin/csh|' ${WRKSRC}/yasr.conf
 
-post-install:
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for doc in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${doc} ${STAGEDIR}${DOCSDIR}

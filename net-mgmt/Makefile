@@ -22,7 +22,6 @@
     SUBDIR += bsnmp-jails
     SUBDIR += bsnmp-regex
     SUBDIR += bsnmp-ucd
-    SUBDIR += bsnmptools
     SUBDIR += bwm-ng
     SUBDIR += cacti
     SUBDIR += cacti-spine
@@ -30,6 +29,7 @@
     SUBDIR += cdpd
     SUBDIR += cdpr
     SUBDIR += centreon-clib
+    SUBDIR += check_ipmi_sensor
     SUBDIR += check_logfiles
     SUBDIR += check_multi
     SUBDIR += check_mysql_health
@@ -39,7 +39,6 @@
     SUBDIR += ciscoconf
     SUBDIR += clog
     SUBDIR += cnagios
-    SUBDIR += collectd
     SUBDIR += collectd5
     SUBDIR += confregdecode
     SUBDIR += coovachilli
@@ -57,6 +56,7 @@
     SUBDIR += etherape
     SUBDIR += ettercap
     SUBDIR += ezradius
+    SUBDIR += fastnetmon
     SUBDIR += fetchconfig
     SUBDIR += flow-extract
     SUBDIR += flow-tools
@@ -72,7 +72,10 @@
     SUBDIR += hastmon
     SUBDIR += hawk
     SUBDIR += icinga
+    SUBDIR += icinga-classicweb
+    SUBDIR += icinga-core
     SUBDIR += icinga2
+    SUBDIR += icingaweb2
     SUBDIR += icli
     SUBDIR += icmpmonitor
     SUBDIR += icmpquery
@@ -91,6 +94,7 @@
     SUBDIR += isic
     SUBDIR += jnettop
     SUBDIR += kismet
+    SUBDIR += klg
     SUBDIR += lanmap
     SUBDIR += lg
     SUBDIR += librenms
@@ -219,6 +223,7 @@
     SUBDIR += p5-Net-IPv6Addr
     SUBDIR += p5-Net-NSCA-Client
     SUBDIR += p5-Net-Netmask
+    SUBDIR += p5-Net-OpenVPN-Manage
     SUBDIR += p5-Net-SNMP
     SUBDIR += p5-Net-SNMP-Util
     SUBDIR += p5-Net-SNMPTrapd
@@ -264,6 +269,8 @@
     SUBDIR += py-ipcalc
     SUBDIR += py-ipy
     SUBDIR += py-pyang
+    SUBDIR += py-pysmi
+    SUBDIR += py-pyzabbix
     SUBDIR += py-snmp4
     SUBDIR += py-snmp4-apps
     SUBDIR += py-snmp4-mibs
@@ -310,7 +317,6 @@
     SUBDIR += tcpreplay
     SUBDIR += tcptrack
     SUBDIR += torrus
-    SUBDIR += unifi2
     SUBDIR += unifi3
     SUBDIR += unifi4
     SUBDIR += victorops-nagios

@@ -13,9 +13,7 @@
     SUBDIR += beav
     SUBDIR += biew
     SUBDIR += bitedit
-    SUBDIR += bless
     SUBDIR += boiling-egg
-    SUBDIR += bpatch
     SUBDIR += bvi
     SUBDIR += calligra
     SUBDIR += calligra-l10n
@@ -30,14 +28,11 @@
     SUBDIR += calligra-l10n-et
     SUBDIR += calligra-l10n-fi
     SUBDIR += calligra-l10n-gl
-    SUBDIR += calligra-l10n-ia
     SUBDIR += calligra-l10n-it
     SUBDIR += calligra-l10n-kk
     SUBDIR += calligra-l10n-nb
-    SUBDIR += calligra-l10n-nds
     SUBDIR += calligra-l10n-nl
     SUBDIR += calligra-l10n-sk
-    SUBDIR += calligra-l10n-sl
     SUBDIR += calligra-l10n-sv
     SUBDIR += calligra-l10n-tr
     SUBDIR += chexedit
@@ -51,13 +46,13 @@
     SUBDIR += dkns
     SUBDIR += drjava
     SUBDIR += e3
-    SUBDIR += e93
     SUBDIR += edith
     SUBDIR += editorconfig-core-c
     SUBDIR += emacs
     SUBDIR += emacs-devel
     SUBDIR += emacs-nox11
     SUBDIR += fb
+    SUBDIR += fileobj
     SUBDIR += flim
     SUBDIR += fpc-ide
     SUBDIR += fte
@@ -132,6 +127,7 @@
     SUBDIR += libreoffice-gd
     SUBDIR += libreoffice-gl
     SUBDIR += libreoffice-gu
+    SUBDIR += libreoffice-gug
     SUBDIR += libreoffice-hi
     SUBDIR += libreoffice-hr
     SUBDIR += libreoffice-i18n
@@ -195,6 +191,9 @@
     SUBDIR += libreoffice-ve
     SUBDIR += libreoffice-xh
     SUBDIR += libreoffice-zu
+    SUBDIR += libreoffice4
+    SUBDIR += linux-sublime
+    SUBDIR += linux-sublime3
     SUBDIR += madedit
     SUBDIR += manedit
     SUBDIR += mg
@@ -206,6 +205,7 @@
     SUBDIR += nano-devel
     SUBDIR += ne
     SUBDIR += nedit
+    SUBDIR += neovim
     SUBDIR += nvi-devel
     SUBDIR += nvi-m17n
     SUBDIR += omegaT
@@ -217,6 +217,7 @@
     SUBDIR += paredit-mode.el
     SUBDIR += pico-alpine
     SUBDIR += pluma
+    SUBDIR += plume-creator-devel
     SUBDIR += poedit
     SUBDIR += psgml
     SUBDIR += puff
@@ -227,12 +228,9 @@
     SUBDIR += semi
     SUBDIR += shed
     SUBDIR += slime
-    SUBDIR += spe
     SUBDIR += ssam
     SUBDIR += ssed
     SUBDIR += sted
-    SUBDIR += sublime
-    SUBDIR += sublime3
     SUBDIR += tamago
     SUBDIR += tea
     SUBDIR += teco
@@ -243,6 +241,7 @@
     SUBDIR += texstudio
     SUBDIR += textroom
     SUBDIR += texworks
+    SUBDIR += the
     SUBDIR += thoteditor
     SUBDIR += tpad
     SUBDIR += tree-widget
@@ -261,7 +260,6 @@
     SUBDIR += xed
     SUBDIR += xmlcopyeditor
     SUBDIR += xvile
-    SUBDIR += yasnippet
     SUBDIR += yudit
     SUBDIR += yui
     SUBDIR += yzis

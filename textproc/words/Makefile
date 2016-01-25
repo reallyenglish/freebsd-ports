@@ -11,20 +11,13 @@ DISTNAME=	${PORTNAME}all
 MAINTAINER=	marino@FreeBSD.org
 COMMENT=	Latin-English Dictionary Program
 
-LICENSE=	public
-LICENSE_NAME=	Public Domain
-LICENSE_TEXT=	All parts of the WORDS system, source code and data files, \
-		are made freely available to anyone that wishes to use them, \
-		for whatever purpose.
-LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+LICENSE=	PD
 
 USES=		ada zip
 NO_WRKSUBDIR=	yes
 GNATMAKE=	${SETENV} ${MAKE_ENV} gnatmake
 
 OPTIONS_DEFINE=	DOCS
-
-.include <bsd.port.options.mk>
 
 do-build:
 	@cd ${WRKSRC} && \
@@ -50,9 +43,9 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/ADDONS.LAT ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/UNIQUES.LAT ${STAGEDIR}${DATADIR}
 	${INSTALL_SCRIPT} ${WRKDIR}/words.sh ${STAGEDIR}${PREFIX}/bin/words
-.if ${PORT_OPTIONS:MDOCS}
+
+do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/wordsdoc.htm ${STAGEDIR}${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>

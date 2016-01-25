@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	doublecmd
-PORTVERSION=	0.6.4
+PORTVERSION=	0.6.6
 CATEGORIES=	x11-fm
 MASTER_SITES=	SF/${PORTNAME}/Double%20Commander%20Source
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -13,6 +13,9 @@ COMMENT=	Total Commander like file manager for the X Window System
 
 LICENSE=	GPLv2
 
+BROKEN=		fails with FPC-3.0.0-built Lazarus\
+		(Can't find unit uOverlayScrollBarFix) 
+
 BUILD_DEPENDS=	lazbuild:${PORTSDIR}/editors/lazarus \
 		fpcres:${PORTSDIR}/lang/fpc-utils
 
@@ -21,15 +24,18 @@ ONLY_FOR_ARCHS=	i386 amd64
 PORTDOCS=	*
 
 USES=		dos2unix
+USE_FPC=	cairo fcl-base fcl-db fcl-image fcl-json fcl-registry \
+		fcl-xml iconvenc pasjpeg rtl-extra x11
 DOS2UNIX_FILES=	src/dmhelpmanager.pas
 WANT_GNOME=	yes
 
 PLIST=		${WRKDIR}/pkg-plist
 
 PROJECT_FILE=	src/doublecmd.lpi
-LAZARUS_VER=	1.4.0
+LAZARUS_VER=	1.4.2
 LAZBUILD_CMD=	${LOCALBASE}/bin/lazbuild -d --pcp=${WRKSRC}/tmppcp
 LAZARUS_DIR=	${LOCALBASE}/share/lazarus-${LAZARUS_VER}
+MAKE_ENV+=	LDVER=ld.bfd # for DragonFly
 
 HELPVERSION=	0.6.0
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -118,6 +124,10 @@ LCL_PLATFORM=	qt
 BUILD_MODE=	Debug
 .else
 BUILD_MODE=	NoDebug Full Optimizations
+.endif
+
+.if ${PORT_OPTIONS:MWFX_FTP}
+USE_FPC+=	fcl-net
 .endif
 
 pre-patch:

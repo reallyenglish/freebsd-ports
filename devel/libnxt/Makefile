@@ -4,20 +4,15 @@
 PORTNAME=	libnxt
 PORTVERSION=	0.3
 CATEGORIES=	devel
-MASTER_SITES=	GOOGLE_CODE \
-		http://personalpages.tds.net/~jwbacon/Ports/distfiles/
+MASTER_SITES=	GOOGLE_CODE
 
-MAINTAINER=	jwbacon@tds.net
+MAINTAINER=	bacon4000@gmail.com
 COMMENT=	Lego NXT library
 
-BUILD_DEPENDS=	scons:${PORTSDIR}/devel/scons \
-		python:${PORTSDIR}/lang/python
-
 SUB_FILES=	pkg-message
+USES=		python:build scons shebangfix
 USE_LDCONFIG=	yes
-
-do-build:
-	(cd ${WRKSRC}; scons)
+SHEBANG_FILES=	make_flash_header.py
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/include/libnxt

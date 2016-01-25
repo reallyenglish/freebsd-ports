@@ -7,8 +7,10 @@ PORTREVISION=	14
 CATEGORIES?=	www
 MASTER_SITES=	http://www.stedee.id.au/files/
 
-MAINTAINER?=	chad@wickdev.com
+MAINTAINER?=	ports@FreeBSD.org
 COMMENT=	AWFFull is a webserver log analysis tool forked from Webalizer
+
+BROKEN=		unfetchable
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING

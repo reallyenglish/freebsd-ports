@@ -5,7 +5,7 @@ PORTNAME=	oniguruma
 PORTVERSION=	4.7.1
 PORTREVISION=	1
 CATEGORIES=	devel textproc
-MASTER_SITES=	http://www.geocities.jp/kosako3/oniguruma/archive/
+MASTER_SITES=	http://mirror.jaredwhiting.net/distfiles/ruby/
 DISTNAME=	onig-${PORTVERSION}
 DIST_SUBDIR=	ruby
 
@@ -15,7 +15,6 @@ COMMENT=	BSDL Regular Expressions library compatible with POSIX/GNU/Perl
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-NO_LATEST_LINK=	yes
 USES=		libtool
 CONFLICTS=	oniguruma-2.*
 GNU_CONFIGURE=	yes

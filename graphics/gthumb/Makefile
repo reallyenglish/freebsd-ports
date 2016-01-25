@@ -3,7 +3,8 @@
 #   $MCom: ports/trunk/graphics/gthumb/Makefile 19823 2014-08-20 09:28:14Z gusi $
 
 PORTNAME=	gthumb
-PORTVERSION=	3.4.0
+PORTVERSION=	3.4.1
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -11,7 +12,7 @@ DIST_SUBDIR=	gnome3
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Image viewer and browser for the GNOME 3 environment
 
-LICENSE=	GPLv2 # (or later)
+LICENSE=	GPLv2+
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>0:${PORTSDIR}/devel/gsettings-desktop-schemas \
 		itstool:${PORTSDIR}/textproc/itstool
@@ -21,6 +22,8 @@ USES=		bison compiler:c++11-lib desktop-file-utils gettext gmake \
 		libtool pathfix pkgconfig tar:xz
 USE_GNOME=	gtk30 intltool librsvg2
 GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	ac_cv_lib_jpeg_jpeg_destroy_decompress=yes \
+		ac_cv_lib_tiff_TIFFWriteScanline=yes
 CONFIGURE_ARGS=	--disable-silent-rules \
 		--disable-libchamplain \
 		--enable-compile-warnings=minimum \

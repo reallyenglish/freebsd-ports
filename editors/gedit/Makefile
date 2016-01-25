@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gedit
-PORTVERSION=	3.16.2
-PORTREVISION=	1
+PORTVERSION=	3.16.4
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -30,8 +29,7 @@ USE_GNOME=	gtksourceview3 intlhack introspection:build \
 		libxml2 py3gobject3
 USE_XORG=	sm
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-updater
-CONFIGURE_ARGS+=--disable-zeitgeist \
+CONFIGURE_ARGS=	--disable-updater \
 		--enable-python
 CPPFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral
 CFLAGS+=	-I${LOCALBASE}/include -Wno-error=format-nonliteral

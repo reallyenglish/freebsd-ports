@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	octave
-PORTVERSION=	3.8.2
-PORTREVISION=	2
+PORTVERSION=	4.0.0
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	GNU
 
@@ -35,7 +35,7 @@ LIB_DEPENDS=	libGraphicsMagick.so:${PORTSDIR}/graphics/GraphicsMagick \
 		libgl2ps.so:${PORTSDIR}/print/gl2ps \
 		libqscintilla2.so:${PORTSDIR}/devel/qscintilla2
 
-USES=		charsetfix fortran gmake libtool perl5 pkgconfig tar:bzip2
+USES=		charsetfix fortran gmake libtool perl5 pkgconfig tar:xz
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 USE_TEX=	dvipsk:build
@@ -70,8 +70,6 @@ ATLAS_USES=     blaslapack:atlas
 
 INFO=		octave liboctave
 
-.include <bsd.port.options.mk>
-
 post-patch:
 	${REINPLACE_CMD} 's+"makeinfo"+"${LOCALBASE}/bin/makeinfo"+' ${WRKSRC}/libinterp/corefcn/help.cc
 	${REINPLACE_CMD} 's+lapack lapack_rs6k+${LAPACKLIB:C/-l//}+' ${WRKSRC}/configure
@@ -82,14 +80,14 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/etc/icons/octave.desktop \
 		${STAGEDIR}${DESKTOPDIR}/www.octave.org-octave.desktop
 	(cd ${STAGEDIR}${DATADIR} && ln -s ${PORTVERSION}/imagelib  .)
-.if ${PORT_OPTIONS:MDOCS}
+
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-. for file in liboctave/liboctave.ps \
+.for file in liboctave/liboctave.ps \
 	refcard/refcard-a4.ps refcard/refcard-legal.ps \
 	refcard/refcard-letter.ps interpreter/octave.ps
 	${INSTALL_DATA} ${WRKSRC}/doc/${file} ${STAGEDIR}${DOCSDIR}
-. endfor
-.endif
+.endfor
 
 check regression-test: build
 	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} check)

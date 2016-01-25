@@ -44,6 +44,7 @@ man/man1/highlight.1.gz
 %%DATADIR%%/langDefs/clp.lang
 %%DATADIR%%/langDefs/cobol.lang
 %%DATADIR%%/langDefs/coldfusion.lang
+%%DATADIR%%/langDefs/conf.lang
 %%DATADIR%%/langDefs/crk.lang
 %%DATADIR%%/langDefs/csharp.lang
 %%DATADIR%%/langDefs/css.lang
@@ -85,6 +86,8 @@ man/man1/highlight.1.gz
 %%DATADIR%%/langDefs/java.lang
 %%DATADIR%%/langDefs/js.lang
 %%DATADIR%%/langDefs/jsp.lang
+%%DATADIR%%/langDefs/julia.lang
+%%DATADIR%%/langDefs/kotlin.lang
 %%DATADIR%%/langDefs/ldif.lang
 %%DATADIR%%/langDefs/less.lang
 %%DATADIR%%/langDefs/lhs.lang
@@ -115,6 +118,7 @@ man/man1/highlight.1.gz
 %%DATADIR%%/langDefs/nbc.lang
 %%DATADIR%%/langDefs/nemerle.lang
 %%DATADIR%%/langDefs/netrexx.lang
+%%DATADIR%%/langDefs/nginx.lang
 %%DATADIR%%/langDefs/nice.lang
 %%DATADIR%%/langDefs/nsis.lang
 %%DATADIR%%/langDefs/nxc.lang
@@ -154,6 +158,7 @@ man/man1/highlight.1.gz
 %%DATADIR%%/langDefs/rnc.lang
 %%DATADIR%%/langDefs/rpg.lang
 %%DATADIR%%/langDefs/rpl.lang
+%%DATADIR%%/langDefs/rs.lang
 %%DATADIR%%/langDefs/ruby.lang
 %%DATADIR%%/langDefs/s.lang
 %%DATADIR%%/langDefs/sas.lang
@@ -206,11 +211,17 @@ man/man1/highlight.1.gz
 %%DATADIR%%/plugins/keywords_capitalize.lua
 %%DATADIR%%/plugins/keywords_lowercase.lua
 %%DATADIR%%/plugins/keywords_uppercase.lua
+%%DATADIR%%/plugins/outhtml_add_background_stripes.lua
+%%DATADIR%%/plugins/outhtml_add_background_svg.lua
+%%DATADIR%%/plugins/outhtml_add_line.lua
+%%DATADIR%%/plugins/outhtml_add_shadow.lua
 %%DATADIR%%/plugins/outhtml_curly_brackets_matcher.lua
 %%DATADIR%%/plugins/outhtml_keyword_matcher.lua
+%%DATADIR%%/plugins/outhtml_modern_fonts.lua
 %%DATADIR%%/plugins/outhtml_parantheses_matcher.lua
 %%DATADIR%%/plugins/perl_ref_perl_org.lua
 %%DATADIR%%/plugins/python_ref_python_org.lua
+%%DATADIR%%/plugins/reduce_filesize.lua
 %%DATADIR%%/plugins/scala_ref_scala_lang_org.lua
 %%DATADIR%%/plugins/theme_invert.lua
 %%DATADIR%%/plugins/token_add_state_ids.lua

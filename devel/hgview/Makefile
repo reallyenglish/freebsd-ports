@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	hgview
-PORTVERSION=	1.6.2
-PORTREVISION=	2
+PORTVERSION=	1.9.0
 CATEGORIES=	devel
-MASTER_SITES=	LOGILAB
+MASTER_SITES=	CHEESESHOP \
+		http://download.logilab.org/pub/${PORTNAME}/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Fast Mercurial log navigator written in pyqt4
 
-BROKEN=		Logilab mirrors have gone
+LICENSE=	GPLv2
 
 RUN_DEPENDS=	hg:${PORTSDIR}/devel/mercurial \
 		${PYTHON_PKGNAMEPREFIX}qt4-gui>0:${PORTSDIR}/x11-toolkits/py-qt4-gui \
@@ -22,8 +22,9 @@ BUILD_DEPENDS=	hg:${PORTSDIR}/devel/mercurial \
 		xmlto:${PORTSDIR}/textproc/xmlto \
 		asciidoc:${PORTSDIR}/textproc/asciidoc
 
+NO_ARCH=	yes
 USE_PYTHON=	distutils
-USES=		gmake python
+USES=		gmake python:2
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
@@ -40,7 +41,7 @@ post-patch:
 		-e 's,distutils\.command\.install ,setuptools\.command\.install ,' \
 		${WRKSRC}/setup.py
 
-post-install:
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 

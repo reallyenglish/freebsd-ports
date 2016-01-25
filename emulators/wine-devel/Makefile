@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	1.7.48
+DISTVERSION=	1.9.1
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
@@ -29,7 +29,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--verbose --disable-tests \
 		--without-alsa --without-capi --without-dbus \
-		--without-gettextpo \
+		--without-gettext --without-gettextpo \
 		--without-gphoto --without-gsm --without-gstreamer \
 		--without-opencl \
 		--without-osmesa \
@@ -44,7 +44,7 @@ USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 .endif
 ONLY_FOR_ARCHS=	i386 amd64
 USES=		bison compiler:c11 desktop-file-utils gmake shebangfix tar:bzip2
-SHEBANG_FILES=	tools/make_requests tools/winemaker \
+SHEBANG_FILES=	tools/make_requests tools/winemaker/winemaker \
 		tools/winedump/function_grep.pl
 
 SUB_FILES=	pkg-message
@@ -68,7 +68,7 @@ CUPS_LIB_DEPENDS=	libcups.so:${PORTSDIR}/print/cups-client
 
 DOSBOX_RUN_DEPENDS=	dosbox:${PORTSDIR}/emulators/dosbox
 
-GECKO_RUN_DEPENDS=	${DATADIR}/gecko/wine_gecko-2.36-x86.msi:${PORTSDIR}/emulators/wine-gecko-devel
+GECKO_RUN_DEPENDS=	${DATADIR}/gecko/wine_gecko-2.40-x86.msi:${PORTSDIR}/emulators/wine-gecko-devel
 
 GNUTLS_CONFIGURE_WITH=	gnutls
 GNUTLS_LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
@@ -144,7 +144,7 @@ EXTRACT_DEPENDS=bash:${PORTSDIR}/shells/bash \
 		git:${PORTSDIR}/devel/git \
 		${AUTOCONF_DEPENDS}
 
-# Fix build on FreeBSD 8.4 and 9.3 (false positive: powl)
+# Fix build on FreeBSD 9.x (false positive: powl)
 CONFIGURE_ENV+=	ac_cv_have_powl=no
 CONFIGURE_ARGS+=--without-pulse
 USE_AUTOTOOLS=	autoconf

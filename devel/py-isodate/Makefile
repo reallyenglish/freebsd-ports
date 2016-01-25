@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	isodate
-PORTVERSION=	0.5.0
+PORTVERSION=	0.5.4
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,8 @@ COMMENT=	ISO 8601 date/time/duration parser and formater
 
 LICENSE=	BSD3CLAUSE
 
-USE_PYTHON=	autoplist distutils
+NO_ARCH=	yes
+USE_PYTHON=	autoplist concurrent distutils
 USES=		python
 
 .include <bsd.port.mk>

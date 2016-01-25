@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	urweb
-PORTVERSION=	20150214
+PORTVERSION=	20150520
 CATEGORIES=	lang www
 MASTER_SITES=	http://www.impredicative.com/ur/
 
@@ -49,7 +49,7 @@ CONFIGURE_ENV+=	PGHEADER="no"
 .endif
 
 .if ${PORT_OPTIONS:MSQLITE}
-USE_SQLITE=	yes
+USES+=		sqlite
 .else
 CONFIGURE_ENV+=	SQHEADER="no"
 .endif

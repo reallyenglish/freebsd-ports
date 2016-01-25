@@ -12,9 +12,10 @@ COMMENT=	Python binding to CDO (Climate Data Operators)
 
 LICENSE=	GPLv2
 
-RUN_DEPENDS=	${LOCALBASE}/bin/cdo:${PORTSDIR}/science/cdo
+RUN_DEPENDS=	cdo:${PORTSDIR}/science/cdo
 
-USE_PYTHON=	autoplist distutils
+NO_ARCH=	yes
+USE_PYTHON=	autoplist concurrent distutils
 USES=		python
 
 .include <bsd.port.mk>

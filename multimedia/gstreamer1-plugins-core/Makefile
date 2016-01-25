@@ -1,6 +1,5 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
 # $FreeBSD$
-#    $MCom: ports/multimedia/gstreamer-plugins-core/Makefile,v 1.17 2006/07/17 01:39:57 ahze Exp $
 
 PORTNAME=	gstreamer1-plugins-core
 PORTVERSION=	${GST1_VERSION}${GST1_MINIMAL_VERSION}
@@ -11,7 +10,7 @@ DISTFILES=	# empty
 EXTRACT_ONLY=	# empty
 
 MAINTAINER=	multimedia@FreeBSD.org
-COMMENT=	Core set of typical audio and video gstreamer-plugins
+COMMENT=	Core set of typical audio and video GStreamer plugins
 
 NO_BUILD=	yes
 GST_DIR=	lib/gstreamer-1.0

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openssh
-DISTVERSION=	20150727
+DISTVERSION=	20150924
 PORTREVISION=	0
 CATEGORIES=	security ipv6
 MASTER_SITES=	http://www.mindrot.org/openssh_snap/ \
@@ -63,9 +63,9 @@ HPN_CONFIGURE_WITH=		hpn
 NONECIPHER_CONFIGURE_WITH=	nonecipher
 
 # See http://www.roumenpetrov.info/openssh/
-X509_VERSION=		8.4
+X509_VERSION=		8.5
 X509_PATCH_SITES=	http://www.roumenpetrov.info/openssh/x509-${X509_VERSION}/:x509
-X509_PATCHFILES=	${PORTNAME}-6.9p1+x509-${X509_VERSION}.diff.gz:-p1:x509
+X509_PATCHFILES=	${PORTNAME}-7.0p1+x509-${X509_VERSION}.diff.gz:-p1:x509
 
 # See https://bugzilla.mindrot.org/show_bug.cgi?id=2016
 # and https://bugzilla.mindrot.org/show_bug.cgi?id=1604
@@ -113,16 +113,9 @@ PATCHFILES+=	openssh-6.7p1-gsskex-all-20141021-284f364.patch.gz:-p1:gsskex
 .endif
 
 
-.if ${OSVERSION} >= 900000
 CONFIGURE_LIBS+=	-lutil
-.endif
 
-# 900007 is when utmp(5) was removed and utmpx(3) added
-.if ${OSVERSION} >= 900007
 CONFIGURE_ARGS+=	--disable-utmp --disable-wtmp --disable-wtmpx --without-lastlog
-.else
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-sshd-utmp-size
-.endif
 
 # Keep this last
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-version-addendum

@@ -3,6 +3,7 @@
 
     COMMENT = Miscellaneous utilities
 
+    SUBDIR += R-cran-mime
     SUBDIR += achievo
     SUBDIR += aclgen
     SUBDIR += amanda-client
@@ -76,6 +77,7 @@
     SUBDIR += e2fsprogs-libuuid
     SUBDIR += elixir-uuid
     SUBDIR += elscreen
+    SUBDIR += erlang-mimerl
     SUBDIR += esniper
     SUBDIR += estic
     SUBDIR += excel-writer
@@ -95,6 +97,7 @@
     SUBDIR += fortune-mod-epictetus
     SUBDIR += fortune-mod-ferengi_rules_of_acquisition
     SUBDIR += fortune-mod-futurama
+    SUBDIR += fortune-mod-psalms
     SUBDIR += fortuneit
     SUBDIR += fpc-chm
     SUBDIR += freebsd-doc-all
@@ -108,6 +111,7 @@
     SUBDIR += freebsd-doc-hu
     SUBDIR += freebsd-doc-it
     SUBDIR += freebsd-doc-ja
+    SUBDIR += freebsd-doc-ko
     SUBDIR += freebsd-doc-mn
     SUBDIR += freebsd-doc-nl
     SUBDIR += freebsd-doc-pl
@@ -218,13 +222,10 @@
     SUBDIR += kde4-l10n-nn
     SUBDIR += kde4-l10n-pa
     SUBDIR += kde4-l10n-ro
-    SUBDIR += kde4-l10n-si
     SUBDIR += kde4-l10n-sk
     SUBDIR += kde4-l10n-sl
     SUBDIR += kde4-l10n-sr
     SUBDIR += kde4-l10n-sv
-    SUBDIR += kde4-l10n-tg
-    SUBDIR += kde4-l10n-th
     SUBDIR += kde4-l10n-tr
     SUBDIR += kde4-l10n-ug
     SUBDIR += kde4-l10n-wa
@@ -323,6 +324,7 @@
     SUBDIR += p5-Geo-Coder-Ovi
     SUBDIR += p5-Geo-Coder-PlaceFinder
     SUBDIR += p5-Geo-Coder-TomTom
+    SUBDIR += p5-Geo-GeoNames
     SUBDIR += p5-Geo-Postcodes
     SUBDIR += p5-Geo-Postcodes-DK
     SUBDIR += p5-Geo-Postcodes-NO
@@ -368,13 +370,19 @@
     SUBDIR += posixtestsuite
     SUBDIR += proxyper
     SUBDIR += pspresent
+    SUBDIR += py-tqdm
     SUBDIR += py-YABT
     SUBDIR += py-osd
     SUBDIR += py-pexpect
+    SUBDIR += py-powerline-status
     SUBDIR += py-progressbar
     SUBDIR += py-progressbar231
     SUBDIR += py-qt4-demo
     SUBDIR += py-qt4-doc
+    SUBDIR += py-qt5-demo
+    SUBDIR += py-qt5-doc
+    SUBDIR += py-spdx
+    SUBDIR += py-spdx-lookup
     SUBDIR += py-yolk
     SUBDIR += pylize
     SUBDIR += pypanda
@@ -387,16 +395,18 @@
     SUBDIR += qt4-qtdemo
     SUBDIR += qt5ct
     SUBDIR += quotes
+    SUBDIR += raspberrypi-userland
+    SUBDIR += raspbsd-led
     SUBDIR += ree
     SUBDIR += rfc
     SUBDIR += ringtonetools
     SUBDIR += rname
     SUBDIR += rpl
     SUBDIR += rtfm
-    SUBDIR += ruby-progressbar
     SUBDIR += rubygem-dotenv
     SUBDIR += rubygem-iesd
     SUBDIR += rubygem-mime-types
+    SUBDIR += rubygem-mime-types-data
     SUBDIR += rubygem-mime-types1
     SUBDIR += rubygem-mimemagic
     SUBDIR += rubygem-rabbit
@@ -439,6 +449,7 @@
     SUBDIR += tpp
     SUBDIR += translate
     SUBDIR += ttyrec
+    SUBDIR += tudu
     SUBDIR += tvbrowser
     SUBDIR += typetrainer
     SUBDIR += uk-phone

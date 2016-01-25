@@ -16,6 +16,10 @@ LICENSE=	GPLv2
 RUN_DEPENDS=	p5-PPI>=0:${PORTSDIR}/textproc/p5-PPI
 BUILD_DEPENDS=	flex>=2.5.31:${PORTSDIR}/textproc/flex
 
+BROKEN_RUBY21=	yes
+BROKEN_RUBY22=	yes
+BROKEN_RUBY23=	yes
+
 USES=		perl5
 USE_AUTOTOOLS=	aclocal:env automake:env autoconf:env
 USE_RUBY=	yes
@@ -30,7 +34,6 @@ PORTDOCS=	ChangeLog NEWS README
 DOCSDIR=	${RUBY_MODDOCDIR}
 
 OPTIONS_DEFINE=	DOCS
-OPTIONSFILE=	${PORT_DBDIR}/ruby-${PORTNAME}/options
 
 CFLAGS+=	-fPIC
 
@@ -47,22 +50,11 @@ pre-configure:
 
 post-install:
 	${CHMOD} ${BINMODE} ${STAGEDIR}${RUBY_SITEARCHLIBDIR}/${PORTNAME}/ocaml/camlexer
+
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}/
 .endfor
 
-x-generate-plist:
-	${ECHO} %%RUBY_SITELIBDIR%%/langscan.rb > pkg-plist.new
-	${FIND} ${RUBY_SITEARCHLIBDIR}/${PORTNAME} -type f | ${SORT} | ${SED} -e 's,${RUBY_SITEARCHLIBDIR},%%RUBY_SITEARCHLIBDIR%%,' >> pkg-plist.new
-	${FIND} ${RUBY_SITELIBDIR}/${PORTNAME} -type f | ${SORT} | ${SED} -e 's,${RUBY_SITELIBDIR},%%RUBY_SITELIBDIR%%,' >> pkg-plist.new
-	${FIND} ${RUBY_SITELIBDIR}/${PORTNAME} -type d -depth | ${SORT} -r | ${SED} -e 's,${RUBY_SITELIBDIR},@dirrm %%RUBY_SITELIBDIR%%,' >> pkg-plist.new
-	${FIND} ${RUBY_SITEARCHLIBDIR}/${PORTNAME} -type d -depth | ${SORT} -r | ${SED} -e 's,${RUBY_SITEARCHLIBDIR},@dirrm %%RUBY_SITEARCHLIBDIR%%,' >> pkg-plist.new
-
-.include <bsd.port.pre.mk>
-
-.if ${RUBY_VER} >= 2.1
-BROKEN=		Does not build
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

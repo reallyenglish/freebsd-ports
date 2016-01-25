@@ -8,7 +8,7 @@ MASTER_SITES=	SF/${PORTNAME}/releases/${PORTVERSION}/
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Innovative 3D real-time strategy game
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip \
@@ -17,15 +17,14 @@ LIB_DEPENDS=	libphysfs.so:${PORTSDIR}/devel/physfs \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libvorbis.so:${PORTSDIR}/audio/libvorbis \
 		libtheora.so:${PORTSDIR}/multimedia/libtheora \
-		libGLEW.so:${PORTSDIR}/graphics/glew \
 		libfribidi.so:${PORTSDIR}/converters/fribidi \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu
 
-USES=		tar:xz bison gmake openal:al pkgconfig compiler:c++11-lang # actually, old gcc fails on unknown -W flag
+USES=		bison compiler:c++11-lang gmake localbase openal:al pkgconfig tar:xz # actually, old gcc fails on unknown -W flag
 GNU_CONFIGURE=	yes
-USE_GL=		yes
+USE_GL=		glew glu
 USE_SDL=	sdl
 USE_QT4=	corelib network script gui moc_build
 QT_NONSTANDARD=	yes
@@ -33,8 +32,6 @@ CONFIGURE_ARGS=	--program-transform-name="" --with-distributor="FreeBSD ports"
 CONFIGURE_ENV=	PATH="${LOCALBASE}/bin:$$PATH" \
 		CCOMPILER="${CC}" \
 		CXXCOMPILER="${CXX}"
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 REINPLACE_ARGS=	-i ''
 
 PORTDOCS=	*

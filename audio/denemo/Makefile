@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	denemo
-PORTVERSION=	1.2.2
-PORTREVISION=	2
+PORTVERSION=	2.0.0
 CATEGORIES=	audio
 MASTER_SITES=	GNU
 
@@ -19,7 +18,7 @@ LIB_DEPENDS=	libaubio.so:${PORTSDIR}/audio/aubio \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile \
 		libportaudio.so:${PORTSDIR}/audio/portaudio \
 		librubberband.so:${PORTSDIR}/audio/rubberband \
-		libguile-2.0.so:${PORTSDIR}/lang/guile2 \
+		libguile.so:${PORTSDIR}/lang/guile \
 		libfftw3.so:${PORTSDIR}/math/fftw3
 RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 
@@ -31,27 +30,11 @@ CONFIGURE_ARGS=	--enable-jack \
 		--disable-portmidi \
 		--disable-gtk-doc \
 		--disable-gtk-doc-html \
-		--disable-gtk-doc-pdf
+		--disable-gtk-doc-pdf \
+		--enable-guile_1_8
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-PORTDOCS=	*
-PORTEXAMPLES=	*
-PORTDATA=	*
-PLIST_FILES=	bin/cairo_svg2path \
-		bin/denemo \
-		bin/denemo_file_update \
-		bin/generate_source \
-		share/appdata/denemo.appdata.xml \
-		share/applications/denemo.desktop \
-		share/fonts/truetype/denemo/Denemo.ttf \
-		share/fonts/truetype/denemo/emmentaler.ttf \
-		share/fonts/truetype/denemo/feta.ttf \
-		share/pixmaps/denemo.png
-.for i in cs de en_GB es fr it ja pl sv
-PLIST_FILES+=	share/locale/${i}/LC_MESSAGES/denemo.mo
-.endfor
 
 OPTIONS_DEFINE=		DOCS EXAMPLES LILYPOND PDF
 OPTIONS_SINGLE=		TOOLKIT
@@ -68,10 +51,6 @@ TOOLKIT_DESC=		GTK+ toolkit
 
 .include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MLILYPOND}
-BROKEN=		Depends transitively on conflicting versions of guile
-.endif
-
 .if ${PORT_OPTIONS:MGTK3} && ${PORT_OPTIONS:MPDF}
 LIB_DEPENDS+=	libevview3.so:${PORTSDIR}/graphics/evince
 .endif
@@ -84,7 +63,7 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's|-lpthread|-pthread| ; \
 		 /^CFLAGS=/s|_LIBS|_CFLAGS| ; \
-		 s|evince-view-2.32 >= 2.|atril-view-1.5.|' ${WRKSRC}/configure
+		 s|evince-view-2.30 >= 2.|atril-view-1.5.|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		'/ docs /d ; \
 		 /) install-data-hook/s|^|#|' ${WRKSRC}/Makefile.in
@@ -105,6 +84,8 @@ post-install:
 	@${FIND} ${STAGEDIR}${DATADIR}/${i} -type f -print0 | \
 		${XARGS} -0 ${CHMOD} ${SHAREMODE}
 .endfor
+
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for i in AUTHORS ChangeLog NEWS
 	(cd ${WRKSRC} && ${INSTALL_DATA} ${i} ${STAGEDIR}${DOCSDIR})
@@ -118,6 +99,8 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/manual/images
 	(cd ${WRKSRC}/docs/images && ${INSTALL_DATA} *.png \
 		${STAGEDIR}${DOCSDIR}/manual/images)
+
+post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC}/examples && ${INSTALL_DATA} *.denemo \
 		${STAGEDIR}${EXAMPLESDIR})

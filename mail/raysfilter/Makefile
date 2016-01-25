@@ -9,7 +9,7 @@ DISTNAME=	rays-filter-${PORTVERSION}
 MAINTAINER=	dinoex@FreeBSD.org
 COMMENT=	Configurable filter for Sendmail Milter
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/GNU-public-licence.txt
 
 USES=		shebangfix
@@ -60,11 +60,11 @@ do-install:
 .for i in ${ETCFILES}
 	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${PREFIX}/etc/mail-filter/${i}-dist
 .endfor
-.if ${PORT_OPTIONS:MDOCS}
+
+do-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for i in ${DOCSFILES}
 	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}/
 .endfor
-.endif
 
 .include <bsd.port.post.mk>

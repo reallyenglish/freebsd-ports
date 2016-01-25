@@ -31,8 +31,8 @@ shebangonefile() {
 		;;
 	esac
 
-	interp=$(sed -n -e '1s/^#![[:space:]]*\([^[:space:]]*\).*/\1/p;2q' "$f")
-	case "$interp" in
+	interp=$(sed -n -e '1s/^#![[:space:]]*\([^[:space:]]*\).*/\1/p;2q' "${f}")
+	case "${interp}" in
 	"") ;;
 	${LINUXBASE}/*) ;;
 	${LOCALBASE}/*) ;;
@@ -99,19 +99,19 @@ baselibs() {
 	[ "${PKGBASE}" = "pkg" -o "${PKGBASE}" = "pkg-devel" ] && return
 	while read f; do
 		case ${f} in
-		/usr/lib/libarchive*)
-			err "Bad linking on ${f} please add USES=libarchive"
+		*NEEDED*\[libarchive.so.[56]])
+			err "Bad linking on ${f##* } please add USES=libarchive"
 			rc=1
 			;;
-		/lib/libedit*)
-			err "Bad linking on ${f} please add USES=libedit"
+		*NEEDED*\[libedit.so.7])
+			err "Bad linking on ${f##* } please add USES=libedit"
 			rc=1
 			;;
 		esac
 	done <<-EOF
-	$(find ${STAGEDIR}${BIN} ${STAGEDIR}${PREFIX}/sbin \
+	$(find ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${PREFIX}/sbin \
 		${STAGEDIR}${PREFIX}/lib ${STAGEDIR}${PREFIX}/libexec \
-		-type f -exec ldd -a {} + 2>/dev/null)
+		-type f -exec readelf -d {} + 2>/dev/null)
 	EOF
 	return ${rc}
 }
@@ -151,9 +151,7 @@ paths() {
 		[ -z "${f}" ] && continue
 		# Ignore false-positive/harmless files
 		case "${f}" in
-			*/lib/ruby/gems/*/Makefile) continue ;;
-			*/lib/ruby/gems/*/Makefile.html) continue ;;
-			*/lib/ruby/gems/*/mkmf.log) continue ;;
+			*/lib/ruby/gems/*) continue ;;
 			*/share/texmf-var/web2c/*/*.fmt) continue ;;
 			*/share/texmf-var/web2c/*/*.log) continue ;;
 		esac
@@ -173,15 +171,13 @@ stripped() {
 	[ -n "${STRIP}" ] || return 0
 	# Split file and result into 2 lines and read separately to ensure
 	# files with spaces are kept intact.
-	find ${STAGEDIR} -type f \
-	    -exec /usr/bin/file --exclude ascii -nNF "${LF}" {} + |
+	# Using readelf -h ... /ELF Header:/ will match on all ELF files.
+	find ${STAGEDIR} -type f ! -name '*.a' ! -name '*.o' \
+	    -exec readelf -S {} + 2>/dev/null | awk '\
+	    /File:/ {sub(/File: /, "", $0); file=$0} \
+	    /SYMTAB/ {print file}' |
 	    while read f; do
-		    read output
-		case "${output}" in
-			*ELF\ *\ executable,\ *FreeBSD*,\ not\ stripped*|*ELF\ *\ shared\ object,\ *FreeBSD*,\ not\ stripped*)
-				warn "'${f#${STAGEDIR}${PREFIX}/}' is not stripped consider trying INSTALL_TARGET=install-strip or using \${STRIP_CMD}"
-				;;
-		esac
+		warn "'${f#${STAGEDIR}${PREFIX}/}' is not stripped consider trying INSTALL_TARGET=install-strip or using \${STRIP_CMD}"
 	done
 }
 
@@ -247,38 +243,36 @@ libperl() {
 			# No results presents a blank line from heredoc.
 			[ -z "${f}" ] && continue
 			files=$((files+1))
-			found=`readelf -d $f | awk "BEGIN {libperl=1; rpath=10; runpath=100}
+			found=`readelf -d ${f} | awk "BEGIN {libperl=1; rpath=10; runpath=100}
 				/NEEDED.*${LIBPERL}/  { libperl = 0 }
 				/RPATH.*perl.*CORE/   { rpath   = 0 }
 				/RUNPATH.*perl.*CORE/ { runpath = 0 }
 				END {print libperl+rpath+runpath}
 				"`
-			# FIXME When 8.4 goes out of commission, replace the ;;
-			# with ;& in the case below.  Also, change the logic on
-			# detecting if there was a file with libperl.so
-			if [ "$found" -ne "0" ]; then
-				case "$found" in
-					*1)
-						warn "${f} is not linked with ${LIBPERL}, not respecting lddlflags?"
-						;; #;&
-					*1?)
-						has_some_libperl_so=1
-						warn "${f} does not have a rpath to ${LIBPERL}, not respecting lddlflags?"
-						;; #;&
-					1??)
-						has_some_libperl_so=1
-						warn "${f} does not have a runpath to ${LIBPERL}, not respecting lddlflags?"
-						;; #;&
-				esac
-			else
-				has_some_libperl_so=1
-			fi
+			case "${found}" in
+				*1)
+					warn "${f} is not linked with ${LIBPERL}, not respecting lddlflags?"
+					;;
+				*0)
+					has_some_libperl_so=1
+					case "${found}" in
+						*1?)
+							warn "${f} does not have a rpath to ${LIBPERL}, not respecting lddlflags?"
+							;;
+					esac
+					case "${found}" in
+						1??)
+							warn "${f} does not have a runpath to ${LIBPERL}, not respecting lddlflags?"
+							;;
+					esac
+					;;
+			esac
 		# Use heredoc to avoid losing rc from find|while subshell
 		done <<-EOT
 		$(find ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL} -name '*.so')
 		EOT
 
-		if [ $files -gt 0 -a $has_some_libperl_so -eq 0 ]; then
+		if [ ${files} -gt 0 -a ${has_some_libperl_so} -eq 0 ]; then
 			err "None of the .so in ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL} are linked with ${LIBPERL}, see above for the full list."
 			return 1
 		else
@@ -293,7 +287,28 @@ prefixvar() {
 	fi
 }
 
-checks="shebang symlinks paths stripped desktopfileutils sharedmimeinfo suidfiles libtool libperl prefixvar baselibs"
+terminfo() {
+	local f found
+
+	for f in ${STAGEDIR}${PREFIX}/share/misc/*.terminfo; do
+		[ "${f}" = "${STAGEDIR}${PREFIX}/share/misc/*.terminfo" ] && break #no matches
+		found=1
+		break
+	done
+	for f in ${STAGEDIR}${PREFIX}/share/misc/terminfo.db*; do
+		[ "${f}" = "${STAGEDIR}${PREFIX}/share/misc/terminfo.db*" ] && break #no matches
+		found=1
+		break
+	done
+	if [ -z "${USESTERMINFO}" -a -n "${found}" ]; then
+		warn "you need USES=terminfo"
+	elif [ -n "${USESTERMINFO}" -a -z "${found}" ]; then
+		warn "you may not need USES=terminfo"
+	fi
+	return 0
+}
+
+checks="shebang symlinks paths stripped desktopfileutils sharedmimeinfo suidfiles libtool libperl prefixvar baselibs terminfo"
 
 ret=0
 cd ${STAGEDIR}
@@ -301,4 +316,4 @@ for check in ${checks}; do
 	${check} || ret=1
 done
 
-exit $ret
+exit ${ret}

@@ -3,6 +3,7 @@
 
 PORTNAME=	GeoIP
 PORTVERSION=	1.3.2
+PORTREVISION=	1
 CATEGORIES=	net python geography
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,11 +15,11 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libGeoIP.so:${PORTSDIR}/net/GeoIP
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-USE_PYTHON=	autoplist distutils
-USES=		python shebangfix
+OPTIONS_DEFINE=	EXAMPLES
 
-EXAMPLESDIR=	${PREFIX}/share/examples/py-${PORTNAME}
+USE_PYTHON=	autoplist concurrent distutils
+USES=		localbase python shebangfix
+
 PORTEXAMPLES=	*
 
 SHEBANG_FILES=	examples/*.py
@@ -28,6 +29,8 @@ post-patch:
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/GeoIP.so
+
+post-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/
 	cd ${WRKSRC}/examples/ && ${INSTALL_DATA} *.py ${STAGEDIR}${EXAMPLESDIR}/
 

@@ -10,7 +10,9 @@ DISTNAME=	${PORTNAME}${PORTVERSION:C/\.//1}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Set of programs for working with tabular ASCII data
 
-LICENSE=	GPLv2 # (or later)
+BROKEN=		unfetchable
+
+LICENSE=	GPLv2+
 
 OPTIONS_DEFINE=	CHRON DOCS
 OPTIONS_SUB=	yes

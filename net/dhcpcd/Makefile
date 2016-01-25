@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dhcpcd
-PORTVERSION=	6.8.2
-PORTREVISION=	1
+PORTVERSION=	6.10.0
 CATEGORIES=	net
 MASTER_SITES=	http://roy.marples.name/downloads/dhcpcd/ \
 		http://roy.aydogan.net/dhcpcd/ \
@@ -15,9 +14,10 @@ COMMENT=	DHCP/IPv4LL/IPv6RS/DHCPv6 client
 
 LICENSE=	BSD2CLAUSE
 
-USES=		cpe tar:bzip2
+USES=		cpe tar:xz
 CPE_VENDOR=	dhcpcd_project
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	--datadir=${PREFIX}/share/examples
 USE_RC_SUBR=	dhcpcd
 
 post-install:

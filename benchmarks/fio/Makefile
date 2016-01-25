@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	fio
-PORTVERSION=	2.1.9
+PORTVERSION=	2.3
 CATEGORIES=	benchmarks
 MASTER_SITES=	http://brick.kernel.dk/snaps/
 
-MAINTAINER=	skreuzer@FreeBSD.org
+MAINTAINER=	bapt@FreeBSD.org
 COMMENT=	FIO - flexible IO tester
 
 LICENSE=	GPLv2
@@ -16,20 +16,29 @@ USES=		gmake tar:bzip2
 OPTIONS_DEFINE=	GNUPLOT EXAMPLES
 GNUPLOT_DESC=	Support for plotting graphs
 
+GNUPLOT_BUILD_DEPENDS=	${LOCALBASE}/bin/gnuplot:${PORTSDIR}/math/gnuplot
+
 .include <bsd.port.options.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000013
+USES+=		bison
+MAKE_ARGS+=	YACC=${LOCALBASE}/bin/bison
+.endif
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000033
+BUILD_DEPENDS+=	flex>0:${PORTSDIR}/textproc/flex
+MAKE_ARGS+=	LEX=${LOCALBASE}/bin/flex
+.endif
+
+BROKEN_powerpc64=	Does not build on powerpc64
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/fio ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/tools/fio_generate_plots ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/fio.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/
 	${INSTALL_MAN} ${WRKSRC}/tools/fio_generate_plots.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
-.if ${PORT_OPTIONS:MEXAMPLES}
+do-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	@(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR})
-.endif
-
-.if ${PORT_OPTIONS:MGNUPLOT}
-BUILD_DEPENDS+=	${LOCALBASE}/bin/gnuplot:${PORTSDIR}/math/gnuplot
-.endif
 
 .include <bsd.port.mk>

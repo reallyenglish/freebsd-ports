@@ -18,7 +18,7 @@
 ###########################################################################
 
 PORTNAME=	cdrtools
-PORTVERSION=	3.01a24
+PORTVERSION=	3.02a04
 PORTEPOCH=	1
 CATEGORIES=	sysutils audio
 MASTER_SITES=	SF/${PORTNAME}/alpha
@@ -49,7 +49,6 @@ SICONVTABLES=	cp10000 cp10006 cp10007 cp10029 cp10079 cp10081 cp1250 \
 		iso8859-16 iso8859-2 iso8859-3 iso8859-4 iso8859-5 \
 		iso8859-6 iso8859-7 iso8859-8 iso8859-9 koi8-r koi8-u
 
-NO_LATEST_LINK=	yes
 USES=		gmake tar:bzip2
 #CFLAGS+=	-DSOURCE_MODIFIED
 WRKSRC=		${WRKDIR}/${DISTNAME:C/a(.+)$//}
@@ -87,9 +86,13 @@ PKGNAMESUFFIX?=	-devel
 
 MAKE_ENV=	CCOM=cc GMAKE_NOWARN=true INS_BASE=${LOCALBASE} \
 		INS_RBASE=${LOCALBASE}
-CDRTLSTARGET=	${ARCH:S/powerpc64/powerpc/}-freebsd-cc
+CDRTLSTARGET=	${ARCH}-${OPSYS:tl}-cc
+CDRTLSXARCH!=	${UNAME} -m
 
-.if exists(/usr/include/iconv.h) || exists(${LOCALBASE}/lib/libiconv.a) || \
+.if exists(/usr/include/iconv.h)
+USES+=		iconv
+.endif
+.if exists(${LOCALBASE}/lib/libiconv.a) || \
 	exists(${LOCALBASE}/lib/libintl.a) || ${PORT_OPTIONS:MNLS}
 MAKE_ENV+=	DEFOSINCDIRS=${LOCALBASE}/include LDPATH=-L${LOCALBASE}/lib
 USES+=		gettext iconv
@@ -101,9 +104,9 @@ post-extract:
 	@${CP} -fp ${PORTSDIR}/Templates/${i} ${WRKSRC}/${j}
 .endfor
 .endfor
-.if ${CDRTLSTARGET} != "i386-freebsd-cc"
+.if ${CDRTLSXARCH} != "i386"
 	@${LN} -sf ${WRKSRC}/RULES/i386-freebsd-cc.rul \
-		${WRKSRC}/RULES/${CDRTLSTARGET}.rul
+		${WRKSRC}/RULES/${CDRTLSXARCH}-${OPSYS:tl}-cc.rul
 .endif
 
 post-patch:

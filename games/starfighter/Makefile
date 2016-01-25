@@ -15,7 +15,8 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Liberate the universe from the evil company WEAPCO
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2+
+LICENSE_FILE=	${WRKSRC}/docs/LICENSE
 
 USES=		gmake iconv python:2,build shebangfix
 USE_XORG=	x11 xau xdmcp
@@ -24,14 +25,12 @@ WITH_ZLIB=	yes
 MAKEFILE=	makefile
 
 SHEBANG_FILES=	pack.py unpack.py
-python_OLD_CMD=	/usr/bin/env python
 
 INSTALLS_ICONS=	yes
 
 PLIST_FILES=	bin/${PORTNAME} \
 		share/pixmaps/${PORTNAME}.png \
 		%%DATADIR%%/${PORTNAME}.pak
-PLIST_DIRS=	%%DATADIR%%
 
 PORTDOCS=	index.html
 
@@ -39,8 +38,6 @@ OPTIONS_DEFINE=	DOCS
 
 DESKTOP_ENTRIES="Project Starfighter" "" "${PORTNAME}" \
 		"${PORTNAME}" "Game;ArcadeGame;" ""
-
-.include <bsd.port.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} \

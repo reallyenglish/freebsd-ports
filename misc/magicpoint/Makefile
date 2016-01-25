@@ -3,7 +3,7 @@
 
 PORTNAME=	magicpoint
 PORTVERSION=	1.13a
-PORTREVISION=	17
+PORTREVISION=	18
 CATEGORIES?=	misc
 MASTER_SITES=	ftp://sh.wide.ad.jp/WIDE/free-ware/mgp/
 
@@ -43,22 +43,21 @@ EMACS_LISPS=	mgp-mode.el
 EMACS_LISPS_MGP=COPYING README mgp.el mgp.sty sample.tex
 SAMPLE_SCRIPTS=	eqn2eps.sh tex2eps.sh mgp2html.pl mgp2latex.pl
 
-
 OPTIONS_DEFINE=	FREETYPE XFT GIF DOCS
-OPTIONS_DEFAULT=FREETYPE XFT GIF
+OPTIONS_DEFAULT=XFT GIF
 NO_OPTIONS_SORT=yes
 
+FREETYPE_PREVENTS=	XFT
 FREETYPE_CONFIGURE_ENABLE=	freetype
+FREETYPE_LIB_DEPENDS=	libttf.so:${PORTSDIR}/print/freetype
+XFT_PREVENTS=	FREETYPE
 XFT_USES=	iconv
 XFT_USE=	XORG=xft
-XFT_LIB_DEPENDS=	libttf.so:${PORTSDIR}/print/freetype
 XFT_CONFIGURE_ENABLE=	xft2
 XFT_CONFIGURE_ON=	--enable-freetype-charset16
 GIF_CONFIGURE_ENABLE=	gif
 GIF_LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib
 GIF_CPPFLAGS=		-I${LOCALBASE}/include
-
-.include <bsd.port.options.mk>
 
 post-patch:
 	${REINPLACE_CMD} -e 's|-lungif|-lgif|' \
@@ -82,7 +81,8 @@ post-install:
 		${STAGEDIR}${PREFIX}/man/man1/
 	${INSTALL} ${WRKSRC}/contrib/xmindpath/xmindpath \
 		${STAGEDIR}${PREFIX}/bin/
-.if ${PORT_OPTIONS:MDOCS}
+
+post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && \
 		${INSTALL_DATA} ${DOCS} ${STAGEDIR}${DOCSDIR}/
@@ -101,6 +101,5 @@ post-install:
 	cd ${WRKSRC}/contrib && \
 		${INSTALL_SCRIPT} ${SAMPLE_SCRIPTS} \
 		${STAGEDIR}${DOCSDIR}/scripts/
-.endif
 
 .include <bsd.port.mk>

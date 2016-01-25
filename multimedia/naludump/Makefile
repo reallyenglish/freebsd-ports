@@ -6,12 +6,12 @@ PORTVERSION=	0.1.1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://www.udo-richter.de/vdr/files/
 
-MAINTAINER=	nox@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Delete NALU fill data from h.264 TS files
 
 LICENSE=	GPLv2
 
-USES=		gmake iconv:wchar_t tar:tgz
+USES=		alias gmake iconv:wchar_t tar:tgz
 PATCH_STRIP=	-p1
 CFLAGS+=	"-I${LOCALBASE}/include"
 CFLAGS+=	"-L${LOCALBASE}/lib"

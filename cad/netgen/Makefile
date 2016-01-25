@@ -2,16 +2,17 @@
 # $FreeBSD$
 
 PORTNAME=	netgen
-PORTVERSION=	5.0.0
-PORTREVISION=	4
+PORTVERSION=	5.3.1
 CATEGORIES=	cad
-MASTER_SITES=	SF/netgen-mesher/netgen-mesher/${PORTVERSION:S|.0$||}/
+MASTER_SITES=	SF/netgen-mesher/netgen-mesher/${PORTVERSION:C|\.[[:digit:]]+$||}/
 
 MAINTAINER=	stephen@FreeBSD.org
 COMMENT=	Automatic 3D tetrahedral mesh generator
 
 LIB_DEPENDS=	libTix8.4.3.so:${PORTSDIR}/x11-toolkits/tix \
 		libtogl.so:${PORTSDIR}/graphics/togl
+
+OCC_BROKEN=	Does not compile because of issues with cad/opencascade
 
 USE_LDCONFIG=	yes
 USES=		gmake jpeg libtool tk
@@ -28,21 +29,16 @@ FETCH_BEFORE_ARGS+=	-o ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX}
 OPTIONS_DEFINE=		OCC FFMPEG
 OCC_DESC=		Compile with OpenCascade geometry kernel
 FFMPEG_DESC=		video recording with FFmpeg
-OPTIONS_DEFAULT=	OCC
+OPTIONS_DEFAULT=	# OCC
 
-BROKEN_sparc64=	internal gcc error (Bug 23159)
-.include <bsd.port.options.mk>
+BROKEN_sparc64=		internal gcc error (Bug 23159)
 
-.if ${PORT_OPTIONS:MOCC}
-LIB_DEPENDS+=	libTKernel.so:${PORTSDIR}/cad/opencascade
-CXXFLAGS+=	-DOCCGEOMETRY -DHAVE_CONFIG_H -D${ARCH} -I${LOCALBASE}/include/OpenCASCADE
-CONFIGURE_ARGS+=	--enable-occ
-.endif
+OCC_LIB_DEPENDS=	libTKernel.so:${PORTSDIR}/cad/opencascade
+OCC_CXXFLAGS=		-DOCCGEOMETRY -DHAVE_CONFIG_H -D${ARCH} -I${LOCALBASE}/include/OpenCASCADE
+OCC_CONFIGURE_ON=	--enable-occ
 
-.if ${PORT_OPTIONS:MFFMPEG}
-LIB_DEPENDS+=	libavcodec0.so:${PORTSDIR}/multimedia/ffmpeg0
-CONFIGURE_ARGS+=	--enable-ffmpeg
-.endif
+FFMPEG_LIB_DEPENDS=	libavcodec0.so:${PORTSDIR}/multimedia/ffmpeg0
+FFMPEG_CONFIGURE_ON=	--enable-ffmpeg
 
 MACHINE=	${OPSYS:tu}
 
@@ -54,11 +50,11 @@ MAKE_ENV=	TK_VER=${TK_VER} TCL_VER=${TCL_VER}	\
 		MACHINE=${MACHINE} MAKE=${MAKE_CMD}
 
 pre-configure:
-	${REINPLACE_CMD} -e "s|%%DATADIR%%|${DATADIR}|"		\
+	@${REINPLACE_CMD} -e "s|%%DATADIR%%|${DATADIR}|"	\
 		${WRKSRC}/ng/ngappinit.cpp
 
 post-configure:
-	${REINPLACE_CMD} -e "s|%%LOCALBASE%%|${LOCALBASE}|"	\
+	@${REINPLACE_CMD} -e "s|%%LOCALBASE%%|${LOCALBASE}|"	\
 		${WRKSRC}/configure
 
 post-install:

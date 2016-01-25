@@ -10,7 +10,7 @@ MASTER_SITES=	SF/${PORTNAME:S/tools//}/${PORTNAME}/${PORTVERSION}
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Set of tools to record/playback/edit videos in MPEG format
 
-LICENSE=	GPLv2 # (or later)
+LICENSE=	GPLv2+
 
 BUILD_DEPENDS=	v4l_compat>0:${PORTSDIR}/multimedia/v4l_compat
 
@@ -44,12 +44,8 @@ SDL_CONFIGURE_OFF=	--without-libsdl --without-sdlgfx
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == "i386"
+.if ${ARCH} == i386 || ${ARCH} == powerpc
 USES+=		compiler:c++11-lang
-.endif
-
-.if ${ARCH} == "powerpc" && ${OSVERSION} > 900000
-BROKEN=		Does not build on powerpc-9
 .endif
 
 post-patch:
