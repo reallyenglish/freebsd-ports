@@ -1,14 +1,14 @@
---- plugins/check_procs.c.orig	2014-03-04 21:41:57 UTC
+--- plugins/check_procs.c.orig  2014-03-04 21:41:57 UTC
 +++ plugins/check_procs.c
-@@ -70,6 +70,7 @@ int options = 0; /* bitmask of filter cr
- #define PCPU 256
+@@ -71,6 +71,7 @@ int options = 0; /* bitmask of filter criteria to test against */
  #define ELAPSED 512
  #define EREG_ARGS 1024
-+#define JID 2048
+ #define CGROUP_HIERARCHY 2048
++#define JID 65536
  
  #define KTHREAD_PARENT "kthreadd" /* the parent process of kernel threads:
  							ppid of procs are compared to pid of this proc*/
-@@ -101,6 +102,7 @@ char *fails;
+@@ -103,6 +104,7 @@ char *fails;
  char tmp[MAX_INPUT_BUFFER];
  int kthread_filter = 0;
  int usepid = 0; /* whether to test for pid or /proc/pid/exe */
@@ -16,48 +16,57 @@
  
  FILE *ps_input = NULL;
  
-@@ -130,6 +132,7 @@ main (int argc, char **argv)
+@@ -133,6 +135,7 @@ main (int argc, char **argv)
  	int procuid = 0;
  	pid_t procpid = 0;
  	pid_t procppid = 0;
-+    int procjid = 0;
++	int procjid = 0;
  	pid_t kthread_ppid = 0;
  	int procvsz = 0;
  	int procrss = 0;
-@@ -230,9 +233,9 @@ main (int argc, char **argv)
+@@ -236,9 +239,9 @@ main (int argc, char **argv)
  			procseconds = convert_to_seconds(procetime);
  
- 			if (verbose >= 3)
--				printf ("proc#=%d uid=%d vsz=%d rss=%d pid=%d ppid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s\n", 
-+				printf ("proc#=%d uid=%d vsz=%d rss=%d pid=%d ppid=%d jid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s\n", 
+ 			if (verbose >= 3) {
+-				printf ("proc#=%d uid=%d vsz=%d rss=%d pid=%d ppid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s",
++				printf ("proc#=%d uid=%d vsz=%d rss=%d pid=%d ppid=%d jid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s",
  					procs, procuid, procvsz, procrss,
--					procpid, procppid, procpcpu, procstat, 
-+					procpid, procppid, procjid, procpcpu, procstat, 
+-					procpid, procppid, procpcpu, procstat,
++					procpid, procppid, procjid, procpcpu, procstat,
  					procetime, procprog, procargs);
+ 				if (strstr(PS_COMMAND, "cgroup") != NULL) {
+ 					printf(" proc_cgroup_hierarchy=%s\n", proc_cgroup_hierarchy);
+@@ -272,7 +275,7 @@ main (int argc, char **argv)
  
- 			/* Ignore self */
-@@ -275,6 +278,8 @@ main (int argc, char **argv)
+ 				if (kthread_ppid == procppid) {
+ 					if (verbose >= 2)
+-						printf ("Ignore kernel thread: pid=%d ppid=%d prog=%s args=%s\n", procpid, procppid, procprog, procargs);
++						printf ("Ignore kernel thread: pid=%d ppid=%d jid=%d prog=%s args=%s\n", procpid, procppid, procjid, procprog, procargs);
+ 					continue;
+ 				}
+ 			}
+@@ -287,6 +290,8 @@ main (int argc, char **argv)
  				resultsum |= PROG;
  			if ((options & PPID) && (procppid == ppid))
  				resultsum |= PPID;
-+            if ((options & JID) && (procjid == jid))
-+                resultsum |= JID;
++			if ((options & JID) && (procppid == jid))
++				resultsum |= JID;
  			if ((options & USER) && (procuid == uid))
  				resultsum |= USER;
  			if ((options & VSZ)  && (procvsz >= vsz))
-@@ -292,9 +297,9 @@ main (int argc, char **argv)
+@@ -315,9 +320,9 @@ main (int argc, char **argv)
  
  			procs++;
  			if (verbose >= 2) {
--				printf ("Matched: uid=%d vsz=%d rss=%d pid=%d ppid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s\n", 
-+				printf ("Matched: uid=%d vsz=%d rss=%d pid=%d ppid=%d jid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s\n", 
+-				printf ("Matched: uid=%d vsz=%d rss=%d pid=%d ppid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s",
++				printf ("Matched: uid=%d vsz=%d rss=%d pid=%d ppid=%d jid=%d pcpu=%.2f stat=%s etime=%s prog=%s args=%s",
  					procuid, procvsz, procrss,
 -					procpid, procppid, procpcpu, procstat, 
 +					procpid, procppid, procjid, procpcpu, procstat, 
  					procetime, procprog, procargs);
- 			}
- 
-@@ -395,6 +400,7 @@ process_arguments (int argc, char **argv
+ 				if (strstr(PS_COMMAND, "cgroup") != NULL) {
+ 					printf(" cgroup_hierarchy=%s\n", cgroup_hierarchy);
+@@ -423,6 +428,7 @@ process_arguments (int argc, char **argv)
  		{"timeout", required_argument, 0, 't'},
  		{"status", required_argument, 0, 's'},
  		{"ppid", required_argument, 0, 'p'},
@@ -65,38 +74,38 @@
  		{"user", required_argument, 0, 'u'},
  		{"command", required_argument, 0, 'C'},
  		{"vsz", required_argument, 0, 'z'},
-@@ -417,7 +423,7 @@ process_arguments (int argc, char **argv
+@@ -446,7 +452,7 @@ process_arguments (int argc, char **argv)
  			strcpy (argv[c], "-t");
  
  	while (1) {
--		c = getopt_long (argc, argv, "Vvhkt:c:w:p:s:u:C:a:z:r:m:P:T",
-+		c = getopt_long (argc, argv, "Vvhkt:c:w:p:s:u:C:a:z:r:m:P:Tj:",
+-		c = getopt_long (argc, argv, "Vvhkt:c:w:p:s:u:C:a:z:r:m:P:Tg:",
++		c = getopt_long (argc, argv, "Vvhkt:c:w:p:j:s:u:C:a:z:r:m:P:Tg:",
  			longopts, &option);
  
  		if (c == -1 || c == EOF)
-@@ -451,6 +457,12 @@ process_arguments (int argc, char **argv
+@@ -477,6 +483,12 @@ process_arguments (int argc, char **argv)
  				break;
  			}
  			usage4 (_("Parent Process ID must be an integer!"));
-+        case 'j':                                   /* jail id */
-+            if (sscanf (optarg, "%d%[^0-9]", &jid, tmp) == 1) {
-+                asprintf (&fmt, "%s%sJID = %d", (fmt ? fmt : "") , (options ? ", " : ""), jid);
-+                options |= JID;
-+                break;
-+            }
++		case 'j':                                   /* jail id */
++			if (sscanf (optarg, "%d%[^0-9]", &jid, tmp) == 1) {
++				xasprintf (&fmt, "%s%sJID = %d", (fmt ? fmt : "") , (options ? ", " : ""), jid);
++				options |= JID;
++				break;
++			}
  		case 's':									/* status */
  			if (statopts)
  				break;
-@@ -731,6 +743,8 @@ print_help (void)
+@@ -766,6 +778,8 @@ print_help (void)
    printf ("   %s\n", _("RSZDT, plus others based on the output of your 'ps' command)."));
    printf (" %s\n", "-p, --ppid=PPID");
    printf ("   %s\n", _("Only scan for children of the parent process ID indicated."));
 +  printf (" %s\n", "-j, --jid=JID");
-+  printf (" %s\n", _("Only scan for process running in jail which ID is JID."));
++  printf ("   %s\n", _("Only scan for process running in jail which ID is JID."));
    printf (" %s\n", "-z, --vsz=VSZ");
    printf ("   %s\n", _("Only scan for processes with VSZ higher than indicated."));
    printf (" %s\n", "-r, --rss=RSS");
-@@ -779,7 +793,7 @@ void
+@@ -818,7 +832,7 @@ void
  print_usage (void)
  {
    printf ("%s\n", _("Usage:"));
