@@ -13,18 +13,17 @@ COMMENT=	Web Based Postgres Administration
 
 LICENSE=	GPLv2
 
-USES=		cpe shebangfix tar:bzip2
-SHEBANG_FILES=	lang/synch
-CPE_VENDOR=	phppgadmin_project
+NO_ARCH=	yes
+NO_BUILD=	yes
+USES=		cpe tar:bzip2 shebangfix
 .if !defined(WITHOUT_PHP_DEPENDS)
 USE_PHP=	pgsql pcre session
 .endif
-NO_BUILD=	YES
+
+CPE_VENDOR=	phppgadmin_project
+SHEBANG_FILES=	lang/synch
 PGADMDIR?=	www/phpPgAdmin
 PLIST_SUB+=	PGADMDIR=${PGADMDIR}
-PGADMOLDDIR?=	www/data-dist/phpPgAdmin
-PLIST_SUB+=	PGADMOLDDIR=${PGADMOLDDIR}
-NO_ARCH=	yes
 
 pre-everything::
 	@${ECHO_CMD} "# you can customize the installation directory"
@@ -35,6 +34,8 @@ do-configure:
 		${WRKSRC}/conf/config.inc.php-dist
 	${RM} -f ${WRKSRC}/conf/config.inc.php \
 		${WRKSRC}/conf/config.inc.php-dist.bak
+	${MV} -i ${WRKSRC}/conf/config.inc.php-dist \
+		${WRKSRC}/conf/config.inc.php.sample
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${PGADMDIR}

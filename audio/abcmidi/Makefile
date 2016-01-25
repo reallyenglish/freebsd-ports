@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	abcmidi
-DISTVERSION=	2015-03-27
+DISTVERSION=	2015-09-28
 CATEGORIES=	audio
 MASTER_SITES=	http://ifdo.pugmarks.com/~seymour/runabc/
-DISTNAME=	abcMIDI-${DISTVERSION}
+DISTNAME=	abcMIDI-${DISTVERSION:S/-/./g}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Convert abc music files to MIDI and PostScript
@@ -35,7 +35,7 @@ post-patch:
 		 s|$$(INSTALL) -m 644|$$(INSTALL_DATA)|' \
 		${WRKSRC}/Makefile.in
 
-post-install:
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/programming
 	(cd ${WRKSRC}/doc/programming && ${INSTALL_DATA} *.abc *.txt \
 		${STAGEDIR}${DOCSDIR}/programming)

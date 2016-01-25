@@ -2,7 +2,7 @@
 
 .include "Makefile.inc"
 
-MULTILIB_LIST=	armv6-m,armv7-m,armv7e-m,armv7-r
+MULTILIB_LIST=	armv6-m,armv7-m,armv7e-m,armv7-r,armv8-m.base,armv8-m.main
 PKGVERSION=	GNU Tools for ARM Embedded Processors
 
 BUILD_PREFIX=	${WRKDIR}/build
@@ -225,6 +225,8 @@ build-binutils:
 	 --pdfdir=${DOC_PREFIX}/pdf \
 	 --disable-nls \
 	 --disable-werror \
+	 --disable-sim \
+	 --disable-gdb \
 	 --enable-interwork \
 	 --enable-plugins \
 	 --with-sysroot=${INTERIM_PREFIX}/${TARGET} \
@@ -493,6 +495,8 @@ build-libstdcxx:
 	  done ; \
 	  ${CP} -f ${BUILD_PREFIX}/target-libs/${TARGET}/lib/$${multilib_dir}/*crt0.o  ${INTERIM_PREFIX}/${TARGET}/lib/$${multilib_dir}/ ; \
 	 done
+	@${MKDIR} ${INTERIM_PREFIX}/${TARGET}/include/newlib-nano
+	@${CP} ${BUILD_PREFIX}/target-libs/${TARGET}/include/newlib.h ${INTERIM_PREFIX}/${TARGET}/include/newlib-nano/newlib.h
 
 build-gdb:
 	@${ECHO_MSG} "====>  Build gdb"

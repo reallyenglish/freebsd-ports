@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	vdradmin-am
-PORTVERSION=	3.6.9
-PORTREVISION=	1
+PORTVERSION=	3.6.10
 CATEGORIES=	www
 MASTER_SITES=	http://andreas.vdr-developer.org/vdradmin-am/download/
 
-MAINTAINER=	nox@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Video Disk Recorder - webinterface
 
 BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash \
@@ -32,6 +31,7 @@ USES=		shebangfix tar:bzip2
 SHEBANG_FILES=	vdradmind vdradmind.pl
 WRKSRC=		${WRKDIR}/${PORTNAME:S/_/-/}-${DISTVERSION}
 NO_BUILD=	yes
+NO_ARCH=	yes
 USE_RC_SUBR=	vdradmind
 
 VIDEODIR=	/video

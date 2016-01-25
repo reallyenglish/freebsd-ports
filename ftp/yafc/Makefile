@@ -5,12 +5,12 @@ PORTNAME=	yafc
 PORTVERSION=	1.2.5
 PORTREVISION=	1
 CATEGORIES=	ftp ipv6
-MASTER_SITES=	http://www.yafc-ftp.com/upload/
+MASTER_SITES=	http://www.yafc-ftp.com/downloads/
 
 MAINTAINER=	wg@FreeBSD.org
 COMMENT=	Yet another ftp client. Similar to ftp(1)
 
-LICENSE=	GPLv2 # (or later)
+LICENSE=	GPLv2+
 
 OPTIONS_DEFINE=	BASH EXAMPLES NLS SSH READLINE
 OPTIONS_DEFAULT=BASH NLS SSH

@@ -11,7 +11,9 @@ DISTNAME=	exult-20130315-0400
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ultima VII engine
 
-LICENSE=	GPLv2 # or later
+BROKEN=		unfetchable
+
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	timidity:${PORTSDIR}/audio/timidity

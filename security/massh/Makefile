@@ -12,7 +12,9 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Parallel ssh command execution and file transfer on multiple hosts
 
-LICENSE=	GPLv3 # or later
+BROKEN=		mismatch in distfile checksum
+
+LICENSE=	GPLv3+
 
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		ambit:${PORTSDIR}/shells/ambit

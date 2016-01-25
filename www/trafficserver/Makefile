@@ -20,14 +20,13 @@ LIB_DEPENDS=	libboost_system.so:${PORTSDIR}/devel/boost-libs \
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		cpe execinfo gmake libtool perl5 pkgconfig tar:bzip2 tcl
+USES=		cpe execinfo gmake libtool perl5 pkgconfig tar:bzip2 sqlite tcl
 CPE_VENDOR=	apache
 CPE_PRODUCT=	traffic_server
 USE_PERL5=	build run
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
 USE_RC_SUBR=	${PORTNAME}
-USE_SQLITE=	yes
 
 ONLY_FOR_ARCHS=	i386 amd64
 
@@ -48,11 +47,13 @@ CONFIGURE_ARGS=	--with-libxml2=${LOCALBASE} \
 		--with-user=${USERS} \
 		--with-group=${GROUPS}
 
-OPTIONS_DEFINE=	DOCS INTERIM WCCP SPDY
-OPTIONS_RADIO=	MEMMAN
-OPTIONS_RADIO_MEMMAN=	ALLOCATORS FREELISTS RECLAIM
+OPTIONS_DEFINE=	DOCS INTERIM WCCP SPDY CACHEURL
+OPTIONS_SINGLE=	MEMMAN
+OPTIONS_SINGLE_MEMMAN=	ALLOCATORS FREELISTS RECLAIM
 OPTIONS_DEFAULT=	FREELISTS
+OPTIONS_SUB=	yes
 
+CACHEURL_DESC=  Enable CacheURL Plugin
 WCCP_DESC=	Enable WCCPv2 protocol
 INTERIM_DESC=	Enable interim cache (SSD)
 ALLOCATORS_DESC=	Manage memory with allocators
@@ -64,20 +65,13 @@ WCCP_CONFIGURE_ENABLE=	wccp
 INTERIM_CONFIGURE_ENABLE=	interim-cache
 SPDY_CONFIGURE_ENABLE=	spdy
 SPDY_LIB_DEPENDS=	libspdylay.so:${PORTSDIR}/www/spdylay
+CACHEURL_CONFIGURE_ENABLE=        experimental-plugins
 
-.include <bsd.port.options.mk>
+RECLAIM_CONFIGURE_ON=	--enable-reclaimable-freelist --enable-freelist
+FREELISTS_CONFIGURE_ARGS=	--enable-freelist
+ALLOCATORS_CONFIGURE_ARGS=	--disable-freelist
 
-.if ${PORT_OPTIONS:MRECLAIM}
-CONFIGURE_ARGS+=	--enable-reclaimable-freelist --enable-freelist
-.elif ${PORT_OPTIONS:MFREELISTS}
-CONFIGURE_ARGS+=	--enable-freelist
-.elif ${PORT_OPTIONS:MALLOCATORS}
-CONFIGURE_ARGS+=	--disable-freelist
-.else
-IGNORE=	no allocation strategy selected
-.endif
-
-.if ${OSVERSION} >= 900033 && exists(/usr/bin/clang)
+.if exists(/usr/bin/clang)
 CC=		clang
 CXX=		clang++
 .endif

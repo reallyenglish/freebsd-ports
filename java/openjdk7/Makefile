@@ -3,7 +3,6 @@
 
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${PORT_MINOR_VERSION}.${PORT_BUILD_NUMBER}
-PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}/promoted/b${JDK_BUILD_NUMBER}/ \
@@ -14,10 +13,21 @@ MASTER_SITES=	http://download.java.net/openjdk/jdk${JDK_MAJOR_VERSION}u${JDK_MIN
 		https://java.net/downloads/jax-ws/JDK7/:jaf \
 		http://icedtea.classpath.org/download/drops/:jaf \
 		APACHE/ant/binaries/:ant
+PATCH_SITES=	LOCAL/glewis/openjdk7
 DISTFILES=	${JDK_SRC_DISTFILE}${EXTRACT_SUFX} \
 		${ANT_DISTFILE}${EXTRACT_SUFX}:ant
 EXTRACT_ONLY=	${JDK_SRC_DISTFILE}${EXTRACT_SUFX} \
 		${ANT_DISTFILE}${EXTRACT_SUFX}
+PATCHFILES=	patch-7u45-b30.xz \
+		patch-7u51-b30.xz \
+		patch-7u55-b31.xz \
+		patch-7u60-b30.xz \
+		patch-7u65-b31.xz \
+		patch-7u71-b14.xz \
+		patch-7u76-b31.xz \
+		patch-7u80-b32.xz \
+		patch-7u85-b02.xz \
+		patch-7u91-b02.xz
 
 MAINTAINER?=	glewis@FreeBSD.org
 COMMENT?=	Java Development Kit 7
@@ -46,8 +56,8 @@ JAVAVMS_COMMENT+=	JRE
 INSTALLDIR=	${PREFIX}/${PORTNAME}${JDK_MAJOR_VERSION}-jre
 .endif
 
-PORT_MINOR_VERSION=	80
-PORT_BUILD_NUMBER=	15
+PORT_MINOR_VERSION=	91
+PORT_BUILD_NUMBER=	02
 JDK_MAJOR_VERSION=	7
 JDK_MINOR_VERSION=	40
 JDK_BUILD_NUMBER=	43
@@ -57,8 +67,6 @@ JDK_SRC_DISTFILE=	${PORTNAME}-${JDK_MAJOR_VERSION}u${JDK_MINOR_VERSION}-fcs-src-
 # Use our own version of ant to avoid circular dependencies
 ANT_VERSION=		1.9.4
 ANT_DISTFILE=		apache-ant-${ANT_VERSION}-bin
-
-LATEST_LINK?=		openjdk7
 
 LIB_DEPENDS+=	libasound.so:${PORTSDIR}/audio/alsa-lib \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \

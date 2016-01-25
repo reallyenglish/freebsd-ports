@@ -1,10 +1,10 @@
---- mix.exs.orig	2015-07-08 05:55:21 UTC
+--- mix.exs.orig	2015-12-01 21:16:44 UTC
 +++ mix.exs
-@@ -24,7 +24,6 @@ defmodule Mongo.Mixfile do
-   # Returns the list of dependencies for prod
-   defp deps(:prod) do
-     [
--      bson: "~> 0.4.3"
-     ]
+@@ -8,7 +8,6 @@ defmodule Mongo.Mixfile do
+       elixir: "~> 1.0 or ~> 1.1",
+       source_url: "https://github.com/checkiz/elixir-mongo",
+       description: "MongoDB driver for Elixir",
+-      deps: deps(Mix.env),
+       package: package,
+       docs: &docs/0 ]
    end
- 

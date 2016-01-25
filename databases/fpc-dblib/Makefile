@@ -1,7 +1,6 @@
 # Created by: Alonso Cardenas Marquez <acm@FreeBSD.org>
 # $FreeBSD$
 
-PORTREVISION=	0
 CATEGORIES=	databases lang
 PKGNAMESUFFIX=	-dblib
 

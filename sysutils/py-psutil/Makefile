@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	psutil
-PORTVERSION=	3.1.1
+PORTVERSION=	3.3.0
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,8 +11,9 @@ MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Process utilities module for Python
 
 LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 USES=		python
 
 post-install:

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	44.0.2403.125
+PORTVERSION=	47.0.2526.111
 CATEGORIES=	www
 MASTER_SITES=	http://commondatastorage.googleapis.com/chromium-browser-official/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} # default, but needed to get distinfo correct if TEST is on
@@ -22,7 +22,8 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/gperf:${PORTSDIR}/devel/gperf \
 		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat \
 		${LOCALBASE}/share/usbids/usb.ids:${PORTSDIR}/misc/usbids \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>0:${PORTSDIR}/devel/py-Jinja2 \
-		${PYTHON_PKGNAMEPREFIX}ply>0:${PORTSDIR}/devel/py-ply
+		${PYTHON_PKGNAMEPREFIX}ply>0:${PORTSDIR}/devel/py-ply \
+		${PYTHON_PKGNAMEPREFIX}html5lib>0:${PORTSDIR}/www/py-html5lib
 
 LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libdbus-1.so:${PORTSDIR}/devel/dbus \
@@ -55,13 +56,14 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/a
 		xdg-open:${PORTSDIR}/devel/xdg-utils
 
 ONLY_FOR_ARCHS=	i386 amd64
-USES=		bison compiler:c++11-lib cpe desktop-file-utils jpeg pkgconfig \
-		perl5 shebangfix ninja tar:xz python:2,build execinfo
+USES=		bison compiler:c++11-lib cpe desktop-file-utils execinfo jpeg \
+		ninja perl5 pkgconfig python:2,build shebangfix tar:xz
 CPE_VENDOR=	google
 CPE_PRODUCT=	chrome
 USE_PERL5=	build
 USE_XORG=	scrnsaverproto x11 xproto xscrnsaver xtst
 USE_GNOME=	atk glib20 gtk20 dconf libxslt
+MAKE_ARGS=	-C out/${BUILDTYPE}
 SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper
 ALL_TARGET=	chrome
 INSTALLS_ICONS=	yes
@@ -128,14 +130,16 @@ GYP_DEFINES+=	google_api_key=AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8 \
 SUB_FILES=	chromium-browser.desktop chrome
 SUB_LIST+=	COMMENT="${COMMENT}"
 
-OPTIONS_DEFINE=	CODECS GCONF PULSEAUDIO TEST KERBEROS DEBUG
+OPTIONS_DEFINE=	CODECS GCONF PULSEAUDIO TEST KERBEROS DEBUG DRIVER
 CODECS_DESC=	Compile and enable patented codecs like H.264
+DRIVER_DESC=	Install chromedriver
 
 OPTIONS_DEFAULT=	CODECS GCONF KERBEROS
+OPTIONS_SUB=	yes
 
 GCONF_USE=	GNOME=gconf2
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
-
+DRIVER_MAKE_ARGS=chromedriver
 TEST_DISTFILES=	${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX}
 
 .include <bsd.port.options.mk>
@@ -192,7 +196,6 @@ CONFIGURE_ENV+=	CC="${CC}" \
 		GYP_DEFINES="${GYP_DEFINES}"
 MAKE_ENV+=	BUILDTYPE=${BUILDTYPE} \
 		GPERF="${LOCALBASE}/bin/gperf"
-MAKE_ARGS=	-C out/${BUILDTYPE}
 
 .include <bsd.port.pre.mk>
 
@@ -268,6 +271,13 @@ pre-configure:
 		'third_party/brotli' \
 		'third_party/boringssl' \
 		'third_party/cacheinvalidation' \
+		'third_party/catapult' \
+		'third_party/catapult/third_party/beautifulsoup' \
+		'third_party/catapult/tracing' \
+		'third_party/catapult/tracing/third_party' \
+		'third_party/catapult/tracing/third_party/tvcm' \
+		'third_party/catapult/tracing/third_party/tvcm/third_party/rcssmin' \
+		'third_party/catapult/tracing/third_party/tvcm/third_party/rjsmin' \
 		'third_party/cld' \
 		'third_party/cros_system_api' \
 		'third_party/dom_distiller_js' \
@@ -279,7 +289,7 @@ pre-configure:
 		'third_party/google_input_tools' \
 		'third_party/google_input_tools/third_party/closure_library' \
 		'third_party/google_input_tools/third_party/closure_library/third_party/closure' \
-		'third_party/hunspell_new' \
+		'third_party/hunspell' \
 		'third_party/iccjpeg' \
 		'third_party/icu/icu.isolate' \
 		'third_party/jinja2' \
@@ -290,8 +300,9 @@ pre-configure:
 		'third_party/libjingle' \
 		'third_party/libphonenumber' \
 		'third_party/libsrtp' \
-		'third_party/libvpx' \
-		'third_party/libvpx/source/libvpx/third_party/x86inc' \
+		'third_party/libvpx_new' \
+		'third_party/libvpx_new/source/libvpx/third_party/x86inc' \
+		'third_party/libwebm' \
 		'third_party/libxml/chromium' \
 		'third_party/libXNVCtrl' \
 		'third_party/libyuv' \
@@ -322,10 +333,6 @@ pre-configure:
 		'third_party/sqlite' \
 		'third_party/tcmalloc' \
 		'third_party/tlslite' \
-		'third_party/trace-viewer' \
-		'third_party/trace-viewer/third_party' \
-		'third_party/trace-viewer/third_party/tvcm/third_party' \
-		'third_party/undoview' \
 		'third_party/usrsctp' \
 		'third_party/web-animations-js' \
 		'third_party/webdriver' \
@@ -343,6 +350,10 @@ pre-configure:
 		${GYP_DEFINES:C/^/-D/} || ${FALSE}
 	# allow removal of third_party/adobe
 	${ECHO_CMD} > ${WRKSRC}/flapper_version.h
+	# missing file: file is in -testdata only, but configure stage
+	# will fail if it's not there. do not break TESTS build while
+	# allowing regular build without pulling in -testdata.
+	${TOUCH} ${WRKSRC}/chrome/test/data/webui/i18n_process_css_test.html
 
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
@@ -377,6 +388,10 @@ do-install:
 		${STAGEDIR}${DESKTOPDIR}
 	${INSTALL_SCRIPT} ${WRKDIR}/chrome ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/mksnapshot \
-		${STAGEDIR}${DATADIR}/mksnapshot
+		${STAGEDIR}${DATADIR}
+.if ${PORT_OPTIONS:MDRIVER}
+	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chromedriver \
+		${STAGEDIR}${PREFIX}/bin
+.endif
 
 .include <bsd.port.post.mk>

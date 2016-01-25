@@ -3,7 +3,7 @@
 
 PORTNAME=	comical
 PORTVERSION=	0.8
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
@@ -12,7 +12,7 @@ COMMENT=	Sequential image viewer
 
 LIB_DEPENDS=	libunrar.so:${PORTSDIR}/archivers/libunrar
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 MAKE_JOBS_UNSAFE=	yes

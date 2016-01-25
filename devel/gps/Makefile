@@ -3,6 +3,7 @@
 
 PORTNAME=	gps
 PORTVERSION=	6.1.1.0
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://downloads.dragonlace.net/src/
 DISTNAME=	gps-6.1.1-src
@@ -13,15 +14,14 @@ COMMENT=	GNAT Programming Studio - IDE for Ada and many other languages
 
 LICENSE=	GPLv3
 
-BUILD_DEPENDS=	gprbuild>=20140417:${PORTSDIR}/devel/gprbuild \
-		gnat_util>=20140422_2:${PORTSDIR}/lang/gnat_util \
+BUILD_DEPENDS=	gprbuild:${PORTSDIR}/devel/gprbuild \
 		xmlada>=4.4:${PORTSDIR}/textproc/xmlada \
 		gnatcoll>=2015:${PORTSDIR}/devel/gnatcoll \
 		templates_parser>11:${PORTSDIR}/textproc/templates_parser
 LIB_DEPENDS=	libgtkada.so:${PORTSDIR}/x11-toolkits/gtkada3
 RUN_DEPENDS=	rsvg-convert:${PORTSDIR}/graphics/librsvg2 \
-		gnatinspect:${PORTSDIR}/devel/gnatcoll \
 		gdb${PORTGDB}:${PORTSDIR}/devel/gdb \
+		gprbuild:${PORTSDIR}/devel/gprbuild \
 		${PYTHON_PKGNAMEPREFIX}pep8>0:${PORTSDIR}/devel/pep8 \
 		${PYTHON_PKGNAMEPREFIX}jedi>0:${PORTSDIR}/devel/py-jedi
 
@@ -35,7 +35,7 @@ GPSVER=		GPS_VERSION=${PORTVERSION}
 ALL_TARGET=	default
 NO_MTREE=	yes
 SUB_FILES=	gps
-PORTGDB=	791
+PORTGDB=	${GDBVER:S/.//}
 
 # note: librsvg2 is needed to display the svg icons in the menu.  Actually
 # needed is lib/gdk-pixbuf-2.0/%%GTK2_VER%%/loaders/libpixbufloader-svg.so ,
@@ -58,6 +58,8 @@ PORTEXAMPLES=		demo python remote tutorial xml
 .include <bsd.port.options.mk>
 
 SUB_LIST=		ADA_PATH=${PREFIX}/${ADAXX}-aux/bin
+GDBVER!=		${GREP} ^PORTVERSION ${.CURDIR}/../gdb/Makefile | \
+			${AWK} '{print $$2}'
 
 .if ${PORT_OPTIONS:MDEBUG}
 MAKE_ARGS+=		Build=Debug
@@ -68,6 +70,8 @@ MAKE_ARGS+=		Build=Production
 post-extract:
 	@${MV} ${WRKSRC}/templates_parser ${WRKSRC}/TP.ignore
 	@${MV} ${WRKSRC}/Makefile.gnat ${WRKSRC}/Makefile.gnat.ignore
+	@${FIND} ${WRKSRC}/share -name "*.pyc" -delete
+	${RM} ${WRKSRC}/share/support/core/cross_references.py
 
 post-patch:
 	@${ECHO} "GNAT_SOURCES=" > ${WRKSRC}/Makefile.gnat
@@ -100,6 +104,14 @@ post-patch:
 	@${REINPLACE_CMD} -e '/Gdb_Command/ s|"gdb"|"gdb${PORTGDB}"|' \
 		${WRKSRC}/gvd/src/debugger-gdb_mi.adb \
 		${WRKSRC}/gvd/src/debugger-gdb.adb
+	@${REINPLACE_CMD} -e 's|ISO-8859|ISO8859|' \
+		${WRKSRC}/kernel/src/gps-kernel-charsets.adb \
+		${WRKSRC}/share/support/core/os_utils.py \
+		${WRKSRC}/configure* \
+		${WRKSRC}/po/build_skeleton.pl
+	@${REINPLACE_CMD} -e 's|iso-8859|ISO8859|' \
+		${WRKSRC}/cli/src/gps-cli_scripts.adb \
+		${WRKSRC}/cli/src/gnatdoc_main.adb
 
 do-build:
 	@${CP} ${PREFIX}/include/gnat_util/impunit.* ${WRKSRC}/distrib
@@ -109,6 +121,7 @@ do-build:
 		${MAKE_CMD} ${MAKE_ARGS} all
 	${PYTHON_CMD} ${PYCOMPILE} ${WRKSRC}/share/plug-ins
 	${PYTHON_CMD} ${PYCOMPILE} ${WRKSRC}/share/library
+	${PYTHON_CMD} ${PYCOMPILE} ${WRKSRC}/share/support
 
 post-install:
 	${RM} -rf ${STAGEDIR}${PREFIX}/share/doc/gps/html/*/_sources

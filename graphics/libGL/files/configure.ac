@@ -1,23 +1,14 @@
---- configure.ac.orig	2014-11-18 03:23:13.000000000 +0100
-+++ configure.ac	2014-11-21 12:50:56.104986267 +0100
-@@ -37,6 +37,7 @@
+--- configure.ac.orig	2015-12-21 10:05:52.000000000 +0100
++++ configure.ac	2015-12-22 17:04:25.728359000 +0100
+@@ -78,6 +78,7 @@
  DRI3PROTO_REQUIRED=1.0
  PRESENTPROTO_REQUIRED=1.0
  LIBUDEV_REQUIRED=151
 +LIBDEVQ_REQUIRED=0.0.2
  GLPROTO_REQUIRED=1.4.14
  LIBOMXIL_BELLAGIO_REQUIRED=0.0
- VDPAU_REQUIRED=0.4.1
-@@ -54,7 +55,7 @@
- AM_PROG_CC_C_O
- AM_PROG_AS
- AX_CHECK_GNU_MAKE
--AC_CHECK_PROGS([PYTHON2], [python2 python])
-+AC_CHECK_PROGS([PYTHON2], [python2.7 python2 python])
- AC_PROG_SED
- AC_PROG_MKDIR_P
- 
-@@ -617,7 +618,7 @@
+ LIBVA_REQUIRED=0.35.0
+@@ -743,7 +744,7 @@
      [enable_dri=yes])
  
  case "$host_os" in
@@ -26,7 +17,7 @@
      dri3_default=yes
      ;;
  *)
-@@ -883,6 +884,9 @@
+@@ -1000,6 +1001,9 @@
  PKG_CHECK_MODULES([LIBUDEV], [libudev >= $LIBUDEV_REQUIRED],
                    have_libudev=yes, have_libudev=no)
  
@@ -36,7 +27,7 @@
  AC_ARG_ENABLE([sysfs],
      [AS_HELP_STRING([--enable-sysfs],
          [enable /sys PCI identification @<:@default=disabled@:>@])],
-@@ -979,6 +983,10 @@
+@@ -1096,6 +1100,10 @@
      DEFINES="$DEFINES -DHAVE_LIBUDEV"
      have_pci_id=yes
  fi
@@ -47,7 +38,7 @@
  
  if test "$have_sysfs" = yes; then
      DEFINES="$DEFINES -DHAVE_SYSFS"
-@@ -1101,6 +1109,23 @@
+@@ -1228,6 +1236,23 @@
          ;;
      gnu*)
          DEFINES="$DEFINES -DHAVE_ALIAS"
@@ -71,7 +62,7 @@
          ;;
      cygwin*)
          if test "x$with_dri_drivers" = "xyes"; then
-@@ -1278,6 +1303,8 @@
+@@ -1384,6 +1409,8 @@
  AM_CONDITIONAL(HAVE_GBM, test "x$enable_gbm" = xyes)
  if test "x$need_pci_id$have_libudev" = xyesyes; then
      GBM_PC_REQ_PRIV="libudev >= $LIBUDEV_REQUIRED"
@@ -80,7 +71,27 @@
  else
      GBM_PC_REQ_PRIV=""
  fi
-@@ -1724,8 +1751,6 @@
+@@ -1545,9 +1572,19 @@
+         AC_MSG_ERROR([cannot enable OpenCL without Gallium])
+     fi
+ 
++    if test "x$acv_mesa_CLANG" = xno; then
++
++    GCC_VERSION=`$CC -dumpversion`
++    if test $? -eq 0; then
++        GCC_VERSION_MAJOR=`echo $GCC_VERSION | cut -d. -f1`
++        GCC_VERSION_MINOR=`echo $GCC_VERSION | cut -d. -f2`
++    fi
++
+     if test $GCC_VERSION_MAJOR -lt 4 -o $GCC_VERSION_MAJOR -eq 4 -a $GCC_VERSION_MINOR -lt 7; then
+         AC_MSG_ERROR([gcc >= 4.7 is required to build clover])
+     fi
++# end of clang test.
++    fi
+ 
+     if test "x$have_libclc" = xno; then
+         AC_MSG_ERROR([pkg-config cannot find libclc.pc which is required to build clover.
+@@ -1815,8 +1852,6 @@
                  CLANG_LIBDIR=${LLVM_LIBDIR}
              fi
              CLANG_RESOURCE_DIR=$CLANG_LIBDIR/clang/${LLVM_VERSION}

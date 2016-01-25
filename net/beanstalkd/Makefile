@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	beanstalkd
-PORTVERSION=	1.9
+PORTVERSION=	1.10
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 
@@ -15,7 +15,6 @@ USE_GITHUB=	yes
 USE_RC_SUBR=	beanstalkd
 
 GH_ACCOUNT=	kr
-GH_PROJECT=	beanstalkd
 
 MAKE_ARGS+=	CC="${CC}" CFLAGS="${CFLAGS}"
 

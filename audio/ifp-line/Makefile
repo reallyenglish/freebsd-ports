@@ -10,14 +10,13 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Command line interface to iRiver music players
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		iconv
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf
-ACLOCAL_ARGS=	-I m4
+USES=		autoreconf iconv
+GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lusb
+LDFLAGS+=	-lusb
 
 PLIST_FILES=	bin/ifp man/man1/ifp.1.gz
 PORTDOCS=	NEWS README TIPS nonroot.sh
@@ -31,6 +30,8 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/ifp ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/ifp.1 ${STAGEDIR}${MANPREFIX}/man/man1
+
+do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
 

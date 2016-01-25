@@ -9,7 +9,7 @@ CATEGORIES=	converters geography
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Convert OSM XML data to PostgreSQL database
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libproj.so:${PORTSDIR}/graphics/proj \
@@ -43,7 +43,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|AC_MSG_WARN|AC_MSG_ERROR|' ${WRKSRC}/configure.ac
 	@${REINPLACE_CMD} -e 's|-lstdc++||' ${WRKSRC}/Makefile.am
 
-post-install:
+post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}/

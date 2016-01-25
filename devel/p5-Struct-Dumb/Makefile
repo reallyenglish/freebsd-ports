@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Struct-Dumb
-PORTVERSION=	0.03
-PORTREVISION=	1
+PORTVERSION=	0.08
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:PEVANS
@@ -14,9 +13,11 @@ COMMENT=	Make simple lightweight record-like structures
 
 LICENSE=	ART10 GPLv1
 LICENSE_COMB=	dual
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	p5-Test-Fatal>=0:${PORTSDIR}/devel/p5-Test-Fatal
 
+NO_ARCH=	yes
 USE_PERL5=	configure
 USES=		perl5
 

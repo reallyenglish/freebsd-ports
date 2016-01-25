@@ -3,7 +3,7 @@
 
 PORTNAME=	evince
 PORTVERSION=	3.16.1
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	graphics print gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -65,10 +65,6 @@ XPS_DESC=	XPS support
 CONFIGURE_ARGS+=--disable-dbus
 .else
 CONFIGURE_ARGS+=--enable-dbus
-.endif
-
-.if ${OSVERSION} < 900000
-BROKEN=		Fails to build
 .endif
 
 .if ${PORT_OPTIONS:MDVI} || ${PORT_OPTIONS:MT1LIB}

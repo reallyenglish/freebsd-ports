@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME?=	mariadb
-PORTVERSION=	10.0.17
+PORTVERSION=	10.0.23
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
@@ -13,7 +13,7 @@ MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirror.switch.ch/mirror/${SITESDIR}/
 PKGNAMESUFFIX?=	100-server
 
-MAINTAINER=	spil.oss@gmail.com
+MAINTAINER=	brnrd@FreeBSD.org
 COMMENT?=	Multithreaded SQL database (server)
 
 LICENSE=	GPLv2
@@ -22,11 +22,10 @@ SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 SLAVEDIRS=	databases/mariadb100-client
-USES=		bison:build cmake execinfo gmake shebangfix cpe
+USES=		bison:build cmake cpe execinfo gmake shebangfix
+USE_LDCONFIG=	${PREFIX}/lib/mysql ${PREFIX}/lib/mysql/plugin
 SHEBANG_FILES=	scripts/*.sh
 SITESDIR=	mariadb/mariadb-${PORTVERSION}/source
-
-BROKEN_armv6=	Does not compile on arm
 
 OPTIONS_DEFINE=		FASTMTX
 OPTIONS_RADIO=		SSL
@@ -59,15 +58,21 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 		-DEXECINFO_ROOT=${LOCALBASE} \
 		-DCOMPILATION_COMMENT="FreeBSD Ports"
 
+DATADIR=	${PREFIX}/share/mysql
+
 .ifdef USE_MYSQL
-.error You have USE_MYSQL variable defined either in environment or in make(1) arguments. Please undefine and try again.
+.error You have `USE_MYSQL' variable defined either in environment or in make(1) arguments. This leads to a circular dependency. Please undefine and try again.
 .endif
 
-DATADIR=	${PREFIX}/share/mysql
+CONFLICTS_INSTALL=	mariadb5*-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
+			mariadb10[1-9]-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
+			mysql[0-9]*-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
+			percona[0-9]*-${PKGNAMESUFFIX:C/^[0-9]*-//}-* \
 
 .if !defined(CLIENT_ONLY)
 # MySQL-Server options
 USE_MYSQL=		yes
+USE_LDCONFIG+=		${PREFIX}/lib/mysql/plugin
 OPTIONS_DEFINE+=	INNODB MAXKEY MROONGA OQGRAPH
 OPTIONS_DEFAULT+=	MAXKEY
 OPTIONS_SUB=		yes
@@ -89,11 +94,6 @@ WITHOUT_SSL_CMAKE_ON=	-DWITH_SSL=no
 USES+=		readline
 .else
 # MySQL-Server part
-
-CONFLICTS_INSTALL=	mysql*-server-* \
-			mariadb[0-9][0-9]-server-* \
-			percona*-server-*
-
 USE_MYSQL=	yes
 WANT_MYSQL_VER=	100m
 USE_RC_SUBR=	mysql-server
@@ -104,10 +104,14 @@ CMAKE_ARGS+=	-DWITH_EMBEDDED_SERVER="ON" \
 		-DWITHOUT_EXAMPLE_STORAGE_ENGINE=1
 
 INNODB_CMAKE_OFF=	-DWITHOUT_INNOBASE=1
-MAXKEY_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-include_my_compare.h
+MAXKEY_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-include_my__compare.h
 MROONGA_CMAKE_OFF=	-DWITHOUT_MROONGA=1
 OQGRAPH_CMAKE_OFF=	-DWITHOUT_OQGRAPH=1
-OQGRAPH_LIB_DEPENDS=	libboost_system.so:${PORTSDIR}/devel/boost-libs
+OQGRAPH_LIB_DEPENDS=	libboost_system.so:${PORTSDIR}/devel/boost-libs \
+			libJudy.so:${PORTSDIR}/devel/judy
+# Currently OQGraph does not build using clang.
+# See See https://mariadb.atlassian.net/browse/MDEV-8051.
+OQGRPAH_USE=		gcc
 
 post-install:
 	# Remove programs to avoid conflict with mariadb100-client

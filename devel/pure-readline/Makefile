@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	pure-readline
-PORTVERSION=	0.2
+PORTVERSION=	0.3
 CATEGORIES=	devel
-MASTER_SITES=	https://cdn.bitbucket.org/purelang/pure-lang/downloads/
+MASTER_SITES=	https://bitbucket.org/purelang/pure-lang/downloads/
 DIST_SUBDIR=	pure
 
 MAINTAINER=	ports@FreeBSD.org
@@ -13,7 +13,7 @@ COMMENT=	Readline interface for the Pure language
 LICENSE=	BSD3CLAUSE GPLv3
 LICENSE_COMB=	dual
 
-USES=		pure readline
+USES=		pkgconfig pure readline
 PORTDOCS=	README
 OPTIONS_DEFINE=	DOCS
 

@@ -164,14 +164,13 @@ pre-configure::
 	@${ECHO_MSG}	"  You can check your modules configuration by using make show-modules"
 	@${ECHO_MSG}	""
 
+pre-configure-SSL-on::
 # Fix build with OpenSSL from ports
-.if ${PORT_OPTIONS:MSSL}
-. if ${OPSYS} == FreeBSD
-.  if defined(OPENSSL_INSTALLED) && ${OPENSSL_INSTALLED} != ""
+.if ${OPSYS} == FreeBSD
+. if (defined(OPENSSL_INSTALLED) && ${OPENSSL_INSTALLED} != "") || ${MAKE_ENV:M*${LOCALBASE}/openssl*}
 	@${ECHO_MSG}	"===>  apply fix for FreeBSD-${OSREL} (${OSVERSION}) for usage with ${OPENSSL_INSTALLED}"
 	@${ECHO_MSG}	""
 	${REINPLACE_CMD} -e "s|(ALL_CFLAGS)|(ALL_CFLAGS) -L${OPENSSLLIB}|" ${WRKSRC}/build/rules.mk.in
-.  endif
 . endif
 .endif
 
@@ -189,9 +188,9 @@ post-install:
 # strip returns an error for non binary files, but we have a big mix
 	-${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/* 2>/dev/null
 	-${STRIP_CMD} ${STAGEDIR}${PREFIX}/libexec/apache22/mod_*.so
-.if ${PORT_OPTIONS:MLOG_FORENSIC}
+
+post-install-LOG_FORENSIC-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/support/check_forensic ${STAGEDIR}${PREFIX}/sbin
-.endif
 
 # maintainer only, check for new modules
 modlist: extract

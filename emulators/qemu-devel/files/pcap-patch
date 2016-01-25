@@ -1,18 +1,29 @@
---- configure.orig
-+++ configure
-@@ -335,6 +335,9 @@ libssh2=""
+configure
+--- configure	2015-12-17 04:04:48.000000000 +0600
++++ configure	2015-12-25 01:32:09.000000000 +0600
+@@ -342,6 +342,10 @@
+ tpm="yes"
+ libssh2=""
  vhdx=""
- quorum=""
- numa=""
++quorum="no"
 +pcap="no"
 +pcap_create="no"
 +bpf="no"
- 
- # parse CC options first
- for opt do
-@@ -888,6 +891,10 @@ for opt do
+ numa=""
+ tcmalloc="no"
+ jemalloc="no"
+@@ -602,7 +606,7 @@
+   audio_drv_list="oss"
+   audio_possible_drivers="oss sdl pa"
+   # needed for kinfo_getvmmap(3) in libutil.h
+-  LIBS="-lutil $LIBS"
++  LIBS="-lprocstat -lkvm -lelf -lutil $LIBS"
+   netmap=""  # enable netmap autodetect
+   HOST_VARIANT_DIR="freebsd"
+ ;;
+@@ -905,6 +909,10 @@
    ;;
-   --enable-vnc-ws) vnc_ws="yes"
+   --enable-vnc-png) vnc_png="yes"
    ;;
 +  --enable-pcap) pcap="yes"
 +  ;;
@@ -21,10 +32,26 @@
    --disable-slirp) slirp="no"
    ;;
    --disable-uuid) uuid="no"
-@@ -2216,6 +2223,51 @@ EOF
- fi
+@@ -2427,6 +2435,14 @@
+ 
  
  ##########################################
++# getifaddrs (for tests/test-io-channel-socket )
++
++have_ifaddrs_h=yes
++if ! check_include "ifaddrs.h" ; then
++  have_ifaddrs_h=no
++fi
++
++##########################################
+ # VTE probe
+ 
+ if test "$vte" != "no"; then
+@@ -2569,6 +2585,50 @@
+   fi
+ fi
+ 
++##########################################
 +# pcap probe
 +
 +if test "$pcap" = "yes" -a "$pcap" != "no"; then
@@ -68,20 +95,31 @@
 +  fi
 +  libs_softmmu="$libpcap $libs_softmmu"
 +fi # test "$pcap"
-+
-+##########################################
- # VNC TLS/WS detection
- if test "$vnc" = "yes" -a \( "$vnc_tls" != "no" -o "$vnc_ws" != "no" \) ; then
-   cat > $TMPC <<EOF
-@@ -4286,6 +4338,7 @@ echo "Audio drivers     $audio_drv_list"
+ 
+ ##########################################
+ # VNC SASL detection
+@@ -4758,7 +4833,11 @@
+ echo "GNUTLS support    $gnutls"
+ echo "GNUTLS hash       $gnutls_hash"
+ echo "libgcrypt         $gcrypt"
+-echo "nettle            $nettle ${nettle+($nettle_version)}"
++if test "$nettle" = "yes"; then
++    echo "nettle            $nettle ($nettle_version)"
++else
++    echo "nettle            $nettle"
++fi
+ echo "libtasn1          $tasn1"
+ echo "VTE support       $vte"
+ echo "curses support    $curses"
+@@ -4769,6 +4848,7 @@
  echo "Block whitelist (rw) $block_drv_rw_whitelist"
  echo "Block whitelist (ro) $block_drv_ro_whitelist"
  echo "VirtFS support    $virtfs"
 +echo "pcap support      $pcap"
  echo "VNC support       $vnc"
  if test "$vnc" = "yes" ; then
-     echo "VNC TLS support   $vnc_tls"
-@@ -4447,6 +4500,15 @@ fi
+     echo "VNC SASL support  $vnc_sasl"
+@@ -4947,6 +5027,15 @@
  if test "$profiler" = "yes" ; then
    echo "CONFIG_PROFILER=y" >> $config_host_mak
  fi
@@ -97,24 +135,48 @@
  if test "$slirp" = "yes" ; then
    echo "CONFIG_SLIRP=y" >> $config_host_mak
    echo "CONFIG_SMBD_COMMAND=\"$smbd\"" >> $config_host_mak
-Index: net/clients.h
-@@ -49,6 +49,12 @@ int net_init_bridge(const NetClientOptio
+@@ -5137,6 +5226,9 @@
+ if test "$tasn1" = "yes" ; then
+   echo "CONFIG_TASN1=y" >> $config_host_mak
+ fi
++if test "$have_ifaddrs_h" = "yes" ; then
++    echo "HAVE_IFADDRS_H=y" >> $config_host_mak
++fi
+ if test "$vte" = "yes" ; then
+   echo "CONFIG_VTE=y" >> $config_host_mak
+   echo "VTE_CFLAGS=$vte_cflags" >> $config_host_mak
+diff -ruN net/clients.h net/clients.h
+--- net/clients.h	2015-12-17 04:04:50.000000000 +0600
++++ net/clients.h	2015-12-25 01:32:09.000000000 +0600
+@@ -47,6 +47,11 @@
+ int net_init_bridge(const NetClientOptions *opts, const char *name,
+                     NetClientState *peer, Error **errp);
  
- int net_init_l2tpv3(const NetClientOptions *opts, const char *name,
-                     NetClientState *peer);
-+
 +#ifdef CONFIG_PCAP
 +int net_init_pcap(const NetClientOptions *opts, const char *name,
-+                  NetClientState *peer);
++                  NetClientState *peer, Error **errp);
 +#endif
 +
+ int net_init_l2tpv3(const NetClientOptions *opts, const char *name,
+                     NetClientState *peer, Error **errp);
  #ifdef CONFIG_VDE
- int net_init_vde(const NetClientOptions *opts, const char *name,
-                  NetClientState *peer);
-Index: net/net.c
-@@ -40,6 +40,11 @@
- #include "qapi/opts-visitor.h"
- #include "qapi/dealloc-visitor.h"
+diff -ruN net/hub.c net/hub.c
+--- net/hub.c	2015-12-17 04:04:50.000000000 +0600
++++ net/hub.c	2015-12-25 01:32:09.000000000 +0600
+@@ -322,6 +322,7 @@
+             case NET_CLIENT_OPTIONS_KIND_SOCKET:
+             case NET_CLIENT_OPTIONS_KIND_VDE:
+             case NET_CLIENT_OPTIONS_KIND_VHOST_USER:
++            case NET_CLIENT_OPTIONS_KIND_PCAP:
+                 has_host_dev = 1;
+                 break;
+             default:
+diff -ruN net/net.c net/net.c
+--- net/net.c	2015-12-17 04:04:50.000000000 +0600
++++ net/net.c	2015-12-25 01:32:09.000000000 +0600
+@@ -46,6 +46,11 @@
+ #include "sysemu/sysemu.h"
+ #include "net/filter.h"
  
 +#include <sys/ioctl.h>
 +#ifdef __FreeBSD__
@@ -124,7 +186,7 @@ Index: net/net.c
  /* Net bridge is currently not supported for W32. */
  #if !defined(_WIN32)
  # define CONFIG_NET_BRIDGE
-@@ -704,6 +709,221 @@ static int net_init_nic(const NetClientO
+@@ -942,8 +947,224 @@
      return idx;
  }
  
@@ -199,9 +261,10 @@ Index: net/net.c
 + * ... -net pcap,ifname="..."
 + */
 +
-+int net_init_pcap(const NetClientOptions *opts, const char *name, NetClientState *peer)
++int net_init_pcap(const NetClientOptions *opts,
++    const char *name, NetClientState *peer, Error **errp)
 +{
-+    const NetdevPcapOptions *pcap_opts = opts->pcap;
++    const NetdevPcapOptions *pcap_opts = opts->u.pcap;
 +    NetClientState *nc;
 +    struct PCAPState *s;
 +    const char *ifname;
@@ -344,9 +407,12 @@ Index: net/net.c
 +
 +#endif
  
- static int (* const net_client_init_fun[NET_CLIENT_OPTIONS_KIND_MAX])(
+-static int (* const net_client_init_fun[NET_CLIENT_OPTIONS_KIND_MAX])(
++static int (* const net_client_init_fun[NET_CLIENT_OPTIONS_KIND_MAX])(
      const NetClientOptions *opts,
-@@ -722,6 +944,9 @@ static int (* const net_client_init_fun[
+     const char *name,
+     NetClientState *peer, Error **errp) = {
+@@ -963,6 +1184,9 @@
  #ifdef CONFIG_NET_BRIDGE
          [NET_CLIENT_OPTIONS_KIND_BRIDGE]    = net_init_bridge,
  #endif
@@ -354,36 +420,27 @@ Index: net/net.c
 +	[NET_CLIENT_OPTIONS_KIND_PCAP]      = net_init_pcap,
 +#endif
          [NET_CLIENT_OPTIONS_KIND_HUBPORT]   = net_init_hubport,
- };
- 
---- qapi-schema.json.orig
-+++ qapi-schema.json
-@@ -2165,6 +2165,10 @@
+ #ifdef CONFIG_VHOST_NET_USED
+         [NET_CLIENT_OPTIONS_KIND_VHOST_USER] = net_init_vhost_user,
+diff -ruN qapi-schema.json qapi-schema.json
+--- qapi-schema.json	2015-12-17 04:04:50.000000000 +0600
++++ qapi-schema.json	2015-12-25 01:32:09.000000000 +0600
+@@ -2538,6 +2538,10 @@
      '*br':     'str',
      '*helper': 'str' } }
  
-+{ 'type': 'NetdevPcapOptions',
++{ 'struct': 'NetdevPcapOptions',
 +  'data': {
 +    '*ifname':     'str' } }
 +
  ##
  # @NetdevHubPortOptions
  #
-@@ -2232,6 +2236,7 @@
+@@ -2608,6 +2612,7 @@
+     'nic':      'NetLegacyNicOptions',
      'user':     'NetdevUserOptions',
      'tap':      'NetdevTapOptions',
-     'l2tpv3':   'NetdevL2TPv3Options',
 +    'pcap':     'NetdevPcapOptions',
+     'l2tpv3':   'NetdevL2TPv3Options',
      'socket':   'NetdevSocketOptions',
      'vde':      'NetdevVdeOptions',
-     'dump':     'NetdevDumpOptions',
---- net/hub.c.orig
-+++ net/hub.c
-@@ -325,6 +325,7 @@ void net_hub_check_clients(void)
-             case NET_CLIENT_OPTIONS_KIND_VHOST_USER:
-+            case NET_CLIENT_OPTIONS_KIND_PCAP:
-                 has_host_dev = 1;
-                 break;
-             default:
-                 break;
-             }

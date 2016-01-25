@@ -43,6 +43,7 @@
     SUBDIR += aop
     SUBDIR += apoolGL
     SUBDIR += apricots
+    SUBDIR += aquaria
     SUBDIR += arkanoidsb
     SUBDIR += armagetron
     SUBDIR += arx-libertatis
@@ -188,6 +189,7 @@
     SUBDIR += darkplaces
     SUBDIR += dcross
     SUBDIR += defendguin
+    SUBDIR += dhewm3
     SUBDIR += diameter
     SUBDIR += diaspora
     SUBDIR += digger-vgl
@@ -210,7 +212,6 @@
     SUBDIR += dsnake
     SUBDIR += duckmaze
     SUBDIR += duel
-    SUBDIR += duke3d-data
     SUBDIR += dunelegacy
     SUBDIR += dungeon
     SUBDIR += dungeoncrawl
@@ -229,6 +230,7 @@
     SUBDIR += ember
     SUBDIR += endgame-singularity
     SUBDIR += endgame-singularity-music
+    SUBDIR += endless-sky
     SUBDIR += enigma
     SUBDIR += ensemblist
     SUBDIR += entombed
@@ -307,7 +309,6 @@
     SUBDIR += fxsudoku
     SUBDIR += galaxis
     SUBDIR += galaxyhack
-    SUBDIR += galaxymage
     SUBDIR += garith
     SUBDIR += gbottler
     SUBDIR += gbrainy
@@ -447,7 +448,6 @@
     SUBDIR += kajaani-kombat
     SUBDIR += kajongg
     SUBDIR += kanagram
-    SUBDIR += kanatest
     SUBDIR += kapman
     SUBDIR += kardsgt
     SUBDIR += kartofel
@@ -516,12 +516,11 @@
     SUBDIR += libkmahjongg
     SUBDIR += libmaitretarot
     SUBDIR += libmt_client
+    SUBDIR += libretro-cores
     SUBDIR += libshhcards
     SUBDIR += lightsoff
     SUBDIR += lincity
     SUBDIR += lincity-ng
-    SUBDIR += linux-candycruncher-demo
-    SUBDIR += linux-coldwar-demo
     SUBDIR += linux-darwinia-demo
     SUBDIR += linux-defcon
     SUBDIR += linux-doom3
@@ -536,11 +535,7 @@
     SUBDIR += linux-enemyterritory-tce
     SUBDIR += linux-etqw-demo-server
     SUBDIR += linux-etqw-server
-    SUBDIR += linux-gorky17-demo
-    SUBDIR += linux-hdb-demo
-    SUBDIR += linux-majesty-demo
     SUBDIR += linux-nerogame
-    SUBDIR += linux-ningpo-demo
     SUBDIR += linux-nwnclient
     SUBDIR += linux-nwserver
     SUBDIR += linux-quake3
@@ -548,7 +543,6 @@
     SUBDIR += linux-quake4
     SUBDIR += linux-quake4-demo
     SUBDIR += linux-rtcw
-    SUBDIR += linux-skulltag
     SUBDIR += linux-ssamtfe
     SUBDIR += linux-ssamtse
     SUBDIR += linux-unrealgold
@@ -622,6 +616,7 @@
     SUBDIR += nadar
     SUBDIR += naev
     SUBDIR += naev-data
+    SUBDIR += narcissu2
     SUBDIR += nazghul
     SUBDIR += nehquake
     SUBDIR += nelly
@@ -686,6 +681,7 @@
     SUBDIR += openlierox
     SUBDIR += openmortal
     SUBDIR += openmsx
+    SUBDIR += openmw
     SUBDIR += openpref
     SUBDIR += openra
     SUBDIR += opensfx
@@ -838,6 +834,7 @@
     SUBDIR += reminiscence
     SUBDIR += rescue
     SUBDIR += residualvm
+    SUBDIR += retroarch
     SUBDIR += rezerwar
     SUBDIR += rfksay
     SUBDIR += ri-li
@@ -852,6 +849,7 @@
     SUBDIR += rt2-demo
     SUBDIR += rtb
     SUBDIR += rubix
+    SUBDIR += rubygem-fortune_gem
     SUBDIR += sampsvr
     SUBDIR += sarien
     SUBDIR += sauerbraten
@@ -901,6 +899,7 @@
     SUBDIR += sol
     SUBDIR += solarconquest
     SUBDIR += solarus
+    SUBDIR += solarus-quest-editor
     SUBDIR += solarwolf
     SUBDIR += sopwith
     SUBDIR += spacejunk
@@ -931,7 +930,7 @@
     SUBDIR += super_mario_bros_python
     SUBDIR += super_methane_brothers
     SUBDIR += supertux
-    SUBDIR += supertux-devel
+    SUBDIR += supertux2
     SUBDIR += supertuxkart
     SUBDIR += swell-foop
     SUBDIR += sxsame

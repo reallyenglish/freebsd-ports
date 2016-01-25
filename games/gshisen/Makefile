@@ -11,12 +11,10 @@ DISTNAME=	GShisen-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Shisen-sho puzzle game for GNUstep
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 
 USES=		gnustep
 USE_GNUSTEP=	back build
-
-MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Applications/GShisen.app/GShisen

@@ -5,7 +5,7 @@ PORTVERSION=	2.1.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	milki@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ruby gem for storing application configuration
 
 LICENSE=	MIT
@@ -15,20 +15,11 @@ OPTIONS_DEFAULT=	SQLITE3
 
 MONGO_DESC=	mongo backend support
 SQLITE3_DESC=	sqlite3 backend support
-OPTIONSFILE=	${PORT_DBDIR}/rubygem-${PORTNAME}/options
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MSQLITE3}
-RUN_DEPENDS+=	rubygem-sqlite3>=0:${PORTSDIR}/databases/rubygem-sqlite3
-.endif
-
-.if ${PORT_OPTIONS:MMONGO}
-RUN_DEPENDS+=	rubygem-mongo>=0:${PORTSDIR}/devel/rubygem-mongo
-.endif
+MONGO_RUN_DEPENDS=	rubygem-mongo>=0:${PORTSDIR}/devel/rubygem-mongo
+SQLITE3_RUN_DEPENDS=	rubygem-sqlite3>=0:${PORTSDIR}/databases/rubygem-sqlite3
 
 NO_ARCH=	yes
-
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes

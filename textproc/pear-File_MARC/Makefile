@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	File_MARC
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.2
 CATEGORIES=	textproc pear
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	miwi@FreeBSD.org
 COMMENT=	Parse, modify, and create MARC records
 
 USES=	pear

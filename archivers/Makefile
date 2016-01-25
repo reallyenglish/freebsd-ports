@@ -11,6 +11,7 @@
     SUBDIR += ark
     SUBDIR += atool
     SUBDIR += bicom
+    SUBDIR += brotli
     SUBDIR += bzip
     SUBDIR += bzip2
     SUBDIR += cabextract
@@ -26,7 +27,6 @@
     SUBDIR += fastjar
     SUBDIR += file-roller
     SUBDIR += fpc-bzip2
-    SUBDIR += fpc-paszlib
     SUBDIR += fpc-unzip
     SUBDIR += freetar
     SUBDIR += freeze
@@ -46,6 +46,7 @@
     SUBDIR += hs-zlib
     SUBDIR += hs-zlib-bindings
     SUBDIR += hs-zlib-enum
+    SUBDIR += innoextract
     SUBDIR += javatar
     SUBDIR += jzip.org
     SUBDIR += jzlib
@@ -136,6 +137,7 @@
     SUBDIR += pear-Horde_Compress_Fast
     SUBDIR += pear-Horde_Pack
     SUBDIR += pear-PHP_Archive
+    SUBDIR += peazip
     SUBDIR += pecl-lzf
     SUBDIR += pecl-phk
     SUBDIR += pecl-rar
@@ -161,13 +163,17 @@
     SUBDIR += ppunpack
     SUBDIR += pxz
     SUBDIR += py-attic
-    SUBDIR += py-liblzma
+    SUBDIR += py-bz2file
     SUBDIR += py-librtfcomp
     SUBDIR += py-lz4
     SUBDIR += py-lzma
+    SUBDIR += py-pyliblzma
     SUBDIR += py-python-snappy
+    SUBDIR += py-rarfile
+    SUBDIR += py-warctools
     SUBDIR += qpress
     SUBDIR += quazip
+    SUBDIR += quazip-qt5
     SUBDIR += rar
     SUBDIR += rox-archive
     SUBDIR += rpm2cpio
@@ -187,6 +193,7 @@
     SUBDIR += sharutils
     SUBDIR += snappy
     SUBDIR += snappy-java
+    SUBDIR += snzip
     SUBDIR += squeeze
     SUBDIR += squsq
     SUBDIR += stuffit
@@ -199,6 +206,7 @@
     SUBDIR += unace
     SUBDIR += unadf
     SUBDIR += unalz
+    SUBDIR += unarchiver
     SUBDIR += unarj
     SUBDIR += undms
     SUBDIR += unfoo
@@ -212,7 +220,6 @@
     SUBDIR += unzip
     SUBDIR += unzoo
     SUBDIR += upx
-    SUBDIR += wzip
     SUBDIR += xar
     SUBDIR += xarchive
     SUBDIR += xarchiver

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	vuze
-PORTVERSION=	5.6.1.2
+PORTVERSION=	5.7.0.0
 CATEGORIES=	net-p2p java
 MASTER_SITES=	SF/azureus/vuze/Vuze_${PORTVERSION:S/.//g}
 DISTNAME=	Vuze_${PORTVERSION:S/.//g}_source
@@ -11,6 +11,7 @@ MAINTAINER=	pawel@FreeBSD.org
 COMMENT=	BitTorrent client written in Java
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/GPL.txt
 
 BUILD_DEPENDS=	${JAVALIBDIR}/log4j.jar:${PORTSDIR}/devel/log4j \
 		${JAVALIBDIR}/commons-cli.jar:${PORTSDIR}/java/jakarta-commons-cli \
@@ -65,7 +66,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
 .for s in 16 32 64
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps
-	${INSTALL_DATA} ${WRKDIR}/org/gudy/azureus2/ui/icons/a${s}.png \
+	${INSTALL_DATA} ${WRKSRC}/org/gudy/azureus2/ui/icons/a${s}.png \
 		${STAGEDIR}${PREFIX}/share/icons/hicolor/${s}x${s}/apps/${PORTNAME}.png
 .endfor
 

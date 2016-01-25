@@ -10,7 +10,9 @@ MASTER_SITES=	SF/${PORTNAME}/pyChing/${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Consult a I Ching, an ancient Chinese book of wisdom
 
-LICENSE=	GPLv2 # or later
+BROKEN=		unfetchable
+
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tkinter>0:${PORTSDIR}/x11-toolkits/py-tkinter

@@ -23,18 +23,16 @@ CONFIGURE_ARGS=	--datadir=${PREFIX}/lib \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
+MAKE_JOBS_UNSAFE=	yes
+
 OPTIONS_DEFINE=		SYS_LINALG
+
 SYS_LINALG_DESC=	Enable system ATLAS/LAPACK
 SYS_LINALG_LIB_DEPENDS=	libatlas.so:${PORTSDIR}/math/atlas
 SYS_LINALG_CONFIGURE_ENABLE=	sys-linalg
 
-.include <bsd.port.options.mk>
-
-.if ${OSVERSION} > 900000
-BROKEN_powerpc=	Does not build on powerpc-9: error in pthreads
-.endif
-
 post-patch:
+	@${REINPLACE_CMD} -e '/altivec/s|-f|-m|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
 		's|\([[:blank:]]\)\($$(BINDIR)\)|\1$$(DESTDIR)\2| ; \
 		 s|\([[:blank:]]\)\($$(DATADIR)\)|\1$$(DESTDIR)\2| ; \

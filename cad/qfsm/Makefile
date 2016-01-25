@@ -10,7 +10,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Graphical tool for designing finite state machines
 
-LICENSE=	GPLv3 # (or later)
+LICENSE=	GPLv3+
 
 OPTIONS_DEFINE=	GRAPHVIZ DOCS EXAMPLES
 
@@ -24,23 +24,19 @@ GRAPHVIZ_BUILD_DEPENDS=	graphviz>=2.22:${PORTSDIR}/graphics/graphviz
 GRAPHVIZ_RUN_DEPENDS=	graphviz>=2.22:${PORTSDIR}/graphics/graphviz
 GRAPHVIZ_CMAKE_OFF=	-DQFSM_AVOID_GRAPHVIZ:BOOL=ON
 
-.include <bsd.port.options.mk>
-
 pre-configure:
 	${REINPLACE_CMD} -e \
 		'/\/usr\//d' ${WRKSRC}/FindGraphViz.cmake
 	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|'			\
 		-e '/examples/s|share/qfsm|share/examples/${PORTNAME}|'	\
 		${WRKSRC}/CMakeLists.txt
-.if ${PORT_OPTIONS:MDOCS}
+pre-configure-DOCS-on:
 	${REINPLACE_CMD} -e 's|%%PD%%||' ${WRKSRC}/CMakeLists.txt
-.else
+pre-configure-DOCS-off:
 	${REINPLACE_CMD} -e 's|%%PD%%|#|' ${WRKSRC}/CMakeLists.txt
-.endif
-.if ${PORT_OPTIONS:MEXAMPLES}
+pre-configure-EXAMPLES-on:
 	${REINPLACE_CMD} -e 's|%%PE%%||' ${WRKSRC}/CMakeLists.txt
-.else
+pre-configure-EXAMPLES-off:
 	${REINPLACE_CMD} -e 's|%%PE%%|#|' ${WRKSRC}/CMakeLists.txt
-.endif
 
 .include <bsd.port.mk>

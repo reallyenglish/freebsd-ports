@@ -1,12 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	renpy
-PORTVERSION=	6.99.5
+PORTVERSION=	6.99.8
 DISTVERSIONSUFFIX=-sdk
-PORTREVISION=	1
 CATEGORIES=	devel games
 MASTER_SITES=	http://www.renpy.org/dl/${PORTVERSION}/
-#MASTER_SITES+=	GENTOO
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Framework for developing visual-novel type games
@@ -17,25 +15,24 @@ LICENSE_NAME_DejaVu=	Bitstream Vera and Arev fonts license
 LICENSE_FILE_DejaVu=	${WRKSRC}/renpy/common/DejaVuSans.txt
 LICENSE_PERMS_DejaVu=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}game_sdl2>=6.99.5:${PORTSDIR}/devel/py-game_sdl2 \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}game_sdl2>0:${PORTSDIR}/devel/py-game_sdl2 \
 		cython:${PORTSDIR}/lang/cython
 LIB_DEPENDS=	libfribidi.so:${PORTSDIR}/converters/fribidi \
-		libGLEW.so:${PORTSDIR}/graphics/glew \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libavcodec.so:${PORTSDIR}/multimedia/ffmpeg \
 		libfreetype.so:${PORTSDIR}/print/freetype2
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}game_sdl2>=6.99.5:${PORTSDIR}/devel/py-game_sdl2
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}game_sdl2>=${PORTVERSION}:${PORTSDIR}/devel/py-game_sdl2
 
 # Upstream tends to reroll distfiles before moving under /release/
 PORTSCOUT=	site:http://www.renpy.org/dl/release/
 
 USES=		python:2.7 shebangfix tar:bz2
+USE_GL=		glew
 USE_PYTHON=	autoplist distutils
 USE_SDL=	sdl2
 EXCLUDE=	gen 'module/*.py[co]' 'renpy/*.py[co]'
 EXTRACT_AFTER_ARGS=${EXCLUDE:S,^,--exclude ,}
 SHEBANG_FILES=	renpy.py launcher/game/tkaskdir.py
-python_OLD_CMD=	/usr/bin/env python
 BUILD_WRKSRC=	${WRKSRC}/module
 INSTALL_WRKSRC=	${BUILD_WRKSRC}
 MAKE_ENV+=	RENPY_DEPS_INSTALL="${LOCALBASE}"
@@ -54,25 +51,18 @@ OPTIONS_DEFAULT=TKINTER DIST
 OPTIONS_DEFINE=	DOCS DIST EXAMPLES TKINTER
 
 DIST_DESC=	Distribution runtimes for Windows, OS X, Linux
+DIST_VARS=	LICENSE+="ART20 PSFL" \
+		PORTDATA+="lib renpy.app renpy.exe renpy.sh"
+EXAMPLES_VARS=	PORTDATA+="the_question tutorial"
 TKINTER_DESC=	Install Tkinter to allow choosing Projects Directory
 TKINTER_RUN_DEPENDS=${PYTHON_PKGNAMEPREFIX}tkinter>0:${PORTSDIR}/x11-toolkits/py-tkinter
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MDIST}
-LICENSE+=	ART20 PSFL
-PORTDATA+=	lib renpy.app renpy.exe renpy.sh
 . for lic in FREETYPE LIBJPEG LIBPNG MSVCR90
-LICENSE+=	${lic}
+DIST_VARS+=	LICENSE+=${lic}
 LICENSE_NAME_${lic}=	${lic} license
 LICENSE_FILE_${lic}=	${WRKSRC}/LICENSE.txt
 LICENSE_PERMS_${lic}=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 . endfor
-.endif
-
-.if ${PORT_OPTIONS:MEXAMPLES}
-PORTDATA+=	the_question tutorial
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/bin/python,${PYTHON_CMD},' \

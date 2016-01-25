@@ -2,6 +2,7 @@
 
 PORTNAME=	hping
 PORTVERSION=	3.0.20051105
+PORTREVISION=	2
 CATEGORIES=	net security
 MASTER_SITES=	http://www.hping.org/ \
 		http://200ok.org/distfiles/hping/
@@ -13,7 +14,6 @@ COMMENT=	Network auditing tool
 
 LIB_DEPENDS=	libtcl84.so:${PORTSDIR}/lang/tcl84
 
-NO_LATEST_LINK=	yes
 CONFLICTS=	hping-[0-9]*
 
 GNU_CONFIGURE=	yes
@@ -29,6 +29,12 @@ PORTEXAMPLES=	README apd.htcl apd2.htcl ciscoios.htcl ciscoios0.htcl \
 		passivets.htcl ping.htcl raw.htcl show-tcpseq.htcl \
 		showled.htcl
 
+.include <bsd.port.pre.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100030
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-sendip.c
+.endif
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/hping3 ${STAGEDIR}${PREFIX}/sbin/hping
 	${INSTALL_MAN} ${WRKSRC}/docs/hping3.8 ${STAGEDIR}${PREFIX}/man/man8/hping.8
@@ -43,4 +49,4 @@ do-install:
 .endfor
 	${INSTALL_DATA} ${PORTEXAMPLES:S|^|${WRKSRC}/lib/|} ${STAGEDIR}${EXAMPLESDIR}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

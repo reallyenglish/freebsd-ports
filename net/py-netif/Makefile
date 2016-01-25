@@ -16,7 +16,7 @@ BUILD_DEPENDS=	cython>0:${PORTSDIR}/lang/cython
 USE_GITHUB=     yes
 GH_ACCOUNT=	freenas
 GH_PROJECT=	py-netif
-GH_TAGNAME=	87ed51c
+GH_TAGNAME=	4432c12
 
 USES=		python
 USE_PYTHON=	autoplist distutils
@@ -27,8 +27,8 @@ USE_PYTHON=	autoplist distutils
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}enum34>0:${PORTSDIR}/devel/py-enum34
 .endif
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} <= 1000000
-IGNORE=	This module requires at least FreeBSD 10
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100036
+IGNORE=	This module requires at least FreeBSD 11
 .endif
 
 .include <bsd.port.post.mk>

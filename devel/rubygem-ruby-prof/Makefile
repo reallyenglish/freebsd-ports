@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ruby-prof
-PORTVERSION=	0.15.8
+PORTVERSION=	0.15.9
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -10,6 +10,7 @@ MAINTAINER=	ruby@FreeBSD.org
 COMMENT=	Fast profiler for Ruby
 
 LICENSE=	BSD2CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_RUBY=	yes
 USE_RUBYGEMS=	yes

@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.9.1-10
-PORTREVISION=	1
+DISTVERSION=	6.9.3-1
 PORTEPOCH=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	http://www.imagemagick.org/download/ \
@@ -107,7 +106,7 @@ _IMAGEMAGICK_THREADS_IGNORE_MSG=. Define WITH_THREADS
 .endif
 
 .if ${PORT_OPTIONS:MPERL}
-CONFIGURE_ARGS+=	--with-perl=${PERL5} \
+CONFIGURE_ARGS+=	--with-perl=${PERL} \
 			--with-perl-options="MAKE=${MAKE_CMD}"
 PLIST_SUB+=		WITH_PERL=''
 # PerlMagick does not work with threads, if perl is not threaded, and vice versa
@@ -221,9 +220,9 @@ PLIST_SUB+=		TIFF="@comment "
 .if ${PORT_OPTIONS:MGSLIB}
 CONFIGURE_ARGS+=	--with-gslib
 . if ${PORT_OPTIONS:MX11}
-USES+=		ghostscript
+USES+=		ghostscript:x11
 . else
-USES+=		ghostscript:nox11
+USES+=		ghostscript
 . endif
 .else
 CONFIGURE_ARGS+=	--without-gslib
@@ -358,9 +357,9 @@ PLIST_SUB+=		PANGO="@comment "
 # PDF (Adobe Portable Document Format) support
 .if ${PORT_OPTIONS:MPDF}
 . if ${PORT_OPTIONS:MX11}
-USES+=			ghostscript
+USES+=			ghostscript:x11
 . else
-USES+=			ghostscript:nox11
+USES+=			ghostscript
 . endif
 .endif
 
@@ -385,9 +384,9 @@ INSTALL_TARGET=	install-strip
 
 .if ${PORT_OPTIONS:MTESTS}
 . if ${PORT_OPTIONS:MX11}
-USES+=		ghostscript:build
+USES+=		ghostscript:x11,build
 . else
-USES+=		ghostscript:build,nox11
+USES+=		ghostscript:build
 . endif
 .endif
 
@@ -418,15 +417,15 @@ pre-configure:
 	@${ECHO_CMD} NOTICE: SVG format support disabled, requires X11
 .endif
 
-post-install: test
+post-install:
 .for i in ${SAMPLE_FILES}
 	@${MV} ${STAGEDIR}${PREFIX}/etc/ImageMagick-6/${i} \
 		${STAGEDIR}${PREFIX}/etc/ImageMagick-6/${i}.sample
 .endfor
 
-test check:
-.if ${PORT_OPTIONS:MTESTS}
+post-install-TESTS-on: test
+
+do-test:
 	-cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} limits -m 20m ${MAKE} ${_MAKE_JOBS} check
-.endif
 
 .include <bsd.port.mk>

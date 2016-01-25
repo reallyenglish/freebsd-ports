@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	prosody
-PORTVERSION=	0.9.8
+PORTVERSION=	0.9.9
 CATEGORIES=	net-im
 MASTER_SITES=	http://prosody.im/downloads/source/ \
 		http://redundancy.redundancy.org/mirror/
@@ -32,9 +32,7 @@ LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
 .include <bsd.port.options.mk>
 
 USES=		cpe gmake lua:51 shebangfix
-SHEBANG_LANG=	lua
 SHEBANG_FILES=	prosody prosodyctl
-lua_OLD_CMD=	${SETENV} lua
 .if ${PORT_OPTIONS:MLUAJIT}
 lua_CMD=	${LOCALBASE}/bin/luajit
 .else

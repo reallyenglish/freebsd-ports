@@ -24,7 +24,6 @@ include/gnucash/Split.h
 include/gnucash/TransLog.h
 include/gnucash/Transaction.h
 include/gnucash/account-quickfill.h
-include/gnucash/assistant-utils.h
 include/gnucash/assistant-xml-encoding.h
 include/gnucash/basiccell.h
 include/gnucash/business-helpers.h
@@ -441,6 +440,10 @@ share/applications/gnucash.desktop
 %%PORTDOCS%%%%DOCSDIR%%/AUTHORS
 %%PORTDOCS%%%%DOCSDIR%%/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog.1999
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog.2000
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog.2001
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog.2002
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog.2003
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog.2004
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog.2005
@@ -748,6 +751,7 @@ share/applications/gnucash.desktop
 %%DATADIR%%/accounts/nb/acctchrt_spouseretire.gnucash-xea
 %%DATADIR%%/accounts/nl/acctchrt_checkbook.gnucash-xea
 %%DATADIR%%/accounts/nl/acctchrt_full.gnucash-xea
+%%DATADIR%%/accounts/nl/acctchrt_rgs_1.1.gnucash-xea
 %%DATADIR%%/accounts/pl/acctchrt_brokerage.gnucash-xea
 %%DATADIR%%/accounts/pl/acctchrt_business.gnucash-xea
 %%DATADIR%%/accounts/pl/acctchrt_carloan.gnucash-xea
@@ -1177,6 +1181,7 @@ share/icons/hicolor/96x96/apps/gnucash-icon.png
 share/icons/hicolor/scalable/apps/gnucash-icon.svg
 share/locale/ar/LC_MESSAGES/gnucash.mo
 share/locale/as/LC_MESSAGES/gnucash.mo
+share/locale/az/LC_MESSAGES/gnucash.mo
 share/locale/bg/LC_MESSAGES/gnucash.mo
 share/locale/brx/LC_MESSAGES/gnucash.mo
 share/locale/ca/LC_MESSAGES/gnucash.mo
@@ -1215,6 +1220,7 @@ share/locale/nl/LC_MESSAGES/gnucash.mo
 share/locale/pl/LC_MESSAGES/gnucash.mo
 share/locale/pt/LC_MESSAGES/gnucash.mo
 share/locale/pt_BR/LC_MESSAGES/gnucash.mo
+share/locale/pt_PT/LC_MESSAGES/gnucash.mo
 share/locale/ro/LC_MESSAGES/gnucash.mo
 share/locale/ru/LC_MESSAGES/gnucash.mo
 share/locale/rw/LC_MESSAGES/gnucash.mo

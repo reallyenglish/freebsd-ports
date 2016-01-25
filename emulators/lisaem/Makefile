@@ -3,7 +3,7 @@
 
 PORTNAME=	lisaem
 DISTVERSION=	1.2.6
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	emulators
 MASTER_SITES=	http://lisaem.sunder.net/downloads/
 
@@ -12,7 +12,7 @@ COMMENT=	Apple Lisa 2 Emulator
 
 BUILD_DEPENDS=	pngtopnm:${PORTSDIR}/graphics/netpbm
 
-LICENSE=	GPLv2 # (or later)
+LICENSE=	GPLv2+
 
 USES=		tar:bzip2
 USE_WX=		2.8

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	eog-plugins
-PORTVERSION=	3.16.0
-PORTREVISION=	1
+PORTVERSION=	3.16.3
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -19,7 +18,7 @@ RUN_DEPENDS=	eog:${PORTSDIR}/graphics/eog
 
 PORTSCOUT=	limitw:1,even
 
-USE_GNOME=	intlhack gtk30
+USE_GNOME=	intltool gtk30
 USES=		gettext gmake libtool pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -64,4 +63,14 @@ post-patch:
 		${WRKSRC}/configure
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 3500
+PYOEXTENSION=	pyo
+.else
+PYOEXTENSION=	opt-1.pyc
+.endif
+
+PLIST_SUB+=	PYOEXTENSION=${PYOEXTENSION}
+
+.include <bsd.port.post.mk>

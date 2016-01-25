@@ -1,15 +1,15 @@
-# Created by: Pakhom Golynga <pakhom706@gmail.com>
+# Created by: Pakhom Golynga <pakhom@pakhom.spb.ru>
 # $FreeBSD$
 
 PORTNAME=	zabbix24
-PORTVERSION=	2.4.5
+PORTVERSION=	2.4.7
 PORTREVISION?=	0
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/zabbix/ZABBIX%20Latest%20Stable/${PORTVERSION}
 PKGNAMESUFFIX?=	-server
 DISTNAME=	zabbix-${PORTVERSION}
 
-MAINTAINER=	pakhom706@gmail.com
+MAINTAINER=	pakhom@pakhom.spb.ru
 COMMENT=	Enterprise-class open source distributed monitoring (${PKGNAMESUFFIX:S/^-//})
 
 LICENSE=	GPLv2
@@ -60,14 +60,16 @@ CONFIGURE_ARGS+=	--enable-${ZABBIX_BUILD} \
 			--with-iconv=${ICONV_PREFIX}
 
 .if ${ZABBIX_BUILD} != "agent"
-LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp \
-		libexecinfo.so:${PORTSDIR}/devel/libexecinfo
+LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
+USES+=		execinfo
+
+CPPFLAGS+=	${EXECINFO_CPPFLAGS}
+LDFLAGS+=	${EXECINFO_LDFLAGS}
 
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS+=	--with-net-snmp
 
-OPTIONSFILE=		${PORT_DBDIR}/${PORTNAME}${PKGNAMESUFFIX}/options
 OPTIONS_DEFINE=		IPV6 FPING JABBER CURL LDAP IPMI SSH NMAP JAVAGW \
 			LIBXML2
 OPTIONS_DEFAULT=	IPV6 FPING JABBER CURL UNIXODBC MYSQL SSH

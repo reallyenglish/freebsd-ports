@@ -174,14 +174,14 @@ RUBY?=			${LOCALBASE}/bin/${RUBY_NAME}
 RUBY_RELVERSION=	2.0.0
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
-RUBY_PATCHLEVEL=	645
+RUBY_PATCHLEVEL=	648
 RUBY20=			""	# PLIST_SUB helpers
 
 . elif ${RUBY_VER} == 2.1
 #
 # Ruby 2.1
 #
-RUBY_RELVERSION=	2.1.6
+RUBY_RELVERSION=	2.1.8
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
 RUBY_PATCHLEVEL=	0
@@ -191,17 +191,27 @@ RUBY21=			""	# PLIST_SUB helpers
 #
 # Ruby 2.2
 #
-RUBY_RELVERSION=	2.2.2
+RUBY_RELVERSION=	2.2.4
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
 RUBY_PATCHLEVEL=	0
 RUBY22=			""	# PLIST_SUB helpers
 
+. elif ${RUBY_VER} == 2.3
+#
+# Ruby 2.3
+#
+RUBY_RELVERSION=	2.3.0
+RUBY_PORTREVISION=	0
+RUBY_PORTEPOCH=		1
+RUBY_PATCHLEVEL=	0
+RUBY23=			""	# PLIST_SUB helpers
+
 . else
 #
 # Other versions
 #
-IGNORE=	Only ruby 2.0, 2.1 and 2.2 are supported
+IGNORE=	Only ruby 2.0, 2.1, 2.2 and 2.3 are supported
 _INVALID_RUBY_VER=	1
 . endif
 .endif # defined(RUBY_VER)
@@ -211,6 +221,15 @@ _INVALID_RUBY_VER=	1
 RUBY20?=		"@comment "
 RUBY21?=		"@comment "
 RUBY22?=		"@comment "
+RUBY23?=		"@comment "
+
+.if defined(BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E})
+.if ${BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E}} == "yes"
+BROKEN=			does not build with Ruby ${RUBY_VER}
+.else
+BROKEN=			${BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E}}
+.endif
+.endif
 
 .if ${RUBY_PATCHLEVEL} == 0
 RUBY_VERSION?=		${RUBY_RELVERSION}
@@ -341,7 +360,8 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
 			RUBY20=${RUBY20} \
 			RUBY21=${RUBY21} \
-			RUBY22=${RUBY22}
+			RUBY22=${RUBY22} \
+			RUBY23=${RUBY23}
 
 .if defined(USE_RUBY_RDOC)
 MAKE_ENV+=	RUBY_RDOC=${RUBY_RDOC}

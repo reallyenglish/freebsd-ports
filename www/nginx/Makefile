@@ -58,6 +58,7 @@ OPTIONS_DEFINE=	\
 	AJP \
 	CACHE_PURGE \
 	CLOJURE \
+	CT \
 	ECHO \
 	HEADERS_MORE \
 	HTTP_ACCEPT_LANGUAGE \
@@ -77,6 +78,7 @@ OPTIONS_DEFINE=	\
 	HTTP_REDIS \
 	HTTP_RESPONSE \
 	HTTP_SUBS_FILTER \
+	HTTP_TARANTOOL \
 	HTTP_UPLOAD \
 	HTTP_UPLOAD_PROGRESS \
 	HTTP_UPSTREAM_FAIR \
@@ -101,6 +103,7 @@ OPTIONS_DEFINE=	\
 	RTMP \
 	SET_MISC \
 	SFLOW \
+	SHIBBOLETH \
 	SLOWFS_CACHE \
 	SMALL_LIGHT \
 	SRCACHE \
@@ -148,6 +151,7 @@ WWW_DESC=			Enable html sample files
 AJP_DESC=			3rd party ajp module
 CACHE_PURGE_DESC=		3rd party cache_purge module
 CLOJURE_DESC=			3rd party clojure module
+CT_DESC=			3rd party cert_transparency module (SSL req.)
 ECHO_DESC=			3rd party echo module
 HEADERS_MORE_DESC=		3rd party headers_more module
 HTTP_ACCEPT_LANGUAGE_DESC=	3rd party accept_language module
@@ -168,6 +172,7 @@ HTTP_PUSH_STREAM_DESC=		3rd party push stream module
 HTTP_REDIS_DESC=		3rd party http_redis module
 HTTP_RESPONSE_DESC=		3rd party http_response module
 HTTP_SUBS_FILTER_DESC=		3rd party subs filter module
+HTTP_TARANTOOL_DESC=		3rd party tarantool upstream module
 HTTP_UPLOAD_DESC=		3rd party upload module
 HTTP_UPLOAD_PROGRESS_DESC=	3rd party uploadprogress module
 HTTP_UPSTREAM_FAIR_DESC=	3rd party upstream fair module
@@ -192,6 +197,7 @@ REDIS2_DESC=			3rd party redis2 module
 RTMP_DESC=			3rd party rtmp module
 SET_MISC_DESC=			3rd party set_misc module
 SFLOW_DESC=			3rd party sflow module
+SHIBBOLETH_DESC=		3rd party shibboleth module
 SLOWFS_CACHE_DESC=		3rd party slowfs_cache module
 SMALL_LIGHT_DESC=		3rd party small_light module
 SRCACHE_DESC=			3rd party srcache module
@@ -314,7 +320,7 @@ USES+=	gssapi:base,flags
 
 .if ${PORT_OPTIONS:MHTTP_AUTH_LDAP}
 # WWW: https://github.com/kvspb/nginx-auth-ldap
-GIT_HTTP_AUTH_LDAP_VERSION=	928856aa95
+GIT_HTTP_AUTH_LDAP_VERSION=	be8ff8eecb
 GH_ACCOUNT+=	kvspb:http_auth_ldap
 GH_PROJECT+=	nginx-auth-ldap:http_auth_ldap
 GH_TAGNAME+=	${GIT_HTTP_AUTH_LDAP_VERSION}:http_auth_ldap
@@ -359,12 +365,23 @@ JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
 JAVA_BUILD=	yes
 JAVA_RUN=	yes
-NGINX_CLOJURE_VERSION=	0.4.0
+NGINX_CLOJURE_VERSION=	0.4.3
 GH_ACCOUNT+=	nginx-clojure:clojure
 GH_PROJECT+=	nginx-clojure:clojure
 GH_TAGNAME+=	v${NGINX_CLOJURE_VERSION}:clojure
+CONFIGURE_ENV+=	"JNI_INCS=-I${LOCALBASE}/openjdk8/include -I${LOCALBASE}/openjdk8/include/freebsd"
 CONFIGURE_ARGS+=--add-module=${WRKSRC_clojure}/src/c
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-nginx-clojure-src-c-config
+.endif
+
+.if ${PORT_OPTIONS:MCT}
+GIT_CT_VERSION=	1790ac0
+GH_ACCOUNT+=	grahamedgecombe:ct
+GH_PROJECT+=	nginx-ct:ct
+GH_TAGNAME+=	${GIT_CT_VERSION}:ct
+CONFIGURE_ARGS+=--add-module=${WRKSRC_ct}
+NGINX_OPENSSL=	yes
+USE_HTTP_SSL=	yes
+USE_OPENSSL_PORT=	yes
 .endif
 
 .if ${PORT_OPTIONS:MECHO}
@@ -479,14 +496,15 @@ USES+=		perl5
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_PUSH}
-NGINX_PUSH_VERSION=	0.692
-MASTER_SITES+=	http://pushmodule.slact.net/downloads/:push
-DISTFILES+=	nginx_http_push_module-${NGINX_PUSH_VERSION}.tar.gz:push
-CONFIGURE_ARGS+=--add-module=${WRKDIR}/nginx_http_push_module-${NGINX_PUSH_VERSION}
+GIT_PUSH_VERSION=	0.731
+GH_ACCOUNT+=	slact:push
+GH_PROJECT+=	nchan:push
+GH_TAGNAME+=	v${GIT_PUSH_VERSION}:push
+CONFIGURE_ARGS+=--add-module=${WRKSRC_push}
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_PUSH_STREAM}
-NGINX_PUSH_STREAM_VERSION=	0.3.5
+NGINX_PUSH_STREAM_VERSION=	0.5.1
 GH_ACCOUNT+=	wandenberg:pushstream
 GH_PROJECT+=	nginx-push-stream-module:pushstream
 GH_TAGNAME+=	${NGINX_PUSH_STREAM_VERSION}:pushstream
@@ -523,6 +541,17 @@ GH_TAGNAME+=	${NGINX_HTTP_SUBS_FILTER_VERSION}:subs_filter
 CONFIGURE_ARGS+=--add-module=${WRKSRC_subs_filter}
 .endif
 
+.if ${PORT_OPTIONS:MHTTP_TARANTOOL}
+LIB_DEPENDS+=	libmsgpuck.so:${PORTSDIR}/devel/msgpuck \
+		libyajl.so:${PORTSDIR}/devel/yajl
+GH_ACCOUNT+=	tarantool:nginx_tarantool
+GH_PROJECT+=	nginx_upstream_module:nginx_tarantool
+GH_TAGNAME+=	966f2f5:nginx_tarantool
+CFLAGS+=	-I${LOCALBASE}/include/msgpuck
+CONFIGURE_ARGS+=--add-module=${WRKSRC_nginx_tarantool}
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_http_tarantool-config
+.endif
+
 .if ${PORT_OPTIONS:MHTTP_SECURE_LINK}
 CONFIGURE_ARGS+=--with-http_secure_link_module
 .endif
@@ -535,7 +564,7 @@ CONFIGURE_ARGS+=--with-http_stub_status_module
 CONFIGURE_ARGS+=--with-http_sub_module
 .endif
 
-.if ${PORT_OPTIONS:MHTTP_UPLOAD} 	 
+.if ${PORT_OPTIONS:MHTTP_UPLOAD}
 GIT_UPLOAD_VERSION= aba1e3f34c
 GH_ACCOUNT+=	vkholodkov:upload
 GH_PROJECT+=	nginx-upload-module:upload
@@ -580,7 +609,7 @@ CONFIGURE_ARGS+=--add-module=${WRKDIR}/mod_zip-${NGINX_ZIP_VERSION}
 
 .if ${PORT_OPTIONS:MDRIZZLE}
 LIB_DEPENDS+=	libdrizzle.so:${PORTSDIR}/databases/libdrizzle
-NGINX_DRIZZLE_VERSION=	0.1.8
+NGINX_DRIZZLE_VERSION=	0.1.9
 GH_ACCOUNT+=	openresty:drizzle
 GH_PROJECT+=	drizzle-nginx-module:drizzle
 GH_TAGNAME+=	v${NGINX_DRIZZLE_VERSION}:drizzle
@@ -625,16 +654,15 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_let}
 LIB_DEPENDS+=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
 CONFIGURE_ENV+=	"LUAJIT_INC=${LOCALBASE}/include/luajit-2.0"
 CONFIGURE_ENV+=	"LUAJIT_LIB=${LOCALBASE}/lib"
-NGINX_LUA_VERSION=	0.9.15
+NGINX_LUA_VERSION=	0.9.19
 GH_ACCOUNT+=	openresty:lua
 GH_PROJECT+=	lua-nginx-module:lua
 GH_TAGNAME+=	v${NGINX_LUA_VERSION}:lua
 CONFIGURE_ARGS+=--add-module=${WRKSRC_lua}
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_http_lua_socket_udp.c
 .endif
 
 .if ${PORT_OPTIONS:MMEMC}
-NGINX_MEMC_VERSION=	0.15
+NGINX_MEMC_VERSION=	0.16
 GH_ACCOUNT+=	openresty:memc
 GH_PROJECT+=	memc-nginx-module:memc
 GH_TAGNAME+=	v${NGINX_MEMC_VERSION}:memc
@@ -643,9 +671,10 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_memc}
 
 .if ${PORT_OPTIONS:MMODSECURITY}
 NGINX_MODSECURITY_VERSION=	2.9.0
-LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre \
-		libapr-1.so:${PORTSDIR}/devel/apr1 \
+LIB_DEPENDS+=	libapr-1.so:${PORTSDIR}/devel/apr1 \
 		libcurl.so:${PORTSDIR}/ftp/curl \
+		libluajit-5.1.so:${PORTSDIR}/lang/luajit \
+		libpcre.so:${PORTSDIR}/devel/pcre \
 		libyajl.so:${PORTSDIR}/devel/yajl
 USE_APACHE=	22+
 USE_GNOME+=	libxml2
@@ -656,10 +685,11 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-nginx-modsecurity-configure
 .endif
 
 .if ${PORT_OPTIONS:MNAXSI}
-NGINX_NAXSI_VERSION=	0.50
-MASTER_SITES+=	http://naxsi.googlecode.com/files/:naxsi
-DISTFILES+=	naxsi-core-${NGINX_NAXSI_VERSION}.tgz:naxsi
-CONFIGURE_ARGS+=--add-module=${WRKDIR}/naxsi-core-${NGINX_NAXSI_VERSION}/naxsi_src
+NGINX_NAXSI_VERSION=	0.54
+GH_ACCOUNT+=	nbs-system:naxsi
+GH_PROJECT+=	naxsi:naxsi
+GH_TAGNAME+=	${NGINX_NAXSI_VERSION}:naxsi
+CONFIGURE_ARGS+=--add-module=${WRKDIR}/naxsi-${NGINX_NAXSI_VERSION}/naxsi_src
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_REWRITE} || defined(USE_HTTP_REWRITE)
@@ -672,10 +702,10 @@ CONFIGURE_ARGS+=--without-http_rewrite_module \
 .endif
 
 .if ${PORT_OPTIONS:MPASSENGER}
-PASSENGER_VERSION=	5.0.14
+PASSENGER_VERSION=	5.0.22
 MASTER_SITES+=	http://s3.amazonaws.com/phusion-passenger/releases/:passenger
 DISTFILES+=	passenger-${PASSENGER_VERSION}.tar.gz:passenger
-CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/ext/nginx
+CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/src/nginx_module
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-passenger-build-nginx.rb
 .if empty(PORT_OPTIONS:MDEBUG)
 CONFIGURE_ENV+=	OPTIMIZE="yes"
@@ -685,7 +715,7 @@ CFLAGS+=	-DNDEBUG
 
 .if ${PORT_OPTIONS:MPOSTGRES}
 USES+=	pgsql
-NGINX_POSTGRES_VERSION=		1.0rc5-1-g49855a0
+NGINX_POSTGRES_VERSION=		1.0rc7
 GH_ACCOUNT+=	FRiCKLE:postgres
 GH_PROJECT+=	ngx_postgres:postgres
 GH_TAGNAME+=	${NGINX_POSTGRES_VERSION}:postgres
@@ -694,7 +724,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_postgres-config
 .endif
 
 .if ${PORT_OPTIONS:MRDS_CSV}
-NGINX_RDS_CSV_VERSION=	0.05
+NGINX_RDS_CSV_VERSION=	0.07
 GH_ACCOUNT+=	openresty:rdscsv
 GH_PROJECT+=	rds-csv-nginx-module:rdscsv
 GH_TAGNAME+=	v${NGINX_RDS_CSV_VERSION}:rdscsv
@@ -702,7 +732,7 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_rdscsv}
 .endif
 
 .if ${PORT_OPTIONS:MRDS_JSON}
-NGINX_RDS_JSON_VERSION=	0.13
+NGINX_RDS_JSON_VERSION=	0.14
 GH_ACCOUNT+=	openresty:rdsjson
 GH_PROJECT+=	rds-json-nginx-module:rdsjson
 GH_TAGNAME+=	v${NGINX_RDS_JSON_VERSION}:rdsjson
@@ -710,7 +740,7 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_rdsjson}
 .endif
 
 .if ${PORT_OPTIONS:MREDIS2}
-NGINX_REDIS2_VERSION=	0.11
+NGINX_REDIS2_VERSION=	0.12
 GH_ACCOUNT+=	openresty:redis2
 GH_PROJECT+=	redis2-nginx-module:redis2
 GH_TAGNAME+=	v${NGINX_REDIS2_VERSION}:redis2
@@ -726,7 +756,7 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_rtmp}
 .endif
 
 .if ${PORT_OPTIONS:MSET_MISC}
-NGINX_SET_MISC_VERSION=	0.28
+NGINX_SET_MISC_VERSION=	0.29
 GH_ACCOUNT+=	openresty:setmisc
 GH_PROJECT+=	set-misc-nginx-module:setmisc
 GH_TAGNAME+=	v${NGINX_SET_MISC_VERSION}:setmisc
@@ -742,6 +772,14 @@ CONFIGURE_ARGS+=--add-module=${WRKDIR}/nginx-sflow-module-${NGINX_SFLOW_VERSION}
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_http_sflow_config.c \
 		${PATCHDIR}/extra-patch-ngx_http_sflow_config.h \
 		${PATCHDIR}/extra-patch-ngx_http_sflow_module.c
+.endif
+
+.if ${PORT_OPTIONS:MSHIBBOLETH}
+GIT_SHIBBOLETH_VERSION=	20150121
+GH_ACCOUNT+=	nginx-shib:shib
+GH_PROJECT+=	nginx-http-shibboleth:shib
+GH_TAGNAME+=	v${GIT_SHIBBOLETH_VERSION}:shib
+CONFIGURE_ARGS+=--add-module=${WRKSRC_shib}
 .endif
 
 .if ${PORT_OPTIONS:MSLOWFS_CACHE}
@@ -763,7 +801,7 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_small_light}
 .endif
 
 .if ${PORT_OPTIONS:MSRCACHE}
-NGINX_SRCACHE_VERSION=	0.29
+NGINX_SRCACHE_VERSION=	0.30
 GH_ACCOUNT+=	openresty:srcache
 GH_PROJECT+=	srcache-nginx-module:srcache
 GH_TAGNAME+=	v${NGINX_SRCACHE_VERSION}:srcache
@@ -923,7 +961,7 @@ post-patch:
 .endif
 .if ${PORT_OPTIONS:MCLOJURE}
 	@${REINPLACE_CMD} \
-		's!%%JAVA_HOME%%!${JAVA_HOME}!g' \
+		'54,57d' \
 		${WRKSRC_clojure}/src/c/config
 .endif
 .if ${PORT_OPTIONS:MDRIZZLE}
@@ -970,6 +1008,11 @@ post-patch:
 		's!%%PREFIX%%!${LOCALBASE}!g' \
 		${WRKDIR}/modsecurity-${NGINX_MODSECURITY_VERSION}/configure
 .endif
+.if ${PORT_OPTIONS:MHTTP_TARANTOOL}
+	@${REINPLACE_CMD} \
+		's!%%PREFIX%%!${LOCALBASE}!g' \
+		${WRKSRC_nginx_tarantool}/config
+.endif
 
 pre-configure:
 .if ${PORT_OPTIONS:MMODSECURITY}
@@ -1012,7 +1055,7 @@ do-install:
 
 .if ${PORT_OPTIONS:MNAXSI}
 	${INSTALL_DATA} \
-	${WRKDIR}/naxsi-core-${NGINX_NAXSI_VERSION}/naxsi_config/naxsi_core.rules \
+	${WRKDIR}/naxsi-${NGINX_NAXSI_VERSION}/naxsi_config/naxsi_core.rules \
 	${STAGEDIR}${ETCDIR}
 .endif
 
@@ -1020,7 +1063,6 @@ post-install:
 .if !empty(PORT_OPTIONS:MHTTP) && !empty(PORT_OPTIONS:MHTTP_PERL)
 	${ECHO_CMD} ${SITE_ARCH_REL}/auto/nginx/nginx.so >> ${TMPPLIST}
 	${ECHO_CMD} ${SITE_ARCH_REL}/nginx.pm >> ${TMPPLIST}
-	${ECHO_CMD} @dirrm ${SITE_ARCH_REL}/auto/nginx >> ${TMPPLIST}
 .endif
 	${INSTALL_MAN} ${WRKSRC}/objs/nginx.8 ${STAGEDIR}${MAN8PREFIX}/man/man8
 

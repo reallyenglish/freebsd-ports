@@ -11,7 +11,7 @@ MASTER_SITES=	http://download.gna.org/blackshadeselite/ \
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Psychic Bodyguard FPS - protect the VIP
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libvorbis.so:${PORTSDIR}/audio/libvorbis
@@ -29,6 +29,8 @@ PORTDOCS=	Readme Readme.elite
 PORTDATA=	*
 
 OPTIONS_DEFINE=	DOCS
+
+MAKE_JOBS_UNSAFE=	yes
 
 post-extract:
 	@${FIND} ${WRKSRC}/Data -name '._*' -delete

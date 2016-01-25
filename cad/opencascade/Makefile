@@ -2,10 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	opencascade
-PORTVERSION=	6.8.0
-PORTREVISION=	3
+PORTVERSION=	6.9.1
+PORTREVISION=	1
 CATEGORIES=	cad science
-MASTER_SITES=	http://files.opencascade.com/OCCT/OCC_${PORTVERSION}_release/
+MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	thierry
 
 MAINTAINER=	thierry@FreeBSD.org
 COMMENT=	Open CASCADE Technology, 3D modeling & numerical simulation
@@ -29,7 +30,7 @@ SHEBANG_FILES=	adm/templates/env.sh.in adm/templates/draw.sh		\
 		adm/templates/custom.sh.in adm/templates/custom.sh.main	\
 		adm/start.tcl draw.sh xcode.sh env.sh custom.sh.in	\
 		gendoc codeblocks.sh
-VTKVER=		6.1
+VTKVER=		6.2
 
 OPTIONS_DEFINE=	VIS DOCS
 VIS_DESC=	Build Visualizazion module (requires OpenGL, freetype, ftgl and gl2ps)
@@ -67,22 +68,18 @@ VIS_LIB_DEPENDS=	libftgl.so:${PORTSDIR}/graphics/ftgl		\
 			libgl2ps.so:${PORTSDIR}/print/gl2ps		\
 			libfreeimageplus.so:${PORTSDIR}/graphics/freeimage
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MVIS}
-CMAKE_ARGS+=	-D3RDPARTY_FREETYPE_DIR=${LOCALBASE}	\
+VIS_CMAKE_ON=	-D3RDPARTY_FREETYPE_DIR=${LOCALBASE}	\
 		-D3RDPARTY_FREEIMAGE_DIR=${LOCALBASE}	\
 		-D3RDPARTY_GL2PS_DIR=${LOCALBASE}
-.endif
 
-.if ${PORT_OPTIONS:MDOCS}
-USE_TEX+=	latex:build
-BUILD_DEPENDS+=	bash:${PORTSDIR}/shells/bash		\
-		doxygen:${PORTSDIR}/devel/doxygen	\
-		dot:${PORTSDIR}/graphics/graphviz	\
-		inkscape:${PORTSDIR}/graphics/inkscape
-RUN_DEPENDS+=	${LOCALBASE}/www/MathJax/MathJax.js:${PORTSDIR}/www/mathjax
-.endif
+DOCS_USE=	TEX=latex:build
+DOCS_BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash		\
+			doxygen:${PORTSDIR}/devel/doxygen	\
+			dot:${PORTSDIR}/graphics/graphviz	\
+			inkscape:${PORTSDIR}/graphics/inkscape
+DOCS_RUN_DEPENDS=	${LOCALBASE}/www/MathJax/MathJax.js:${PORTSDIR}/www/mathjax
+
+.include <bsd.port.options.mk>
 
 .if ${ARCH} == "i386"
 BITS=	32
@@ -102,14 +99,16 @@ pre-configure:
 	${REINPLACE_CMD} -e 's|tcl8.6|tcl${TCL_VER:C|\.||}|;s|tk8.6|tk${TK_VER:C|\.||}|'	\
 		${WRKSRC}/adm/cmake/${mod}/CMakeLists.txt
 .endfor
+.for mod in TKIVtk TKIVtkDraw
+	${REINPLACE_CMD} -E 's/(vtk[[:alnum:]]+)\-6.1/\1\-${VTKVER}/'	\
+		${WRKSRC}/adm/cmake/${mod}/CMakeLists.txt
+.endfor
 .for es in env.sh adm/templates/env.sh.in
 	${REINPLACE_CMD} -e 's|lin|bsd|' ${WRKSRC}/${es}
 .endfor
 
-post-build:
-.if ${PORT_OPTIONS:MDOCS}
+post-build-DOCS-on:
 	(cd ${WRKSRC} && ./gendoc -overview)
-.endif
 
 post-install:
 	${MV} ${STAGEDIR}${OCCROOT}/bsd${BITS}/${COMPILER_TYPE}/bin/DRAWEXE	\
@@ -129,11 +128,10 @@ post-install:
 	${RM} -rf ${STAGEDIR}${OCCROOT}/inc
 	${LN} -sf ${PREFIX}/include/OpenCASCADE ${STAGEDIR}${OCCROOT}/inc
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} tests ${STAGEDIR}${OCCROOT})
-.if ${PORT_OPTIONS:MDOCS}
+post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC}/doc/overview && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 	${RMDIR} ${STAGEDIR}${DOCSDIR}/latex
-.endif
 
 .if defined(MAINTAINER_MODE)
 regression-test:	install

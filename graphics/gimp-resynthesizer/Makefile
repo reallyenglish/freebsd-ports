@@ -11,7 +11,7 @@ PKGNAMEPREFIX=	gimp-
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Gimp plug-in for texture synthesis
 
-LICENSE=	GPLv2 # or later (COPYING has GPLv3)
+LICENSE=	GPLv2+ # though COPYING has GPLv3
 
 RUN_DEPENDS=	${LOCALBASE}/libexec/gimp/2.2/python/gimpfu.py:${PORTSDIR}/graphics/py-gimp
 BUILD_DEPENDS=	intltool-extract:${PORTSDIR}/textproc/intltool
@@ -30,15 +30,14 @@ PLIST_SUB=	PLUGIN_DIR=${PLUGIN_DIR}
 
 OPTIONS_DEFINE=	THREADS
 THREADS_DESC=	Threading support (produces nondeterministic results)
-
-.include <bsd.port.options.mk>
+THREADS_LIBS=	`pkg-config --libs gthread-2.0`
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|^\(GIMP_LIBDIR=\).*|\1"$${prefix}/${PLUGIN_DIR:H}"|; \
 		s|^\(gimpplugindir=\).*|\1"$$GIMP_LIBDIR"|' ${WRKSRC}/configure.in
-.if ! ${PORT_OPTIONS:MTHREADS}
+
+post-patch-THREADS-off:
 	@${REINPLACE_CMD} -e '/^#define SYNTH_THREADED/ d' \
 		${WRKSRC}/src/buildSwitches.h
-.endif
 
 .include <bsd.port.mk>

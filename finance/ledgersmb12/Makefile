@@ -5,7 +5,7 @@ PORTNAME=	ledgersmb
 PORTVERSION=	1.2.17
 PORTREVISION=	2
 CATEGORIES=	finance perl5
-MASTER_SITES=	SF/ledger-smb/${PORTNAME}/${PORTVERSION}
+MASTER_SITES=	SF/ledger-smb/Releases/archive-1.2/${PORTVERSION}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Double entry accounting system
@@ -14,8 +14,6 @@ BUILD_DEPENDS=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg \
 		p5-MIME-Lite>=0:${PORTSDIR}/mail/p5-MIME-Lite \
 		p5-Config-Std>=0:${PORTSDIR}/devel/p5-Config-Std
 RUN_DEPENDS:=	${BUILD_DEPENDS}
-
-LATEST_LINK=	ledgersmb12
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 NO_BUILD=	yes

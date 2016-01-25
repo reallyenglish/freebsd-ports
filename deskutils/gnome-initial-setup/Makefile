@@ -18,6 +18,8 @@ LIB_DEPENDS=	libgoa-1.0.so:${PORTSDIR}/net/gnome-online-accounts \
 		libgweather-3.so:${PORTSDIR}/net/libgweather
 RUN_DEPENDS=	gdm>=3.0.0:${PORTSDIR}/x11/gdm
 
+PORTSCOUT=	limitw:1,even
+
 USES=		autoreconf compiler:c++11-lib gettext gmake libtool \
 		pathfix pkgconfig tar:xz
 USE_GNOME=	gnomedesktop3 gnomeprefix gtk30 intlhack
@@ -31,10 +33,6 @@ OPTIONS_DEFINE=	KERBEROS
 OPTIONS_DEFAULT=KERBEROS
 
 .include <bsd.port.options.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 900007
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gnome-initial-setup_pages_account_um-utils.c
-.endif
 
 .if !${PORT_OPTIONS:MKERBEROS}
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-gnome-initial-setup_gis-account-page.c

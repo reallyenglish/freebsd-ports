@@ -3,7 +3,7 @@
 
 PORTNAME=	tinderbox
 DISTVERSION=	4.0.0.b2
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	http://tinderbox.marcuscom.com/ \
@@ -15,6 +15,10 @@ MAINTAINER=	crees@FreeBSD.org
 COMMENT=	Port build tinderbox system, devel version
 
 CONFLICTS=	tinderbox-[0-9]*
+
+IGNORE=		much older than stable version (ports-mgmt/tinderbox)
+DEPRECATED=	use newer stable version (ports-mgmt/tinderbox)
+EXPIRATION_DATE=	2016-02-14
 
 OPTIONS_MULTI=		DB
 OPTIONS_MULTI_DB=	PGSQL MYSQL SQLITE
@@ -37,6 +41,8 @@ NGINX_DESC=		Nginx server
 OPTIONS_DEFAULT=	MYSQL APACHE CHECK_ROOT EMAILS LSOF \
 			LOG_COMPRESS PARALLEL
 
+USES=		shebangfix
+SHEBANG_FILES=	lib/makemake
 NO_BUILD=	yes
 WANT_PERL=	yes
 SUB_FILES=	pkg-message

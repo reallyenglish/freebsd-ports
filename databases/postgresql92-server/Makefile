@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME?=	postgresql
-DISTVERSION?=	9.2.13
-PORTREVISION?=	1
+DISTVERSION?=	9.2.14
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL/source/v${DISTVERSION}
 PKGNAMESUFFIX?=	${DISTVERSION:R:S/.//}${COMPONENT}
@@ -68,13 +67,15 @@ SUB_FILES+=	502.pgsql
 .if defined(CLIENT_ONLY)
 OPTIONS_DEFINE+=LIBEDIT
 LIBEDIT_DESC=	Use non-GPL libedit instead of readline
+USES+=		perl5
+PORTREVISION?=	1
 .else
 MAKE_ENV=	PATH=${PREFIX}/bin:${PATH}
 CONFIGURE_ENV+=	PATH=${PREFIX}/bin:${PATH}
 .endif
 
 .if defined(SERVER_ONLY)
-OPTIONS_DEFINE=	DTRACE LDAP INTDATE TZDATA
+OPTIONS_DEFINE=	DTRACE LDAP INTDATE TZDATA XML
 LDAP_DESC=	Build with LDAP authentication support
 DTRACE_DESC=	Build with DTrace probes
 TZDATA_DESC=	Use internal timezone database
@@ -121,9 +122,6 @@ LIBEDIT_USES_OFF=		readline
 SSL_USE=	OPENSSL=yes
 SSL_CONFIGURE_WITH=openssl
 
-OSSP_UUID_BUILD_DEPENDS=	${LOCALBASE}/lib/libuuid.a:${PORTSDIR}/misc/ossp-uuid
-OSSP_UUID_CONFIGURE_WITH=	ossp-uuid
-
 PAM_CONFIGURE_WITH=	pam
 
 XML_CONFIGURE_WITH=	libxml
@@ -168,9 +166,6 @@ PATCH_DIST_STRIP=-p1
 .  if ${PORT_OPTIONS:MDTRACE}
 CONFIGURE_ARGS+=--enable-dtrace
 LDFLAGS+=-lelf
-.    if ${OSVERSION} < 900021
-IGNORE=	need userland DTrace support found in FreeBSD 9.0
-.    endif
 .  endif
 
 .if ${PORT_OPTIONS:MGSSAPI}

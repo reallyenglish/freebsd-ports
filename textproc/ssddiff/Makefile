@@ -10,7 +10,9 @@ MASTER_SITES=	http://alioth.debian.org/frs/download.php/1469/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Diff application for semistructured data such as XML files
 
-LICENSE=	GPLv2 # (or later)
+BROKEN=		unfetchable
+
+LICENSE=	GPLv2+
 
 GNU_CONFIGURE=	yes
 USES=		autoreconf pkgconfig tar:bzip2

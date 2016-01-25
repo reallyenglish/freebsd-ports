@@ -1,9 +1,10 @@
-#T $FreeBSD$
+# $FreeBSD$
 #
 
     COMMENT = FTP client and server utilities
 
     SUBDIR += R-cran-RCurl
+    SUBDIR += R-cran-curl
     SUBDIR += atftp
     SUBDIR += axel
     SUBDIR += bareftp
@@ -22,7 +23,6 @@
     SUBDIR += fpc-libcurl
     SUBDIR += frox
     SUBDIR += ftpcopy
-    SUBDIR += ftpcube
     SUBDIR += ftpfind
     SUBDIR += ftplib
     SUBDIR += ftpmirror
@@ -30,7 +30,6 @@
     SUBDIR += ftpsesame
     SUBDIR += ftpsync
     SUBDIR += gftp
-    SUBDIR += gnusget
     SUBDIR += gnustep-ftp
     SUBDIR += gstreamer1-plugins-curl
     SUBDIR += gwget
@@ -77,15 +76,14 @@
     SUBDIR += puf
     SUBDIR += pure-ftpd
     SUBDIR += pureadmin
-    SUBDIR += py-curl
     SUBDIR += py-ftputil
+    SUBDIR += py-pycurl
     SUBDIR += py-pyftpdlib
     SUBDIR += py-tftpy
     SUBDIR += quftp
     SUBDIR += rubygem-curb
     SUBDIR += scythia
     SUBDIR += smbftpd
-    SUBDIR += spegla
     SUBDIR += tftp-hpa
     SUBDIR += tnftp
     SUBDIR += tnftpd

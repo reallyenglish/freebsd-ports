@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	tvheadend
-PORTVERSION=	3.9.20140806
+PORTVERSION=	4.0.8
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	decke@FreeBSD.org
@@ -18,7 +19,7 @@ LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 RUN_DEPENDS=	dtv-scan-tables>=0:${PORTSDIR}/multimedia/dtv-scan-tables
 
 USE_GITHUB=	yes
-GH_TAGNAME=	6d19440
+GH_TAGNAME=	0499859
 
 USES=		execinfo gmake pkgconfig python shebangfix
 GNU_CONFIGURE=	yes
@@ -45,14 +46,18 @@ CONFIGURE_ARGS+=--disable-dvbscan --disable-zlib
 CFLAGS+=	-I${LOCALBASE}/include -Wno-conversion -Wno-int-to-pointer-cast
 LDFLAGS+=	-L${LOCALBASE}/lib -lexecinfo -lssl -lcrypto -lz
 
-OPTIONS_DEFINE=	AVAHI DVBCSA TRANSCODING XMLTV
-OPTIONS_DEFAULT=DVBCSA
+OPTIONS_DEFINE=	AVAHI DVBCSA HDHOMERUN TRANSCODING XMLTV
+OPTIONS_DEFAULT=DVBCSA HDHOMERUN
 
 AVAHI_LIB_DEPENDS=	libavahi-client.so:${PORTSDIR}/net/avahi-app
 
 DVBCSA_DESC=		Replace internal ffdecsa with dvbcsa
 DVBCSA_LIB_DEPENDS=	libdvbcsa.so:${PORTSDIR}/multimedia/libdvbcsa
 DVBCSA_CONFIGURE_ENABLE=	dvbcsa
+
+HDHOMERUN_DESC=		Native support for HDHomeRun network tuners
+HDHOMERUN_LIB_DEPENDS=	libhdhomerun.so:${PORTSDIR}/multimedia/libhdhomerun
+HDHOMERUN_CONFIGURE_ENABLE=	hdhomerun_client
 
 TRANSCODING_DESC=	Transcoding for mobile and web clients
 TRANSCODING_LIB_DEPENDS=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg
@@ -77,6 +82,9 @@ post-patch:
 		${WRKSRC}/Makefile
 	# ignore gcc warnings on FreeBSD 9.X, and clang warnings on FreeBSD 10+
 	@${REINPLACE_CMD} 's|-Werror||' \
+		${WRKSRC}/Makefile
+	# Remove -Wunused-result because gcc 4.2 on FreeBSD 9.x does not know it
+	@${REINPLACE_CMD} 's|-Wunused-result||' \
 		${WRKSRC}/Makefile
 .if ${OSVERSION} >= 1000000
 	# to suppress clang CC flags on FreeBSD 10+

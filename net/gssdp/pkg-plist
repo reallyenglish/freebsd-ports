@@ -21,7 +21,6 @@ share/gtk-doc/html/gssdp/gssdp-Error-codes.html
 share/gtk-doc/html/gssdp/gssdp.devhelp2
 share/gtk-doc/html/gssdp/home.png
 share/gtk-doc/html/gssdp/index.html
-share/gtk-doc/html/gssdp/index.sgml
 share/gtk-doc/html/gssdp/left-insensitive.png
 share/gtk-doc/html/gssdp/left.png
 share/gtk-doc/html/gssdp/right-insensitive.png
@@ -29,3 +28,5 @@ share/gtk-doc/html/gssdp/right.png
 share/gtk-doc/html/gssdp/style.css
 share/gtk-doc/html/gssdp/up-insensitive.png
 share/gtk-doc/html/gssdp/up.png
+%%VALA%%share/vala/vapi/gssdp-1.0.deps
+%%VALA%%share/vala/vapi/gssdp-1.0.vapi

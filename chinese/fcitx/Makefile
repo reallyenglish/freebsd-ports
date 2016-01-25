@@ -35,7 +35,7 @@ USE_GNOME=	pango intltool libxml2 introspection
 USE_XORG=	x11 xext xkbfile
 USE_LDCONFIG=	yes
 USES=		tar:xz cmake desktop-file-utils execinfo gettext iconv:wchar_t \
-		pathfix pkgconfig shared-mime-info
+		pkgconfig shared-mime-info
 INSTALLS_ICONS=	yes
 
 OPTIONS_DEFINE=	GTK2 GTK3 QT4 OPENCC TPUNC DOCS
@@ -50,6 +50,7 @@ TPUNC_DESC=	Use traditional quotation marks
 .include <bsd.port.options.mk>
 
 CMAKE_ARGS+=	-DENABLE_XDGAUTOSTART=OFF -DFORCE_ENCHANT=ON \
+		-DLIBICONV_LIBC_HAS_ICONV_OPEN=OFF \
 		-DDATADIR=${DATADIR} \
 		-DDOCSDIR=${DOCSDIR} \
 		-DGOBJECT_INTROSPECTION_GIRDIR=${PREFIX}/share/gir-1.0 \

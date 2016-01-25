@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	pcsc-lite
-PORTVERSION=	1.8.13
+PORTVERSION=	1.8.15
 PORTEPOCH=	2
 CATEGORIES=	devel security
-MASTER_SITES=	https://alioth.debian.org/frs/download.php/file/4126/
+MASTER_SITES=	https://alioth.debian.org/frs/download.php/file/4157/
 
 MAINTAINER=	arved@FreeBSD.org
 COMMENT=	Smartcard development library
@@ -30,12 +30,6 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.port.options.mk>
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000000
-FETCH_DEPENDS=	wget:${PORTSDIR}/ftp/wget
-DISABLE_SIZE=	yes
-FETCH_CMD=	${LOCALBASE}/bin/wget -c -nc --no-check-certificate
-.endif
-
 post-patch:
 	${REINPLACE_CMD} -e "s,^datadir,#datadir,; s,^data_DATA,#data_DATA," \
 		${WRKSRC}/doc/Makefile.in
@@ -43,9 +37,9 @@ post-patch:
 		s,libusb_strerror(ret),ret," ${WRKSRC}/configure \
 			${WRKSRC}/src/hotplug_libusb.c
 	${REINPLACE_CMD} -e "s,-ldl,," ${WRKSRC}/src/spy/Makefile.in
-.if ! ${PORT_OPTIONS:MDOCS}
+
+post-patch-DOCS-off:
 	${REINPLACE_CMD} -e '/^install-data-am: / s|install-docDATA||' ${WRKSRC}/doc/Makefile.in
-.endif
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

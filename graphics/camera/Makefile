@@ -3,7 +3,7 @@
 
 PORTNAME=	camera
 PORTVERSION=	0.8
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics gnustep
 MASTER_SITES=	http://download.gna.org/gsimageapps/
 DISTNAME=	Camera-${PORTVERSION}
@@ -11,7 +11,7 @@ DISTNAME=	Camera-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GNUstep application for digital still cameras
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/Documentation/COPYING
 
 LIB_DEPENDS=	libgphoto2_port.so:${PORTSDIR}/graphics/libgphoto2
@@ -26,6 +26,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/Local/Applications/Camera.app/Camera
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Applications/Camera.app/Camera
 
 .include <bsd.port.mk>

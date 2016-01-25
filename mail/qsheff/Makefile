@@ -3,7 +3,7 @@
 
 PORTNAME=	qsheff-II
 DISTVERSION=	2.1-r3
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	mail
 MASTER_SITES=	http://www.enderunix.org/qsheff/ \
 		SF/qsheff/qsheff/II-2.1-r3
@@ -11,7 +11,7 @@ MASTER_SITES=	http://www.enderunix.org/qsheff/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Qmail-queue replacement to filter mail traffic
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/ripmime:${PORTSDIR}/mail/ripmime

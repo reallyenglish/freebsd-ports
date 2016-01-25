@@ -3,7 +3,7 @@
 
 PORTNAME=	hugin
 PORTVERSION=	2013.0
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-2013.0
 PKGNAMESUFFIX=	-devel
@@ -12,6 +12,7 @@ DISTNAME=	hugin-2013.0.0_beta1
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GUI for Panorama Tools, to stitch panoramic images
 
+BROKEN=		unfetchable
 LIB_DEPENDS=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
 		libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
 		libImath.so:${PORTSDIR}/graphics/ilmbase \

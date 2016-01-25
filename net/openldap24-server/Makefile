@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=		openldap
-DISTVERSION=		2.4.41
+DISTVERSION=		2.4.43
 PORTREVISION=		${OPENLDAP_PORTREVISION}
 CATEGORIES=		net databases
 MASTER_SITES=		ftp://ftp.OpenLDAP.org/pub/OpenLDAP/%SUBDIR%/ \
@@ -29,8 +29,6 @@ CONFLICTS=		${PKGNAMEPREFIX}${PORTNAME}-client-2.[0-3].* \
 .endif
 .else
 PKGNAMESUFFIX?=		-server
-# Do not use ${PKGNAMESUFFIX} here has it can change later
-OPTIONSFILE?=		${PORT_DBDIR}/${PORTNAME}24-server/options
 .endif
 EXTRACT_SUFX=		.tgz
 
@@ -61,7 +59,7 @@ BROKEN=			incompatible OpenLDAP version: ${WANT_OPENLDAP_VER}
 PORTREVISION_CLIENT=	0
 PORTREVISION_SERVER=	0
 OPENLDAP_SHLIB_MAJOR=	2
-OPENLDAP_SHLIB_MINOR=	10.4
+OPENLDAP_SHLIB_MINOR=	10.6
 OPENLDAP_MAJOR=		${DISTVERSION:R}
 
 OPTIONS_DEFINE=		DEBUG FETCH GSSAPI
@@ -193,6 +191,10 @@ CFLAGS+=		-DMDB_DSYNC=O_SYNC -Dfdatasync=fsync
 
 .if !${PORT_OPTIONS:MFETCH}
 CONFIGURE_ARGS+=	--without-fetch
+.else
+. if defined(OPENSSL_INSTALLED) && ${OPENSSL_INSTALLED} != "" || defined(WITH_OPENSSL_PORT)
+BROKEN=	using OpenSSL from ports and OPTION FETCH together is not supported
+. endif
 .endif
 
 .if ${PORT_OPTIONS:MSASL}
@@ -511,10 +513,10 @@ PLIST_SUB+=		SHLIB_MINOR=${OPENLDAP_SHLIB_MINOR}
 PLIST_SUB+=		OPENLDAP_MAJOR=${OPENLDAP_MAJOR}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's,%LOCALSTATEDIR%/run/,${LDAP_RUN_DIR}/,g' \
+	@${REINPLACE_CMD} -e 's|%LOCALSTATEDIR%/run/|${LDAP_RUN_DIR}/|g' \
 		${SED_MODULES} ${WRKSRC}/servers/slapd/slapd.conf
-	@${REINPLACE_CMD} -e 's,^OPT =.*,OPT = ${CFLAGS},g' \
-		-e 's,^CC =.*,CC = ${CC},g' \
+	@${REINPLACE_CMD} -e 's|^OPT =.*|OPT = ${CFLAGS}|g' \
+		-e 's|^CC =.*|CC = ${CC}|g' \
 		${SED_MODULES} ${WRKSRC}/contrib/slapd-modules/*/Makefile \
 		${WRKSRC}/contrib/slapd-modules/*/*/Makefile
 .if defined(CONFIGURE_SED)

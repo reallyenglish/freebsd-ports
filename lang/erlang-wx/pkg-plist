@@ -50,6 +50,7 @@
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxControlWithItems.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxCursor.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxDC.html
+%%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxDCOverlay.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxDataObject.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxDateEvent.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxDatePickerCtrl.html
@@ -146,6 +147,7 @@
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxNotebook.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxNotebookEvent.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxNotifyEvent.html
+%%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxOverlay.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxPageSetupDialog.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxPageSetupDialogData.html
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxPaintDC.html
@@ -238,6 +240,9 @@
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/src/part.xml
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/src/part_notes.xml
 %%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/doc/src/ref_man.xml.src
+%%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/info
+lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxAuiSimpleTabArt.html
+lib/erlang/lib/wx-%%APP_VERSION%%/doc/html/wxMouseCaptureLostEvent.html
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/gl.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/glu.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wx.app
@@ -253,6 +258,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxAuiManagerEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxAuiNotebook.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxAuiNotebookEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxAuiPaneInfo.beam
+lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxAuiSimpleTabArt.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxAuiTabArt.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxBitmap.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxBitmapButton.beam
@@ -286,6 +292,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxControl.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxControlWithItems.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxCursor.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxDC.beam
+lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxDCOverlay.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxDataObject.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxDateEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxDatePickerCtrl.beam
@@ -375,6 +382,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMessageDialog.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMiniFrame.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMirrorDC.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMouseCaptureChangedEvent.beam
+lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMouseCaptureLostEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMouseEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMoveEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxMultiChoiceDialog.beam
@@ -382,6 +390,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxNavigationKeyEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxNotebook.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxNotebookEvent.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxNotifyEvent.beam
+lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxOverlay.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxPageSetupDialog.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxPageSetupDialogData.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxPaintDC.beam
@@ -471,7 +480,6 @@ lib/erlang/lib/wx-%%APP_VERSION%%/ebin/wxe_util.beam
 lib/erlang/lib/wx-%%APP_VERSION%%/include/gl.hrl
 lib/erlang/lib/wx-%%APP_VERSION%%/include/glu.hrl
 lib/erlang/lib/wx-%%APP_VERSION%%/include/wx.hrl
-%%PORTDOCS%%lib/erlang/lib/wx-%%APP_VERSION%%/info
 lib/erlang/lib/wx-%%APP_VERSION%%/priv/%%CONFIGURE_TARGET%%/erl_gl.so
 lib/erlang/lib/wx-%%APP_VERSION%%/priv/%%CONFIGURE_TARGET%%/wxe_driver.so
 lib/erlang/lib/wx-%%APP_VERSION%%/priv/erlang-logo128.png
@@ -490,6 +498,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxAuiManagerEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxAuiNotebook.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxAuiNotebookEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxAuiPaneInfo.erl
+lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxAuiSimpleTabArt.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxAuiTabArt.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxBitmap.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxBitmapButton.erl
@@ -523,6 +532,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxControl.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxControlWithItems.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxCursor.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxDC.erl
+lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxDCOverlay.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxDataObject.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxDateEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxDatePickerCtrl.erl
@@ -612,6 +622,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMessageDialog.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMiniFrame.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMirrorDC.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMouseCaptureChangedEvent.erl
+lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMouseCaptureLostEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMouseEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMoveEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxMultiChoiceDialog.erl
@@ -619,6 +630,7 @@ lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxNavigationKeyEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxNotebook.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxNotebookEvent.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxNotifyEvent.erl
+lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxOverlay.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxPageSetupDialog.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxPageSetupDialogData.erl
 lib/erlang/lib/wx-%%APP_VERSION%%/src/gen/wxPaintDC.erl

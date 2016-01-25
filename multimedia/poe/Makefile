@@ -2,7 +2,7 @@
 
 PORTNAME=	poe
 PORTVERSION=	0.5.1
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	multimedia gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/Poe/files/
 DISTNAME=	Poe-${PORTVERSION}
@@ -10,7 +10,7 @@ DISTNAME=	Poe-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Vorbis comment editor for GNUstep
 
-LICENSE=	GPLv2 # or later
+LICENSE=	GPLv2+
 
 LIB_DEPENDS=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 
@@ -24,6 +24,6 @@ post-patch:
 		${WRKSRC}/GNUmakefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/Local/Applications/Poe.app/Poe
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/System/Applications/Poe.app/Poe
 
 .include <bsd.port.mk>

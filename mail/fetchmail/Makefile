@@ -22,7 +22,6 @@ GROUPS=		${USERS}
 
 USES=		cpe gmake shebangfix tar:xz
 SHEBANG_FILES=	fetchmailconf.py
-python_OLD_CMD=	/usr/bin/env python
 
 USE_RC_SUBR=	fetchmail
 SUB_FILES=	pkg-message pkg-install pkg-deinstall
@@ -97,19 +96,18 @@ post-patch:
 .endif
 
 post-build:
-	@${MAKE} -C ${WRKSRC} check
+	@${MAKE_CMD} -C ${WRKSRC} check
 
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
-.endif
+	${INSTALL_DATA} ${FILESDIR}/fetchmailrc.sample \
+		${STAGEDIR}${PREFIX}/etc/fetchmailrc.sample
 
-.if empty(PORT_OPTIONS:MX11)
+post-install-DOCS-on:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+
+post-install-X11-off:
 	${INSTALL_SCRIPT} ${WRKDIR}/fetchmailconf ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/fetchmailconf.py ${STAGEDIR}${PREFIX}/libexec
-.endif
-	${INSTALL} ${FILESDIR}/fetchmailrc.sample \
-		${STAGEDIR}${PREFIX}/etc/fetchmailrc.sample
 
 .include <bsd.port.mk>

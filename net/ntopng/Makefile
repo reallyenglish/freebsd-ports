@@ -21,10 +21,9 @@ LIB_DEPENDS=	librrd.so:${PORTSDIR}/databases/rrdtool \
 		libzmq.so:${PORTSDIR}/net/libzmq4
 
 GNU_CONFIGURE=	yes
-USE_SQLITE=	yes
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
-USES=	 	autoreconf cpe gmake libtool pathfix pkgconfig tar:tgz
+USES=	 	autoreconf cpe gmake libtool pathfix pkgconfig sqlite tar:tgz
 SUB_FILES=	ntopng-geoipupdate.sh
 
 CPE_VENDOR=	ntop
@@ -35,12 +34,6 @@ GEOIP_BUILD_DEPENDS=	geoiplookup:${PORTSDIR}/net/GeoIP
 NLS_USES=	gettext
 
 USE_RC_SUBR=	ntopng
-
-.include <bsd.port.options.mk>
-
-.if ${OSVERSION} < 900000
-BROKEN=	Does not build on 8.X due to *ENDIAN implementations
-.endif
 
 post-extract:
 	@${FIND} ${WRKSRC} -name "*~" -delete

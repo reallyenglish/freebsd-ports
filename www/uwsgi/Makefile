@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	uwsgi
-PORTVERSION=	2.0.11.1
+PORTVERSION=	2.0.12
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	http://projects.unbit.it/downloads/
 
@@ -13,15 +14,25 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python
+USE_PYTHON=	distutils
 USE_RC_SUBR=	uwsgi
 
+OPTIONS_DEFINE=	DEBUG
+
+DEBUG_VARS=	PYDISTUTILS_BUILDARGS+=--debug
+
 LDFLAGS+=	"-L${LOCALBASE}/lib"
+MAKE_ENV+=	CPUCOUNT=${MAKE_JOBS_NUMBER} UWSGI_EMBED_PLUGINS=cgi
+
+PYSETUP=			uwsgiconfig.py
+PYDISTUTILS_BUILD_TARGET=	--build
+PYDISTUTILS_BUILDARGS=		--verbose
 
 PLIST_FILES=	bin/uwsgi \
 		%%PYTHON_SITELIBDIR%%/uwsgidecorators.py
 
-post-patch:
-	${REINPLACE_CMD} -e 's|python|${PYTHON_CMD}|' ${WRKSRC}/Makefile
+do-configure:
+	@${DO_NADA}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/

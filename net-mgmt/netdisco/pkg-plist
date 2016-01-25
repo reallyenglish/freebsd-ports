@@ -116,6 +116,8 @@ bin/netdisco-web-fg
 %%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/DevicePoeStatus.pm
 %%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/DuplexMismatch.pm
 %%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/GenericReport.pm
+%%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/NodeIp4.pm
+%%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/NodeIp6.pm
 %%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/NodeMonitor.pm
 %%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/NodeWithAge.pm
 %%SITE_PERL%%/App/Netdisco/DB/Result/Virtual/NodesDiscovered.pm
@@ -435,6 +437,8 @@ bin/netdisco-web-fg
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/ajax/search/vlan_csv.tt
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/sidebar/report/generic_report.tt
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/sidebar/report/nodesdiscovered.tt
+%%SITE_PERL%%/auto/share/dist/App-Netdisco/views/sidebar/report/portmultinodes.tt
+%%SITE_PERL%%/auto/share/dist/App-Netdisco/views/ajax/admintask/users_csv.tt
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/ajax/statistics.tt
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/device.tt
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/index.tt
@@ -462,16 +466,16 @@ bin/netdisco-web-fg
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/sidebar/search/device.tt
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/sidebar/search/node.tt
 %%SITE_PERL%%/auto/share/dist/App-Netdisco/views/sidebar/search/port.tt
-man/man1/nd-import-topology.1.gz
-man/man1/netdisco-daemon-fg.1.gz
-man/man1/netdisco-daemon.1.gz
-man/man1/netdisco-db-deploy.1.gz
-man/man1/netdisco-deploy.1.gz
-man/man1/netdisco-do.1.gz
-man/man1/netdisco-rancid-export.1.gz
-man/man1/netdisco-sshcollector.1.gz
-man/man1/netdisco-web-fg.1.gz
-man/man1/netdisco-web.1.gz
+%%PERL5_MAN1%%/nd-import-topology.1.gz
+%%PERL5_MAN1%%/netdisco-daemon-fg.1.gz
+%%PERL5_MAN1%%/netdisco-daemon.1.gz
+%%PERL5_MAN1%%/netdisco-db-deploy.1.gz
+%%PERL5_MAN1%%/netdisco-deploy.1.gz
+%%PERL5_MAN1%%/netdisco-do.1.gz
+%%PERL5_MAN1%%/netdisco-rancid-export.1.gz
+%%PERL5_MAN1%%/netdisco-sshcollector.1.gz
+%%PERL5_MAN1%%/netdisco-web-fg.1.gz
+%%PERL5_MAN1%%/netdisco-web.1.gz
 @dir %%SITE_PERL%%/App/Netdisco/AnyEvent
 @dir %%SITE_PERL%%/App/Netdisco/Core
 @dir %%SITE_PERL%%/App/Netdisco/DB/Result/Virtual

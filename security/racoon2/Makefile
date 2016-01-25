@@ -3,7 +3,7 @@
 
 PORTNAME=	racoon2
 PORTVERSION=	20100526a
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	security net ipv6
 MASTER_SITES=	ftp://ftp.racoon2.wide.ad.jp/pub/racoon2/
 
@@ -53,22 +53,24 @@ PORTDOCS+=	kinkd-install.ja.txt kinkd-state-txn.obj
 .endif
 .endif
 
-post-patch:
-.if ${PORT_OPTIONS:MDOCS}
+post-patch-DOCS-on:
 .for FILE in ${PORTDOCS}
 	@${REINPLACE_CMD} -e 's|/usr/local/racoon2|${PREFIX}|' ${WRKSRC}/doc/${FILE}
 .endfor
-.endif
 
 post-configure:
 	@${FIND} ${WRKSRC} -name Makefile | ${XARGS} ${REINPLACE_CMD} -e '/INSTALL/s|\$$([a-z].*dir)|${STAGEDIR}&|'
 	@${REINPLACE_CMD} -e '/INSTALL/s|\$$(prefix)|${STAGEDIR}&|' ${WRKSRC}/pskgen/Makefile
-	@${REINPLACE_CMD} -e '1s|/usr/bin/perl|${PERL}|' ${WRKSRC}/pskgen/pskgen
 	@${REINPLACE_CMD} -e '/^prefix=/s|/usr/local|${STAGEDIR}${PREFIX}|;/\/var\/run\/racoon2/d' ${WRKSRC}/samples/Makefile
 
 post-install:
 	${MKDIR} ${STAGEDIR}/var/run/racoon2
-.if ${PORT_OPTIONS:MDOCS}
+	@if [ -z `/sbin/sysctl -a | ${GREP} -q ipsec && echo ipsec` ]; then \
+	    ${ECHO_MSG} "WARNING: IPsec feature is disabled on this host"; \
+	    ${ECHO_MSG} "         You must build the kernel if you want to run racoon on the host"; \
+	fi ;
+
+post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/COPYRIGHT ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/COPYRIGHT.jp ${STAGEDIR}${DOCSDIR}
@@ -76,10 +78,5 @@ post-install:
 .for FILE in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/doc/${FILE} ${STAGEDIR}${DOCSDIR}
 .endfor
-.endif
-	@if [ -z `/sbin/sysctl -a | ${GREP} -q ipsec && echo ipsec` ]; then \
-	    ${ECHO_MSG} "WARNING: IPsec feature is disabled on this host"; \
-	    ${ECHO_MSG} "         You must build the kernel if you want to run racoon on the host"; \
-	fi ;
 
 .include <bsd.port.post.mk>

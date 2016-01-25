@@ -48,8 +48,6 @@ MAKE_ENV+=	SAGE_PORT=yes \
 		SAGE_FAT_BINARY=yes \
 		PERL=${PERL}
 
-LATEST_LINK=	sage-math	# Conflicts with graphics/sage.
-
 # The following is needed for the lapack subpackage.
 MAKE_ARGS+=	ARCH="${AR}"
 
@@ -93,9 +91,7 @@ post-install:
 	@${FIND} -s ${STAGED_SAGE_DIR} -not -type d | \
 		${SED} -e 's#${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
 	@${FIND} -s ${STAGED_SAGE_DIR} -type d -empty | \
-		${SED} -e 's#${STAGEDIR}${PREFIX}/#@exec ${MKDIR} %D/#' >> ${TMPPLIST}
-	@${FIND} -s ${STAGED_SAGE_DIR} -type d -depth | \
-		${SED} -e 's#${STAGEDIR}${PREFIX}/#@dirrm #' >> ${TMPPLIST}
+		${SED} -e 's#${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
 
 .include <bsd.port.pre.mk>
 

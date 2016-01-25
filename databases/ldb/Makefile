@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=		ldb
-PORTVERSION=		1.1.20
+PORTVERSION=		1.1.24
 PORTREVISION=		0
 PORTEPOCH=		0
 CATEGORIES=		databases
@@ -25,14 +25,16 @@ PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
 
 CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
-			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR}
+			--infodir=${PREFIX}/${INFO_PATH}/${INFO_SUBDIR} \
+			--disable-rpath \
+			--without-gettext
 
 OPTIONS_DEFINE=		MANPAGES
 MANPAGES_DESC=		Build and install manpages (requires textproc/docbook-xsl)
 
-BUILD_DEPENDS+=		talloc>=2.1.1:${PORTSDIR}/devel/talloc \
-			tevent>=0.9.22:${PORTSDIR}/devel/tevent \
-			tdb>=1.3.4,1:${PORTSDIR}/databases/tdb \
+BUILD_DEPENDS+=		talloc>=2.1.5:${PORTSDIR}/devel/talloc \
+			tevent>=0.9.26:${PORTSDIR}/devel/tevent \
+			tdb>=1.3.8,1:${PORTSDIR}/databases/tdb \
 			popt>=0:${PORTSDIR}/devel/popt
 RUN_DEPENDS:=		${BUILD_DEPENDS}
 
@@ -85,6 +87,7 @@ PLIST_FILES+=		include/pyldb.h \
 			lib/libpyldb-util.so \
 			lib/libpyldb-util.so.1 \
 			%%PYTHON_SITELIBDIR%%/ldb.so \
+			%%PYTHON_SITELIBDIR%%/_ldb_text.py \
 			%%PKGCONFIGDIR%%/pyldb-util.pc
 
 LDB_MAN1=		man/man1/ldbadd.1.gz \

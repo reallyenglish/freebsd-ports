@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=		Ice
-PORTVERSION=		3.6.0
+PORTVERSION=		3.6.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=		devel
 
@@ -23,15 +23,13 @@ LIB_DEPENDS+=		libIce.so.${LIB_VRS}:${PORTSDIR}/devel/ice
 PLIST_SUB+=		LIB_VERSION="${PORTVERSION}" LIB_VRS="${LIB_VRS}"
 .endif
 
-OPTIONS_DEFINE?=	DEBUG TESTS
-OPTIONS_DEFAULT?=	TESTS
-TESTS_DESC?=		Build and run tests (requires lang/python)
+OPTIONS_DEFINE?=	DEBUG TEST
 
 .include <bsd.port.options.mk>
 
 USES+=			iconv gmake
 
-.if ${PORT_OPTIONS:MTESTS} && ${SLAVE_PORT} == "no"
+.if ${PORT_OPTIONS:MTEST} && ${SLAVE_PORT} == "no"
 USES+=			python:build
 BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}passlib>0:${PORTSDIR}/security/py-passlib
 .endif
@@ -61,7 +59,7 @@ BROKEN_sparc64=		Does not compile on ${ARCH}
 MAKE_ENV+=		LP64=yes
 .endif
 
-.if !${PORT_OPTIONS:MTESTS}
+.if !${PORT_OPTIONS:MTEST}
 MAKE_ENV+=		NOTESTS=yes
 .endif
 
@@ -102,37 +100,40 @@ post-patch:
 		s|%%DOCSDIR%%|${STAGEDIR}${DOCSDIR}|g; \
 		s|%%ICONV_LIB%%|${ICONV_LIB}|g; \
 		s|%%INSTALL_PROGRAM%%|${INSTALL_PROGRAM}|g; \
-		s|%%INSTALL_DATA%%|${INSTALL_DATA}|g' \
+		s|%%INSTALL_DATA%%|${INSTALL_DATA}|g; \
+		s|%%OPENSSLLIB%%|${OPENSSLLIB}|g; \
+		s|%%OPENSSLINC%%|${OPENSSLINC}|g; \
+		s|%%OPENSSLRPATH%%|${OPENSSLRPATH}|g;' \
 		${FILESDIR}/Make.rules.FreeBSD > ${WRKSRC}/cpp/config/Make.rules.FreeBSD
 	@${REINPLACE_CMD} 's|%%BDB_LIB_CXX_NAME%%|${BDB_LIB_CXX_NAME}|g; \
 		s|%%BDB_LIB_DIR%%|${BDB_LIB_DIR}|g; \
 		s|%%BDB_INCLUDE_DIR%%|${BDB_INCLUDE_DIR}|g; \
+		s|%%OPENSSLLIB%%|${OPENSSLLIB}|g; \
+		s|%%OPENSSLINC%%|${OPENSSLINC}|g; \
+		s|%%OPENSSLRPATH%%|${OPENSSLRPATH}|g; \
 		/install_docdir/d' \
 		${WRKSRC}/cpp/config/Make.rules
+	@${REINPLACE_CMD} 's|%%OPENSSLBASE%%|${OPENSSLBASE}|g;' \
+		${WRKSRC}/cpp/test/IceSSL/configuration/run.py
 	@${REINPLACE_CMD} '/install_configdir/d' \
 		${WRKSRC}/cpp/config/Make.rules
 	@${REINPLACE_CMD} '/LICENSE/s/prefix/install_slicedir/; \
-		s|%%INSTALL_PROGRAM%%|${INSTALL_PROGRAM}|g; ' \
+		s|%%INSTALL_PROGRAM%%|${INSTALL_PROGRAM}|g;' \
 		${WRKSRC}/config/Make.common.rules
 	@${REINPLACE_CMD} 's|%%INSTALL_PROGRAM%%|${INSTALL_PROGRAM}|g; \
 		s|%%INSTALL_DATA%%|${INSTALL_DATA}|g; \
 		s|%%ICONV_LIB%%|${ICONV_LIB}|g; \
 		s|%%PYTHON_CMD%%|${PYTHON_CMD}|g; \
 		s|%%PYTHON_SITELIBDIR%%|${STAGEDIR}${PYSITEDIR}|g; \
-		s|%%PREFIX%%|${PREFIX}|g ; \
+		s|%%PREFIX%%|${PREFIX}|g; \
 		s|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/python/config/Make.rules
 	@${REINPLACE_CMD} 's|%%INSTALL_PROGRAM%%|${INSTALL_PROGRAM}|g; \
 		s|%%INSTALL_DATA%%|${INSTALL_DATA}|g; \
-		s|%%PREFIX%%|${PREFIX}|g ; \
-		s|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/php/config/Make.rules.php
+		s|%%PREFIX%%|${PREFIX}|g; \
+		s|%%LOCALBASE%%|${LOCALBASE}|g;' ${WRKSRC}/php/config/Make.rules.php
 
-.if ${PORT_OPTIONS:MTESTS}
-TEST_CMD=		@cd ${BUILD_WRKSRC} && ${PYTHON_CMD} ./allTests.py
-check regression-test test: build
-	${TEST_CMD}
-
-pre-install: regression-test
-.endif
+do-test-TEST-on:
+	@cd ${BUILD_WRKSRC} && ${PYTHON_CMD} ./allTests.py
 
 .if ${SLAVE_PORT} == "no"
 post-install:
