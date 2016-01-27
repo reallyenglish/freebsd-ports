@@ -589,6 +589,7 @@
     SUBDIR += npc
     SUBDIR += npm
     SUBDIR += npm2
+    SUBDIR += npm3
     SUBDIR += nscache
     SUBDIR += nspluginwrapper
     SUBDIR += nspluginwrapper-devel
