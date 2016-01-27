@@ -49,7 +49,7 @@
  				resultsum |= PROG;
  			if ((options & PPID) && (procppid == ppid))
  				resultsum |= PPID;
-+			if ((options & JID) && (procppid == jid))
++			if ((options & JID) && (procjid == jid))
 +				resultsum |= JID;
  			if ((options & USER) && (procuid == uid))
  				resultsum |= USER;
