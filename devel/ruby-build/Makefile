@@ -4,9 +4,8 @@ PORTNAME=	ruby-build
 PORTVERSION=	20160111
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel ruby
-MASTER_SITES=	GH
 
-MAINTAINER=	fmb@onibox.net
+MAINTAINER=	meta+ports@vmeta.jp
 COMMENT=	Compile and install different ruby versions
 
 LICENSE=	MIT
@@ -16,17 +15,10 @@ RUN_DEPENDS=	autoconf>0:${PORTSDIR}/devel/autoconf \
 		curl:${PORTSDIR}/ftp/curl \
 		gmake:${PORTSDIR}/devel/gmake
 
-USE_GCC=	4.6
-
 OPTIONS_DEFINE=	RBENV
 RBENV_DESC=	Install rbenv for installation support
 OPTIONS_DEFAULT=	RBENV
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MRBENV}
-RUN_DEPENDS+=	rbenv:${PORTSDIR}/devel/rbenv
-.endif
+RBENV_RUN_DEPENDS=	rbenv:${PORTSDIR}/devel/rbenv
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sstephenson
@@ -38,13 +30,6 @@ PLIST_FILES=	bin/ruby-build \
 		libexec/rbenv-install \
 		libexec/rbenv-uninstall
 PORTDATA=	*
-
-ADDITIONAL_DEFINITIONS=	1.9.3-p551 2.0.0-p598 2.1.5
-
-post-patch:
-.for F in ${ADDITIONAL_DEFINITIONS}
-	${CP} ${FILESDIR}/${F} ${WRKSRC}/share/ruby-build/
-.endfor
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/bin/ruby-build ${STAGEDIR}${PREFIX}/bin
