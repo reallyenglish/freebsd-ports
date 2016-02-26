@@ -55,7 +55,7 @@ MY_RUBY_LIB_VERSION=	2.1.0
 
 # qa-check in poudrier exits with fatal error when USES does not contain
 # libtool and '*.la' file exists
-USES=	libtool
+USES=	libtool tar:bzip2
 PLIST_SUB+=	RUBY_VERSION=${RUBY_VERSION} RUBY_PATCHLEVEL=${RUBY_PATCHLEVEL} MY_RUBY_TARGET_ARCH=${MY_RUBY_TARGET_ARCH}
 
 RBCONFIG?=	rbenv_root/versions/${MY_RUBY_VERSION_WITH_PATCHLEVEL}/lib/ruby/${MY_RUBY_LIB_VERSION}/${MY_RUBY_TARGET_ARCH}-freebsd${OSREL}/rbconfig.rb
