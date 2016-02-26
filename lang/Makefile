@@ -285,6 +285,10 @@
     SUBDIR += ratfor
     SUBDIR += rbenv-ruby
     SUBDIR += rbenv-ruby-1.8.7p357
+    SUBDIR += rbenv-ruby-1.9.3p551
+    SUBDIR += rbenv-ruby-2.0.0p598
+    SUBDIR += rbenv-ruby-2.1.2
+    SUBDIR += rbenv-ruby-2.1.5
     SUBDIR += rexx-imc
     SUBDIR += rexx-regina
     SUBDIR += rexx-regutil

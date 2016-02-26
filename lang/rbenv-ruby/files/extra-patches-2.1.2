@@ -1,0 +1,839 @@
+--- ./lib/mkmf.rb.orig	2014-02-21 23:14:26.000000000 +0900
++++ ./lib/mkmf.rb	2016-02-26 11:30:37.000000000 +0900
+@@ -236,7 +236,7 @@
+   end
+   $extmk ||= false
+   if not $extmk and File.exist?(($hdrdir = RbConfig::CONFIG["rubyhdrdir"]) + "/ruby/ruby.h")
+-    $topdir = $hdrdir
++    $topdir = $hdrdir + "/" + "#{CONFIG['arch']}/ruby/"
+     $top_srcdir = $hdrdir
+     $arch_hdrdir = RbConfig::CONFIG["rubyarchhdrdir"]
+   elsif File.exist?(($hdrdir = ($top_srcdir ||= topdir) + "/include")  + "/ruby.h")
+--- ./ext/dl/extconf.rb.orig	2012-02-25 14:47:16.000000000 +0900
++++ ./ext/dl/extconf.rb	2016-02-26 11:30:06.000000000 +0900
+@@ -1,7 +1,12 @@
+ require 'mkmf'
+ 
+ if RbConfig::CONFIG['GCC'] == 'yes'
+-  (have_macro("__clang__") ? $LDFLAGS : $CFLAGS) << " -fno-defer-pop"
++  flag = " -fno-defer-pop"
++  if have_macro("__clang__")
++    $LDFLAGS << flag if try_ldflags(flag)
++  else
++    $CFLAGS << flag
++  end
+   $CFLAGS << " -fno-omit-frame-pointer"
+ end
+ 
+--- ./tool/mkconfig.rb.orig	2013-03-31 15:40:37.000000000 +0900
++++ ./tool/mkconfig.rb	2016-02-26 11:30:37.000000000 +0900
+@@ -167,7 +167,8 @@
+ end
+ vars["prefix"] = ""
+ vars["exec_prefix"] = ""
+-prefix = vars.expand(vars["rubyarchdir"])
++major, minor, *rest = RUBY_VERSION.split('.')
++prefix = "/lib/ruby/#{major}.#{minor}/#{arch}"
+ print "  TOPDIR = File.dirname(__FILE__).chomp!(#{prefix.dump})\n"
+ print "  DESTDIR = ", (drive ? "TOPDIR && TOPDIR[/\\A[a-z]:/i] || " : ""), "'' unless defined? DESTDIR\n"
+ print <<'ARCH' if universal
+--- ./tool/rbinstall.rb.orig	2013-11-10 01:37:46.000000000 +0900
++++ ./tool/rbinstall.rb	2016-02-26 11:30:37.000000000 +0900
+@@ -318,6 +318,7 @@
+ libdir = CONFIG[CONFIG.fetch("libdirname", "libdir"), true]
+ rubyhdrdir = CONFIG["rubyhdrdir", true]
+ archhdrdir = CONFIG["rubyarchhdrdir"] || (rubyhdrdir + "/" + CONFIG['arch'])
++libdatadir = CONFIG["prefix", true] + "/" + "libdata"
+ rubylibdir = CONFIG["rubylibdir", true]
+ archlibdir = CONFIG["rubyarchdir", true]
+ sitelibdir = CONFIG["sitelibdir"]
+@@ -373,7 +374,7 @@
+ install?(:local, :arch, :data) do
+   pc = CONFIG["ruby_pc"]
+   if pc and File.file?(pc) and File.size?(pc)
+-    prepare "pkgconfig data", pkgconfigdir = File.join(libdir, "pkgconfig")
++    prepare "pkgconfig data", pkgconfigdir = File.join(libdatadir, "pkgconfig")
+     install pc, pkgconfigdir, :mode => $data_mode
+   end
+ end
+@@ -710,61 +711,6 @@
+ end
+ # :startdoc:
+ 
+-install?(:ext, :comm, :gem) do
+-  $:.unshift(File.join(srcdir, "lib"))
+-  require("rubygems.rb")
+-  gem_dir = Gem.default_dir
+-  directories = Gem.ensure_gem_subdirectories(gem_dir, :mode => $dir_mode)
+-  prepare "default gems", gem_dir, directories
+-
+-  spec_dir = File.join(gem_dir, directories.grep(/^spec/)[0])
+-  default_spec_dir = "#{spec_dir}/default"
+-  makedirs(default_spec_dir)
+-
+-  gems = {}
+-  File.foreach(File.join(srcdir, "defs/default_gems")) do |line|
+-    line.chomp!
+-    line.sub!(/\s*#.*/, '')
+-    next if line.empty?
+-    words = []
+-    line.scan(/\G\s*([^\[\]\s]+|\[([^\[\]]*)\])/) do
+-      words << ($2 ? $2.split : $1)
+-    end
+-    name, base_dir, src, execs = *words
+-    next unless name and base_dir and src
+-
+-    src       = File.join(srcdir, src)
+-    base_dir  = File.join(srcdir, base_dir)
+-    specgen   = RbInstall::Specs::Generator.new(name, base_dir, src, execs || [])
+-    gems[name] ||= specgen
+-  end
+-
+-  Dir.glob(srcdir+"/{lib,ext}/**/*.gemspec").each do |src|
+-    specgen   = RbInstall::Specs::Reader.new(src)
+-    gems[specgen.gemspec.name] ||= specgen
+-  end
+-
+-  gems.sort.each do |name, specgen|
+-    gemspec   = specgen.gemspec
+-    base_dir  = specgen.src.sub(/\A#{Regexp.escape(srcdir)}\//, "")
+-    full_name = "#{gemspec.name}-#{gemspec.version}"
+-
+-    puts "#{" "*30}#{gemspec.name} #{gemspec.version}"
+-    gemspec_path = File.join(default_spec_dir, "#{full_name}.gemspec")
+-    open_for_install(gemspec_path, $data_mode) do
+-      specgen.spec_source
+-    end
+-
+-    unless gemspec.executables.empty? then
+-      bin_dir = File.join(gem_dir, 'gems', full_name, 'bin')
+-      makedirs(bin_dir)
+-
+-      execs = gemspec.executables.map {|exec| File.join(srcdir, 'bin', exec)}
+-      install(execs, bin_dir, :mode => $prog_mode)
+-    end
+-  end
+-end
+-
+ parse_args()
+ 
+ include FileUtils
+--- ./configure.orig	2014-05-09 00:52:19.000000000 +0900
++++ ./configure	2016-02-26 11:29:35.000000000 +0900
+@@ -875,7 +875,6 @@
+ enable_pthread
+ with_gmp
+ enable_largefile
+-with_setjmp_type
+ enable_setreuid
+ with_dln_a_out
+ enable_rpath
+@@ -888,6 +887,7 @@
+ with_soname
+ enable_shared
+ enable_dtrace
++with_setjmp_type
+ enable_install_doc
+ enable_install_rdoc
+ enable_install_capi
+@@ -1581,7 +1581,6 @@
+                           separated by $PATH_SEPARATOR
+   --with-winnt-ver=0xXXXX target Windows NT version (default to 0x0501)
+   --without-gmp           disable GNU GMP to accelerate Bignum operations
+-  --with-setjmp-type      select setjmp type
+   --with-dln-a-out        use dln_a_out if possible
+   --without-valgrind      disable valgrind memcheck support
+   --with-ext=EXTS         pass to --with-ext option of extmk.rb
+@@ -1591,6 +1590,7 @@
+   --with-rubylibprefix=DIR
+                           prefix for ruby libraries [[LIBDIR/RUBY_BASE_NAME]]
+   --with-soname=SONAME    base name of shared library
++  --with-setjmp-type      select setjmp type
+   --with-rubyarchprefix=DIR
+                           prefix for architecture dependent ruby libraries
+                           [[RUBYLIBPREFIX/ARCH]]
+@@ -3284,7 +3284,7 @@
+   darwin*:darwin*) :
+ 
+     if test -n "$ac_tool_prefix"; then
+-  for ac_prog in gcc-4.2 clang gcc cc
++  for ac_prog in clang gcc cc
+   do
+     # Extract the first word of "$ac_tool_prefix$ac_prog", so it can be a program name with args.
+ set dummy $ac_tool_prefix$ac_prog; ac_word=$2
+@@ -3328,7 +3328,7 @@
+ fi
+ if test -z "$CC"; then
+   ac_ct_CC=$CC
+-  for ac_prog in gcc-4.2 clang gcc cc
++  for ac_prog in clang gcc cc
+ do
+   # Extract the first word of "$ac_prog", so it can be a program name with args.
+ set dummy $ac_prog; ac_word=$2
+@@ -5103,7 +5103,9 @@
+     linker_flag=-Wl,
+     : ${optflags=-O3}
+     gcc_major=`echo =__GNUC__ | $CC -E -xc - | sed '/^=/!d;s///'`
++    gcc_minor=`echo =__GNUC_MINOR__ | $CC -E -xc - | sed '/^=/!d;s///'`
+     test -n "$gcc_major" || gcc_major=0
++    test -n "$gcc_minor" || gcc_minor=0
+     # RUBY_APPEND_OPTIONS(XCFLAGS, ["-include ruby/config.h" "-include ruby/missing.h"])
+ else
+     linker_flag=
+@@ -7344,6 +7346,60 @@
+     rb_cv_warnflags="$warnflags"
+     warnflags=
+ fi
++
++    { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether -Qunused-arguments is accepted as CFLAGS" >&5
++$as_echo_n "checking whether -Qunused-arguments is accepted as CFLAGS... " >&6; }
++    save_CFLAGS="$CFLAGS"
++CFLAGS="$CFLAGS $rb_cv_warnflags"
++if test "${ac_c_werror_flag+set}"; then
++  rb_c_werror_flag="$ac_c_werror_flag"
++else
++  unset rb_c_werror_flag
++fi
++ac_c_werror_flag=yes
++
++    CFLAGS="$CFLAGS -Qunused-arguments"
++    cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++/* end confdefs.h.  */
++
++int
++main ()
++{
++
++  ;
++  return 0;
++}
++_ACEOF
++if ac_fn_c_try_compile "$LINENO"; then :
++  # RUBY_APPEND_OPTIONS(rb_cv_wsuppress_flags)
++	for rb_opt in -Qunused-arguments; do
++	case " ${rb_cv_wsuppress_flags-} " in #(
++  *" ${rb_opt} "*) :
++     ;; #(
++  '  ') :
++     rb_cv_wsuppress_flags="${rb_opt}" ;; #(
++  *) :
++     rb_cv_wsuppress_flags="$rb_cv_wsuppress_flags ${rb_opt}" ;;
++esac
++	done
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++else
++
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++$as_echo "no" >&6; }
++fi
++rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
++
++CFLAGS="$save_CFLAGS"
++save_CFLAGS=
++if test "${rb_c_werror_flag+set}"; then
++  ac_c_werror_flag="$rb_c_werror_flag"
++else
++  unset ac_c_werror_flag
++fi
++
++
+ if test "$GCC" = yes; then
+     # -D_FORTIFY_SOURCE
+     # When defined _FORTIFY_SOURCE, glibc enables some additional sanity
+@@ -8042,7 +8098,7 @@
+ 
+ 	    # doesn't seem necessary on Mac OS X
+ 	 ;; #(
+-  i[4-6]86*) :
++  i[4-6]86*|i386*mingw*) :
+ 
+ 
+     { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether -msse2 -mfpmath=sse is accepted as CFLAGS" >&5
+@@ -8221,7 +8277,7 @@
+ esac
+ 
+ case "$target_os" in #(
+-  freebsd*) :
++dragonfly* |   freebsd*) :
+ 
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether pthread should be enabled by default" >&5
+ $as_echo_n "checking whether pthread should be enabled by default... " >&6; }
+@@ -8331,6 +8387,9 @@
+ 		ac_cv_type_getgroups=gid_t # getgroups() on Rosetta fills garbage
+ 		ac_cv_lib_crypt_crypt=no
+ 		ac_cv_func_fdatasync=no # Mac OS X wrongly reports it has fdatasync()
++		if test $gcc_major -lt 4 -o \( $gcc_major -eq 4 -a $gcc_minor -lt 3 \); then
++		    ac_cv_func___builtin_setjmp=no
++		fi
+                 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for broken crypt with 8bit chars" >&5
+ $as_echo_n "checking for broken crypt with 8bit chars... " >&6; }
+ if ${rb_cv_broken_crypt+:} false; then :
+@@ -8519,6 +8578,7 @@
+                 ac_cv_func_clock_gettime=yes
+                 ac_cv_func_clock_getres=yes
+ 		ac_cv_func_malloc_usable_size=no
++		{ test "$target_cpu" = x64 && ac_cv_func___builtin_setjmp=no; }
+ 		ac_fn_c_check_type "$LINENO" "NET_LUID" "ac_cv_type_NET_LUID" "#include <windows.h>
+ 		  	      #include <iphlpapi.h>
+ "
+@@ -8558,7 +8618,7 @@
+ 		$as_echo "#define BROKEN_SETREGID 1" >>confdefs.h
+ 
+                 ac_cv_sizeof_rlim_t=8 ;; #(
+-  freebsd*) :
++dragonfly* |   freebsd*) :
+     	LIBS="-lm $LIBS"
+ 		ac_cv_func_getpeername=no
+ 		ac_cv_func_getsockname=no
+@@ -9418,6 +9478,21 @@
+ case "$target_os" in #(
+   mingw*) :
+     ac_cv_type_off_t=yes;ac_cv_sizeof_off_t=8 ;; #(
++  aix*) :
++
++    case "$target_cpu:$ac_cv_sys_large_files" in #(
++  ppc64:*|powerpc64:*) :
++     ;; #(
++  *:no|*:unknown) :
++     ;; #(
++  *) :
++
++	    # AIX currently does not support a 32-bit call to posix_fadvise()
++	    # if _LARGE_FILES is defined.
++	    ac_cv_func_posix_fadvise=no
++	 ;;
++esac
++     ;; #(
+   *) :
+      ;;
+ esac
+@@ -11312,7 +11387,18 @@
+   unset rb_c_werror_flag
+ fi
+ ac_c_werror_flag=yes
+-for pri in ll I64; do
++# RUBY_APPEND_OPTIONS(CFLAGS)
++	for rb_opt in $rb_cv_wsuppress_flags; do
++	case " ${CFLAGS-} " in #(
++  *" ${rb_opt} "*) :
++     ;; #(
++  '  ') :
++     CFLAGS="${rb_opt}" ;; #(
++  *) :
++     CFLAGS="$CFLAGS ${rb_opt}" ;;
++esac
++	done
++    for pri in ll I64; do
+         cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ #include <stdio.h>
+@@ -11372,7 +11458,18 @@
+   unset rb_c_werror_flag
+ fi
+ ac_c_werror_flag=yes
+-for pri in ll I64; do
++# RUBY_APPEND_OPTIONS(CFLAGS)
++	for rb_opt in $rb_cv_wsuppress_flags; do
++	case " ${CFLAGS-} " in #(
++  *" ${rb_opt} "*) :
++     ;; #(
++  '  ') :
++     CFLAGS="${rb_opt}" ;; #(
++  *) :
++     CFLAGS="$CFLAGS ${rb_opt}" ;;
++esac
++	done
++    for pri in ll I64; do
+         cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ #include <stdio.h>
+@@ -13191,11 +13288,11 @@
+ ac_c_werror_flag=yes
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+-#include <stdlib.h>
++volatile int zero;
+ int
+ main ()
+ {
+-exit(0); __builtin_unreachable();
++if (zero) __builtin_unreachable();
+   ;
+   return 0;
+ }
+@@ -13697,7 +13794,18 @@
+   unset rb_c_werror_flag
+ fi
+ ac_c_werror_flag=yes
+-for pri in z; do
++# RUBY_APPEND_OPTIONS(CFLAGS)
++	for rb_opt in $rb_cv_wsuppress_flags; do
++	case " ${CFLAGS-} " in #(
++  *" ${rb_opt} "*) :
++     ;; #(
++  '  ') :
++     CFLAGS="${rb_opt}" ;; #(
++  *) :
++     CFLAGS="$CFLAGS ${rb_opt}" ;;
++esac
++	done
++    for pri in z; do
+         cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ #include <stdio.h>
+@@ -13756,7 +13864,18 @@
+   unset rb_c_werror_flag
+ fi
+ ac_c_werror_flag=yes
+-for pri in t; do
++# RUBY_APPEND_OPTIONS(CFLAGS)
++	for rb_opt in $rb_cv_wsuppress_flags; do
++	case " ${CFLAGS-} " in #(
++  *" ${rb_opt} "*) :
++     ;; #(
++  '  ') :
++     CFLAGS="${rb_opt}" ;; #(
++  *) :
++     CFLAGS="$CFLAGS ${rb_opt}" ;;
++esac
++	done
++    for pri in t; do
+         cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ #include <stdio.h>
+@@ -16500,7 +16619,7 @@
+ esac
+ 
+ case "$target_os" in #(
+-  freebsd*) :
++dragonfly* |   freebsd*) :
+ 
+ 	 $as_echo "#define BROKEN_CLOSE 1" >>confdefs.h
+ 
+@@ -17256,6 +17375,17 @@
+ fi
+ done
+ 
++for ac_func in isfinite
++do :
++  ac_fn_c_check_func "$LINENO" "isfinite" "ac_cv_func_isfinite"
++if test "x$ac_cv_func_isfinite" = xyes; then :
++  cat >>confdefs.h <<_ACEOF
++#define HAVE_ISFINITE 1
++_ACEOF
++
++fi
++done
++
+ for ac_func in issetugid
+ do :
+   ac_fn_c_check_func "$LINENO" "issetugid" "ac_cv_func_issetugid"
+@@ -18308,108 +18438,11 @@
+ { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_func_sigsetjmp" >&5
+ $as_echo "$ac_cv_func_sigsetjmp" >&6; }
+ 
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for __builtin_setjmp" >&5
+-$as_echo_n "checking for __builtin_setjmp... " >&6; }
+-if ${ac_cv_func___builtin_setjmp+:} false; then :
+-  $as_echo_n "(cached) " >&6
+-else
+-  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+-/* end confdefs.h.  */
+-#include <setjmp.h>
+-    jmp_buf jb; void t(v) int v; {__builtin_longjmp(jb, v);}
+-int
+-main ()
+-{
+-__builtin_setjmp(jb);
+-  ;
+-  return 0;
+-}
+-_ACEOF
+-if ac_fn_c_try_link "$LINENO"; then :
+-  ac_cv_func___builtin_setjmp=yes
+-else
+-  ac_cv_func___builtin_setjmp=no
+-fi
+-rm -f core conftest.err conftest.$ac_objext \
+-    conftest$ac_exeext conftest.$ac_ext
+ 
+-fi
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_func___builtin_setjmp" >&5
+-$as_echo "$ac_cv_func___builtin_setjmp" >&6; }
+ 
+ # we don't use _setjmp if _longjmp doesn't exist.
+ test x$ac_cv_func__longjmp = xno && ac_cv_func__setjmp=no
+ 
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for setjmp type" >&5
+-$as_echo_n "checking for setjmp type... " >&6; }
+-setjmp_suffix=
+-
+-# Check whether --with-setjmp-type was given.
+-if test "${with_setjmp_type+set}" = set; then :
+-  withval=$with_setjmp_type;
+-	case $withval in #(
+-  __builtin_setjmp) :
+-    setjmp=__builtin_setjmp ;; #(
+-  _setjmp) :
+-     setjmp_prefix=_ ;; #(
+-  sigsetjmp) :
+-     setjmp_prefix=sig ;; #(
+-  setjmp) :
+-     setjmp_prefix= ;; #(
+-  setjmpex) :
+-     setjmp_prefix= setjmp_suffix=ex ;; #(
+-  '') :
+-     unset setjmp_prefix ;; #(
+-  *) :
+-       as_fn_error $? "invalid setjmp type: $withval" "$LINENO" 5 ;;
+-esac
+-else
+-  unset setjmp_prefix
+-fi
+-
+-if test ${setjmp_prefix+set}; then
+-    if test "${setjmp_prefix}" && eval test '$ac_cv_func_'${setjmp_prefix}setjmp${setjmp_suffix} = no; then
+-	as_fn_error $? "${setjmp_prefix}setjmp${setjmp_suffix} is not available" "$LINENO" 5
+-    fi
+-elif test "$ac_cv_func___builtin_setjmp" = yes; then
+-    setjmp_prefix=__builtin_
+-    setjmp_suffix=
+-elif test "$ac_cv_header_setjmpex_h:$ac_cv_func__setjmpex" = yes:yes; then
+-    setjmp_prefix=
+-    setjmp_suffix=ex
+-elif test "$ac_cv_func__setjmp" = yes; then
+-    setjmp_prefix=_
+-    setjmp_suffix=
+-elif test "$ac_cv_func_sigsetjmp" = yes; then
+-    case $target_os in #(
+-  solaris*|cygwin*) :
+-    setjmp_prefix= ;; #(
+-  *) :
+-    setjmp_prefix=sig ;;
+-esac
+-    setjmp_suffix=
+-else
+-    setjmp_prefix=
+-    setjmp_suffix=
+-fi
+-if test x$setjmp_prefix = xsig; then
+-    setjmp_sigmask=yes
+-else
+-    unset setjmp_sigmask
+-fi
+-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ${setjmp_prefix}setjmp${setjmp_suffix}" >&5
+-$as_echo "${setjmp_prefix}setjmp${setjmp_suffix}" >&6; }
+-cat >>confdefs.h <<_ACEOF
+-#define RUBY_SETJMP(env) ${setjmp_prefix}setjmp${setjmp_suffix}(env${setjmp_sigmask+,0})
+-_ACEOF
+-
+-cat >>confdefs.h <<_ACEOF
+-#define RUBY_LONGJMP(env,val) ${setjmp_prefix}longjmp(env,val)
+-_ACEOF
+-
+-cat >>confdefs.h <<_ACEOF
+-#define RUBY_JMP_BUF ${setjmp_sigmask+${setjmp_prefix}}jmp_buf
+-_ACEOF
+ 
+ # End of setjmp check.
+ 
+@@ -20390,24 +20423,25 @@
+     if (n > 0) {
+ 	/*fprintf(stdout, "backtrace:%d\n",n);*/
+     } else {
+-	abort();
++	_exit(EXIT_FAILURE);
+     }
+-    _exit(0);
++    _exit(EXIT_SUCCESS);
+ }
+ int
+-main()
++main(void)
+ {
++    volatile int *a = NULL;
+     stack_t ss;
+     ss.ss_sp = malloc(SIGSTKSZ);
+     if (ss.ss_sp == NULL) {
+ 	fprintf(stderr, "cannot allocate memory for sigaltstack\n");
+-	abort();
++	return EXIT_FAILURE;
+     }
+     ss.ss_size = SIGSTKSZ;
+     ss.ss_flags = 0;
+     if (sigaltstack(&ss, NULL) == -1) {
+ 	fprintf(stderr, "sigaltstack failed\n");
+-	abort();
++	return EXIT_FAILURE;
+     }
+     struct sigaction sa;
+     memset(&sa, 0, sizeof(struct sigaction));
+@@ -20416,9 +20450,8 @@
+     sa.sa_flags |= SA_SIGINFO;
+     sa.sa_flags |= SA_ONSTACK;
+     sigaction(SIGSEGV, &sa, NULL);
+-    int *a = NULL;
+     a[0] = 1;
+-    return 0;
++    return EXIT_SUCCESS;
+ }
+ 
+ _ACEOF
+@@ -21370,7 +21403,7 @@
+             LIBRUBY_A_OBJS='$(DTRACE_GLOMMED_OBJ)'
+         fi
+         case "${target_os}" in #(
+-  freebsd*) :
++dragonfly* |   freebsd*) :
+ 
+             # FreeBSD's dtrace requires libelf
+             LIBS="-lelf $LIBS"
+@@ -21388,6 +21421,143 @@
+ 
+ 
+ 
++
++
++if test x"${ac_cv_func___builtin_setjmp}" = xyes; then
++   unset ac_cv_func___builtin_setjmp
++fi
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for __builtin_setjmp" >&5
++$as_echo_n "checking for __builtin_setjmp... " >&6; }
++if ${ac_cv_func___builtin_setjmp+:} false; then :
++  $as_echo_n "(cached) " >&6
++else
++
++    ac_cv_func___builtin_setjmp=no
++    for cast in "" "(void **)"; do
++	save_CFLAGS="$CFLAGS"
++CFLAGS="$CFLAGS $rb_cv_warnflags"
++if test "${ac_c_werror_flag+set}"; then
++  rb_c_werror_flag="$ac_c_werror_flag"
++else
++  unset rb_c_werror_flag
++fi
++ac_c_werror_flag=yes
++cat confdefs.h - <<_ACEOF >conftest.$ac_ext
++/* end confdefs.h.  */
++#include <setjmp.h>
++	    #include <stdio.h>
++	    jmp_buf jb;
++	    void t(void) {__builtin_longjmp($cast jb, 1);}
++	    int jump(void) {(void)(__builtin_setjmp($cast jb) ? 1 : 0); return 0;}
++int
++main ()
++{
++
++	    void (*volatile f)(void) = t;
++	    if (!jump()) printf("%d\n", f != 0);
++
++  ;
++  return 0;
++}
++_ACEOF
++if ac_fn_c_try_link "$LINENO"; then :
++  ac_cv_func___builtin_setjmp="yes with cast ($cast)"
++fi
++rm -f core conftest.err conftest.$ac_objext \
++    conftest$ac_exeext conftest.$ac_ext
++
++CFLAGS="$save_CFLAGS"
++save_CFLAGS=
++if test "${rb_c_werror_flag+set}"; then
++  ac_c_werror_flag="$rb_c_werror_flag"
++else
++  unset ac_c_werror_flag
++fi
++	test "$ac_cv_func___builtin_setjmp" = no || break
++    done
++fi
++{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_func___builtin_setjmp" >&5
++$as_echo "$ac_cv_func___builtin_setjmp" >&6; }
++
++{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for setjmp type" >&5
++$as_echo_n "checking for setjmp type... " >&6; }
++setjmp_suffix=
++
++# Check whether --with-setjmp-type was given.
++if test "${with_setjmp_type+set}" = set; then :
++  withval=$with_setjmp_type;
++	case $withval in #(
++  __builtin_setjmp) :
++    setjmp=__builtin_setjmp ;; #(
++  _setjmp) :
++     setjmp_prefix=_ ;; #(
++  sigsetjmp) :
++     setjmp_prefix=sig ;; #(
++  setjmp) :
++     setjmp_prefix= ;; #(
++  setjmpex) :
++     setjmp_prefix= setjmp_suffix=ex ;; #(
++  '') :
++     unset setjmp_prefix ;; #(
++  *) :
++       as_fn_error $? "invalid setjmp type: $withval" "$LINENO" 5 ;;
++esac
++else
++  unset setjmp_prefix
++fi
++
++setjmp_cast=
++if test ${setjmp_prefix+set}; then
++    if test "${setjmp_prefix}" && eval test '$ac_cv_func_'${setjmp_prefix}setjmp${setjmp_suffix} = no; then
++	as_fn_error $? "${setjmp_prefix}setjmp${setjmp_suffix} is not available" "$LINENO" 5
++    fi
++elif { case "$ac_cv_func___builtin_setjmp" in #(
++  yes*) :
++    true ;; #(
++  *) :
++    false ;;
++esac; }; then
++    setjmp_cast=`expr "$ac_cv_func___builtin_setjmp" : "yes with cast (\(.*\))"`
++    setjmp_prefix=__builtin_
++    setjmp_suffix=
++elif test "$ac_cv_header_setjmpex_h:$ac_cv_func__setjmpex" = yes:yes; then
++    setjmp_prefix=
++    setjmp_suffix=ex
++elif test "$ac_cv_func__setjmp" = yes; then
++    setjmp_prefix=_
++    setjmp_suffix=
++elif test "$ac_cv_func_sigsetjmp" = yes; then
++    case $target_os in #(
++  solaris*|cygwin*) :
++    setjmp_prefix= ;; #(
++  *) :
++    setjmp_prefix=sig ;;
++esac
++    setjmp_suffix=
++else
++    setjmp_prefix=
++    setjmp_suffix=
++fi
++if test x$setjmp_prefix = xsig; then
++    setjmp_sigmask=yes
++else
++    unset setjmp_sigmask
++fi
++{ $as_echo "$as_me:${as_lineno-$LINENO}: result: ${setjmp_prefix}setjmp${setjmp_suffix}${setjmp_cast:+\($setjmp_cast\)}" >&5
++$as_echo "${setjmp_prefix}setjmp${setjmp_suffix}${setjmp_cast:+\($setjmp_cast\)}" >&6; }
++cat >>confdefs.h <<_ACEOF
++#define RUBY_SETJMP(env) ${setjmp_prefix}setjmp${setjmp_suffix}($setjmp_cast(env)${setjmp_sigmask+,0})
++_ACEOF
++
++cat >>confdefs.h <<_ACEOF
++#define RUBY_LONGJMP(env,val) ${setjmp_prefix}longjmp($setjmp_cast(env),val)
++_ACEOF
++
++cat >>confdefs.h <<_ACEOF
++#define RUBY_JMP_BUF ${setjmp_sigmask+${setjmp_prefix}}jmp_buf
++_ACEOF
++
++
+ }
+ { # build section
+ 
+--- ./Makefile.in.orig	2013-12-17 13:32:51.000000000 +0900
++++ ./Makefile.in	2016-02-26 11:30:37.000000000 +0900
+@@ -347,7 +347,7 @@
+ 
+ .d.h:
+ 	@$(ECHO) translating probes $<
+-	$(Q) $(DTRACE) -o $@.tmp -h -C $(INCFLAGS) -s $<
++	$(Q) $(DTRACE) -xnolibs -o $@.tmp -h -C $(INCFLAGS) -s $<
+ 	$(Q) sed -e 's/RUBY_/RUBY_DTRACE_/g' -e 's/PROBES_H_TMP/PROBES_H/g' -e 's/(char \*/(const char */g' -e 's/, char \*/, const char */g' $@.tmp > $@
+ 	$(Q) $(RM) $@.tmp
+ 
+@@ -367,7 +367,7 @@
+ 	fi; \
+ 	touch "$$stamp"
+ 	$(RM) $@
+-	$(Q) $(DTRACE) -G -C $(INCFLAGS) -s $(srcdir)/probes.d -o $@ $(DTRACE_DEPENDENT_OBJS)
++	$(Q) $(DTRACE) -xnolibs -G -C $(INCFLAGS) -s $(srcdir)/probes.d -o $@ $(DTRACE_DEPENDENT_OBJS)
+ 
+ # DTrace static library hacks described here:
+ # http://mail.opensolaris.org/pipermail/dtrace-discuss/2005-August/000207.html
+--- ./configure.in.orig	2014-05-08 01:21:02.000000000 +0900
++++ ./configure.in	2016-02-26 11:30:37.000000000 +0900
+@@ -570,7 +570,7 @@
+ [AC_CACHE_CHECK(whether dtrace USDT is available, rb_cv_dtrace_available,
+ [
+     echo "provider conftest{ probe fire(); };" > conftest_provider.d
+-    if $DTRACE -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null; then
++    if $DTRACE -xnolibs -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null; then
+       # DTrace is available on the system
+       rb_cv_dtrace_available=yes
+     else
+@@ -591,13 +591,13 @@
+       probe fire();
+     };
+ _PROBES
+-    $DTRACE -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null &&
++    $DTRACE -xnolibs -h -o conftest_provider.h -s conftest_provider.d >/dev/null 2>/dev/null &&
+     cat >conftest.c <<_CONF &&
+     @%:@include "conftest_provider.h"
+     int main(void){ CONFTEST_FIRE(); return 0; }
+ _CONF
+     $CC $CFLAGS $CPPFLAGS -c -o conftest.o conftest.c &&
+-    $DTRACE -G -s conftest_provider.d conftest.o 2>/dev/null
++    $DTRACE -xnolibs -G -s conftest_provider.d conftest.o 2>/dev/null
+   }; then
+     rb_cv_prog_dtrace_g=yes
+   else
+@@ -1084,10 +1084,10 @@
+   ],
+ [	LIBS="-lm $LIBS"])
+ 
+-AC_CHECK_LIB(crypt, crypt)      # glibc (GNU/Linux, GNU/Hurd, GNU/kFreeBSD)
+-AC_CHECK_LIB(dl, dlopen)	# Dynamic linking for SunOS/Solaris and SYSV
+-AC_CHECK_LIB(dld, shl_load)	# Dynamic linking for HP-UX
+-AC_CHECK_LIB(socket, shutdown)  # SunOS/Solaris
++AC_SEARCH_LIBS(crypt, crypt)      # glibc (GNU/Linux, GNU/Hurd, GNU/kFreeBSD)
++AC_SEARCH_LIBS(dlopen, dl)	# Dynamic linking for SunOS/Solaris and SYSV
++AC_SEARCH_LIBS(shl_load, dld)	# Dynamic linking for HP-UX
++AC_SEARCH_LIBS(shutdown, socket)  # SunOS/Solaris
+ 
+ dnl Checks for header files.
+ AC_HEADER_DIRENT
+@@ -1982,7 +1982,7 @@
+ if test x"$ac_cv_func_clock_gettime" != xyes; then
+     # glibc 2.17 moves clock_* functions from librt to the main C library.
+     # http://sourceware.org/ml/libc-announce/2012/msg00001.html
+-    AC_CHECK_LIB(rt, clock_gettime)
++    AC_SEARCH_LIBS(clock_gettime, rt)
+     if test x"$ac_cv_lib_rt_clock_gettime" = xyes; then
+ 	AC_DEFINE(HAVE_CLOCK_GETTIME, 1)
+     fi
+@@ -2423,7 +2423,7 @@
+ fi
+ 
+ if test x"$enable_pthread" = xyes; then
+-    for pthread_lib in thr pthread pthreads c c_r root; do
++    for pthread_lib in pthread thr pthreads c c_r root; do
+ 	AC_CHECK_LIB($pthread_lib, pthread_kill,
+ 		     rb_with_pthread=yes, rb_with_pthread=no)
+ 	if test "$rb_with_pthread" = "yes"; then break; fi
+@@ -2437,6 +2437,7 @@
+ 	[c],    [],
+ 	[root], [],
+ 	[c_r],  [MAINLIBS="-pthread $MAINLIBS"],
++	[pthread],  [MAINLIBS="-pthread $MAINLIBS"],
+ 	        [AS_CASE(["$target_os"],
+ 		    [openbsd*|mirbsd*], [LIBS="-pthread $LIBS"],
+ 		    [LIBS="-l$pthread_lib $LIBS"])])
+@@ -2698,7 +2699,6 @@
+ 			: ${LDSHARED='$(CC) -shared'}
+ 			if test "$rb_cv_binary_elf" = yes; then
+ 			    LDFLAGS="$LDFLAGS -rdynamic"
+-			    DLDFLAGS="$DLDFLAGS "'-Wl,-soname,$@'
+ 			else
+ 			  test "$GCC" = yes && test "$rb_cv_prog_gnu_ld" = yes || LDSHARED='$(LD) -Bshareable'
+ 			fi
+@@ -3166,6 +3166,7 @@
+     [freebsd*|dragonfly*], [
+ 	SOLIBS='$(LIBS)'
+ 	LIBRUBY_SO='lib$(RUBY_SO_NAME).so.$(MAJOR)$(MINOR)'
++	LIBRUBY_DLDFLAGS='-Wl,-soname,$(LIBRUBY_SO)'
+ 	if test "$rb_cv_binary_elf" != "yes" ; then
+ 	    LIBRUBY_SO="$LIBRUBY_SO.\$(TEENY)"
+ 	    LIBRUBY_ALIASES=''

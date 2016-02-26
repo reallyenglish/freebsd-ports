@@ -1,4 +1,4 @@
-SHA256 (ruby-2.0.0-p598.tar.gz) = 4136bf7d764cbcc1c7da2824ed2826c3550f2b62af673c79ddbf9049b12095fd
-SIZE (ruby-2.0.0-p598.tar.gz) = 13608640
+SHA256 (ruby-2.0.0-p598.tar.bz2) = 67b2a93690f53e12b635ba1bcdbd41e8c5593f13d575fea92fdd8801ca088f0f
+SIZE (ruby-2.0.0-p598.tar.bz2) = 10758882
 SHA256 (rubygems-2.2.2.tgz) = 572dd13baa1dfb9756db9fbfeb629be1634efddb7014c552845c0e9a5a643009
 SIZE (rubygems-2.2.2.tgz) = 414111

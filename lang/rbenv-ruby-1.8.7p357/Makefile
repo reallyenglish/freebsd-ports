@@ -6,7 +6,8 @@ COMMENT=	An object-oriented interpreted scripting language
 DISTFILES?=	ruby-${RUBY_VERSION}-p${RUBY_PATCHLEVEL}${EXTRACT_SUFX}:ruby \
 	rubygems-${RUBYGEM_VERSION}.tgz:rubygem \
 	yaml-0.1.4.tar.gz:pyyaml
-MASTER_SITES?=	ftp://ftp.ruby-lang.org/pub/ruby/1.9/:ruby \
+MASTER_SITES?=	http://ftp.ruby-lang.org/pub/ruby/:ruby \
+	https://rubygems.org/rubygems/:rubygem \
 	http://pyyaml.org/download/libyaml/:pyyaml
 
 PLIST=		${.CURDIR}/pkg-plist
