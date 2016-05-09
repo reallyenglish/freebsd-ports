@@ -8,13 +8,11 @@ MASTER_SITES=	http://pwmt.org/projects/zathura-cb/download/
 MAINTAINER=	mike.d.ft402@gmail.com
 COMMENT=	Comic book plugin for Zathura PDF viewer
 
-LICENSE=	zlib
-LICENSE_NAME=	zlib license
+LICENSE=	ZLIB
 LICENSE_FILE=	${WRKSRC}/LICENSE
-LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
-BUILD_DEPENDS=	zathura:${PORTSDIR}/graphics/zathura
-RUN_DEPENDS=	zathura:${PORTSDIR}/graphics/zathura
+BUILD_DEPENDS=	zathura:graphics/zathura
+RUN_DEPENDS=	zathura:graphics/zathura
 
 PLIST_FILES=	lib/zathura/cb.so share/applications/zathura-cb.desktop
 

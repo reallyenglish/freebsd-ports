@@ -12,7 +12,8 @@ COMMENT=	Fast, teachable, learning spam detector
 
 .if !defined(MASTERDIR) || ${MASTERDIR} == ${.CURDIR}
 # building master port
-USE_BDB=	41+
+USE_BDB=	5+
+INVALID_BDB_VER=48
 .endif
 
 OPTIONS_DEFINE=		GSL UNICODE DOCS
@@ -32,7 +33,7 @@ CPE_VENDOR=	bogofilter_project
 
 UNICODE_USES=	iconv
 UNICODE_CONFIGURE_ENABLE=	unicode
-GSL_LIB_DEPENDS=	libgsl.so:${PORTSDIR}/math/gsl
+GSL_LIB_DEPENDS=	libgsl.so:math/gsl
 GSL_CONFIGURE_ARGS_OFF=	--with-included-gsl
 
 PORTDOCS=	*
@@ -94,5 +95,8 @@ post-install::
 	mailfilter.example procmailrc.example vm-bogofilter.el
 	${INSTALL_DATA} ${WRKSRC}/contrib/${i} ${STAGEDIR}${DOCSDIR}/contrib/${i}
 .endfor
+
+regression-test: all
+	cd ${WRKSRC} && ${DO_MAKE_BUILD} check
 
 .include <bsd.port.post.mk>

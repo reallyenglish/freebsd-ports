@@ -7,12 +7,14 @@
     SUBDIR += ADMsnmp
     SUBDIR += R-cran-ROAuth
     SUBDIR += R-cran-digest
+    SUBDIR += R-cran-openssl
     SUBDIR += aescrypt
     SUBDIR += aespipe
     SUBDIR += afl
     SUBDIR += afterglow
     SUBDIR += aide
     SUBDIR += aimsniff
+    SUBDIR += akmos
     SUBDIR += amap
     SUBDIR += amavis-stats
     SUBDIR += amavisd-milter
@@ -60,6 +62,7 @@
     SUBDIR += chntpw
     SUBDIR += chroot_safe
     SUBDIR += chrootuid
+    SUBDIR += cisco-torch
     SUBDIR += ckpass
     SUBDIR += cksfv
     SUBDIR += cl-md5
@@ -93,6 +96,7 @@
     SUBDIR += cyrus-sasl2-gssapi
     SUBDIR += cyrus-sasl2-ldapdb
     SUBDIR += cyrus-sasl2-saslauthd
+    SUBDIR += cyrus-sasl2-srp
     SUBDIR += d0_blind_id
     SUBDIR += dcetest
     SUBDIR += ddos_scan
@@ -173,6 +177,7 @@
     SUBDIR += gpgdir
     SUBDIR += gpgme
     SUBDIR += gputty
+    SUBDIR += greenbone-security-assistant
     SUBDIR += gringotts
     SUBDIR += gsasl
     SUBDIR += gsfv
@@ -188,6 +193,7 @@
     SUBDIR += hitch
     SUBDIR += hlfl
     SUBDIR += hmap
+    SUBDIR += honeybadger
     SUBDIR += honggfuzz
     SUBDIR += hotssh
     SUBDIR += hpenc
@@ -235,6 +241,7 @@
     SUBDIR += httprint
     SUBDIR += hydra
     SUBDIR += i2p
+    SUBDIR += i2pd
     SUBDIR += iaikpkcs11wrapper
     SUBDIR += idea
     SUBDIR += identify
@@ -281,6 +288,8 @@
     SUBDIR += l5
     SUBDIR += lasso
     SUBDIR += lastpass-cli
+    SUBDIR += letsencrypt.sh
+    SUBDIR += libadacrypt
     SUBDIR += libassuan
     SUBDIR += libbeid
     SUBDIR += libbf
@@ -402,14 +411,13 @@
     SUBDIR += openscep
     SUBDIR += openssh-askpass
     SUBDIR += openssh-portable
-    SUBDIR += openssh-portable-devel
     SUBDIR += openssl
+    SUBDIR += openssl-devel
     SUBDIR += openssl_tpm_engine
-    SUBDIR += openvas-client
-    SUBDIR += openvas-libnasl
+    SUBDIR += openvas-cli
     SUBDIR += openvas-libraries
-    SUBDIR += openvas-plugins
-    SUBDIR += openvas-server
+    SUBDIR += openvas-manager
+    SUBDIR += openvas-scanner
     SUBDIR += openvpn
     SUBDIR += openvpn-admin
     SUBDIR += openvpn-auth-ldap
@@ -466,6 +474,7 @@
     SUBDIR += p5-Authen-Ticket
     SUBDIR += p5-Authen-TypeKey
     SUBDIR += p5-Business-PayPal-EWP
+    SUBDIR += p5-Bytes-Random-Secure
     SUBDIR += p5-CACertOrg-CA
     SUBDIR += p5-CSP
     SUBDIR += p5-Cisco-Hash
@@ -493,6 +502,7 @@
     SUBDIR += p5-Crypt-ECB
     SUBDIR += p5-Crypt-Eksblowfish
     SUBDIR += p5-Crypt-Enigma
+    SUBDIR += p5-Crypt-Format
     SUBDIR += p5-Crypt-GCrypt
     SUBDIR += p5-Crypt-GOST
     SUBDIR += p5-Crypt-GOST_PP
@@ -537,11 +547,14 @@
     SUBDIR += p5-Crypt-RHash
     SUBDIR += p5-Crypt-RIPEMD160
     SUBDIR += p5-Crypt-RSA
+    SUBDIR += p5-Crypt-RSA-Parse
     SUBDIR += p5-Crypt-RSA-Yandex
     SUBDIR += p5-Crypt-Rabbit
     SUBDIR += p5-Crypt-RandPasswd
     SUBDIR += p5-Crypt-Random
+    SUBDIR += p5-Crypt-Random-Seed
     SUBDIR += p5-Crypt-Random-Source
+    SUBDIR += p5-Crypt-Random-TESHA2
     SUBDIR += p5-Crypt-Rijndael
     SUBDIR += p5-Crypt-Rijndael_PP
     SUBDIR += p5-Crypt-SKey
@@ -566,12 +579,14 @@
     SUBDIR += p5-Crypt-UnixCrypt
     SUBDIR += p5-Crypt-UnixCrypt_XS
     SUBDIR += p5-Crypt-X509
+    SUBDIR += p5-Crypt-XTEA
     SUBDIR += p5-Crypt-xDBM_File
     SUBDIR += p5-CryptX
     SUBDIR += p5-Dancer-Plugin-Auth-Extensible
     SUBDIR += p5-Dancer-Plugin-Auth-Extensible-Provider-Usergroup
     SUBDIR += p5-Dancer-Plugin-Passphrase
     SUBDIR += p5-Dancer2-Plugin-Auth-Extensible
+    SUBDIR += p5-Dancer2-Plugin-Auth-Extensible-Provider-DBIC
     SUBDIR += p5-Dancer2-Plugin-Auth-Extensible-Provider-Usergroup
     SUBDIR += p5-Dancer2-Plugin-Passphrase
     SUBDIR += p5-Data-Entropy
@@ -608,6 +623,7 @@
     SUBDIR += p5-Digest-SHA
     SUBDIR += p5-Digest-SHA-PurePerl
     SUBDIR += p5-Digest-SHA1
+    SUBDIR += p5-Digest-SHA3
     SUBDIR += p5-Digest-SV1
     SUBDIR += p5-Digest-Tiger
     SUBDIR += p5-Digest-Whirlpool
@@ -654,6 +670,7 @@
     SUBDIR += p5-POE-Filter-SSL
     SUBDIR += p5-Parse-Snort
     SUBDIR += p5-PerlCryptLib
+    SUBDIR += p5-Protocol-ACME
     SUBDIR += p5-SAVI-Perl
     SUBDIR += p5-SHA
     SUBDIR += p5-Safe-Hole
@@ -698,6 +715,7 @@
     SUBDIR += pbc
     SUBDIR += pbnj
     SUBDIR += pcsc-tools
+    SUBDIR += pdfcrack
     SUBDIR += pear-Auth
     SUBDIR += pear-Auth_HTTP
     SUBDIR += pear-Auth_OpenID
@@ -735,7 +753,6 @@
     SUBDIR += pecl-pam
     SUBDIR += pecl-scrypt
     SUBDIR += pecl-ssh2
-    SUBDIR += pecl-taint
     SUBDIR += pecl-tcpwrap
     SUBDIR += pev
     SUBDIR += pft
@@ -744,10 +761,6 @@
     SUBDIR += pgpgpg
     SUBDIR += pgpin
     SUBDIR += php-suhosin
-    SUBDIR += php5-filter
-    SUBDIR += php5-hash
-    SUBDIR += php5-mcrypt
-    SUBDIR += php5-openssl
     SUBDIR += php55-filter
     SUBDIR += php55-hash
     SUBDIR += php55-mcrypt
@@ -756,6 +769,10 @@
     SUBDIR += php56-hash
     SUBDIR += php56-mcrypt
     SUBDIR += php56-openssl
+    SUBDIR += php70-filter
+    SUBDIR += php70-hash
+    SUBDIR += php70-mcrypt
+    SUBDIR += php70-openssl
     SUBDIR += phpdeadlock
     SUBDIR += phpsecinfo
     SUBDIR += pidentd
@@ -776,7 +793,6 @@
     SUBDIR += pks
     SUBDIR += pktsuckers
     SUBDIR += please
-    SUBDIR += polarssl
     SUBDIR += polarssl13
     SUBDIR += poly1305aes
     SUBDIR += pond
@@ -800,9 +816,9 @@
     SUBDIR += py-Products.PlonePAS
     SUBDIR += py-Products.PluggableAuthService
     SUBDIR += py-RestrictedPython
-    SUBDIR += py-scrypt
     SUBDIR += py-SecretStorage
     SUBDIR += py-acme
+    SUBDIR += py-acme-tiny
     SUBDIR += py-artifacts
     SUBDIR += py-bcrypt
     SUBDIR += py-borg.localrole
@@ -829,6 +845,7 @@
     SUBDIR += py-kerberos
     SUBDIR += py-keyczar
     SUBDIR += py-keyring
+    SUBDIR += py-keyrings.alt
     SUBDIR += py-letsencrypt
     SUBDIR += py-libnacl
     SUBDIR += py-m2crypto
@@ -836,7 +853,6 @@
     SUBDIR += py-mhash
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib
-    SUBDIR += py-openid
     SUBDIR += py-openssl
     SUBDIR += py-paramiko
     SUBDIR += py-passlib
@@ -867,12 +883,15 @@
     SUBDIR += py-pyscard
     SUBDIR += py-pysha3
     SUBDIR += py-python-gnupg
+    SUBDIR += py-python-openid
+    SUBDIR += py-python-social-auth
     SUBDIR += py-python-registry
     SUBDIR += py-rekall
     SUBDIR += py-rekall-core
     SUBDIR += py-rekall_gui
     SUBDIR += py-requests-kerberos
     SUBDIR += py-rsa
+    SUBDIR += py-scrypt
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
     SUBDIR += py-slowaes
@@ -931,7 +950,6 @@
     SUBDIR += rcracki_mt
     SUBDIR += rdigest
     SUBDIR += regripper
-    SUBDIR += regripperplugins
     SUBDIR += reop
     SUBDIR += retranslator
     SUBDIR += revealrk
@@ -1061,6 +1079,7 @@
     SUBDIR += stoken
     SUBDIR += strobe
     SUBDIR += strongswan
+    SUBDIR += stud
     SUBDIR += stunnel
     SUBDIR += subversion-gnome-keyring
     SUBDIR += subversion-kwallet
@@ -1078,6 +1097,7 @@
     SUBDIR += tinc
     SUBDIR += tinyca
     SUBDIR += titus
+    SUBDIR += tls-check
     SUBDIR += tlswrap
     SUBDIR += tmux-cssh
     SUBDIR += tor

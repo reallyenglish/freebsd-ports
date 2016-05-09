@@ -3,6 +3,7 @@
 
 PORTNAME=	bacula
 DISTVERSION=	7.4.0
+PORTREVISION=   2
 CATEGORIES?=	sysutils
 MASTER_SITES=	SF/bacula/bacula/${PORTVERSION}
 PKGNAMEPREFIX?=	#
@@ -12,13 +13,13 @@ MAINTAINER=	dvl@FreeBSD.org
 COMMENT?=	Network backup solution (server)
 
 USES+=		libtool readline shebangfix
-SHEBANG_FILES=	scripts/dvd-handler.in
+SHEBANG_FILES=	scripts/dvd-handler.in src/cats/make_catalog_backup.pl.in
 python_OLD_CMD=	@PYTHON@
 USE_OPENSSL=	yes
 
 CONFLICTS?=	bacula5-server-*
 
-LIB_DEPENDS+=	liblzo2.so:${PORTSDIR}/archivers/lzo2
+LIB_DEPENDS+=	liblzo2.so:archivers/lzo2
 
 USERS=		bacula
 GROUPS=		${USERS}
@@ -42,7 +43,7 @@ PYTHON_USES=		python
 PYTHON_CONFIGURE_ON=	--with-python=yes
 
 .if !defined(WITH_CLIENT_ONLY)
-LIB_DEPENDS+=	libbac-${DISTVERSION}.so:${PORTSDIR}/sysutils/bacula-client
+LIB_DEPENDS+=	libbac-${DISTVERSION}.so:sysutils/bacula-client
 USE_RC_SUBR?=	bacula-dir bacula-sd
 .endif
 
@@ -113,11 +114,11 @@ CONFFILES=		sd dir
 MYSQL_CONFIGURE_ON=	--with-mysql=yes
 MYSQL_USE=		MYSQL=yes
 SQLITE3_CONFIGURE_ON=	--with-sqlite3=yes
-SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
+SQLITE3_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 PGSQL_CONFIGURE_ON=	--with-postgresql=yes
 PGSQL_USES=		pgsql
 
-MTX_RUN_DEPENDS=	${LOCALBASE}/sbin/mtx:${PORTSDIR}/misc/mtx
+MTX_RUN_DEPENDS=	${LOCALBASE}/sbin/mtx:misc/mtx
 
 .include <bsd.port.options.mk>
 
@@ -180,7 +181,7 @@ post-patch:
 .else
 	# In server port don't install filed
 	@${REINPLACE_CMD} -e '/^fd_subdirs = /s|src/filed||' -e 's|src/console||' \
-	 	${WRKSRC}/Makefile.in
+		${WRKSRC}/Makefile.in
 .endif
 
 .if !target(post-install)
@@ -190,6 +191,7 @@ post-install:
 .else
 	${INSTALL_SCRIPT} ${FILESDIR}/chio-bacula ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_DATA} ${FILESDIR}/bacula-barcodes ${STAGEDIR}${ETCDIR}/bacula-barcodes.sample
+	${MV} ${STAGEDIR}${LOCALBASE}/share/bacula/query.sql ${STAGEDIR}${LOCALBASE}/share/bacula/query.sql.sample
 	#the following are installed by the -CLIENT port, and I (ler@lerctr.org)
 	#don't know how to remove them from being built for the -SERVER port.
 	${RM} ${STAGEDIR}${LOCALBASE}/lib/bpipe-fd.so
