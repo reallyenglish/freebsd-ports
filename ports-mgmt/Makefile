@@ -40,9 +40,11 @@
     SUBDIR += pkgs_which
     SUBDIR += port-authoring-tools
     SUBDIR += port-maintenance-tools
+    SUBDIR += portal
     SUBDIR += portconf
     SUBDIR += portdowngrade
     SUBDIR += portell
+    SUBDIR += portest
     SUBDIR += portfind
     SUBDIR += portless
     SUBDIR += portlint
@@ -63,10 +65,10 @@
     SUBDIR += psearch
     SUBDIR += py-pytoport
     SUBDIR += py-skog
+    SUBDIR += redports-node
     SUBDIR += symports
     SUBDIR += synth
     SUBDIR += tinderbox
-    SUBDIR += tinderbox-devel
     SUBDIR += wanted-ports
     SUBDIR += xps
 
