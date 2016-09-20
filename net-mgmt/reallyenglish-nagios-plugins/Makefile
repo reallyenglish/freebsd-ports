@@ -2,7 +2,7 @@
 
 PORTNAME=	reallyenglish-nagios-plugins
 PORTVERSION=	1.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://journal.reallyenglish.com/
 
@@ -27,7 +27,7 @@ SHEBANG_FILES=	src/check_raid_amrstat/check_raid_amrstat \
 pre-install:
 	${INSTALL} -d ${STAGEDIR}${PREFIX}/libexec/nagios
 	${FIND} ${WRKSRC} -type f | ${XARGS} ${REINPLACE_CMD} \
-                -e 's/${ECHO} /echo /g'
+                -e 's/$${ECHO} /echo /g'
 
 do-install:
 	${MAKE} -C ${WRKSRC} install DESTDIR=${STAGEDIR}${PREFIX}
