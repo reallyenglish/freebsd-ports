@@ -73,6 +73,7 @@ PRINTF?=		/usr/bin/printf
 PS_CMD?=		/bin/ps
 PW?=			/usr/sbin/pw
 REALPATH?=		/bin/realpath
+RLN?=			${INSTALL} -l rs
 RM?=			/bin/rm -f
 RMDIR?=			/bin/rmdir
 SED?=			/usr/bin/sed
