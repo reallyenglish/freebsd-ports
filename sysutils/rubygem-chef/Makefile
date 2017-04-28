@@ -3,7 +3,7 @@
 
 PORTNAME=	chef
 PORTVERSION=	11.14.6
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -24,7 +24,7 @@ RUN_DEPENDS=	rubygem-chef-zero>=2.1.0:sysutils/rubygem-chef-zero \
 		rubygem-mixlib-config>=2.1.0:devel/rubygem-mixlib-config \
 		rubygem-mixlib-log>=1.3.0:devel/rubygem-mixlib-log \
 		rubygem-mixlib-shellout>=1.4.0:devel/rubygem-mixlib-shellout \
-		rubygem-net-ssh>=2.6:security/rubygem-net-ssh \
+		rubygem-net-ssh>=3.0:security/rubygem-net-ssh \
 		rubygem-net-ssh-multi>=1.1.0:security/rubygem-net-ssh-multi \
 		rubygem-ohai>=7.2.0:sysutils/rubygem-ohai \
 		rubygem-plist>=3.1.0:devel/rubygem-plist \
