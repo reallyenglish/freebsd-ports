@@ -1,6 +1,6 @@
---- bin/ruby-build.orig	2016-01-11 16:07:12 UTC
+--- bin/ruby-build.orig	2017-05-23 14:39:10 UTC
 +++ bin/ruby-build
-@@ -245,6 +245,13 @@ compute_md5() {
+@@ -257,6 +257,13 @@ has_checksum_support() {
  }
  
  verify_checksum() {
@@ -11,10 +11,10 @@
 +# - checksum is verified by the ports framework
 +return 0
 +
-   # If there's no SHA2 support, return success
-   [ -n "$HAS_SHA2_SUPPORT" ] || return 0
-   local checksum_command="compute_sha2"
-@@ -341,6 +348,12 @@ fetch_tarball() {
+   local checksum_command
+   local filename="$1"
+   local expected_checksum="$(echo "$2" | tr [A-Z] [a-z])"
+@@ -361,6 +368,12 @@ fetch_tarball() {
    local tar_args="xzf"
    local package_filename="${package_name}.tar.gz"
  
@@ -27,7 +27,7 @@
    if [ "$package_url" != "${package_url%bz2}" ]; then
      if ! type -p bzip2 >/dev/null; then
        echo "warning: bzip2 not found; consider installing \`bzip2\` package" >&4
-@@ -349,6 +362,10 @@ fetch_tarball() {
+@@ -369,6 +382,10 @@ fetch_tarball() {
      tar_args="${tar_args/z/j}"
    fi
  
@@ -38,7 +38,7 @@
    if ! reuse_existing_tarball "$package_filename" "$checksum"; then
      local tarball_filename=$(basename $package_url)
      echo "Downloading ${tarball_filename}..." >&2
-@@ -809,7 +826,8 @@ gccs_in_path() {
+@@ -832,7 +849,8 @@ gccs_in_path() {
  
    shopt -s nullglob
    for path in "${paths[@]}"; do
