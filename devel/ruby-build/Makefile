@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ruby-build
-PORTVERSION=	20140509.1
+PORTVERSION=	20170523
 CATEGORIES=	devel ruby
 MASTER_SITES=	GH
 
@@ -17,6 +17,7 @@ RUN_DEPENDS=	autoconf:${PORTSDIR}/devel/autoconf \
 		curl:${PORTSDIR}/ftp/curl \
 		gmake:${PORTSDIR}/devel/gmake
 
+WRKSRC=		${WRKDIR}/rbenv-${GH_PROJECT}-${GH_COMMIT}
 OPTIONS_DEFINE=	RBENV
 RBENV_DESC=	Install rbenv for installation support
 OPTIONS_DEFAULT=	RBENV
@@ -29,7 +30,7 @@ RUN_DEPENDS+=	rbenv:${PORTSDIR}/devel/rbenv
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sstephenson
-GH_COMMIT=	9aece39
+GH_COMMIT=	74d1a03
 GH_TAGNAME=	v${PORTVERSION}
 
 NO_BUILD=	yes

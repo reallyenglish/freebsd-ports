@@ -1,23 +1,23 @@
---- ./bin/ruby-build.orig	2014-05-09 12:51:19.000000000 +0900
-+++ ./bin/ruby-build	2014-05-15 14:40:55.000000000 +0900
-@@ -181,6 +181,13 @@
+--- ./bin/ruby-build.orig	2017-05-23 23:39:10.000000000 +0900
++++ ./bin/ruby-build	2017-06-07 14:44:35.000000000 +0900
+@@ -257,6 +257,13 @@
  }
-
+ 
  verify_checksum() {
-+  # disable verify_checksum because:
-+  # - recent tinderbox does not allow fetching remote file during build
-+  # - DISTDIR must be used as mirror
-+  # - DISTDIR does not contain checksum file
-+  # - checksum is verified by the ports framework
-+  return 0
++# disable verify_checksum because:
++# - recent tinderbox does not allow fetching remote file during build
++# - DISTDIR must be used as mirror
++# - DISTDIR does not contain checksum file
++# - checksum is verified by the ports framework
++return 0
 +
-   # If there's no MD5 support, return success
-   [ -n "$HAS_MD5_SUPPORT" ] || return 0
-
-@@ -256,11 +263,21 @@
-   local tar_args="xzvf"
+   local checksum_command
+   local filename="$1"
+   local expected_checksum="$(echo "$2" | tr [A-Z] [a-z])"
+@@ -361,6 +368,12 @@
+   local tar_args="xzf"
    local package_filename="${package_name}.tar.gz"
-
+ 
 +  # XXX a terrible hack to fix suffix
 +  local package_name_without_version=`echo ${package_name} | cut -f1 -d"-"`
 +  if [ x${package_name_without_version} == x"rubygems" ]; then
@@ -25,10 +25,12 @@
 +  fi
 +
    if [ "$package_url" != "${package_url%bz2}" ]; then
-     package_filename="${package_filename%.gz}.bz2"
+     if ! type -p bzip2 >/dev/null; then
+       echo "warning: bzip2 not found; consider installing \`bzip2\` package" >&4
+@@ -369,6 +382,10 @@
      tar_args="${tar_args/z/j}"
    fi
-
+ 
 +  if [ -n "$RUBY_BUILD_MIRROR_URL" ]; then
 +    mirror_url="${RUBY_BUILD_MIRROR_URL}/${package_filename}"
 +  fi

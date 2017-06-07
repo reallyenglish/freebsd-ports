@@ -1,12 +1,13 @@
---- ./bin/rbenv-install.orig	2014-05-09 12:51:19.000000000 +0900
-+++ ./bin/rbenv-install	2014-05-15 14:36:03.000000000 +0900
-@@ -33,6 +33,10 @@
-   RBENV_ROOT="${HOME}/.rbenv"
+--- ./bin/rbenv-install.orig	2017-05-23 23:39:10.000000000 +0900
++++ ./bin/rbenv-install	2017-06-07 13:57:20.000000000 +0900
+@@ -47,6 +47,10 @@
+   exec ruby-build --definitions
  fi
-
+ 
 +if [ `uname -s` = "FreeBSD" ]; then
 +  export MAKE="gmake"
 +fi
 +
  # Load shared library functions
  eval "$(ruby-build --lib)"
+ 
