@@ -292,6 +292,7 @@
     SUBDIR += rbenv-ruby-2.0.0p353
     SUBDIR += rbenv-ruby-2.0.0p481
     SUBDIR += rbenv-ruby-2.1.2
+    SUBDIR += rbenv-ruby-2.4.1
     SUBDIR += rexx-imc
     SUBDIR += rexx-regina
     SUBDIR += rexx-regutil
