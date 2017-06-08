@@ -1,0 +1,1375 @@
+rbenv_root/shims/erb
+rbenv_root/shims/gem
+rbenv_root/shims/irb
+rbenv_root/shims/rake
+rbenv_root/shims/rdoc
+rbenv_root/shims/ri
+rbenv_root/shims/ruby
+rbenv_root/versions/%%RUBY_VERSION%%/bin/erb
+rbenv_root/versions/%%RUBY_VERSION%%/bin/gem
+rbenv_root/versions/%%RUBY_VERSION%%/bin/irb
+rbenv_root/versions/%%RUBY_VERSION%%/bin/rake
+rbenv_root/versions/%%RUBY_VERSION%%/bin/rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/bin/ri
+rbenv_root/versions/%%RUBY_VERSION%%/bin/ruby
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/backward.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/backward/classext.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/backward/rubyio.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/backward/rubysig.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/backward/st.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/backward/util.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/debug.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/defines.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/digest.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/encoding.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/intern.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/io.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/missing.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/onigmo.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/oniguruma.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/re.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/regex.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/ruby.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/st.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/subst.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/thread.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/thread_native.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/util.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/version.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/vm.h
+rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/ruby/config.h
+rbenv_root/versions/%%RUBY_VERSION%%/lib/libruby-static.a
+rbenv_root/versions/%%RUBY_VERSION%%/lib/pkgconfig/ruby-%%MY_RUBY_VER%%.pc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/English.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/abbrev.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/base64.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/benchmark.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/bigdecimal/jacobian.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/bigdecimal/ludcmp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/bigdecimal/math.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/bigdecimal/newton.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/bigdecimal/util.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi/cookie.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi/core.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi/html.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi/session.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi/session/pstore.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi/util.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cmath.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/csv.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/date.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/debug.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/delegate.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/digest.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/digest/sha2.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/acl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/drb.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/eq.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/extserv.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/extservm.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/gw.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/invokemethod.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/observer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/ssl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/timeridconv.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb/unix.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/e2mmap.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/erb.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/expect.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/closure.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/cparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/function.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/import.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/pack.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/struct.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/types.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle/value.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fileutils.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/find.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/forwardable.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/forwardable/impl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/getoptlong.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/io/console/size.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ipaddr.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd/chws.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd/fork.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd/help.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd/load.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd/nop.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd/pushws.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd/subirb.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/completion.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/context.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/change-ws.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/history.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/loader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/math-mode.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/multi-irb.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/save-history.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/tracer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/use-loader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext/workspaces.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/extend-command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/frame.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/help.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/init.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/input-method.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/inspector.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/lc/error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/lc/help-message
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/lc/ja/encoding_aliases.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/lc/ja/error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/lc/ja/help-message
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/locale.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/magic-file.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/notifier.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/output-method.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ruby-lex.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ruby-token.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/slex.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/src_encoding.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/workspace.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ws-for-case-2.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/xmp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/bigdecimal.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/complex.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/core.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/date.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/date_time.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/exception.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/ostruct.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/range.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/rational.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/regexp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/struct.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/symbol.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add/time.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/common.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/ext.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/generic_object.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/kconv.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/logger.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/mathn.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/matrix.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/matrix/eigenvalue_decomposition.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/matrix/lup_decomposition.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/mkmf.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/monitor.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/mutex_m.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/ftp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/backward.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/exceptions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/generic_request.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/header.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/proxy_delta.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/request.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/requests.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/response.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http/responses.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/https.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/imap.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/pop.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/protocol.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/smtp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/observer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/open-uri.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/open3.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/bn.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/buffering.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/cipher.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/config.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/digest.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/pkey.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/ssl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl/x509.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optionparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse/ac.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse/date.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse/kwargs.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse/shellwords.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse/time.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse/uri.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ostruct.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/pathname.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/pp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/prettyprint.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/prime.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/profile.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/profiler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/pstore.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/class_loader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/coder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/core_ext.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/deprecated.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/exception.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/handler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/handlers/document_stream.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/handlers/recorder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/json/ruby_events.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/json/stream.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/json/tree_builder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/json/yaml_events.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes/alias.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes/document.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes/mapping.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes/node.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes/scalar.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes/sequence.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes/stream.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/omap.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/scalar_scanner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/stream.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/streaming.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/syntax_error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/tree_builder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/versions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors/depth_first.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors/emitter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors/json_tree.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors/to_ruby.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors/visitor.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors/yaml_tree.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/y.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/racc/parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rbconfig/datadir.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/alias.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/anon_class.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/any_method.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/attr.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/class_module.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/code_object.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/code_objects.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/comment.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/constant.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/context.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/context/section.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/cross_reference.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/encoding.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/erb_partial.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/erbio.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/extend.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/darkfish.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/json_index.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/markup.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/pot.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/pot/message_extractor.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/pot/po.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/pot/po_entry.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/ri.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_footer.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_head.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_VCS_info.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_classes.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_extends.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_in_files.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_includes.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_installed.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_methods.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_navigation.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_pages.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_parent.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_search.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_sections.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/_sidebar_table_of_contents.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/class.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/css/fonts.css
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/css/rdoc.css
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/fonts/Lato-Light.ttf
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/fonts/Lato-LightItalic.ttf
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/fonts/Lato-Regular.ttf
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/fonts/Lato-RegularItalic.ttf
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/fonts/SourceCodePro-Bold.ttf
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/fonts/SourceCodePro-Regular.ttf
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/add.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/arrow_up.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/brick.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/brick_link.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/bug.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/bullet_black.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/bullet_toggle_minus.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/bullet_toggle_plus.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/date.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/delete.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/find.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/loadingAnimation.gif
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/macFFBgHack.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/package.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/page_green.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/page_white_text.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/page_white_width.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/plugin.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/ruby.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/tag_blue.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/tag_green.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/transparent.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/wrench.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/wrench_orange.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images/zoom.png
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/index.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/js/darkfish.js
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/js/jquery.js
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/js/search.js
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/page.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/servlet_not_found.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/servlet_root.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/table_of_contents.rhtml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/json_index/js/navigation.js
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/json_index/js/searcher.js
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/ghost_method.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/i18n.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/i18n/locale.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/i18n/text.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/include.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/known_classes.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markdown.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markdown/entities.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markdown/literals.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/attr_changer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/attr_span.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/attribute_manager.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/attributes.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/blank_line.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/block_quote.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/document.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/formatter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/formatter_test_case.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/hard_break.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/heading.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/include.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/indented_paragraph.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/inline.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/list.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/list_item.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/paragraph.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/pre_process.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/raw.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/rule.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/special.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/text_formatter_test_case.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_ansi.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_bs.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_html.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_html_crossref.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_html_snippet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_joined_paragraph.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_label.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_markdown.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_rdoc.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_table_of_contents.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/to_tt_only.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup/verbatim.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/meta_method.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/method_attr.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/mixin.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/normal_class.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/normal_module.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/options.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/c.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/changelog.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/markdown.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/rd.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/ruby.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/ruby_tools.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/simple.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser/text.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/rd.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/rd/block_parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/rd/inline.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/rd/inline_parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/rdoc.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/require.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/ri.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/ruby_lex.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/ruby_token.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/rubygems_hook.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/servlet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/single_class.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/stats.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/stats/normal.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/stats/quiet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/stats/verbose.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/store.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/task.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/test_case.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/text.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/token_stream.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/tom_doc.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/top_level.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/resolv-replace.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/resolv.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/attlistdecl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/attribute.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/cdata.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/child.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/comment.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/doctype.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/document.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/dtd/attlistdecl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/dtd/dtd.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/dtd/elementdecl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/dtd/entitydecl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/dtd/notationdecl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/element.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/encoding.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/entity.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/formatters/default.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/formatters/pretty.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/formatters/transitive.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/functions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/instruction.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/light/node.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/namespace.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/node.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/output.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parent.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parseexception.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/baseparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/lightparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/pullparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/sax2parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/streamparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/treeparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/ultralightparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers/xpathparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/quickpath.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/rexml.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/sax2listener.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/security.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/source.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/streamlistener.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/syncenumerator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/text.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/undefinednamespaceexception.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/validation/relaxng.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/validation/validation.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/validation/validationexception.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/xmldecl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/xmltokens.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/xpath.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/xpath_parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rinda/rinda.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rinda/ring.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rinda/tuplespace.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ripper.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ripper/core.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ripper/filter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ripper/lexer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ripper/sexp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/0.9.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/1.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/2.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/atom.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/content.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/content/1.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/content/2.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/converter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/dublincore.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/dublincore/1.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/dublincore/2.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/dublincore/atom.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/image.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/itunes.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/0.9.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/1.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/2.0.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/atom.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/base.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/content.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/dublincore.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/entry.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/feed.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/image.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/itunes.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/slash.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/syndication.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/taxonomy.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker/trackback.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/rexmlparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/rss.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/slash.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/syndication.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/taxonomy.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/trackback.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/utils.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/xml-stylesheet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/xml.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/xmlparser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/xmlscanner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/available_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/basic_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/command_manager.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/build_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/cert_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/check_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/cleanup_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/contents_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/dependency_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/environment_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/fetch_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/generate_index_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/help_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/install_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/list_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/lock_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/mirror_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/open_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/outdated_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/owner_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/pristine_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/push_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/query_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/rdoc_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/search_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/server_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/setup_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/sources_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/specification_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/stale_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/uninstall_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/unpack_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/update_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/which_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands/yank_command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/compatibility.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/config_file.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/core_ext/kernel_gem.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/core_ext/kernel_require.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/defaults.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/dependency.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/dependency_installer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/dependency_list.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/deprecate.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/doctor.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/errors.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/exceptions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext/build_error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext/builder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext/cmake_builder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext/configure_builder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext/ext_conf_builder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext/rake_builder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/gem_runner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/gemcutter_utilities.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/indexer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/install_default_message.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/install_message.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/install_update_options.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/installer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/installer_test_case.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/local_remote_options.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/mock_gem_ui.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/name_tuple.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/digest_io.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/file_source.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/io_source.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/old.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/source.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/tar_header.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/tar_reader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/tar_reader/entry.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/tar_test_case.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/tar_writer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package_task.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/path_support.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/platform.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/psych_additions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/psych_tree.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/rdoc.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/remote_fetcher.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request/connection_pools.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request/http_pool.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request/https_pool.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request_set/gem_dependency_api.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request_set/lockfile.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request_set/lockfile/parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request_set/lockfile/tokenizer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/requirement.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/activation_request.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/api_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/api_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/best_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/composed_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/conflict.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/current_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/dependency_request.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/git_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/git_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/index_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/index_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/installed_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/installer_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/local_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/lock_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/lock_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/delegates/resolution_state.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/delegates/specification_provider.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/action.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/add_edge_no_circular.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/add_vertex.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/delete_edge.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/detach_vertex_named.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/log.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/set_payload.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/tag.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph/vertex.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/errors.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/gem_metadata.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/modules/specification_provider.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/modules/ui.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/resolution.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/resolver.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/state.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/requirement_list.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/source_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/spec_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/stats.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/vendor_set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/vendor_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/security.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/security/policies.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/security/policy.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/security/signer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/security/trust_dir.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/server.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source/git.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source/installed.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source/local.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source/lock.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source/specific_file.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source/vendor.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source_list.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source_local.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source_specific_file.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/spec_fetcher.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ssl_certs/index.rubygems.org/GlobalSignRootCA.pem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ssl_certs/rubygems.global.ssl.fastly.net/DigiCertHighAssuranceEVRootCA.pem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ssl_certs/rubygems.org/AddTrustExternalCARoot.pem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/stub_specification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/syck_hack.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/test_case.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/test_utilities.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/text.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/uninstaller.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/uri_formatter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/user_interaction.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/util.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/util/licenses.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/util/list.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/validator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/version_option.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/scanf.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/securerandom.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/set.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell/builtin-command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell/command-processor.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell/error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell/filter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell/process-controller.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell/system-command.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shellwords.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/singleton.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/socket.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/sync.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/syslog/logger.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/tempfile.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/thwait.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/time.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/timeout.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/tmpdir.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/tracer.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/tsort.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ubygems.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/un.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/unicode_normalize.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/unicode_normalize/normalize.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/unicode_normalize/tables.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/common.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/ftp.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/generic.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/http.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/https.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/ldap.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/ldaps.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/mailto.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/rfc2396_parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri/rfc3986_parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/weakref.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/accesslog.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/cgi.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/compat.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/config.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/cookie.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/htmlutils.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth/authenticator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth/basicauth.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth/digestauth.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth/htdigest.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth/htgroup.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth/htpasswd.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth/userdb.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpproxy.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httprequest.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpresponse.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/https.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpserver.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet/abstract.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet/cgi_runner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet/cgihandler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet/erbhandler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet/filehandler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet/prochandler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpstatus.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httputils.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpversion.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/log.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/server.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/ssl.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/utils.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/bigdecimal.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/cgi/escape.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/continuation.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/coverage.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/date_core.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/dbm.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/digest.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/digest/bubblebabble.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/digest/md5.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/digest/rmd160.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/digest/sha1.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/digest/sha2.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/big5.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/cp949.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/emacs_mule.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/encdb.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/euc_jp.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/euc_kr.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/euc_tw.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/gb18030.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/gb2312.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/gbk.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_1.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_10.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_11.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_13.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_14.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_15.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_16.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_2.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_3.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_4.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_5.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_6.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_7.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_8.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/iso_8859_9.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/koi8_r.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/koi8_u.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/shift_jis.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/big5.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/chinese.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/ebcdic.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/emoji.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/emoji_iso2022_kddi.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/emoji_sjis_docomo.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/emoji_sjis_kddi.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/emoji_sjis_softbank.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/escape.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/gb18030.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/gbk.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/iso2022.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/japanese.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/japanese_euc.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/japanese_sjis.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/korean.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/single_byte.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/transdb.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/utf8_mac.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans/utf_16_32.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/utf_16be.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/utf_16le.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/utf_32be.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/utf_32le.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/windows_1250.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/windows_1251.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/windows_1252.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/windows_1253.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/windows_1254.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/windows_1257.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/windows_31j.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/etc.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/fcntl.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/fiber.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/fiddle.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/io/console.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/io/nonblock.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/io/wait.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/json/ext/generator.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/json/ext/parser.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/mathn/complex.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/mathn/rational.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/nkf.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/objspace.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/openssl.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/pathname.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/psych.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/pty.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/racc/cparse.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/rbconfig.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/rbconfig/sizeof.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/readline.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/ripper.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/sdbm.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/socket.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/stringio.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/strscan.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/syslog.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/zlib.so
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/yaml.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/yaml/dbm.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/yaml/store.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache/did_you_mean-1.1.0.gem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache/minitest-5.10.1.gem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache/net-telnet-0.1.1.gem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache/power_assert-0.4.1.gem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache/rake-12.0.0.gem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache/test-unit-3.2.3.gem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache/xmlrpc-0.2.1.gem
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/CHANGELOG.md
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/Gemfile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/LICENSE.txt
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/README.md
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/Rakefile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark/jaro_winkler/memory_usage.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark/jaro_winkler/speed.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark/levenshtein/memory_usage.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark/levenshtein/speed.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark/memory_usage.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/doc/CHANGELOG.md.erb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/doc/changelog_generator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/evaluation/calculator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/evaluation/dictionary_generator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/evaluation/incorrect_words.yaml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/core_ext/name_error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/experimental.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/experimental/initializer_name_correction.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/experimental/ivar_name_correction.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/experimental/key_error_name_correction.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/formatter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/jaro_winkler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/levenshtein.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checker.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checkers/method_name_checker.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checkers/name_error_checkers.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checkers/name_error_checkers/class_name_checker.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checkers/name_error_checkers/variable_name_checker.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checkers/null_checker.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/verbose_formatter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/core_ext/name_error_extension_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/edit_distance/jaro_winkler_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/experimental/initializer_name_correction_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/experimental/key_error_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/experimental/method_name_checker_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/spell_checker_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/spell_checking/class_name_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/spell_checking/method_name_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/spell_checking/uncorrectable_name_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/spell_checking/variable_name_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/test_helper.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/verbose_formatter_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/History.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/Manifest.txt
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/README.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/Rakefile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/design_rationale.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/hoe/minitest.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/assertions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/autorun.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/benchmark.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/expectations.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/hell.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/mock.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/parallel.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/pride.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/pride_plugin.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/spec.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest/unit.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test/minitest/metametameta.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test/minitest/test_minitest_benchmark.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test/minitest/test_minitest_mock.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test/minitest/test_minitest_reporter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test/minitest/test_minitest_spec.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test/minitest/test_minitest_test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/Gemfile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/LICENSE.txt
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/README.md
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/Rakefile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/bin/console
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/bin/setup
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/lib/net-telnet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/lib/net/telnet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/lib/net/telnet/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/BSDL
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/COPYING
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/Gemfile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/LEGAL
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/README.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/Rakefile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/benchmarks/bm_yhpg.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/benchmarks/helper.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/lib/power_assert.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/lib/power_assert/configuration.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/lib/power_assert/enable_tracepoint_events.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/lib/power_assert/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/test/helper.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/test/test_power_assert.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/CONTRIBUTING.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/Gemfile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/History.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/MIT-LICENSE
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/README.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/Rakefile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/appveyor.yml
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/bin/console
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/bin/setup
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/command_line_usage.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/example/Rakefile1
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/example/Rakefile2
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/example/a.c
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/example/b.c
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/example/main.c
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/glossary.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/jamis.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/proto_rake.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/rake.1
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/rakefile.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/rational.rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/exe/rake
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/application.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/backtrace.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/clean.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/cloneable.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/cpu_counter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/default_loader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/dsl_definition.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/early_time.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/ext/core.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/ext/string.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/file_creation_task.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/file_list.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/file_task.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/file_utils.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/file_utils_ext.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/invocation_chain.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/invocation_exception_mixin.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/late_time.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/linked_list.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/loaders/makefile.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/multi_task.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/name_space.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/packagetask.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/phony.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/private_reader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/promise.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/pseudo_status.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/rake_module.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/rake_test_loader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/rule_recursion_overflow_error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/scope.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/task.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/task_argument_error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/task_arguments.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/task_manager.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/tasklib.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/testtask.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/thread_history_display.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/thread_pool.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/trace_output.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/win32.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rdoc-5.0.0/exe/rdoc
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rdoc-5.0.0/exe/ri
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/COPYING
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/GPL
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/LGPL
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/PSFL
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/README.md
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/Rakefile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/doc/text/how-to.md
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/doc/text/news.md
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test-unit.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/assertion-failed-error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/assertions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/attribute-matcher.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/attribute.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/auto-runner-loader.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/autorunner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/code-snippet-fetcher.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/collector.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/collector/descendant.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/collector/dir.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/collector/load.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/collector/objectspace.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/collector/xml.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/color-scheme.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/color.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/data.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/diff.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/exception-handler.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/failure.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/fault-location-detector.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/fixture.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/notification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/omission.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/pending.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/priority.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/runner/console.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/runner/emacs.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/runner/xml.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/test-suite-creator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/testcase.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/testresult.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/testsuite.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/console/outputlevel.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/console/testrunner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/emacs/testrunner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/testrunner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/testrunnermediator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/testrunnerutilities.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/xml/testrunner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/util/backtracefilter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/util/method-owner-finder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/util/observable.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/util/output.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/util/procwrapper.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/version.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/sample/adder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/sample/subtracter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/sample/test_adder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/sample/test_subtracter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/sample/test_user.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/collector/test-descendant.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/collector/test-load.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/collector/test_dir.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/collector/test_objectspace.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures/header-label.csv
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures/header-label.tsv
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures/header.csv
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures/header.tsv
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures/no-header.csv
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures/no-header.tsv
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures/plus.csv
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/run-test.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-assertions.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-attribute-matcher.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-attribute.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-code-snippet.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-color-scheme.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-color.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-data.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-diff.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-emacs-runner.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-error.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-failure.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-fault-location-detector.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-fixture.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-notification.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-omission.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-pending.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-priority.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-test-case.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-test-result.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-test-suite-creator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/test-test-suite.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/testunit-test-util.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/ui/test_testrunmediator.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/util/test-method-owner-finder.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/util/test-output.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/util/test_backtracefilter.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/util/test_observable.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/util/test_procwrapper.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/Gemfile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/LICENSE.txt
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/README.md
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/Rakefile
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/bin/console
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/bin/setup
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/base64.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/client.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/config.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/create.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/datetime.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/marshal.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/parser.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/server.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc/utils.rb
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/default/bigdecimal-1.3.0.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/default/io-console-0.4.6.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/default/json-2.0.2.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/default/openssl-2.0.3.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/default/psych-2.2.2.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/default/rdoc-5.0.0.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/did_you_mean-1.1.0.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/minitest-5.10.1.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/net-telnet-0.1.1.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/power_assert-0.4.1.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/rake-12.0.0.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/test-unit-3.2.3.gemspec
+rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/xmlrpc-0.2.1.gemspec
+@dir rbenv_root/versions/%%RUBY_VERSION%%/share/man/man1
+@dir rbenv_root/versions/%%RUBY_VERSION%%/share/man
+@dir rbenv_root/versions/%%RUBY_VERSION%%/share
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/vendor_ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/vendor_ruby/%%MY_RUBY_LIB_VERSION%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/vendor_ruby
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/site_ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/site_ruby/%%MY_RUBY_LIB_VERSION%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/site_ruby
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications/default
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/specifications
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib/xmlrpc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1/bin
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/xmlrpc-0.2.1
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/util
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/ui
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/fixtures
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test/collector
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/test
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/sample
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/util
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/xml
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/emacs
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui/console
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/ui
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/runner
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit/collector
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test/unit
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib/test
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/doc/text
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3/doc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/test-unit-3.2.3
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rdoc-5.0.0/exe
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rdoc-5.0.0
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/loaders
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake/ext
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib/rake
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/exe
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc/example
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/doc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0/bin
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/rake-12.0.0
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/test
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/lib/power_assert
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1/benchmarks
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/power_assert-0.4.1
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/lib/net/telnet
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/lib/net
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1/bin
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/net-telnet-0.1.1
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test/minitest
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/test
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/minitest
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib/hoe
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/minitest-5.10.1
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/spell_checking
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/experimental
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/edit_distance
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test/core_ext
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/test
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checkers/name_error_checkers
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/spell_checkers
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/experimental
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean/core_ext
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib/did_you_mean
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/evaluation
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/doc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark/levenshtein
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark/jaro_winkler
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0/benchmark
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems/did_you_mean-1.1.0
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/gems
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/extensions
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/doc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/cache
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%/build_info
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems/%%MY_RUBY_LIB_VERSION%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/gems
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/yaml
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/rbconfig
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/racc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/mathn
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/json/ext
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/json
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/io
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc/trans
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/enc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/digest
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/cgi
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpservlet
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick/httpauth
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/webrick
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/uri
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/unicode_normalize
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/syslog
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/shell
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/util
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ssl_certs/rubygems.org
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ssl_certs/rubygems.global.ssl.fastly.net
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ssl_certs/index.rubygems.org
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ssl_certs
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/source
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/security
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/modules
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/dependency_graph
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo/delegates
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib/molinillo
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver/molinillo
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/resolver
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request_set/lockfile
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request_set
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/request
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package/tar_reader
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/package
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/ext
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/core_ext
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems/commands
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rubygems
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/maker
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/dublincore
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss/content
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rss
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/ripper
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rinda
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/validation
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/parsers
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/light
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/formatters
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml/dtd
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rexml
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/stats
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/ri
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/rd
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/parser
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markup
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/markdown
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/i18n
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/json_index/js
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/json_index
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/js
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/images
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/fonts
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish/css
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template/darkfish
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/template
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator/pot
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/generator
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc/context
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rdoc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/rbconfig
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/racc/rdoc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/racc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/visitors
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/nodes
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/json
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych/handlers
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/psych
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/optparse
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/openssl
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net/http
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/net
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/matrix
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json/add
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/json
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/lc/ja
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/lc
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/ext
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb/cmd
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/irb
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/io/console
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/io
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/forwardable
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/fiddle
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/drb
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/digest
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi/session
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/cgi
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%/bigdecimal
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby/%%MY_RUBY_LIB_VERSION%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/ruby
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib/pkgconfig
+@dir rbenv_root/versions/%%RUBY_VERSION%%/lib
+@dir rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%/ruby
+@dir rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/%%MY_RUBY_TARGET_ARCH%%-freebsd%%OSREL%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby/backward
+@dir rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%/ruby
+@dir rbenv_root/versions/%%RUBY_VERSION%%/include/ruby-%%MY_RUBY_LIB_VERSION%%
+@dir rbenv_root/versions/%%RUBY_VERSION%%/include
+@dir rbenv_root/versions/%%RUBY_VERSION%%/bin
+@dir rbenv_root/versions/%%RUBY_VERSION%%
+@dir rbenv_root/versions
+@dir rbenv_root/shims
+@dir rbenv_root

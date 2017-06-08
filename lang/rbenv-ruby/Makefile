@@ -51,6 +51,8 @@ MY_RUBY_LIB_VERSION=	1.9.1
 MY_RUBY_LIB_VERSION=	2.0.0
 .elif ${MY_RUBY_VER} == 2.1
 MY_RUBY_LIB_VERSION=	2.1.0
+.else
+MY_RUBY_LIB_VERSION=	${MY_RUBY_VER}.0
 .endif
 
 # qa-check in poudrier exits with fatal error when USES does not contain
