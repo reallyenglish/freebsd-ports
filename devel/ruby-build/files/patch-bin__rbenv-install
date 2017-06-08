@@ -1,6 +1,6 @@
---- bin/rbenv-install.orig	2016-01-11 16:07:12 UTC
+--- bin/rbenv-install.orig	2017-05-23 14:39:10 UTC
 +++ bin/rbenv-install
-@@ -48,6 +48,10 @@ if [ "$1" = "--complete" ]; then
+@@ -47,6 +47,10 @@ if [ "$1" = "--complete" ]; then
    exec ruby-build --definitions
  fi
  
