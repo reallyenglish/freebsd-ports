@@ -2,13 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	virtualbox-ose
-DISTVERSION=	4.3.38
+PORTVERSION=	5.1.22
 CATEGORIES=	emulators
-MASTER_SITES=	http://download.virtualbox.org/virtualbox/${DISTVERSION}/ \
-		http://tmp.chruetertee.ch/ \
-		http://disasterarea.chruetertee.ch/
+MASTER_SITES=	http://download.virtualbox.org/virtualbox/${PORTVERSION}/
 PKGNAMESUFFIX=	-kmod
-DISTNAME=	VirtualBox-${DISTVERSION}
+DISTNAME=	VirtualBox-${PORTVERSION}
 
 MAINTAINER=	vbox@FreeBSD.org
 COMMENT=	VirtualBox kernel module for FreeBSD
@@ -39,8 +37,8 @@ CONFIGURE_ARGS+=	--disable-alsa \
 			--disable-xpcom
 CONFIGURE_ARGS+=	--nofatal --with-gcc="${CC}" --with-g++="${CXX}"
 
-CONFLICTS_INSTALL=	virtualbox-ose-kmod-devel-4* \
-			virtualbox-ose-kmod-legacy-4*
+CONFLICTS_INSTALL=	virtualbox-ose-kmod-devel-* \
+			virtualbox-ose-kmod-legacy-*
 
 OPTIONS_DEFINE=	DEBUG VIMAGE
 OPTIONS_SUB=	yes
@@ -76,6 +74,13 @@ KMK_ARCH=	freebsd.${ARCH}
 
 .include <bsd.port.pre.mk>
 
+.if ${OSREL:R} >= 11
+SYMBOLSUFFIX=	debug
+.else
+SYMBOLSUFFIX=	symbols
+.endif
+PLIST_SUB+=	SYMBOLSUFFIX=${SYMBOLSUFFIX}
+
 post-patch:
 	@${ECHO} 'VBOX_WITH_VBOXDRV = 1' > ${WRKSRC}/LocalConfig.kmk
 	@${ECHO} 'VBOX_WITH_NETFLT = 1' >> ${WRKSRC}/LocalConfig.kmk
@@ -85,20 +90,21 @@ post-patch:
 	@${ECHO} 'VBOX_WITH_NETFLT_VIMAGE = 1' >> ${WRKSRC}/LocalConfig.kmk
 .endif
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
-		${WRKSRC}/Config.kmk \
-		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|\$$KBUILDDIR_BIN/kmk_sed|${LOCALBASE}/bin/kmk_sed|g' ${WRKSRC}/configure
+	    ${WRKSRC}/Config.kmk ${WRKSRC}/configure
+	@${REINPLACE_CMD} \
+	    -e 's|\$$KBUILDDIR_BIN/kmk_sed|${LOCALBASE}/bin/kmk_sed|g' \
+	    ${WRKSRC}/configure
 
 pre-build:
-	cd ${WRKSRC}/src/VBox/HostDrivers && \
-	    ${SH} -c '. ${WRKSRC}/env.sh && ${KMK_CONFIG} ${LOCALBASE}/bin/kmk ${KMK_FLAGS}'
+	cd ${WRKSRC}/src/VBox/HostDrivers && ${SH} -c \
+	    '. ${WRKSRC}/env.sh && ${KMK_CONFIG} ${LOCALBASE}/bin/kmk ${KMK_FLAGS}'
 
 do-install:
 	${MKDIR} ${STAGEDIR}${KMODDIR}
 .for i in ${VBOX_KMODS}
 	${INSTALL_KLD} ${VBOX_BIN}/${i}/${i}.ko ${STAGEDIR}${KMODDIR}
 .if ${PORT_OPTIONS:MDEBUG}
-	${INSTALL_KLD} ${VBOX_BIN}/${i}/${i}.ko.symbols ${STAGEDIR}${KMODDIR}
+	${INSTALL_KLD} ${VBOX_BIN}/${i}/${i}.ko.${SYMBOLSUFFIX} ${STAGEDIR}${KMODDIR}
 .endif
 .endfor
 
