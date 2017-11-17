@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	certifi
-PORTVERSION=	2017.7.27.1
+PORTVERSION=	2017.11.5
 CATEGORIES=	security python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,6 +14,6 @@ LICENSE=	MPL20
 
 NO_ARCH=	yes
 USES?=		python
-USE_PYTHON=	autoplist distutils
+USE_PYTHON=	autoplist concurrent distutils
 
 .include <bsd.port.mk>

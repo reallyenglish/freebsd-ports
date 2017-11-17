@@ -208,6 +208,7 @@
     SUBDIR += freexl
     SUBDIR += fy-aspell
     SUBDIR += fzf
+    SUBDIR += fzy
     SUBDIR += ga-aspell
     SUBDIR += gastex
     SUBDIR += gd-aspell
@@ -523,7 +524,6 @@
     SUBDIR += ny-aspell
     SUBDIR += ocaml-csv
     SUBDIR += ocaml-expat
-    SUBDIR += ocaml-pxp
     SUBDIR += ocaml-text
     SUBDIR += ocaml-tyxml
     SUBDIR += odt2txt
@@ -819,6 +819,8 @@
     SUBDIR += p5-String-ShellQuote
     SUBDIR += p5-String-ShowDiff
     SUBDIR += p5-String-Strip
+    SUBDIR += p5-String-Tagged
+    SUBDIR += p5-String-Tagged-Terminal
     SUBDIR += p5-String-ToIdentifier-EN
     SUBDIR += p5-String-Tokenizer
     SUBDIR += p5-String-Trim
@@ -1233,6 +1235,16 @@
     SUBDIR += php71-xmlreader
     SUBDIR += php71-xmlwriter
     SUBDIR += php71-xsl
+    SUBDIR += php72-ctype
+    SUBDIR += php72-dom
+    SUBDIR += php72-enchant
+    SUBDIR += php72-pspell
+    SUBDIR += php72-simplexml
+    SUBDIR += php72-wddx
+    SUBDIR += php72-xml
+    SUBDIR += php72-xmlreader
+    SUBDIR += php72-xmlwriter
+    SUBDIR += php72-xsl
     SUBDIR += plover
     SUBDIR += po4a
     SUBDIR += pocketreader
@@ -1365,7 +1377,6 @@
     SUBDIR += py-transifex-client
     SUBDIR += py-translationstring
     SUBDIR += py-tvgrab
-    SUBDIR += py-twistedLore
     SUBDIR += py-ucl
     SUBDIR += py-whoosh
     SUBDIR += py-wicked
@@ -1399,6 +1410,7 @@
     SUBDIR += py3-pyPEG2
     SUBDIR += py3-pygments
     SUBDIR += py3-pystemmer
+    SUBDIR += py3-qrcode
     SUBDIR += py3-snowballstemmer
     SUBDIR += py3-sphinx
     SUBDIR += py3-sphinx_rtd_theme
@@ -1510,6 +1522,7 @@
     SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-ini
     SUBDIR += rubygem-inifile
+    SUBDIR += rubygem-iso-639
     SUBDIR += rubygem-itextomml
     SUBDIR += rubygem-jekyll-assets
     SUBDIR += rubygem-jekyll-feed
@@ -1558,7 +1571,6 @@
     SUBDIR += rubygem-rmmseg-cpp
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-rouge
-    SUBDIR += rubygem-rouge1
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt
@@ -1790,6 +1802,7 @@
     SUBDIR += xslide.el
     SUBDIR += xstream
     SUBDIR += xsv
+    SUBDIR += xsv-rs
     SUBDIR += xwindiff
     SUBDIR += xxdiff
     SUBDIR += xxdiff-scripts

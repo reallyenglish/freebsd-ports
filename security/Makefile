@@ -48,6 +48,7 @@
     SUBDIR += blindelephant
     SUBDIR += boringssl
     SUBDIR += botan110
+    SUBDIR += botan2
     SUBDIR += bro
     SUBDIR += broccoli
     SUBDIR += bruteblock
@@ -80,7 +81,6 @@
     SUBDIR += clamav
     SUBDIR += clamav-milter
     SUBDIR += clamav-unofficial-sigs
-    SUBDIR += clambc
     SUBDIR += clamcour
     SUBDIR += clamd-stream-client
     SUBDIR += clamfs
@@ -101,6 +101,7 @@
     SUBDIR += cryptlib
     SUBDIR += cryptopp
     SUBDIR += ct-submit
+    SUBDIR += cvechecker
     SUBDIR += cvm
     SUBDIR += cyberchef
     SUBDIR += cyrus-sasl2
@@ -171,6 +172,7 @@
     SUBDIR += gcipher
     SUBDIR += gcr
     SUBDIR += git-crypt
+    SUBDIR += git-remote-gcrypt
     SUBDIR += gnome-gpg
     SUBDIR += gnome-keyring
     SUBDIR += gnome-keyring-sharp
@@ -180,10 +182,9 @@
     SUBDIR += gnupg
     SUBDIR += gnupg1
     SUBDIR += gnupg20
-    SUBDIR += gnupg22
     SUBDIR += gnutls
-    SUBDIR += go.crypto
     SUBDIR += go-cve-dictionary
+    SUBDIR += go.crypto
     SUBDIR += goptlib
     SUBDIR += gorilla
     SUBDIR += govpn
@@ -419,6 +420,7 @@
     SUBDIR += nmap
     SUBDIR += nss
     SUBDIR += nss_compat_ossl
+    SUBDIR += nyx
     SUBDIR += oath-toolkit
     SUBDIR += obfsclient
     SUBDIR += obfsproxy
@@ -443,6 +445,7 @@
     SUBDIR += openssh-portable
     SUBDIR += openssl
     SUBDIR += openssl-devel
+    SUBDIR += openssl-unsafe
     SUBDIR += openssl_tpm_engine
     SUBDIR += openvas8
     SUBDIR += openvas8-cli
@@ -815,6 +818,10 @@
     SUBDIR += php71-hash
     SUBDIR += php71-mcrypt
     SUBDIR += php71-openssl
+    SUBDIR += php72-filter
+    SUBDIR += php72-hash
+    SUBDIR += php72-openssl
+    SUBDIR += php72-sodium
     SUBDIR += phpdeadlock
     SUBDIR += phpsecinfo
     SUBDIR += pidentd
@@ -854,6 +861,7 @@
     SUBDIR += pwauth
     SUBDIR += pwman
     SUBDIR += pwman3
+    SUBDIR += pwned-check
     SUBDIR += pxytest
     SUBDIR += py-AccessControl
     SUBDIR += py-PF
@@ -868,6 +876,7 @@
     SUBDIR += py-backports.ssl_match_hostname
     SUBDIR += py-bcrypt
     SUBDIR += py-borg.localrole
+    SUBDIR += py-btchip-python
     SUBDIR += py-cerealizer
     SUBDIR += py-certbot
     SUBDIR += py-certifi
@@ -908,6 +917,7 @@
     SUBDIR += py-mcrypt
     SUBDIR += py-mhash
     SUBDIR += py-mixbox
+    SUBDIR += py-mnemonic
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib
     SUBDIR += py-onetime
@@ -927,6 +937,7 @@
     SUBDIR += py-pow
     SUBDIR += py-pyaes
     SUBDIR += py-pyaff4
+    SUBDIR += py-pyaxo
     SUBDIR += py-pyclamd
     SUBDIR += py-pycrypto
     SUBDIR += py-pycryptodome
@@ -961,14 +972,14 @@
     SUBDIR += py-stem
     SUBDIR += py-stix
     SUBDIR += py-tlslite
+    SUBDIR += py-trezor
     SUBDIR += py-trustedpickle
     SUBDIR += py-tuf
-    SUBDIR += py-twistedConch
     SUBDIR += py-twofish
+    SUBDIR += py-txtorcon
     SUBDIR += py-virustotal-api
     SUBDIR += py-volatility
     SUBDIR += py-vulndb
-    SUBDIR += py-xmlsec
     SUBDIR += py-yara
     SUBDIR += py-yubioath-desktop
     SUBDIR += py-zope.app.authentication
@@ -991,6 +1002,8 @@
     SUBDIR += py3-ecdsa
     SUBDIR += py3-libnacl
     SUBDIR += py3-openssl
+    SUBDIR += py3-pbkdf2
+    SUBDIR += py3-pyaes
     SUBDIR += py3-pycrypto
     SUBDIR += qtkeychain-qt4
     SUBDIR += qtkeychain-qt5
@@ -1081,6 +1094,7 @@
     SUBDIR += rubygem-pyu-ruby-sasl
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-razorback-scriptNugget
+    SUBDIR += rubygem-rbnacl
     SUBDIR += rubygem-recog
     SUBDIR += rubygem-rex-arch
     SUBDIR += rubygem-rex-bin_tools
@@ -1115,11 +1129,11 @@
     SUBDIR += rubygem-webpush
     SUBDIR += s2n
     SUBDIR += safesh
-    SUBDIR += samba-virusfilter
     SUBDIR += samhain
     SUBDIR += samhain-client
     SUBDIR += samhain-server
     SUBDIR += sancp
+    SUBDIR += sandsifter
     SUBDIR += sasp
     SUBDIR += scamp
     SUBDIR += scanhill
@@ -1206,6 +1220,7 @@
     SUBDIR += tcpcrypt
     SUBDIR += testssl.sh
     SUBDIR += tinc
+    SUBDIR += tinc-devel
     SUBDIR += tinyca
     SUBDIR += titus
     SUBDIR += tls-check

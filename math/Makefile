@@ -7,7 +7,10 @@
     SUBDIR += PDL
     SUBDIR += R
     SUBDIR += R-cran-Amelia
+    SUBDIR += R-cran-CVST
     SUBDIR += R-cran-ChangeAnomalyDetection
+    SUBDIR += R-cran-DEoptimR
+    SUBDIR += R-cran-DRR
     SUBDIR += R-cran-Formula
     SUBDIR += R-cran-KFAS
     SUBDIR += R-cran-LearnBayes
@@ -21,6 +24,7 @@
     SUBDIR += R-cran-RSvgDevice
     SUBDIR += R-cran-RcppArmadillo
     SUBDIR += R-cran-RcppEigen
+    SUBDIR += R-cran-RcppRoll
     SUBDIR += R-cran-Rmpfr
     SUBDIR += R-cran-Rsolnp
     SUBDIR += R-cran-SparseM
@@ -32,7 +36,9 @@
     SUBDIR += R-cran-car
     SUBDIR += R-cran-coda
     SUBDIR += R-cran-combinat
+    SUBDIR += R-cran-ddalpha
     SUBDIR += R-cran-deldir
+    SUBDIR += R-cran-dimRed
     SUBDIR += R-cran-dlmodeler
     SUBDIR += R-cran-dplyr
     SUBDIR += R-cran-expm
@@ -40,14 +46,17 @@
     SUBDIR += R-cran-fracdiff
     SUBDIR += R-cran-geepack
     SUBDIR += R-cran-gmp
+    SUBDIR += R-cran-gower
     SUBDIR += R-cran-gpclib
     SUBDIR += R-cran-gss
     SUBDIR += R-cran-gtable
     SUBDIR += R-cran-igraph
     SUBDIR += R-cran-influenceR
     SUBDIR += R-cran-inline
+    SUBDIR += R-cran-ipred
     SUBDIR += R-cran-irlba
     SUBDIR += R-cran-labeling
+    SUBDIR += R-cran-lava
     SUBDIR += R-cran-lazyeval
     SUBDIR += R-cran-lme4
     SUBDIR += R-cran-maxLik
@@ -62,11 +71,14 @@
     SUBDIR += R-cran-numDeriv
     SUBDIR += R-cran-outliers
     SUBDIR += R-cran-pbkrtest
+    SUBDIR += R-cran-prodlim
     SUBDIR += R-cran-psych
     SUBDIR += R-cran-quadprog
     SUBDIR += R-cran-qualityTools
     SUBDIR += R-cran-quantreg
+    SUBDIR += R-cran-recipes
     SUBDIR += R-cran-rgenoud
+    SUBDIR += R-cran-robustbase
     SUBDIR += R-cran-sandwich
     SUBDIR += R-cran-sf
     SUBDIR += R-cran-sm
@@ -103,7 +115,6 @@
     SUBDIR += aspcud
     SUBDIR += asymptote
     SUBDIR += atlas
-    SUBDIR += bargraph
     SUBDIR += biggles
     SUBDIR += blacs
     SUBDIR += blas
@@ -305,6 +316,7 @@
     SUBDIR += mtl
     SUBDIR += mtrxmath
     SUBDIR += mumps
+    SUBDIR += mumps-edf
     SUBDIR += mumps-mpich
     SUBDIR += muparser
     SUBDIR += naturalmath
@@ -585,6 +597,8 @@
     SUBDIR += php70-gmp
     SUBDIR += php71-bcmath
     SUBDIR += php71-gmp
+    SUBDIR += php72-bcmath
+    SUBDIR += php72-gmp
     SUBDIR += physcalc
     SUBDIR += picosat
     SUBDIR += plman
@@ -666,6 +680,7 @@
     SUBDIR += rapid
     SUBDIR += reduce
     SUBDIR += reed-solomon
+    SUBDIR += rexx-regmath
     SUBDIR += rkward-kde4
     SUBDIR += rngstreams
     SUBDIR += rocs

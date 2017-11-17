@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	nagios
-PORTVERSION=	4.3.3
+PORTVERSION=	4.3.4
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://assets.nagios.com/downloads/nagioscore/releases/ \
@@ -32,6 +33,7 @@ CONFIGURE_ARGS=	--with-command-user=${NAGIOSUSER} \
 		--with-nagios-group=${NAGIOSGROUP} \
 		--with-htmurl=${NAGIOSHTMURL} \
 		--with-cgiurl=${NAGIOSCGIURL} \
+		--with-lockfile=${NAGIOSDIR}/nagios.lock \
 		--sbindir=${WWWDIR}/cgi-bin \
 		--libexecdir=${PREFIX}/libexec/nagios \
 		--datadir=${WWWDIR} \

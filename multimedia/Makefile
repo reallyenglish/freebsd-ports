@@ -275,7 +275,6 @@
     SUBDIR += mythtv-frontend
     SUBDIR += naludump
     SUBDIR += nordlicht
-    SUBDIR += nxtvepg
     SUBDIR += obs-studio
     SUBDIR += oggvideotools
     SUBDIR += ogmrip
@@ -307,7 +306,6 @@
     SUBDIR += php-pHash
     SUBDIR += pitivi
     SUBDIR += playd
-    SUBDIR += plexhometheater
     SUBDIR += plexmediaserver
     SUBDIR += plexmediaserver-plexpass
     SUBDIR += plexpy
@@ -329,6 +327,7 @@
     SUBDIR += py-kaa-imlib2
     SUBDIR += py-kaa-metadata
     SUBDIR += py-librtmp
+    SUBDIR += py-mido
     SUBDIR += py-mlt
     SUBDIR += py-moviepy
     SUBDIR += py-openlp
@@ -374,6 +373,7 @@
     SUBDIR += sabbu
     SUBDIR += schroedinger
     SUBDIR += shotcut
+    SUBDIR += simplescreenrecorder
     SUBDIR += smpeg
     SUBDIR += smpeg2
     SUBDIR += smplayer

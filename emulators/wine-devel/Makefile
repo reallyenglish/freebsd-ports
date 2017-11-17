@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	2.15
+DISTVERSION=	2.21
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
@@ -16,6 +16,9 @@ COMMENT?=	Microsoft Windows compatibility environment
 LICENSE=	LGPL21 LGPL3
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+ONLY_FOR_ARCHS=	amd64 i386
+STAGING_BROKEN=	Staging patchset still not available for this version
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
 		prelink:sysutils/prelink
@@ -34,6 +37,7 @@ CONFIGURE_ARGS+=--verbose --disable-tests \
 		--without-opencl \
 		--without-osmesa \
 		--with-oss \
+		--without-pulse \
 		--without-sane \
 		--without-tiff
 CONFIGURE_ENV=	CPPBIN="${CPP}" FLEX="${LOCALBASE}/bin/flex"
@@ -42,7 +46,6 @@ USES=		bison compiler:c11 desktop-file-utils gmake shebangfix tar:xz
 .if !defined(USE_LDCONFIG32)
 USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 .endif
-ONLY_FOR_ARCHS=	amd64 i386
 SHEBANG_FILES=	tools/make_requests tools/winemaker/winemaker \
 		tools/winedump/function_grep.pl
 
@@ -146,7 +149,6 @@ EXTRACT_DEPENDS=bash:shells/bash \
 		git:devel/git \
 		${AUTOCONF_DEPENDS}
 
-CONFIGURE_ARGS+=--without-pulse
 USE_AUTOTOOLS=	autoconf:env
 
 post-extract: fix-shebang
@@ -168,5 +170,13 @@ post-install:
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/programs/winedbg/README ${STAGEDIR}${DOCSDIR}/README.winedbg
 	${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${STAGEDIR}${DOCSDIR}/README.winedump
+
+check-wine-devel-vs-wine-staging:
+	@${GREP} %%STAGING%% pkg-plist | while read f; do \
+	  f=`echo $$f | ${SED} -e 's/%%STAGING%%//'`; \
+	  if [ -f "$$STAGEDIR/$$PREFIX/$$f" ]; then \
+	    ${PRINTF} "%s no longer contigent on %%STAGING%%?\n" "$$f"; \
+	  fi \
+	done
 
 .include <bsd.port.post.mk>

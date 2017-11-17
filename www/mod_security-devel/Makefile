@@ -2,6 +2,7 @@
 
 PORTNAME=	mod_security-devel
 PORTVERSION=	3.0.0.g2017080200
+PORTREVISION=	1
 CATEGORIES=	www security
 
 MAINTAINER=	marius.halden@modirum.com
@@ -17,7 +18,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 USES=		gmake autoreconf libtool pkgconfig:build
 USE_GNOME=	libxml2
 # GCC because of https://github.com/SpiderLabs/ModSecurity/issues/1411
-USE_GCC=	6+
+USE_GCC=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 

@@ -54,6 +54,7 @@
     SUBDIR += kf5-karchive
     SUBDIR += kzip
     SUBDIR += laszip
+    SUBDIR += lazperf
     SUBDIR += lbrate
     SUBDIR += lbzip2
     SUBDIR += lcab
@@ -158,6 +159,10 @@
     SUBDIR += php71-phar
     SUBDIR += php71-zip
     SUBDIR += php71-zlib
+    SUBDIR += php72-bz2
+    SUBDIR += php72-phar
+    SUBDIR += php72-zip
+    SUBDIR += php72-zlib
     SUBDIR += pigz
     SUBDIR += pixz
     SUBDIR += plzip
@@ -170,6 +175,7 @@
     SUBDIR += py-borgbackup
     SUBDIR += py-brotli
     SUBDIR += py-bz2file
+    SUBDIR += py-czipfile
     SUBDIR += py-libarchive-c
     SUBDIR += py-librtfcomp
     SUBDIR += py-lz4

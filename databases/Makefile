@@ -27,7 +27,6 @@
     SUBDIR += buzhug
     SUBDIR += c3p0
     SUBDIR += cassandra-cpp-driver
-    SUBDIR += cassandra2
     SUBDIR += casstcl
     SUBDIR += cdb
     SUBDIR += cego
@@ -57,7 +56,6 @@
     SUBDIR += elixir-calecto
     SUBDIR += elixir-db_connection
     SUBDIR += elixir-ecto
-    SUBDIR += elixir-ecto_migrate
     SUBDIR += elixir-exredis
     SUBDIR += elixir-geo
     SUBDIR += elixir-mariaex
@@ -92,7 +90,6 @@
     SUBDIR += gdbm
     SUBDIR += geoserver-mysql-plugin
     SUBDIR += gigabase
-    SUBDIR += glom
     SUBDIR += gnats4
     SUBDIR += gnatsweb4
     SUBDIR += gomdb
@@ -167,6 +164,7 @@
     SUBDIR += linux-oracle-instantclient-sqlplus
     SUBDIR += liquibase
     SUBDIR += lmdb
+    SUBDIR += lua-resty-redis
     SUBDIR += lua-xapian
     SUBDIR += luadbi
     SUBDIR += luasql-firebird
@@ -196,6 +194,7 @@
     SUBDIR += mongodb34
     SUBDIR += mongodb34-rocks
     SUBDIR += mongodb34-tools
+    SUBDIR += mroonga
     SUBDIR += mrtg-mysql-load
     SUBDIR += mtools-mongodb
     SUBDIR += mtop
@@ -555,8 +554,8 @@
     SUBDIR += pecl-mongodb
     SUBDIR += pecl-pdo_user
     SUBDIR += pecl-redis
-    SUBDIR += pecl-rrd1
     SUBDIR += pecl-rrd
+    SUBDIR += pecl-rrd1
     SUBDIR += pecl-tokyo_tyrant
     SUBDIR += percona-pam-for-mysql
     SUBDIR += percona-toolkit
@@ -567,6 +566,7 @@
     SUBDIR += percona57-client
     SUBDIR += percona57-pam-for-mysql
     SUBDIR += percona57-server
+    SUBDIR += pgFormatter
     SUBDIR += pg_activity
     SUBDIR += pg_citus
     SUBDIR += pg_dirtyread
@@ -585,7 +585,6 @@
     SUBDIR += pgbouncer
     SUBDIR += pgdbf
     SUBDIR += pgespresso
-    SUBDIR += pgFormatter
     SUBDIR += pgfouine
     SUBDIR += pgloader
     SUBDIR += pgloader3
@@ -596,6 +595,7 @@
     SUBDIR += pgpool-II-35
     SUBDIR += pgpool-II-36
     SUBDIR += pgreplay
+    SUBDIR += pgroonga
     SUBDIR += pgrouting
     SUBDIR += pgsphere
     SUBDIR += pgtcl
@@ -652,12 +652,27 @@
     SUBDIR += php71-pdo_sqlite
     SUBDIR += php71-pgsql
     SUBDIR += php71-sqlite3
+    SUBDIR += php72-pdo
+    SUBDIR += php72-dba
+    SUBDIR += php72-interbase
+    SUBDIR += php72-mysqli
+    SUBDIR += php72-odbc
+    SUBDIR += php72-pdo
+    SUBDIR += php72-pdo_dblib
+    SUBDIR += php72-pdo_firebird
+    SUBDIR += php72-pdo_mysql
+    SUBDIR += php72-pdo_odbc
+    SUBDIR += php72-pdo_pgsql
+    SUBDIR += php72-pdo_sqlite
+    SUBDIR += php72-pgsql
+    SUBDIR += php72-sqlite3
     SUBDIR += phpliteadmin
     SUBDIR += phpminiadmin
     SUBDIR += phpmyadmin
     SUBDIR += phppgadmin
     SUBDIR += pldebugger
     SUBDIR += plpgsql_check
+    SUBDIR += pointcloud
     SUBDIR += postgis-jdbc
     SUBDIR += postgis20
     SUBDIR += postgis21
@@ -736,10 +751,8 @@
     SUBDIR += proftpd-mod_sql_postgres
     SUBDIR += proftpd-mod_sql_sqlite
     SUBDIR += proftpd-mod_sql_tds
-    SUBDIR += puppetdb-terminus3
     SUBDIR += puppetdb-terminus4
     SUBDIR += puppetdb-terminus5
-    SUBDIR += puppetdb3
     SUBDIR += puppetdb4
     SUBDIR += puppetdb5
     SUBDIR += pure-sql3
@@ -778,6 +791,7 @@
     SUBDIR += py-htsql-pgsql
     SUBDIR += py-kyotocabinet
     SUBDIR += py-leveldb
+    SUBDIR += py-lmdb
     SUBDIR += py-motor
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
@@ -837,6 +851,7 @@
     SUBDIR += py-varstack
     SUBDIR += py-whisper
     SUBDIR += py-xapian
+    SUBDIR += py-zodbpickle
     SUBDIR += py3-apsw
     SUBDIR += py3-bsddb3
     SUBDIR += py3-mysqlclient
@@ -1044,6 +1059,7 @@
     SUBDIR += zabbix22-libzbxpgsql
     SUBDIR += zabbix3-libzbxpgsql
     SUBDIR += zabbix32-libzbxpgsql
+    SUBDIR += zabbix34-libzbxpgsql
     SUBDIR += zodb3
 
 .include <bsd.port.subdir.mk>
