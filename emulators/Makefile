@@ -153,6 +153,7 @@
     SUBDIR += virtio-kmod
     SUBDIR += virtualbox-ose
     SUBDIR += virtualbox-ose-additions
+    SUBDIR += virtualbox-ose-additions-nox11
     SUBDIR += virtualbox-ose-kmod
     SUBDIR += visualboyadvance-m
     SUBDIR += vmips
