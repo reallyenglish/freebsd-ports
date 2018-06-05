@@ -19,8 +19,8 @@ COMMENT=	SSL and crypto library
 .error You have `USE_OPENSSL' variable defined either in environment or in make(1) arguments. Please undefine and try again.
 .endif
 
-OPTIONS_DEFINE=	SHARED THREADS I386 SSE2 ASM PADLOCK ZLIB SCTP MD2 RC5 RFC3779 GMP
-OPTIONS_DEFAULT=SHARED THREADS SSE2 ASM ZLIB SCTP MD2
+OPTIONS_DEFINE=	SHARED THREADS I386 SSE2 SSL2 SSL3 ASM PADLOCK ZLIB SCTP MD2 RC5 RFC3779 GMP
+OPTIONS_DEFAULT=SHARED THREADS SSE2 SSL2 SSL3 ASM ZLIB SCTP MD2
 .for a in amd64 ia64
 OPTIONS_DEFINE_${a}=	EC
 OPTIONS_DEFAULT_${a}=	EC
@@ -34,6 +34,8 @@ NO_OPTIONS_SORT=yes
 OPTIONS_SUB=	yes
 I386_DESC?=	Optimize for i386 (instead of i486+)
 SSE2_DESC?=	runtime SSE2 detection
+SSL2_DESC?=	SSLv2 protocol support
+SSL3_DESC?=	SSLv3 protocol support
 ASM_DESC?=	optimized Assembler code
 PADLOCK_DESC?=	VIA Padlock support
 SHARED_DESC?=	build of shared libs
@@ -1552,6 +1554,18 @@ EXTRACONFIGURE+=	386
 .if empty(PORT_OPTIONS:MSSE2)
 # disable runtime SSE2 detection
 EXTRACONFIGURE+=	no-sse2
+.endif
+
+.if ${PORT_OPTIONS:MSSL2}
+EXTRACONFIGURE+=	enable-ssl2
+.else
+EXTRACONFIGURE+=	no-ssl2
+.endif
+
+.if ${PORT_OPTIONS:MSSL3}
+EXTRACONFIGURE+=	enable-ssl3
+.else
+EXTRACONFIGURE+=	no-ssl3
 .endif
 
 .if ${PORT_OPTIONS:MASM}
