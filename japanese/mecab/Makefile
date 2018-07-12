@@ -1,59 +1,53 @@
-# New ports collection makefile for:	mecab
-# Date created:		2 April 2003
-# Whom:			Akinori MUSHA aka knu <knu@idaemons.org>
-#
+# Created by: Akinori MUSHA aka knu <knu@idaemons.org>
 # $FreeBSD$
-#
 
 PORTNAME=	mecab
-PORTVERSION=	0.994
+PORTVERSION=	0.996
+PORTREVISION=	3
 CATEGORIES=	japanese textproc
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE&dummy=/
 
-MAINTAINER=	clsung@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Yet Another Part-of-Speech and Morphological Analyzer
 
+LICENSE=	BSD3CLAUSE GPLv2 LGPL21
+LICENSE_COMB=	multi
+
+#BROKEN_mips=		fails to link: Nonrepresentable section on output
+#BROKEN_mips64=		fails to link: Nonrepresentable section on output
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	ac_cv_lib_stdcpp_main=no
+INSTALL_TARGET=	install-strip
 USE_AUTOTOOLS=	libtool
 USE_ICONV=	yes
 USE_PERL5_BUILD=	yes
 GNU_CONFIGURE=	yes
+USE_GETTEXT=	build
 USE_LDCONFIG=	yes
 
-CPPFLAGS+=	${PTHREAD_CFLAGS} -I ${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
-
-# Default charset (euc-jp/shift_jis/utf-8)
-.if defined(WITH_CHARSET)
-CONFIGURE_ARGS+=	--with-charset=${WITH_CHARSET}
-.endif
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 
 MAN1=		mecab.1
 
-DOCS=		AUTHORS README doc/*.html
+PORTDOCS=		AUTHORS README *.html
 
 .include <bsd.port.pre.mk>
 
 post-patch:
-	${REINPLACE_CMD} -e 's/-lpthread/${PTHREAD_LIBS}/g' \
-			 -e 's/-O3/${CFLAGS}/' ${WRKSRC}/${CONFIGURE_SCRIPT}
-	${REINPLACE_CMD} -e 's/conf_DATA = mecabrc/conf_DATA = mecabrc.dist/' ${WRKSRC}/Makefile.in
-
-post-configure:
-	${CP} ${WRKSRC}/mecabrc ${WRKSRC}/mecabrc.dist
-
-pre-install:
-	${CHMOD} a+x ${WRKSRC}/install-sh
+	@${REINPLACE_CMD} '/^libmecab_la_LIBADD =/s/$$/ $$(LTLIBICONV)/' \
+		${WRKSRC}/src/Makefile.in
+	@${REINPLACE_CMD} \
+		-e '/CFLAGS/s|-O3|${CFLAGS}|' \
+		-e '/CXXFLAGS/s|-O3|${CXXFLAGS}|' \
+		${WRKSRC}/configure
 
 post-install:
-	@if [ ! -f ${PREFIX}/etc/mecabrc ]; then \
-		${INSTALL_DATA} ${PREFIX}/etc/mecabrc.dist ${PREFIX}/etc/mecabrc; \
-	fi
-.if !defined(NOPORTDOCS)
-	${MKDIR} ${DOCSDIR}
-.for f in ${DOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${DOCSDIR}/
-.endfor
-.endif
-	@${CAT} ${PKGMESSAGE}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:N*.html:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
+	${MV} ${STAGEDIR}${PREFIX}/etc/mecabrc \
+		${STAGEDIR}${PREFIX}/etc/mecabrc.sample
 
 .include <bsd.port.post.mk>
