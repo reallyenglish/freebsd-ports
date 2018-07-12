@@ -1,40 +1,46 @@
 # $FreeBSD$
 
 PORTNAME=	groonga
-PORTVERSION=	3.0.0
+PORTVERSION=	8.0.3
 CATEGORIES=	textproc
 MASTER_SITES=	http://packages.groonga.org/source/groonga/
 
-MAINTAINER=	kuriyama@FreeBSD.org
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Open-source fulltext search engine and column store
 
 LICENSE=	LGPL21
-GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
-USE_GNOME=	pkgconfig
-USE_GMAKE=      yes
-CONFIGURE_ARGS=	--with-munin-plugins 
-CONFIGURE_ARGS+=	--with-log-path=/var/log/groonga.log \
-			--localstatedir=/var
 
-OPTIONS_DEFINE=	MECAB SUGGEST
-MECAB_DESC=	use mecab for morphological analysis
-SUGGEST_DESC=	use suggest for suggest
-OPTIONS_DEFAULT=MECAB SUGGEST
+LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+#BUILD_DEPENDS=	automake:${PORTSDIR}/devel/automake
+
+USES=		gmake libedit pathfix pkgconfig
+
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--disable-benchmark \
+		--disable-document \
+		--localstatedir=/var \
+		--without-cutter \
+		--without-inkscape \
+		--without-kytea \
+		--without-lemon \
+		--with-log-path=/var/log/groonga.log \
+		--with-munin-plugins
+INSTALL_TARGET=	install-strip
+USE_LDCONFIG=	yes
+USE_AUTOTOOLS=	libtool
+MAKE_ARGS+=	AUTOMAKE=echo
+
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+OPTIONS_DEFINE=		MECAB SUGGEST RUBY
+OPTIONS_DEFAULT=	MECAB SUGGEST RUBY
+OPTIONS_SUB=		yes
+
+MECAB_DESC=		Morphological analysis support via MeCab
+SUGGEST_DESC=		Suggestions support
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == "ia64" || ${ARCH} == "powerpc" || ${ARCH} == "sparc64"
-BROKEN=		Does not compile on ia64, powerpc, or sparc64
-.endif
-
-# We cannot enable this document option until textproc/py-sphinx be upgraded to 1.2.
-.if ${PORT_OPTIONS:MDOCS}
-BUILD_DEPENDS=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
-MAN1=	groonga.1
-.else
-CONFIGURE_ARGS+=	--disable-document
-.endif
 
 .if ${PORT_OPTIONS:MMECAB} || exists(${LOCALBASE}/lib/libmecab.so)
 CONFIGURE_ARGS+=	--with-mecab
@@ -59,5 +65,28 @@ CONFIGURE_ARGS+=	--without-libevent \
 			--disable-zeromq
 PLIST_SUB+=	SUGGEST="@comment "
 .endif
+
+.if ${PORT_OPTIONS:MRUBY}
+CONFIGURE_ARGS+=	--enable-mruby
+USE_RUBY=	yes
+PLIST_SUB+=	RUBY=""
+.else
+PLIST_SUB+=	RUBY="@comment "
+.endif
+
+post-patch:
+	@${REINPLACE_CMD} -e \
+		's|lib/$${PACKAGE}/db/db|db/$${PACKAGE}/db| ; \
+		 s|-lpthread|-pthread|' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e \
+		'/NGX_PID_PATH/s|mkdir|${TRUE}| ; \
+		 /NGX_HTTP_LOG_PATH/s|mkdir|${TRUE}| ; \
+		 /NGX_ERROR_LOG_PATH/s|mkdir|${TRUE}|' \
+		${WRKSRC}/vendor/nginx-1.14.0/auto/install
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/groonga-httpd
+	@${MKDIR} ${STAGEDIR}/var/log/groonga/httpd
+	@${MKDIR} ${STAGEDIR}/var/run/groonga
 
 .include <bsd.port.post.mk>
